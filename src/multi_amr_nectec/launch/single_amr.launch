@@ -1,0 +1,39 @@
+<launch>
+    <arg name="robot_name"/>
+    <arg name="init_pose_gazebo"/>
+    <arg name="init_pose_rviz"/>
+    <arg name="move_forward_only" default="false"/>
+    <param name="tf_prefix" value="$(arg robot_name)" />
+
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find amr_description)/urdf/amr.urdf.xacro" />
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="$(arg init_pose_gazebo) -urdf -param robot_description -model $(arg robot_name)" output="screen"/>
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" output="screen" />
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen"/>      
+
+
+    <!-- Run navigation stack    
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base_node" output="screen">  
+      <remap from="map" to="/map" />         
+      
+      <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+      
+      <rosparam file="$(find gazebo_navigation_multi)/move_base_config/costmap_common_params_tb3.yaml" command="load" ns="global_costmap" />
+      <rosparam file="$(find gazebo_navigation_multi)/move_base_config/costmap_common_params_tb3.yaml" command="load" ns="local_costmap" />
+      <rosparam file="$(find gazebo_navigation_multi)/move_base_config/local_costmap_params_tb3.yaml" command="load" />
+      <rosparam file="$(find gazebo_navigation_multi)/move_base_config/global_costmap_params_tb3.yaml" command="load" />
+      <rosparam file="$(find gazebo_navigation_multi)/move_base_config/move_base_params_tb3.yaml" command="load" />      
+      
+      <rosparam file="$(find gazebo_navigation_multi)/move_base_config/dwa_local_planner_params_burger.yaml" command="load" />      
+      <param name="DWAPlannerROS/min_vel_x" value="0.0" if="$(arg move_forward_only)" />
+ 
+    </node>   
+   -->
+        <!--Localization  
+     <include file="$(find turtlebot3_navigation)/launch/amcl.launch"/>
+     -->
+ <!--transform odon to map-->
+ <node pkg="tf" type="static_transform_publisher" name="odom_map_broadcaster" args="$(arg init_pose_rviz) /map $(arg robot_name)/odom 100" />
+
+
+
+</launch>

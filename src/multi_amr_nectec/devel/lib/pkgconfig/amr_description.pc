@@ -1,0 +1,8 @@
+prefix=/home/kanin/roboware_nin/devel
+
+Name: amr_description
+Description: Description of amr_description
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/kanin/roboware_nin/devel/lib 
+Requires: urdf xacro

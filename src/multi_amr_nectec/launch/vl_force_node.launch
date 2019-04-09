@@ -1,0 +1,3 @@
+<launch>
+<node pkg="multi_amr_nectec" type="position_vl" name="position_vl" output="screen" />
+</launch>

@@ -1,0 +1,8 @@
+prefix=/home/kanin/catkin_ws_roboware/devel
+
+Name: multi_amr_nectec
+Description: Description of multi_amr_nectec
+Version: 0.0.0
+Cflags: -I/home/kanin/catkin_ws_roboware/devel/include
+Libs: -L/home/kanin/catkin_ws_roboware/devel/lib 
+Requires: message_runtime

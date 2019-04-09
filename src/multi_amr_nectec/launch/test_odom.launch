@@ -1,0 +1,16 @@
+  <launch>
+<arg name="open_gazebo" default="false"/>
+  <!-- start gazebo --> 
+<include file="$(find gazebo_ros)/launch/empty_world.launch">
+   
+    <arg name="world_name" value="empty_world.launch"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="$(arg open_gazebo)"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+</include>
+
+<node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen"/>
+
+</launch>

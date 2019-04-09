@@ -1,0 +1,8 @@
+<launch>
+  <!-- send  urdf to param server -->
+  <param name="load_description" command="$(find xacro)/xacro.py $(find amr_description)/urdf/load.urdf" />
+
+     <param name="table_description" command="$(find xacro)/xacro.py $(find gazebo_worlds)/objects/table.urdf.xacro" />
+  <!-- push load_description to factory and spawn robot in gazebo -->
+  <node name="spawn_load" pkg="gazebo" type="spawn_model" args="-urdf -param table_description -x -0.14 -y 0.0002 -z 0.2 -model load_model" respawn="false" output="screen" />
+</launch>
