@@ -6,6 +6,24 @@
 
 #IncludeRegexTransform: 
 
+/home/kanin/catkin_ws_roboware/devel/include/multi_amr_nectec/pos_msg.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+geometry_msgs/Point.h
+-
+
 /home/kanin/catkin_ws_roboware/src/multi_amr_nectec/src/vl_force.cpp
 ros/ros.h
 -
@@ -21,6 +39,8 @@ geometry_msgs/Twist.h
 -
 stdlib.h
 -
+multi_amr_nectec/pos_msg.h
+/home/kanin/catkin_ws_roboware/src/multi_amr_nectec/src/multi_amr_nectec/pos_msg.h
 
 /opt/ros/kinetic/include/boost_161_condition_variable.h
 boost/thread/detail/platform.hpp

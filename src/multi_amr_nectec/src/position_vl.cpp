@@ -8,6 +8,7 @@
 #include <tf/transform_listener.h>
 #include <boost/lexical_cast.hpp>
 #include <std_msgs/Float32.h>
+//#include <std_msgs/UInt8.h>
 #include <geometry_msgs/Point32.h>
 #include <geometry_msgs/Twist.h>
 #include <stdlib.h>
@@ -29,16 +30,9 @@ int main(int argc, char** argv) {
 	// Get tf_prefix from the parameter server
 	nh.getParam("tf_prefix", tf_prefix);
    // nh.getParam("team_size", team_size);
- 
     ros::Publisher vl_pos_pub = nh.advertise<geometry_msgs::Point32>("vl_pos", 1000);
     // send array
     ros::Publisher robot_pos_pub = nh.advertise<multi_amr_nectec::pos_msg>("robot_pos",1000);
-    
-    ros::Publisher force0_pub = nh.advertise<geometry_msgs::Twist>("amr_0/cmd_vel", 1000);
-    ros::Publisher force1_pub = nh.advertise<geometry_msgs::Twist>("amr_1/cmd_vel", 1000);
-    ros::Publisher force2_pub = nh.advertise<geometry_msgs::Twist>("amr_2/cmd_vel", 1000);
-    ros::Publisher force3_pub = nh.advertise<geometry_msgs::Twist>("amr_3/cmd_vel", 1000);
-	
     pair<double, double> currPosition;
 	ros::Rate loopRate(50);
   // the message to be published
@@ -47,21 +41,16 @@ int main(int argc, char** argv) {
 
 	int team_size = 4 ;
     geometry_msgs::Point32 sum;
-    float Kvl=0.25;
-    geometry_msgs::Point32 dist_default;
-    dist_default.x=4;
-    dist_default.y=4;
     geometry_msgs::Point32 vl_pos;
     geometry_msgs::Point32 robot_pos [team_size];
-    geometry_msgs::Point32 Dist_vl [team_size];
-    geometry_msgs::Point32 Force_vl [team_size];
-    
     Point my_array[team_size];
     Point point;
    
 	while (ros::ok()) 
 {   msg.point_robot.clear();
     geometry_msgs::Twist send_fvl [team_size];
+
+
         //Get each position of robot 
         for (int i = 0; i < team_size; i++) 
         {
@@ -79,7 +68,6 @@ int main(int argc, char** argv) {
    
         }
         std::vector<Point> my_vector (my_array, my_array + sizeof(my_array) / sizeof(Point));
-    
 		int k = 0;
         for (std::vector<Point>::iterator it = my_vector.begin(); it != my_vector.end(); ++it)
         {
@@ -90,48 +78,17 @@ int main(int argc, char** argv) {
         msg.point_robot.push_back(point);
         k++;
         }
-        
-        
-       
        // ROS_INFO("sum = [%.3f,%.3f]",sum.x,sum.y);
               vl_pos.x=sum.x/team_size;
               vl_pos.y=sum.y/team_size;
             ROS_INFO("Send pos VL [%.3f,%.3f]", vl_pos.x,vl_pos.y);
-                //fake vl_pos
-               
-                vl_pos_pub.publish(vl_pos);
-                 
-             for (int j = 0; j < team_size; j++)
-                {Dist_vl[j].x=vl_pos.x-robot_pos[j].x;
-                 Dist_vl[j].y=vl_pos.y-robot_pos[j].y;
-                int check_x=1;
-                int check_y=1;
-                if(robot_pos[j].x>=vl_pos.x)
-                    {check_x=-1;}
-               if(robot_pos[j].y>=vl_pos.y)
-                    {check_y=-1;}
-                //ROS_INFO("Dist default X=%.3f",dist_default.x);
-                ROS_INFO("Dist_vl of robot %d[%.3f,%.3f]",j,Dist_vl[j].x,Dist_vl[j].y);
-                Force_vl[j].x=Kvl*(Dist_vl[j].x-check_x*(dist_default.x));
-                Force_vl[j].y=Kvl*(Dist_vl[j].y-check_y*(dist_default.y));
-             
-                //ROS_INFO("Virtual Force of robot %d[%.3f,%.3f]",j,Force_vl[j].x,Force_vl[j].y);
-                 
-                  send_fvl[j].linear.x =Force_vl[j].x;
-                  send_fvl[j].linear.y =Force_vl[j].y;  
-                 ROS_INFO("Cmd_vel of robot %d  [%.3f,%.3f]",j, send_fvl[j].linear.x,send_fvl[j].linear.y);  
-                
-                }
-                force0_pub.publish(send_fvl[0]);
-                force1_pub.publish(send_fvl[1]);
-                force2_pub.publish(send_fvl[2]);
-                force3_pub.publish(send_fvl[3]);
                 sum.x=0; //set zero
                 sum.y=0;
-                robot_pos_pub.publish(msg);
-
+                vl_pos_pub.publish(vl_pos);
+                robot_pos_pub.publish(msg);  //array of robot pos 
+          
         ROS_INFO("----------------------------------");
-        //ros::spinOnce();
+        ros::spinOnce();
         loopRate.sleep();
 	}
 	return 0;

@@ -16,7 +16,7 @@ int main(int argc, char** argv){
   ros::init(argc, argv, "fake_odometry_publisher");
 
   ros::NodeHandle n;
-  ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 100);
+  ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 1000);
   ros::Subscriber vl_sub = n.subscribe("vl_pos", 1000, VL_Callback);
   tf::TransformBroadcaster odom_broadcaster;
 
@@ -32,7 +32,7 @@ int main(int argc, char** argv){
   current_time = ros::Time::now();
   last_time = ros::Time::now();
 
-  ros::Rate r(50);
+  ros::Rate loopRate(50);
   while(n.ok()){
     ros::spinOnce();               // check for incoming messages
     current_time = ros::Time::now();
@@ -82,6 +82,6 @@ int main(int argc, char** argv){
     odom_pub.publish(odom);
 
     last_time = current_time;
-    r.sleep();
+    loopRate.sleep();
   }
 }
