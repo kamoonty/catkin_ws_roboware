@@ -25,22 +25,17 @@ struct pos_msg_
   typedef pos_msg_<ContainerAllocator> Type;
 
   pos_msg_()
-    : points2()
-    , another_field2(0)  {
+    : point_robot()  {
     }
   pos_msg_(const ContainerAllocator& _alloc)
-    : points2(_alloc)
-    , another_field2(0)  {
+    : point_robot(_alloc)  {
   (void)_alloc;
     }
 
 
 
-   typedef std::vector< ::geometry_msgs::Point_<ContainerAllocator> , typename ContainerAllocator::template rebind< ::geometry_msgs::Point_<ContainerAllocator> >::other >  _points2_type;
-  _points2_type points2;
-
-   typedef uint8_t _another_field2_type;
-  _another_field2_type another_field2;
+   typedef std::vector< ::geometry_msgs::Point_<ContainerAllocator> , typename ContainerAllocator::template rebind< ::geometry_msgs::Point_<ContainerAllocator> >::other >  _point_robot_type;
+  _point_robot_type point_robot;
 
 
 
@@ -120,12 +115,12 @@ struct MD5Sum< ::multi_amr_nectec::pos_msg_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "584ed9eab9daa1be705ab1b1de5c8229";
+    return "c9ace4191c815fda1591b79a1b91a4df";
   }
 
   static const char* value(const ::multi_amr_nectec::pos_msg_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x584ed9eab9daa1beULL;
-  static const uint64_t static_value2 = 0x705ab1b1de5c8229ULL;
+  static const uint64_t static_value1 = 0xc9ace4191c815fdaULL;
+  static const uint64_t static_value2 = 0x1591b79a1b91a4dfULL;
 };
 
 template<class ContainerAllocator>
@@ -144,8 +139,8 @@ struct Definition< ::multi_amr_nectec::pos_msg_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "geometry_msgs/Point[] points2\n\
-uint8 another_field2\n\
+    return "geometry_msgs/Point[] point_robot\n\
+\n\
 ================================================================================\n\
 MSG: geometry_msgs/Point\n\
 # This contains the position of a point in free space\n\
@@ -170,8 +165,7 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.points2);
-      stream.next(m.another_field2);
+      stream.next(m.point_robot);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -190,16 +184,14 @@ struct Printer< ::multi_amr_nectec::pos_msg_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::multi_amr_nectec::pos_msg_<ContainerAllocator>& v)
   {
-    s << indent << "points2[]" << std::endl;
-    for (size_t i = 0; i < v.points2.size(); ++i)
+    s << indent << "point_robot[]" << std::endl;
+    for (size_t i = 0; i < v.point_robot.size(); ++i)
     {
-      s << indent << "  points2[" << i << "]: ";
+      s << indent << "  point_robot[" << i << "]: ";
       s << std::endl;
       s << indent;
-      Printer< ::geometry_msgs::Point_<ContainerAllocator> >::stream(s, indent + "    ", v.points2[i]);
+      Printer< ::geometry_msgs::Point_<ContainerAllocator> >::stream(s, indent + "    ", v.point_robot[i]);
     }
-    s << indent << "another_field2: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.another_field2);
   }
 };
 

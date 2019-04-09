@@ -1,2 +1,1 @@
-geometry_msgs/Point[] points2
-uint8 another_field2
+geometry_msgs/Point[] point_robot

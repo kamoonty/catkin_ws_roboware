@@ -16,69 +16,58 @@
 
 (defclass multi_amr_nectec::pos_msg
   :super ros::object
-  :slots (_points2 _another_field2 ))
+  :slots (_point_robot ))
 
 (defmethod multi_amr_nectec::pos_msg
   (:init
    (&key
-    ((:points2 __points2) (let (r) (dotimes (i 0) (push (instance geometry_msgs::Point :init) r)) r))
-    ((:another_field2 __another_field2) 0)
+    ((:point_robot __point_robot) (let (r) (dotimes (i 0) (push (instance geometry_msgs::Point :init) r)) r))
     )
    (send-super :init)
-   (setq _points2 __points2)
-   (setq _another_field2 (round __another_field2))
+   (setq _point_robot __point_robot)
    self)
-  (:points2
-   (&rest __points2)
-   (if (keywordp (car __points2))
-       (send* _points2 __points2)
+  (:point_robot
+   (&rest __point_robot)
+   (if (keywordp (car __point_robot))
+       (send* _point_robot __point_robot)
      (progn
-       (if __points2 (setq _points2 (car __points2)))
-       _points2)))
-  (:another_field2
-   (&optional __another_field2)
-   (if __another_field2 (setq _another_field2 __another_field2)) _another_field2)
+       (if __point_robot (setq _point_robot (car __point_robot)))
+       _point_robot)))
   (:serialization-length
    ()
    (+
-    ;; geometry_msgs/Point[] _points2
-    (apply #'+ (send-all _points2 :serialization-length)) 4
-    ;; uint8 _another_field2
-    1
+    ;; geometry_msgs/Point[] _point_robot
+    (apply #'+ (send-all _point_robot :serialization-length)) 4
     ))
   (:serialize
    (&optional strm)
    (let ((s (if strm strm
               (make-string-output-stream (send self :serialization-length)))))
-     ;; geometry_msgs/Point[] _points2
-     (write-long (length _points2) s)
-     (dolist (elem _points2)
+     ;; geometry_msgs/Point[] _point_robot
+     (write-long (length _point_robot) s)
+     (dolist (elem _point_robot)
        (send elem :serialize s)
        )
-     ;; uint8 _another_field2
-       (write-byte _another_field2 s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
    (buf &optional (ptr- 0))
-   ;; geometry_msgs/Point[] _points2
+   ;; geometry_msgs/Point[] _point_robot
    (let (n)
      (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4)
-     (setq _points2 (let (r) (dotimes (i n) (push (instance geometry_msgs::Point :init) r)) r))
-     (dolist (elem- _points2)
+     (setq _point_robot (let (r) (dotimes (i n) (push (instance geometry_msgs::Point :init) r)) r))
+     (dolist (elem- _point_robot)
      (send elem- :deserialize buf ptr-) (incf ptr- (send elem- :serialization-length))
      ))
-   ;; uint8 _another_field2
-     (setq _another_field2 (sys::peek buf ptr- :char)) (incf ptr- 1)
    ;;
    self)
   )
 
-(setf (get multi_amr_nectec::pos_msg :md5sum-) "584ed9eab9daa1be705ab1b1de5c8229")
+(setf (get multi_amr_nectec::pos_msg :md5sum-) "c9ace4191c815fda1591b79a1b91a4df")
 (setf (get multi_amr_nectec::pos_msg :datatype-) "multi_amr_nectec/pos_msg")
 (setf (get multi_amr_nectec::pos_msg :definition-)
-      "geometry_msgs/Point[] points2
-uint8 another_field2
+      "geometry_msgs/Point[] point_robot
+
 ================================================================================
 MSG: geometry_msgs/Point
 # This contains the position of a point in free space
@@ -90,6 +79,6 @@ float64 z
 
 
 
-(provide :multi_amr_nectec/pos_msg "584ed9eab9daa1be705ab1b1de5c8229")
+(provide :multi_amr_nectec/pos_msg "c9ace4191c815fda1591b79a1b91a4df")
 
 

@@ -7,17 +7,23 @@
 #include <ros/ros.h>
 #include <tf/transform_listener.h>
 #include <boost/lexical_cast.hpp>
-//#include <sstream>
 #include <std_msgs/Float32.h>
 #include <geometry_msgs/Point32.h>
 #include <geometry_msgs/Twist.h>
-#include <stdlib.h> 
+#include <stdlib.h>
+//#include <sstream>
+#include "geometry_msgs/Point.h"
+#include "multi_amr_nectec/pos_msg.h"
+#include <vector> 
+// global variable here
 using namespace std;
 string tf_prefix;
 pair<double, double> getRobotPosition(int robot_no);
-
+struct Point {
+    float x;
+    float y;
+};
 int main(int argc, char** argv) {
-	/*ros::init(argc, argv, "print_position");*/
     ros::init(argc, argv, "Virtual_Leader_pos");
     ros::NodeHandle nh;
 	// Get tf_prefix from the parameter server
@@ -25,14 +31,19 @@ int main(int argc, char** argv) {
    // nh.getParam("team_size", team_size);
  
     ros::Publisher vl_pos_pub = nh.advertise<geometry_msgs::Point32>("vl_pos", 1000);
-    //ros::Publisher robot_pos_pub = nh.advertise<geometry_msgs::Point32>("robot_pos", 100);
+    // send array
+    ros::Publisher robot_pos_pub = nh.advertise<multi_amr_nectec::pos_msg>("robot_pos",1000);
+    
     ros::Publisher force0_pub = nh.advertise<geometry_msgs::Twist>("amr_0/cmd_vel", 1000);
     ros::Publisher force1_pub = nh.advertise<geometry_msgs::Twist>("amr_1/cmd_vel", 1000);
     ros::Publisher force2_pub = nh.advertise<geometry_msgs::Twist>("amr_2/cmd_vel", 1000);
     ros::Publisher force3_pub = nh.advertise<geometry_msgs::Twist>("amr_3/cmd_vel", 1000);
-	pair<double, double> currPosition;
-
+	
+    pair<double, double> currPosition;
 	ros::Rate loopRate(50);
+  // the message to be published
+     multi_amr_nectec::pos_msg msg;
+
 
 	int team_size = 4 ;
     geometry_msgs::Point32 sum;
@@ -45,9 +56,11 @@ int main(int argc, char** argv) {
     geometry_msgs::Point32 Dist_vl [team_size];
     geometry_msgs::Point32 Force_vl [team_size];
     
-    
-	while (ros::ok()) {
-	
+    Point my_array[team_size];
+    Point point;
+   
+	while (ros::ok()) 
+{   msg.point_robot.clear();
     geometry_msgs::Twist send_fvl [team_size];
         //Get each position of robot 
         for (int i = 0; i < team_size; i++) 
@@ -58,8 +71,28 @@ int main(int argc, char** argv) {
             sum.x+= robot_pos[i].x;
             sum.y+= robot_pos[i].y;
             //ROS_INFO("AMR id= %d : (%.3f, %.3f)", i, robot_pos[i].x, robot_pos[i].y);         
+        // creating the vector
+            point.x = robot_pos[i].x;
+            point.y = robot_pos[i].y;
+            my_array[i] = point;
+         // ROS_INFO("Put value in array[%d] : (%.3f, %.3f)", i, point.x, point.y);         
+   
         }
-		
+        std::vector<Point> my_vector (my_array, my_array + sizeof(my_array) / sizeof(Point));
+    
+		int k = 0;
+        for (std::vector<Point>::iterator it = my_vector.begin(); it != my_vector.end(); ++it)
+        {
+        geometry_msgs::Point point;
+        point.x = (*it).x;
+        point.y = (*it).y;
+        point.z = 0;
+        msg.point_robot.push_back(point);
+        k++;
+        }
+        
+        
+       
        // ROS_INFO("sum = [%.3f,%.3f]",sum.x,sum.y);
               vl_pos.x=sum.x/team_size;
               vl_pos.y=sum.y/team_size;
@@ -95,7 +128,10 @@ int main(int argc, char** argv) {
                 force3_pub.publish(send_fvl[3]);
                 sum.x=0; //set zero
                 sum.y=0;
+                robot_pos_pub.publish(msg);
+
         ROS_INFO("----------------------------------");
+        //ros::spinOnce();
         loopRate.sleep();
 	}
 	return 0;

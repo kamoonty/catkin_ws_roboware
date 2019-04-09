@@ -36,7 +36,7 @@ int main(int argc, char **argv)
   while (ros::ok())
   {
     msg.points.clear();
-
+    
     msg.another_field = count;
     int i = 0;
     for (std::vector<Point>::iterator it = my_vector.begin(); it != my_vector.end(); ++it) {
