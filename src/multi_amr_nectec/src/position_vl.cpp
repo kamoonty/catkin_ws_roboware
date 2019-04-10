@@ -84,7 +84,7 @@ int main(int argc, char** argv) {
             ROS_INFO("Send pos VL [%.3f,%.3f]", vl_pos.x,vl_pos.y);
                 sum.x=0; //set zero
                 sum.y=0;
-                vl_pos_pub.publish(vl_pos);
+                vl_pos_pub.publish(vl_pos); // pub virtual leader position 
                 robot_pos_pub.publish(msg);  //array of robot pos 
           
         ROS_INFO("----------------------------------");

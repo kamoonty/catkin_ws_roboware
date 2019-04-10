@@ -12,6 +12,7 @@ geometry_msgs::Point32 get_vl;
 geometry_msgs::Point32 robot_pos [4];
 geometry_msgs::Point32 Dist_vl [4];
 geometry_msgs::Point32 Force_vl [4];
+multi_amr_nectec::pos_msg get_msg;
 
 void VL_Callback(const geometry_msgs::Point32 & vl_pos)
 {  get_vl= vl_pos;
@@ -21,6 +22,7 @@ void VL_Callback(const geometry_msgs::Point32 & vl_pos)
 void robot_pos_Callback(const multi_amr_nectec::pos_msg::ConstPtr& msg) 
 { for (int i = 0; i<4; i++)
     { robot_pos[i].x=msg->point_robot[i].x;
+      robot_pos[i].y=msg->point_robot[i].y;
        ROS_INFO("Get amr %d pos : x=%.2f, y=%.2f",i, msg->point_robot[i].x, msg->point_robot[i].y);
        ROS_INFO("----------------");
     }
@@ -38,8 +40,6 @@ int main(int argc, char** argv)
  ros::Publisher force1_pub = nh.advertise<geometry_msgs::Twist>("amr_1/cmd_vel", 1000); 
  ros::Publisher force2_pub = nh.advertise<geometry_msgs::Twist>("amr_2/cmd_vel", 1000);
  ros::Publisher force3_pub = nh.advertise<geometry_msgs::Twist>("amr_3/cmd_vel", 1000);
- 
-
  
  
  int team_size = 4 ;
