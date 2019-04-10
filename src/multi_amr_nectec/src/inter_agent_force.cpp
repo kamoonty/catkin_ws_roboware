@@ -12,6 +12,10 @@ geometry_msgs::Point32 Dist_vl [4];
 geometry_msgs::Point32 Force_vl [4];
 multi_amr_nectec::pos_msg get_msg;
 int team_size; //use for get param
+float Kij;
+float dist_agent_x;
+float dist_agent_y;
+
 void robot_pos_Callback(const multi_amr_nectec::pos_msg::ConstPtr& msg) 
 { for (int i = 0; i<4; i++)
     { robot_pos[i].x=msg->point_robot[i].x;
@@ -23,7 +27,7 @@ void robot_pos_Callback(const multi_amr_nectec::pos_msg::ConstPtr& msg)
 
 int main(int argc, char** argv) 
 {
- ros::init(argc, argv, "vl_force");
+ ros::init(argc, argv, "inter_agent_force");
  ros::NodeHandle nh;
  ros::Rate loopRate(1);
 
@@ -35,11 +39,10 @@ int main(int argc, char** argv)
  ros::Publisher force3_pub = nh.advertise<geometry_msgs::Twist>("amr_3/cmd_vel", 1000);
  
  nh.getParam("inter_agent_force/team_size", team_size);
- //int team_size = 4 ;
- float Kij=0.25;
- geometry_msgs::Point32 dist_agent;
-    dist_agent.x=8;
-    dist_agent.y=8;
+ nh.getParam("inter_agent_force/Kij", Kij);
+ nh.getParam("inter_agent_force/dist_agent_x", dist_agent_x);
+ nh.getParam("inter_agent_force/dist_agent_y", dist_agent_y); 
+
 
 while (ros::ok()) 
 { ros::spinOnce();
