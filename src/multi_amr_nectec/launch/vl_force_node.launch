@@ -1,3 +1,8 @@
 <launch>
-<node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" />
+<node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" >
+  <param name ="team_size" value = "4" />
+  <param name ="Kvl" value = "0.25" />
+  <param name ="dist_from_vl_x" value = "4" />
+  <param name ="dist_from_vl_y" value = "4" />
+</node>
 </launch>

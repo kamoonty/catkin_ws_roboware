@@ -1,0 +1,3 @@
+<launch>
+<node pkg="multi_amr_nectec" type="inter_agent_force" name="inter_agent_force" output="screen" />
+</launch>

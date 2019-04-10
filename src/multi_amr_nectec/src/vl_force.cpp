@@ -13,18 +13,21 @@ geometry_msgs::Point32 robot_pos [4];
 geometry_msgs::Point32 Dist_vl [4];
 geometry_msgs::Point32 Force_vl [4];
 multi_amr_nectec::pos_msg get_msg;
-
+int team_size; //use for get param
+float Kvl;
+float dist_from_vl_x;
+float dist_from_vl_y;
 void VL_Callback(const geometry_msgs::Point32 & vl_pos)
 {  get_vl= vl_pos;
-  ROS_INFO("GET VL= [%.3f] VL_y=[%.3f]",get_vl.x,get_vl.y);
+  ROS_INFO("VL Pos[%.3f] VL_y=[%.3f]",get_vl.x,get_vl.y);
 }
 
 void robot_pos_Callback(const multi_amr_nectec::pos_msg::ConstPtr& msg) 
 { for (int i = 0; i<4; i++)
     { robot_pos[i].x=msg->point_robot[i].x;
       robot_pos[i].y=msg->point_robot[i].y;
-       ROS_INFO("Get amr %d pos : x=%.2f, y=%.2f",i, msg->point_robot[i].x, msg->point_robot[i].y);
-       ROS_INFO("----------------");
+      // ROS_INFO("Get amr %d pos : x=%.2f, y=%.2f",i, msg->point_robot[i].x, msg->point_robot[i].y);
+       //ROS_INFO("----------------");
     }
 }   
 
@@ -41,12 +44,11 @@ int main(int argc, char** argv)
  ros::Publisher force2_pub = nh.advertise<geometry_msgs::Twist>("amr_2/cmd_vel", 1000);
  ros::Publisher force3_pub = nh.advertise<geometry_msgs::Twist>("amr_3/cmd_vel", 1000);
  
- 
- int team_size = 4 ;
- float Kvl=0.25;
- geometry_msgs::Point32 dist_default;
-    dist_default.x=4;
-    dist_default.y=4;
+ nh.getParam("vl_force/team_size", team_size);
+ nh.getParam("vl_force/Kvl", Kvl);
+ nh.getParam("vl_force/dist_from_vl_x", dist_from_vl_x);
+ nh.getParam("vl_force/dist_from_vl_y", dist_from_vl_y); 
+
 
 while (ros::ok()) 
 { ros::spinOnce();
@@ -60,16 +62,16 @@ while (ros::ok())
                     {check_x=-1;}
                if(robot_pos[j].y>=get_vl.y)
                     {check_y=-1;}
-                //ROS_INFO("Dist default X=%.3f",dist_default.x);
+                //ROS_INFO("Dist default X=%.3f",dist_from_vl_x);
                 //ROS_INFO("Dist_vl of robot %d[%.3f,%.3f]",j,Dist_vl[j].x,Dist_vl[j].y);
-                Force_vl[j].x=Kvl*(Dist_vl[j].x-check_x*(dist_default.x));
-                Force_vl[j].y=Kvl*(Dist_vl[j].y-check_y*(dist_default.y));
+                Force_vl[j].x=Kvl*(Dist_vl[j].x-check_x*(dist_from_vl_x));
+                Force_vl[j].y=Kvl*(Dist_vl[j].y-check_y*(dist_from_vl_y));
              
                 //ROS_INFO("Virtual Force of robot %d[%.3f,%.3f]",j,Force_vl[j].x,Force_vl[j].y);
                  
                   send_fvl[j].linear.x =Force_vl[j].x;
                   send_fvl[j].linear.y =Force_vl[j].y;  
-                 ROS_INFO("Cmd_vel of robot %d  [%.3f,%.3f]",j, send_fvl[j].linear.x,send_fvl[j].linear.y);  
+                 ROS_INFO("Cmd_vel robot%d=[%.3f,%.3f]",j, send_fvl[j].linear.x,send_fvl[j].linear.y);  
                 
                 }
                 force0_pub.publish(send_fvl[0]);

@@ -18,8 +18,8 @@
 #include <vector> 
 // global variable here
 using namespace std;
-string tf_prefix;
-int team_size;
+//string tf_prefix;
+int team_size; //use for get param
 pair<double, double> getRobotPosition(int robot_no);
 struct Point {
     float x;
@@ -28,18 +28,16 @@ struct Point {
 int main(int argc, char** argv) {
     ros::init(argc, argv, "Virtual_Leader_pos");
     ros::NodeHandle nh;
-	nh.getParam("tf_prefix", tf_prefix);
+	//nh.getParam("tf_prefix", tf_prefix);
    
     ros::Publisher vl_pos_pub = nh.advertise<geometry_msgs::Point32>("vl_pos", 1000);
     // send array
     ros::Publisher robot_pos_pub = nh.advertise<multi_amr_nectec::pos_msg>("robot_pos",1000);
     pair<double, double> currPosition;
 	ros::Rate loopRate(20);
-  // the message to be published
-     multi_amr_nectec::pos_msg msg;
-
-    //nh.getParam("position_vl/team_size", team_size);
-	int team_size = 4 ;
+    multi_amr_nectec::pos_msg msg;  // the message to be published  
+    
+    nh.getParam("position_vl/team_size", team_size);
     geometry_msgs::Point32 sum;
     geometry_msgs::Point32 vl_pos;
     geometry_msgs::Point32 robot_pos [team_size];
