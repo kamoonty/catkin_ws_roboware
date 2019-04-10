@@ -7,10 +7,14 @@
 
     <param name="robot_description" command="$(find xacro)/xacro --inorder $(find amr_description)/urdf/amr.urdf.xacro" />
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="$(arg init_pose_gazebo) -urdf -param robot_description -model $(arg robot_name)" output="screen"/>
-    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" output="screen" />
-    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen"/>      
+    
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" output="screen" >
+    <!--  <param name="publish_frequency" type="double" value="50.0" / -->
+    </node>
 
-
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">      
+ <!--<param name="publish_frequency" type="double" value="50.0" / -->
+    </node>
     <!-- Run navigation stack    
     <node pkg="move_base" type="move_base" respawn="false" name="move_base_node" output="screen">  
       <remap from="map" to="/map" />         
@@ -31,8 +35,8 @@
         <!--Localization  
      <include file="$(find turtlebot3_navigation)/launch/amcl.launch"/>
      -->
- <!--transform odon to map-->
- <node pkg="tf" type="static_transform_publisher" name="odom_map_broadcaster" args="$(arg init_pose_rviz) /map $(arg robot_name)/odom 100" />
+ <!--transform odon to map at 50 Hz  or 20 ms-->
+ <node pkg="tf" type="static_transform_publisher" name="odom_map_broadcaster" args="$(arg init_pose_rviz) /map $(arg robot_name)/odom 20" />
 
 
 

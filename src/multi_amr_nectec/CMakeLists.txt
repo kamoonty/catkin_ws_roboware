@@ -215,3 +215,11 @@ add_dependencies(vl_force ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_
 target_link_libraries(vl_force
   ${catkin_LIBRARIES}
 )
+
+add_executable(inter_agent_force
+  src/inter_agent_force.cpp
+)
+add_dependencies(inter_agent_force ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(inter_agent_force
+  ${catkin_LIBRARIES}
+)

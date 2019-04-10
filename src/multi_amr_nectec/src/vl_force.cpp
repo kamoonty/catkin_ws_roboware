@@ -32,7 +32,7 @@ int main(int argc, char** argv)
 {
  ros::init(argc, argv, "vl_force");
  ros::NodeHandle nh;
- ros::Rate loopRate(2);
+ ros::Rate loopRate(1);
  ros::Subscriber vl_sub = nh.subscribe("vl_pos", 1000, VL_Callback);
  ros::Subscriber robot_pos_sub = nh.subscribe("robot_pos", 1000, robot_pos_Callback);
  

@@ -19,6 +19,7 @@
 // global variable here
 using namespace std;
 string tf_prefix;
+int team_size;
 pair<double, double> getRobotPosition(int robot_no);
 struct Point {
     float x;
@@ -27,18 +28,17 @@ struct Point {
 int main(int argc, char** argv) {
     ros::init(argc, argv, "Virtual_Leader_pos");
     ros::NodeHandle nh;
-	// Get tf_prefix from the parameter server
 	nh.getParam("tf_prefix", tf_prefix);
-   // nh.getParam("team_size", team_size);
+   
     ros::Publisher vl_pos_pub = nh.advertise<geometry_msgs::Point32>("vl_pos", 1000);
     // send array
     ros::Publisher robot_pos_pub = nh.advertise<multi_amr_nectec::pos_msg>("robot_pos",1000);
     pair<double, double> currPosition;
-	ros::Rate loopRate(50);
+	ros::Rate loopRate(20);
   // the message to be published
      multi_amr_nectec::pos_msg msg;
 
-
+    //nh.getParam("position_vl/team_size", team_size);
 	int team_size = 4 ;
     geometry_msgs::Point32 sum;
     geometry_msgs::Point32 vl_pos;
@@ -81,12 +81,12 @@ int main(int argc, char** argv) {
        // ROS_INFO("sum = [%.3f,%.3f]",sum.x,sum.y);
               vl_pos.x=sum.x/team_size;
               vl_pos.y=sum.y/team_size;
-            ROS_INFO("Send pos VL [%.3f,%.3f]", vl_pos.x,vl_pos.y);
+         
                 sum.x=0; //set zero
                 sum.y=0;
                 vl_pos_pub.publish(vl_pos); // pub virtual leader position 
                 robot_pos_pub.publish(msg);  //array of robot pos 
-          
+        ROS_INFO("Publish VL pos [%.3f,%.3f]", vl_pos.x,vl_pos.y);  
         ROS_INFO("----------------------------------");
         ros::spinOnce();
         loopRate.sleep();

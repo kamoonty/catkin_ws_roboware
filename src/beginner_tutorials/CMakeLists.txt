@@ -232,3 +232,5 @@ add_dependencies(my_subscriber ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPO
 target_link_libraries(my_subscriber
   ${catkin_LIBRARIES}
 )
+
+
