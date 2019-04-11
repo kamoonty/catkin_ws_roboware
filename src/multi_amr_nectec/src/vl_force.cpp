@@ -23,10 +23,10 @@ void VL_Callback(const geometry_msgs::Point32 & vl_pos)
 }
 
 void robot_pos_Callback(const multi_amr_nectec::pos_msg::ConstPtr& msg) 
-{ for (int i = 0; i<4; i++)
+{ for (int i = 0; i<3; i++)
     { robot_pos[i].x=msg->point_robot[i].x;
       robot_pos[i].y=msg->point_robot[i].y;
-      // ROS_INFO("Get amr %d pos : x=%.2f, y=%.2f",i, msg->point_robot[i].x, msg->point_robot[i].y);
+       ROS_INFO("Get amr %d pos : x=%.2f, y=%.2f",i, msg->point_robot[i].x, msg->point_robot[i].y);
        //ROS_INFO("----------------");
     }
 }   
@@ -49,6 +49,8 @@ int main(int argc, char** argv)
  nh.getParam("vl_force/dist_from_vl_x", dist_from_vl_x);
  nh.getParam("vl_force/dist_from_vl_y", dist_from_vl_y); 
 
+float hold_x=dist_from_vl_x;
+float hold_y=dist_from_vl_y;
 
 while (ros::ok()) 
 { ros::spinOnce();
@@ -62,8 +64,16 @@ while (ros::ok())
                     {check_x=-1;}
                if(robot_pos[j].y>=get_vl.y)
                     {check_y=-1;}
+                // for triangle formation
+               if (j==2)
+               {dist_from_vl_x=0;
+                dist_from_vl_y=2.309;}     
+               else
+               {dist_from_vl_x=hold_x;
+               dist_from_vl_y=hold_y;}
+               
                 //ROS_INFO("Dist default X=%.3f",dist_from_vl_x);
-                //ROS_INFO("Dist_vl of robot %d[%.3f,%.3f]",j,Dist_vl[j].x,Dist_vl[j].y);
+                ROS_INFO("Dist_vl of robot %d[%.3f,%.3f]",j,Dist_vl[j].x,Dist_vl[j].y);
                 Force_vl[j].x=Kvl*(Dist_vl[j].x-check_x*(dist_from_vl_x));
                 Force_vl[j].y=Kvl*(Dist_vl[j].y-check_y*(dist_from_vl_y));
              
@@ -78,7 +88,7 @@ while (ros::ok())
                 force1_pub.publish(send_fvl[1]);
                 force2_pub.publish(send_fvl[2]);
                 force3_pub.publish(send_fvl[3]);
-
+              
       ROS_INFO("-------SEND CMD VEL------");
    
       loopRate.sleep();
