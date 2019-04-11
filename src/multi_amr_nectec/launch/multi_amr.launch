@@ -1,7 +1,7 @@
 <launch>
   <master auto="start"/>
   <param name="/use_sim_time" value="true"/>
-  <arg name="open_rviz" default="false"/>
+  <arg name="open_rviz" default="true"/>
   <arg name="open_gazebo" default="false"/>
 
   <arg name="map_path1" default="$(find turtlebot3_nps)/maps/multi_map.yaml"/>
@@ -34,7 +34,7 @@
 <!-- AMR 0  -->
   <group ns="amr_0">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 2 -y 0 -z 0 -Y 0 -P 0 -R 0" />
+      <arg name="init_pose_gazebo" value="-x 2 -y 5 -z 0 -Y 0 -P 0 -R 0" />
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
       <arg name="robot_name" value="amr_0" />
     </include>
@@ -44,7 +44,7 @@
 <!-- AMR 1  -->
  <group ns="amr_1">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 6 -y 0 -z 0 -Y 0 -P 0 -R 0" />  
+      <arg name="init_pose_gazebo" value="-x -4 -y 7 -z 0 -Y 0 -P 0 -R 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_1" />
     </include>  
@@ -56,24 +56,24 @@
     <param name="amcl/initial_pose_x" value="-0.9" />
     <param name="amcl/initial_pose_y" value="0" />
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 4 -y 3.464 -z 0 -Y 0" />  
+      <arg name="init_pose_gazebo" value="-x -5 -y -9 -z 0 -Y 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />     
       <arg name="robot_name" value="amr_2" />
     </include>  
   </group>
 
-<!-- AMR 4  
+<!-- AMR 4   -->
  <group ns="amr_3">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 1 -y -1 -z 0 -Y 0 -P 0 -R 0" />  
+      <arg name="init_pose_gazebo" value="-x 6 -y -2 -z 0 -Y 0 -P 0 -R 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_3" />
     </include>  
   </group>
--->
+
   <!--Get position   -->
 <node pkg="multi_amr_nectec" type="position_vl" name="position_vl" output="screen" >
-<param name ="team_size" value = "3" />
+<param name ="team_size" value = "4" />
 </node>
 
 

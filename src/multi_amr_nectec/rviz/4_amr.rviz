@@ -8,6 +8,7 @@ Panels:
         - /Status1
         - /Odometry2/Shape1
         - /Odometry3/Shape1
+        - /Odometry5
         - /Odometry5/Shape1
       Splitter Ratio: 0.502777755
     Tree Height: 467
@@ -228,7 +229,7 @@ Visualization Manager:
           Value: true
         Value: false
       Enabled: true
-      Keep: 100
+      Keep: 10
       Name: Odometry
       Position Tolerance: 0.100000001
       Shape:
@@ -278,11 +279,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Scale: 49.5461197
+      Scale: 77.9617844
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz)
-      X: -0.202566653
-      Y: -0.249340236
+      X: 4.45093393
+      Y: 1.34670687
     Saved: ~
 Window Geometry:
   Displays:
