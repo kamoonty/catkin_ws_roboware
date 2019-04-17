@@ -3,10 +3,10 @@
 #include <nav_msgs/Odometry.h>
 #include "std_msgs/Float32.h"
 #include <geometry_msgs/Point32.h>
+#include <geometry_msgs/Point.h>
+geometry_msgs::Point get_vl;
 
-geometry_msgs::Point32 get_vl;
-
-void VL_Callback(const geometry_msgs::Point32 & vl_pos)
+void VL_Callback(const geometry_msgs::Point & vl_pos)
 {  get_vl=vl_pos;
  // ROS_INFO("Fake odom VL= [%.3f] VL_y=[%.3f]",get_vl.x,get_vl.y);
 

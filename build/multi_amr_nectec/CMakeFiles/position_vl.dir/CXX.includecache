@@ -33,7 +33,7 @@ boost/lexical_cast.hpp
 -
 std_msgs/Float32.h
 -
-geometry_msgs/Point32.h
+geometry_msgs/Point.h
 -
 geometry_msgs/Twist.h
 -

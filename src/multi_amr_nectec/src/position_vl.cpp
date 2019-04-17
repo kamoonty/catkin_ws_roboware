@@ -9,7 +9,8 @@
 #include <boost/lexical_cast.hpp>
 #include <std_msgs/Float32.h>
 //#include <std_msgs/UInt8.h>
-#include <geometry_msgs/Point32.h>
+//#include <geometry_msgs/Point32.h>
+#include <geometry_msgs/Point.h>
 #include <geometry_msgs/Twist.h>
 #include <stdlib.h>
 //#include <sstream>
@@ -30,7 +31,7 @@ int main(int argc, char** argv) {
     ros::NodeHandle nh;
 	//nh.getParam("tf_prefix", tf_prefix);
    
-    ros::Publisher vl_pos_pub = nh.advertise<geometry_msgs::Point32>("vl_pos", 1000);
+    ros::Publisher vl_pos_pub = nh.advertise<geometry_msgs::Point>("vl_pos", 1000);
     // send array
     ros::Publisher robot_pos_pub = nh.advertise<multi_amr_nectec::pos_msg>("robot_pos",1000);
     pair<double, double> currPosition;
@@ -38,9 +39,9 @@ int main(int argc, char** argv) {
     multi_amr_nectec::pos_msg msg;  // the message to be published  
     
     nh.getParam("position_vl/team_size", team_size);
-    geometry_msgs::Point32 sum;
-    geometry_msgs::Point32 vl_pos;
-    geometry_msgs::Point32 robot_pos [team_size];
+    geometry_msgs::Point sum;
+    geometry_msgs::Point vl_pos;
+    geometry_msgs::Point robot_pos [team_size];
     Point my_array[team_size];
     Point point;
    

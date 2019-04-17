@@ -1,8 +1,8 @@
 <launch>
   <master auto="start"/>
   <param name="/use_sim_time" value="true"/>
-  <arg name="open_rviz" default="true"/>
-  <arg name="open_gazebo" default="false"/>
+  <arg name="open_rviz" default="false"/>
+  <arg name="open_gazebo" default="true"/>
 
   <arg name="map_path1" default="$(find turtlebot3_nps)/maps/multi_map.yaml"/>
   <arg name="map_path2" default="$(find turtlebot3_navigation)/maps/map.yaml"/>
@@ -28,13 +28,13 @@
  <!-- RVIZ  --> 
   <group if="$(arg open_rviz)"> 
     <node pkg="rviz" type="rviz" name="rviz" required="true"
-         args="-d $(find multi_amr_nectec)/rviz/4_amr.rviz"/>
+         args="-d $(find multi_amr_nectec)/rviz/3_amr.rviz"/>
   </group>
 
 <!-- AMR 0  -->
   <group ns="amr_0">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 2 -y 5 -z 0 -Y 0 -P 0 -R 0" />
+      <arg name="init_pose_gazebo" value="-x -2 -y 0 -z 0 -Y 0 -P 0 -R 0" />
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
       <arg name="robot_name" value="amr_0" />
     </include>
@@ -44,7 +44,7 @@
 <!-- AMR 1  -->
  <group ns="amr_1">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x -4 -y 7 -z 0 -Y 0 -P 0 -R 0" />  
+      <arg name="init_pose_gazebo" value="-x 2 -y 0 -z 0 -Y 0 -P 0 -R 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_1" />
     </include>  
@@ -56,24 +56,24 @@
     <param name="amcl/initial_pose_x" value="-0.9" />
     <param name="amcl/initial_pose_y" value="0" />
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x -5 -y -9 -z 0 -Y 0" />  
+      <arg name="init_pose_gazebo" value="-x 0 -y 3.464 -z 0 -Y 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />     
       <arg name="robot_name" value="amr_2" />
     </include>  
   </group>
 
-<!-- AMR 4   -->
+<!-- AMR 4   
  <group ns="amr_3">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 6 -y -2 -z 0 -Y 0 -P 0 -R 0" />  
+      <arg name="init_pose_gazebo" value="-x 4 -y -0.5 -z 0 -Y 0 -P 0 -R 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_3" />
     </include>  
   </group>
-
+-->
   <!--Get position   -->
 <node pkg="multi_amr_nectec" type="position_vl" name="position_vl" output="screen" >
-<param name ="team_size" value = "4" />
+<param name ="team_size" value = "3" />
 </node>
 
 
@@ -83,7 +83,12 @@
  <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /odom 20" />
 
 
- <!-- vl force
- <node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" />
+ <!-- vl force 
+ <node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" >
+  <param name ="team_size" value = "4" />
+  <param name ="Kvl" value = "0.25" />
+  <param name ="dist_from_vl_x" value = "3" />
+  <param name ="dist_from_vl_y" value = "3" />
+</node>
  -->
 </launch>

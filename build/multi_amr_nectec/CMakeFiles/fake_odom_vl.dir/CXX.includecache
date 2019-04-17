@@ -17,6 +17,8 @@ std_msgs/Float32.h
 /home/kanin/catkin_ws_roboware/src/multi_amr_nectec/src/std_msgs/Float32.h
 geometry_msgs/Point32.h
 -
+geometry_msgs/Point.h
+-
 
 /opt/ros/kinetic/include/geometry_msgs/Point.h
 string
