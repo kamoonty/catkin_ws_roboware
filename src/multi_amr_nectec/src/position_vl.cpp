@@ -22,10 +22,8 @@ using namespace std;
 //string tf_prefix;
 int team_size; //use for get param
 pair<double, double> getRobotPosition(int robot_no);
-struct Point {
-    float x;
-    float y;
-};
+struct Point { float x;   float y;};
+
 int main(int argc, char** argv) {
     ros::init(argc, argv, "Virtual_Leader_pos");
     ros::NodeHandle nh;
