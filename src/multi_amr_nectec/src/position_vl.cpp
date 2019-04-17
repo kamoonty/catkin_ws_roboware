@@ -77,7 +77,7 @@ int main(int argc, char** argv) {
         msg.point_robot.push_back(point);
         k++;
         }
-       // ROS_INFO("sum = [%.3f,%.3f]",sum.x,sum.y);
+       // Calculate virtual leader position 
               vl_pos.x=sum.x/team_size;
               vl_pos.y=sum.y/team_size;
          

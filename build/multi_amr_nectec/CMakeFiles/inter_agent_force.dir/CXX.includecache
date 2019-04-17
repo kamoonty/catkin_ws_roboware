@@ -33,7 +33,7 @@ boost/lexical_cast.hpp
 -
 std_msgs/Float32.h
 -
-geometry_msgs/Point32.h
+geometry_msgs/Point.h
 -
 geometry_msgs/Twist.h
 -
@@ -41,6 +41,8 @@ stdlib.h
 -
 multi_amr_nectec/pos_msg.h
 /home/kanin/catkin_ws_roboware/src/multi_amr_nectec/src/multi_amr_nectec/pos_msg.h
+math.h
+/home/kanin/catkin_ws_roboware/src/multi_amr_nectec/src/math.h
 
 /opt/ros/kinetic/include/boost_161_condition_variable.h
 boost/thread/detail/platform.hpp

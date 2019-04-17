@@ -1,0 +1,3 @@
+<launch>
+<node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen"/>
+</launch>

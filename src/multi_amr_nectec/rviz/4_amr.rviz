@@ -6,10 +6,9 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /Odometry2/Shape1
+        - /Odometry1/Shape1
         - /Odometry3/Shape1
-        - /Odometry5
-        - /Odometry5/Shape1
+        - /Odometry4/Shape1
       Splitter Ratio: 0.502777755
     Tree Height: 467
   - Class: rviz/Selection
@@ -61,40 +60,6 @@ Visualization Manager:
       Unreliable: false
       Use Timestamp: false
       Value: true
-    - Angle Tolerance: 0.100000001
-      Class: rviz/Odometry
-      Covariance:
-        Orientation:
-          Alpha: 0.5
-          Color: 255; 255; 127
-          Color Style: Unique
-          Frame: Local
-          Offset: 1
-          Scale: 1
-          Value: true
-        Position:
-          Alpha: 0.300000012
-          Color: 204; 51; 204
-          Scale: 1
-          Value: true
-        Value: false
-      Enabled: true
-      Keep: 10
-      Name: Odometry
-      Position Tolerance: 0.100000001
-      Shape:
-        Alpha: 1
-        Axes Length: 1
-        Axes Radius: 0.100000001
-        Color: 255; 25; 0
-        Head Length: 0.300000012
-        Head Radius: 0.100000001
-        Shaft Length: 1
-        Shaft Radius: 0.0500000007
-        Value: Arrow
-      Topic: /amr_0/odom
-      Unreliable: false
-      Value: true
     - Class: rviz/TF
       Enabled: false
       Frame Timeout: 15
@@ -137,7 +102,7 @@ Visualization Manager:
         Color: 26; 79; 255
         Head Length: 0.300000012
         Head Radius: 0.100000001
-        Shaft Length: 1
+        Shaft Length: 0.5
         Shaft Radius: 0.0500000007
         Value: Arrow
       Topic: /amr_1/odom
@@ -168,10 +133,44 @@ Visualization Manager:
         Alpha: 1
         Axes Length: 1
         Axes Radius: 0.100000001
+        Color: 255; 25; 0
+        Head Length: 0.300000012
+        Head Radius: 0.100000001
+        Shaft Length: 0.5
+        Shaft Radius: 0.0500000007
+        Value: Arrow
+      Topic: /amr_0/odom
+      Unreliable: false
+      Value: true
+    - Angle Tolerance: 0.100000001
+      Class: rviz/Odometry
+      Covariance:
+        Orientation:
+          Alpha: 0.5
+          Color: 255; 255; 127
+          Color Style: Unique
+          Frame: Local
+          Offset: 1
+          Scale: 1
+          Value: true
+        Position:
+          Alpha: 0.300000012
+          Color: 204; 51; 204
+          Scale: 1
+          Value: true
+        Value: false
+      Enabled: true
+      Keep: 10
+      Name: Odometry
+      Position Tolerance: 0.100000001
+      Shape:
+        Alpha: 1
+        Axes Length: 1
+        Axes Radius: 0.100000001
         Color: 80; 255; 106
         Head Length: 0.300000012
         Head Radius: 0.100000001
-        Shaft Length: 1
+        Shaft Length: 0.5
         Shaft Radius: 0.0500000007
         Value: Arrow
       Topic: /amr_2/odom
@@ -205,7 +204,7 @@ Visualization Manager:
         Color: 255; 107; 253
         Head Length: 0.300000012
         Head Radius: 0.100000001
-        Shaft Length: 1
+        Shaft Length: 0.5
         Shaft Radius: 0.0500000007
         Value: Arrow
       Topic: /amr_3/odom
@@ -239,7 +238,7 @@ Visualization Manager:
         Color: 255; 233; 65
         Head Length: 0.300000012
         Head Radius: 0.100000001
-        Shaft Length: 1
+        Shaft Length: 0.5
         Shaft Radius: 0.0500000007
         Value: Arrow
       Topic: /odom
@@ -279,11 +278,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Scale: 77.9617844
+      Scale: 22.2910538
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz)
-      X: 4.45093393
-      Y: 1.34670687
+      X: -0.601218045
+      Y: 1.58181679
     Saved: ~
 Window Geometry:
   Displays:

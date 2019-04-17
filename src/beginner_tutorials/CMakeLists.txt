@@ -234,3 +234,12 @@ target_link_libraries(my_subscriber
 )
 
 
+
+
+add_executable(string_test
+  src/string_test.cpp
+)
+add_dependencies(string_test ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(string_test
+  ${catkin_LIBRARIES}
+)

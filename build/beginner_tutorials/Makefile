@@ -318,6 +318,21 @@ beginner_tutorials_generate_messages_cpp/fast:
 .PHONY : beginner_tutorials_generate_messages_cpp/fast
 
 # Convenience name for target.
+beginner_tutorials/CMakeFiles/string_test.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 beginner_tutorials/CMakeFiles/string_test.dir/rule
+.PHONY : beginner_tutorials/CMakeFiles/string_test.dir/rule
+
+# Convenience name for target.
+string_test: beginner_tutorials/CMakeFiles/string_test.dir/rule
+
+.PHONY : string_test
+
+# fast build rule for target.
+string_test/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/string_test.dir/build.make beginner_tutorials/CMakeFiles/string_test.dir/build
+.PHONY : string_test/fast
+
+# Convenience name for target.
 beginner_tutorials/CMakeFiles/beginner_tutorials_geneus.dir/rule:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 beginner_tutorials/CMakeFiles/beginner_tutorials_geneus.dir/rule
 .PHONY : beginner_tutorials/CMakeFiles/beginner_tutorials_geneus.dir/rule
@@ -818,6 +833,33 @@ src/my_subscriber.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/my_subscriber.dir/build.make beginner_tutorials/CMakeFiles/my_subscriber.dir/src/my_subscriber.cpp.s
 .PHONY : src/my_subscriber.cpp.s
 
+src/string_test.o: src/string_test.cpp.o
+
+.PHONY : src/string_test.o
+
+# target to build an object file
+src/string_test.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/string_test.dir/build.make beginner_tutorials/CMakeFiles/string_test.dir/src/string_test.cpp.o
+.PHONY : src/string_test.cpp.o
+
+src/string_test.i: src/string_test.cpp.i
+
+.PHONY : src/string_test.i
+
+# target to preprocess a source file
+src/string_test.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/string_test.dir/build.make beginner_tutorials/CMakeFiles/string_test.dir/src/string_test.cpp.i
+.PHONY : src/string_test.cpp.i
+
+src/string_test.s: src/string_test.cpp.s
+
+.PHONY : src/string_test.s
+
+# target to generate assembly for a file
+src/string_test.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/string_test.dir/build.make beginner_tutorials/CMakeFiles/string_test.dir/src/string_test.cpp.s
+.PHONY : src/string_test.cpp.s
+
 src/talker.o: src/talker.cpp.o
 
 .PHONY : src/talker.o
@@ -867,6 +909,7 @@ help:
 	@echo "... beginner_tutorials_gencpp"
 	@echo "... beginner_tutorials_generate_messages_cpp"
 	@echo "... test"
+	@echo "... string_test"
 	@echo "... beginner_tutorials_geneus"
 	@echo "... _beginner_tutorials_generate_messages_check_deps_Num"
 	@echo "... _beginner_tutorials_generate_messages_check_deps_my_msg"
@@ -905,6 +948,9 @@ help:
 	@echo "... src/my_subscriber.o"
 	@echo "... src/my_subscriber.i"
 	@echo "... src/my_subscriber.s"
+	@echo "... src/string_test.o"
+	@echo "... src/string_test.i"
+	@echo "... src/string_test.s"
 	@echo "... src/talker.o"
 	@echo "... src/talker.i"
 	@echo "... src/talker.s"

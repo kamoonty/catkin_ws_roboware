@@ -123,6 +123,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/kanin/catkin_ws_roboware/build/gtest/cmake_install.cmake")
   include("/home/kanin/catkin_ws_roboware/build/beginner_tutorials/cmake_install.cmake")
+  include("/home/kanin/catkin_ws_roboware/build/multi_navigation_tb3/cmake_install.cmake")
   include("/home/kanin/catkin_ws_roboware/build/multi_amr_nectec/cmake_install.cmake")
   include("/home/kanin/catkin_ws_roboware/build/amr_description/cmake_install.cmake")
 
