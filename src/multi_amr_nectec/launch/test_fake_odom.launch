@@ -1,3 +1,15 @@
 <launch>
-<node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen"/>
+<arg name="open_rviz" default="true"/>
+<node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
+  <param name ="default_x" value = "2" />
+  <param name ="default_y" value = "2" />
+</node>
+ <!-- RVIZ  --> 
+<group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+         args="-d $(find multi_amr_nectec)/rviz/test_fake_odom.rviz"/>
+</group>
+  <!--<node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_keyboard"  output="screen">
+  </node>
+  -->
 </launch>

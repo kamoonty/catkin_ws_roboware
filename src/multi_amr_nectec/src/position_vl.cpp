@@ -76,9 +76,11 @@ int main(int argc, char** argv) {
         k++;
         }
        // Calculate virtual leader position 
-              vl_pos.x=sum.x/team_size;
-              vl_pos.y=sum.y/team_size;
-         
+           vl_pos.x=sum.x/team_size;
+           vl_pos.y=sum.y/team_size;
+                   
+        //
+
                 sum.x=0; //set zero
                 sum.y=0;
                 vl_pos_pub.publish(vl_pos); // pub virtual leader position 

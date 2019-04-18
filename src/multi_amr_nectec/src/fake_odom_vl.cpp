@@ -4,12 +4,17 @@
 #include "std_msgs/Float32.h"
 #include <geometry_msgs/Point32.h>
 #include <geometry_msgs/Point.h>
-geometry_msgs::Point get_vl;
+
 geometry_msgs::Twist get_cmd_vel;
+float default_x;
+float default_y;
+/*
+geometry_msgs::Point get_vl;
 void VL_Callback(const geometry_msgs::Point & vl_pos)
 {  get_vl=vl_pos;
- // ROS_INFO("Fake odom VL= [%.3f] VL_y=[%.3f]",get_vl.x,get_vl.y);
-}
+  //ROS_INFO("Fake odom VL= [%.3f] VL_y=[%.3f]",get_vl.x,get_vl.y);
+}*/
+
 void cmd_vel_Callback(const geometry_msgs::Twist & cmd_vel)
 {  get_cmd_vel=cmd_vel; 
   //ROS_INFO("linear x=%.3f,y= %.3f",get_cmd_vel.linear.x,get_cmd_vel.linear.y);
@@ -18,27 +23,31 @@ void cmd_vel_Callback(const geometry_msgs::Twist & cmd_vel)
 int main(int argc, char** argv){
   ros::init(argc, argv, "fake_odometry_publisher");
 
-  ros::NodeHandle n;
-  ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 1000);
-  ros::Subscriber vl_sub = n.subscribe("vl_pos", 1000, VL_Callback);
-  ros::Subscriber cmd_vel_sub = n.subscribe("cmd_vel", 1000, cmd_vel_Callback);
-
+  ros::NodeHandle nh;
+  ros::Publisher odom_pub = nh.advertise<nav_msgs::Odometry>("odom", 1000);
+  //ros::Subscriber vl_sub = n.subscribe("vl_pos", 1000, VL_Callback);
+  ros::Subscriber cmd_vel_sub = nh.subscribe("cmd_vel", 1000, cmd_vel_Callback);
   tf::TransformBroadcaster odom_broadcaster;
-
-  double x = get_vl.x;
-  double y = get_vl.y;
-  double th = 0.0;
+  nh.getParam("fake_odom_vl/default_x",default_x);
+  nh.getParam("fake_odom_vl/default_y",default_y);
+  
   ros::Time current_time, last_time;
   current_time = ros::Time::now();
   last_time = ros::Time::now();
-
+  double x = default_x;
+  double y = default_y;
+  double th = 0.0;
   ros::Rate loopRate(20);
-  while(n.ok()){
+  while(nh.ok()){
     ros::spinOnce();               // check for incoming messages
     current_time = ros::Time::now();
+   
+   
+
     double vx = get_cmd_vel.linear.x;
     double vy = get_cmd_vel.linear.y;
     double vth = get_cmd_vel.angular.z;
+    ROS_INFO("X Y = [%.3f,%.3f]",x,y);
     ROS_INFO("vx =%.3f, vy=%.3f, vth =%.3f",vx,vy,vth);
     //compute odometry in a typical way given the velocities of the robot
     double dt = (current_time - last_time).toSec();
