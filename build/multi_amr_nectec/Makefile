@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+multi_amr_nectec/CMakeFiles/position_robot.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/position_robot.dir/rule
+.PHONY : multi_amr_nectec/CMakeFiles/position_robot.dir/rule
+
+# Convenience name for target.
+position_robot: multi_amr_nectec/CMakeFiles/position_robot.dir/rule
+
+.PHONY : position_robot
+
+# fast build rule for target.
+position_robot/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/position_robot.dir/build.make multi_amr_nectec/CMakeFiles/position_robot.dir/build
+.PHONY : position_robot/fast
+
+# Convenience name for target.
 multi_amr_nectec/CMakeFiles/inter_agent_force.dir/rule:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/inter_agent_force.dir/rule
 .PHONY : multi_amr_nectec/CMakeFiles/inter_agent_force.dir/rule
@@ -986,6 +1001,33 @@ src/inter_agent_force.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/inter_agent_force.dir/build.make multi_amr_nectec/CMakeFiles/inter_agent_force.dir/src/inter_agent_force.cpp.s
 .PHONY : src/inter_agent_force.cpp.s
 
+src/position_robot.o: src/position_robot.cpp.o
+
+.PHONY : src/position_robot.o
+
+# target to build an object file
+src/position_robot.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/position_robot.dir/build.make multi_amr_nectec/CMakeFiles/position_robot.dir/src/position_robot.cpp.o
+.PHONY : src/position_robot.cpp.o
+
+src/position_robot.i: src/position_robot.cpp.i
+
+.PHONY : src/position_robot.i
+
+# target to preprocess a source file
+src/position_robot.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/position_robot.dir/build.make multi_amr_nectec/CMakeFiles/position_robot.dir/src/position_robot.cpp.i
+.PHONY : src/position_robot.cpp.i
+
+src/position_robot.s: src/position_robot.cpp.s
+
+.PHONY : src/position_robot.s
+
+# target to generate assembly for a file
+src/position_robot.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/position_robot.dir/build.make multi_amr_nectec/CMakeFiles/position_robot.dir/src/position_robot.cpp.s
+.PHONY : src/position_robot.cpp.s
+
 src/position_vl.o: src/position_vl.cpp.o
 
 .PHONY : src/position_vl.o
@@ -1050,6 +1092,7 @@ help:
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... edit_cache"
+	@echo "... position_robot"
 	@echo "... test"
 	@echo "... inter_agent_force"
 	@echo "... vl_force"
@@ -1110,6 +1153,9 @@ help:
 	@echo "... src/inter_agent_force.o"
 	@echo "... src/inter_agent_force.i"
 	@echo "... src/inter_agent_force.s"
+	@echo "... src/position_robot.o"
+	@echo "... src/position_robot.i"
+	@echo "... src/position_robot.s"
 	@echo "... src/position_vl.o"
 	@echo "... src/position_vl.i"
 	@echo "... src/position_vl.s"

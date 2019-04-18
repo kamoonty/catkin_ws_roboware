@@ -223,3 +223,11 @@ add_dependencies(inter_agent_force ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_
 target_link_libraries(inter_agent_force
   ${catkin_LIBRARIES}
 )
+
+add_executable(position_robot
+  src/position_robot.cpp
+)
+add_dependencies(position_robot ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(position_robot
+  ${catkin_LIBRARIES}
+)

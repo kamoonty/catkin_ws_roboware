@@ -83,7 +83,7 @@ Visualization Manager:
         Shaft Length: 0.5
         Shaft Radius: 0.0500000007
         Value: Arrow
-      Topic: /odom
+      Topic: /fake/odom
       Unreliable: false
       Value: true
   Enabled: true
@@ -118,18 +118,18 @@ Visualization Manager:
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: 0.251005471
+        Y: -0.18370524
+        Z: -0.502781391
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.785398006
+      Pitch: 1.52979636
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.785398006
+      Yaw: 3.16540027
     Saved: ~
 Window Geometry:
   Displays:

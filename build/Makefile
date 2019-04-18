@@ -792,6 +792,19 @@ geometry_msgs_generate_messages_py/fast:
 .PHONY : geometry_msgs_generate_messages_py/fast
 
 #=============================================================================
+# Target rules for targets named position_robot
+
+# Build rule for target.
+position_robot: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 position_robot
+.PHONY : position_robot
+
+# fast build rule for target.
+position_robot/fast:
+	$(MAKE) -f multi_amr_nectec/CMakeFiles/position_robot.dir/build.make multi_amr_nectec/CMakeFiles/position_robot.dir/build
+.PHONY : position_robot/fast
+
+#=============================================================================
 # Target rules for targets named inter_agent_force
 
 # Build rule for target.
@@ -1528,6 +1541,7 @@ help:
 	@echo "... talker"
 	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... position_robot"
 	@echo "... inter_agent_force"
 	@echo "... vl_force"
 	@echo "... fake_odom_vl"

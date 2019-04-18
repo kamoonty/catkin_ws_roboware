@@ -22,7 +22,6 @@ void cmd_vel_Callback(const geometry_msgs::Twist & cmd_vel)
 }
 int main(int argc, char** argv){
   ros::init(argc, argv, "fake_odometry_publisher");
-
   ros::NodeHandle nh;
   ros::Publisher odom_pub = nh.advertise<nav_msgs::Odometry>("odom", 1000);
   //ros::Subscriber vl_sub = n.subscribe("vl_pos", 1000, VL_Callback);
@@ -40,15 +39,12 @@ int main(int argc, char** argv){
   ros::Rate loopRate(20);
   while(nh.ok()){
     ros::spinOnce();               // check for incoming messages
-    current_time = ros::Time::now();
-   
-   
-
+    current_time = ros::Time::now();   
     double vx = get_cmd_vel.linear.x;
     double vy = get_cmd_vel.linear.y;
     double vth = get_cmd_vel.angular.z;
-    ROS_INFO("X Y = [%.3f,%.3f]",x,y);
-    ROS_INFO("vx =%.3f, vy=%.3f, vth =%.3f",vx,vy,vth);
+    //ROS_INFO("X Y = [%.3f,%.3f]",x,y);
+    //ROS_INFO("vx =%.3f, vy=%.3f, vth =%.3f",vx,vy,vth);
     //compute odometry in a typical way given the velocities of the robot
     double dt = (current_time - last_time).toSec();
     double delta_x = (vx * cos(th) - vy * sin(th)) * dt;

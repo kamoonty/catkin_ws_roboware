@@ -73,7 +73,7 @@
   </group>
 
   <!--Get position   -->
-<node pkg="multi_amr_nectec" type="position_vl" name="position_vl" output="screen" >
+<node pkg="multi_amr_nectec" type="position_robot" name="position_robot" output="screen" >
 <param name ="team_size" value = "$(arg team_size)" />
 </node>
 
