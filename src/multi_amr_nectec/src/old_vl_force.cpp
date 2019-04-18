@@ -19,16 +19,19 @@ float dist_from_vl_y ;
 // We need to round value after subscribe because if not it can cause problem
 // when VL= 0.00000003 and Robot 1 Pos X = 0.00000004 it is not equal
 // roundf (number*100)/100
-void vl_posCB(const geometry_msgs::Point & vl_pos)
+void VL_Callback(const geometry_msgs::Point & vl_pos)
 {  get_vl.x=roundf(vl_pos.x*10000)/10000; // round to 5 decimal place
    get_vl.y=roundf(vl_pos.y*10000)/10000;
   ROS_INFO("Get VL Position [%f,%f]",get_vl.x,get_vl.y);
 }
-void robot0_posCB(const geometry_msgs::Point & robot_pos)
-{  robot_pos[0].x=roundf(robot_pos.x*10000)/10000; // round to 5 decimal place
-   robot_pos[0].y=roundf(robot_pos.y*10000)/10000;
-  ROS_INFO("Get VL Position [%f,%f]",get_vl.x,get_vl.y);
-}
+
+void robot_pos_Callback(const multi_amr_nectec::pos_msg::ConstPtr& msg,int index) 
+{ for (int i = 0; i<index; i++)
+    { robot_pos[i].x=roundf((msg->point_robot[i].x)*10000)/10000; // round to 5 decimal place
+      robot_pos[i].y=roundf((msg->point_robot[i].y)*10000)/10000;
+       //ROS_INFO("Get AMR %d Pos : x=%f, y=%f",i, robot_pos[i].x, robot_pos[i].y);
+    }
+}   
 
 int main(int argc, char** argv) 
 {
@@ -44,15 +47,8 @@ int main(int argc, char** argv)
  geometry_msgs::Point Dist_vl [team_size];
  geometry_msgs::Point Force_vl [team_size];
 
- ros::Subscriber vl_pos_sub = nh.subscribe("vl_robot/pub_pos", 1000, vl_posCB);
- ros::Subscriber robot0_pos_sub = nh.subscribe("amr_0/pub_pos", 1000, robot0_posCB);
-
-
-
-
-
- //ros::Subscriber vl_quat_sub = nh.subscribe("vl_robot/pub_quat", 1000, Callback);
- //ros::Subscriber robot_pos_sub = nh.subscribe<multi_amr_nectec::pos_msg>("robot_pos", 1000, boost::bind(robot_pos_Callback,_1,team_size));
+ ros::Subscriber vl_sub = nh.subscribe("vl_pos", 1000, VL_Callback);
+ ros::Subscriber robot_pos_sub = nh.subscribe<multi_amr_nectec::pos_msg>("robot_pos", 1000, boost::bind(robot_pos_Callback,_1,team_size));
  
  ros::Publisher force0_pub = nh.advertise<geometry_msgs::Twist>("amr_0/cmd_vel", 1000);
  ros::Publisher force1_pub = nh.advertise<geometry_msgs::Twist>("amr_1/cmd_vel", 1000); 

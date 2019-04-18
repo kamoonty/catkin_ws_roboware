@@ -1,12 +1,14 @@
 <launch>
 <arg name="open_rviz" default="true"/>
+ <group ns="fake">
 
   <node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
     <param name ="default_x" value = "0" />
     <param name ="default_y" value = "0" />
   </node>
-  <node pkg="multi_amr_nectec" type="position_vl" name="position_vl" output="screen" />
-  
+  <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
+ 
+ </group> 
 
  <!-- RVIZ  --> 
 <group if="$(arg open_rviz)"> 
@@ -15,8 +17,8 @@
 </group>
   <!--<node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_keyboard"  output="screen">
   </node>
-  <group ns="fake">
-</group> 
+  <node pkg="multi_amr_nectec" type="position_vl" name="position_vl" output="screen" />
+  
   -->
 
 </launch>

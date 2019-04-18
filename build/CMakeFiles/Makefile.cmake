@@ -296,6 +296,8 @@ set(CMAKE_DEPEND_INFO_FILES
   "beginner_tutorials/CMakeFiles/talker.dir/DependInfo.cmake"
   "beginner_tutorials/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/DependInfo.cmake"
   "beginner_tutorials/CMakeFiles/geometry_msgs_generate_messages_py.dir/DependInfo.cmake"
+  "multi_amr_nectec/CMakeFiles/sub_odom.dir/DependInfo.cmake"
+  "multi_amr_nectec/CMakeFiles/get_odom_robot.dir/DependInfo.cmake"
   "multi_amr_nectec/CMakeFiles/position_robot.dir/DependInfo.cmake"
   "multi_amr_nectec/CMakeFiles/inter_agent_force.dir/DependInfo.cmake"
   "multi_amr_nectec/CMakeFiles/vl_force.dir/DependInfo.cmake"

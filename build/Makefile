@@ -792,6 +792,32 @@ geometry_msgs_generate_messages_py/fast:
 .PHONY : geometry_msgs_generate_messages_py/fast
 
 #=============================================================================
+# Target rules for targets named sub_odom
+
+# Build rule for target.
+sub_odom: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sub_odom
+.PHONY : sub_odom
+
+# fast build rule for target.
+sub_odom/fast:
+	$(MAKE) -f multi_amr_nectec/CMakeFiles/sub_odom.dir/build.make multi_amr_nectec/CMakeFiles/sub_odom.dir/build
+.PHONY : sub_odom/fast
+
+#=============================================================================
+# Target rules for targets named get_odom_robot
+
+# Build rule for target.
+get_odom_robot: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 get_odom_robot
+.PHONY : get_odom_robot
+
+# fast build rule for target.
+get_odom_robot/fast:
+	$(MAKE) -f multi_amr_nectec/CMakeFiles/get_odom_robot.dir/build.make multi_amr_nectec/CMakeFiles/get_odom_robot.dir/build
+.PHONY : get_odom_robot/fast
+
+#=============================================================================
 # Target rules for targets named position_robot
 
 # Build rule for target.
@@ -1541,6 +1567,8 @@ help:
 	@echo "... talker"
 	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... sub_odom"
+	@echo "... get_odom_robot"
 	@echo "... position_robot"
 	@echo "... inter_agent_force"
 	@echo "... vl_force"

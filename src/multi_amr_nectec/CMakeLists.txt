@@ -231,3 +231,19 @@ add_dependencies(position_robot ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXP
 target_link_libraries(position_robot
   ${catkin_LIBRARIES}
 )
+
+add_executable(get_odom_robot
+  src/get_odom_robot.cpp
+)
+add_dependencies(get_odom_robot ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(get_odom_robot
+  ${catkin_LIBRARIES}
+)
+
+add_executable(sub_odom
+  src/old_vl_force.cpp
+)
+add_dependencies(sub_odom ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(sub_odom
+  ${catkin_LIBRARIES}
+)

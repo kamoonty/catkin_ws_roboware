@@ -78,6 +78,8 @@
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/install.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/list_install_components.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/edit_cache.dir
+/home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/sub_odom.dir
+/home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/get_odom_robot.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/position_robot.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/test.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/inter_agent_force.dir
