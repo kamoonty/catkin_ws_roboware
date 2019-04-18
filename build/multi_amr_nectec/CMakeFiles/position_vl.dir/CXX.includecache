@@ -29,6 +29,8 @@ ros/ros.h
 -
 std_msgs/Float32.h
 -
+geometry_msgs/Point32.h
+-
 geometry_msgs/Point.h
 -
 geometry_msgs/Twist.h
@@ -41,6 +43,22 @@ nav_msgs/Odometry.h
 /home/kanin/catkin_ws_roboware/src/multi_amr_nectec/src/nav_msgs/Odometry.h
 
 /opt/ros/kinetic/include/geometry_msgs/Point.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
+/opt/ros/kinetic/include/geometry_msgs/Point32.h
 string
 -
 vector

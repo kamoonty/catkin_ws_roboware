@@ -27,7 +27,6 @@ int main(int argc, char** argv) {
     pair<double, double> currPosition;
 	ros::Rate loopRate(20);
     multi_amr_nectec::pos_msg msg;  // the message to be published  
-    
     nh.getParam("position_robot/team_size", team_size);
     geometry_msgs::Point robot_pos [team_size];
     Point my_array[team_size];
@@ -62,7 +61,7 @@ int main(int argc, char** argv) {
         }
        robot_pos_pub.publish(msg);  //array of robot pos 
        
-        ROS_INFO("--------Get robot pos----");
+        //ROS_INFO("--------Published robot pos----");
         ros::spinOnce();
         loopRate.sleep();
 	}

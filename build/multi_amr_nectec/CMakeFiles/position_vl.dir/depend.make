@@ -4,6 +4,7 @@
 multi_amr_nectec/CMakeFiles/position_vl.dir/src/position_vl.cpp.o: /home/kanin/catkin_ws_roboware/devel/include/multi_amr_nectec/pos_msg.h
 multi_amr_nectec/CMakeFiles/position_vl.dir/src/position_vl.cpp.o: /home/kanin/catkin_ws_roboware/src/multi_amr_nectec/src/position_vl.cpp
 multi_amr_nectec/CMakeFiles/position_vl.dir/src/position_vl.cpp.o: /opt/ros/kinetic/include/geometry_msgs/Point.h
+multi_amr_nectec/CMakeFiles/position_vl.dir/src/position_vl.cpp.o: /opt/ros/kinetic/include/geometry_msgs/Point32.h
 multi_amr_nectec/CMakeFiles/position_vl.dir/src/position_vl.cpp.o: /opt/ros/kinetic/include/geometry_msgs/Pose.h
 multi_amr_nectec/CMakeFiles/position_vl.dir/src/position_vl.cpp.o: /opt/ros/kinetic/include/geometry_msgs/PoseWithCovariance.h
 multi_amr_nectec/CMakeFiles/position_vl.dir/src/position_vl.cpp.o: /opt/ros/kinetic/include/geometry_msgs/Quaternion.h
