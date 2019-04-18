@@ -24,12 +24,23 @@ void vl_posCB(const geometry_msgs::Point & vl_pos)
    get_vl.y=roundf(vl_pos.y*10000)/10000;
   ROS_INFO("Get VL Position [%f,%f]",get_vl.x,get_vl.y);
 }
-void robot0_posCB(const geometry_msgs::Point & robot_pos)
-{  robot_pos[0].x=roundf(robot_pos.x*10000)/10000; // round to 5 decimal place
-   robot_pos[0].y=roundf(robot_pos.y*10000)/10000;
-  ROS_INFO("Get VL Position [%f,%f]",get_vl.x,get_vl.y);
+void robot0_posCB(const geometry_msgs::Point & pos)
+{  robot_pos[0].x=roundf(pos.x*10000)/10000; // round to 5 decimal place
+   robot_pos[0].y=roundf(pos.y*10000)/10000;
+  ROS_INFO("AMR 0 pos [%f,%f]",robot_pos[0].x,robot_pos[0].y);
 }
-
+void robot1_posCB(const geometry_msgs::Point & pos)
+{  robot_pos[1].x=roundf(pos.x*10000)/10000; // round to 5 decimal place
+   robot_pos[1].y=roundf(pos.y*10000)/10000;
+}
+void robot2_posCB(const geometry_msgs::Point & pos)
+{  robot_pos[2].x=roundf(pos.x*10000)/10000; // round to 5 decimal place
+   robot_pos[2].y=roundf(pos.y*10000)/10000;
+}
+void robot3_posCB(const geometry_msgs::Point & pos)
+{  robot_pos[3].x=roundf(pos.x*10000)/10000; // round to 5 decimal place
+   robot_pos[3].y=roundf(pos.y*10000)/10000;
+}
 int main(int argc, char** argv) 
 {
  ros::init(argc, argv, "vl_force");
@@ -46,9 +57,9 @@ int main(int argc, char** argv)
 
  ros::Subscriber vl_pos_sub = nh.subscribe("vl_robot/pub_pos", 1000, vl_posCB);
  ros::Subscriber robot0_pos_sub = nh.subscribe("amr_0/pub_pos", 1000, robot0_posCB);
-
-
-
+ ros::Subscriber robot1_pos_sub = nh.subscribe("amr_1/pub_pos", 1000, robot1_posCB);
+ ros::Subscriber robot2_pos_sub = nh.subscribe("amr_2/pub_pos", 1000, robot2_posCB);
+ ros::Subscriber robot3_pos_sub = nh.subscribe("amr_3/pub_pos", 1000, robot3_posCB);
 
 
  //ros::Subscriber vl_quat_sub = nh.subscribe("vl_robot/pub_quat", 1000, Callback);

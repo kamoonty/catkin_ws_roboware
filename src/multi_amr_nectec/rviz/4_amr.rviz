@@ -9,6 +9,7 @@ Panels:
         - /Odometry1/Shape1
         - /Odometry3/Shape1
         - /Odometry4/Shape1
+        - /Odometry5
       Splitter Ratio: 0.502777755
     Tree Height: 467
   - Class: rviz/Selection
@@ -241,7 +242,7 @@ Visualization Manager:
         Shaft Length: 0.5
         Shaft Radius: 0.0500000007
         Value: Arrow
-      Topic: /odom
+      Topic: /vl_robot/odom
       Unreliable: false
       Value: true
   Enabled: true
@@ -268,7 +269,7 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: -0.0200003833
+      Angle: -0.0150003834
       Class: rviz/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
@@ -278,7 +279,7 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Scale: 22.2910538
+      Scale: 39.2844543
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz)
       X: -0.601218045
