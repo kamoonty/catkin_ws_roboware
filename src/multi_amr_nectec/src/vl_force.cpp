@@ -22,12 +22,12 @@ float dist_from_vl_y ;
 void vl_posCB(const geometry_msgs::Point & vl_pos)
 {  get_vl.x=roundf(vl_pos.x*10000)/10000; // round to 5 decimal place
    get_vl.y=roundf(vl_pos.y*10000)/10000;
-  ROS_INFO("Get VL Position [%f,%f]",get_vl.x,get_vl.y);
+  ROS_INFO("****Get VL Position [%f,%f]*****",get_vl.x,get_vl.y);
 }
 void robot0_posCB(const geometry_msgs::Point & pos)
 {  robot_pos[0].x=roundf(pos.x*10000)/10000; // round to 5 decimal place
    robot_pos[0].y=roundf(pos.y*10000)/10000;
-  ROS_INFO("AMR 0 pos [%f,%f]",robot_pos[0].x,robot_pos[0].y);
+  //ROS_INFO("AMR 0 pos [%f,%f]",robot_pos[0].x,robot_pos[0].y);
 }
 void robot1_posCB(const geometry_msgs::Point & pos)
 {  robot_pos[1].x=roundf(pos.x*10000)/10000; // round to 5 decimal place
@@ -54,6 +54,19 @@ int main(int argc, char** argv)
  geometry_msgs::Twist send_fvl [team_size];
  geometry_msgs::Point Dist_vl [team_size];
  geometry_msgs::Point Force_vl [team_size];
+ geometry_msgs::Point formation_pos[team_size];
+ // Formation depend on those values below It is dVL in equation
+ formation_pos[0].x=0;
+ formation_pos[0].y=3;
+
+ formation_pos[1].x=-3;
+ formation_pos[1].y=0;
+
+ formation_pos[2].x=0;
+ formation_pos[2].y=-3;
+
+ formation_pos[3].x=3;
+ formation_pos[3].y=0;
 
  ros::Subscriber vl_pos_sub = nh.subscribe("vl_robot/pub_pos", 1000, vl_posCB);
  ros::Subscriber robot0_pos_sub = nh.subscribe("amr_0/pub_pos", 1000, robot0_posCB);
@@ -73,38 +86,37 @@ int main(int argc, char** argv)
 while (nh.ok()) 
 { 
    for (int j = 0; j < team_size; j++)
-      {          
-                int check_x=1;
-                int check_y=1;
-               ROS_INFO("robot pos=[%f,%f] ",robot_pos[j].x,robot_pos[j].y);
-              
-              if(robot_pos[j].x>get_vl.x)
-                    {check_x=-1; ROS_INFO("check_x= -1 ");}        
-               else if(robot_pos[j].x<get_vl.x)
-                    {check_x=1; ROS_INFO("check_x= 1 ");}                   
-               else 
-                    {check_x=0;ROS_INFO("check_x= 0");
-                     }  
-              //check_y 
-               if(robot_pos[j].y>get_vl.y)
-                    {check_y=-1;  ROS_INFO("check_y= -1 ");}
-               else if (robot_pos[j].y<get_vl.y)
-                    {check_y=1; ROS_INFO("check_y= 1 ");}
-               else 
-                    {check_y=0; ROS_INFO("check_y= 0 ");}     
+      {                   
+              int unit_vec_x=0;
+              int unit_vec_y=0;
+              ROS_INFO("robot pos=[%f,%f] ",robot_pos[j].x,robot_pos[j].y);               
             
                Dist_vl[j].x=get_vl.x-robot_pos[j].x;
                Dist_vl[j].y=get_vl.y-robot_pos[j].y;
+               if(Dist_vl[j].x<0)
+               {unit_vec_x=-1;}
+               else if (Dist_vl[j].x>0)
+               {unit_vec_x=1;}
+               
+               if(Dist_vl[j].y<0)
+               {unit_vec_y=-1;}
+               else if (Dist_vl[j].y>0)
+               {unit_vec_y=1;}
                float abs_dist = sqrt(pow((robot_pos[j].x-get_vl.x),2)+pow((robot_pos[j].y-get_vl.y),2)) ;         
                //ROS_INFO("Dist from VL of AMR %d=[%f,%f]",j,Dist_vl[j].x,Dist_vl[j].y);
                //ROS_INFO("Absolute distance of AMR %d from VL =%f",j,abs_dist);
-                Force_vl[j].x=Kvl*(Dist_vl[j].x-check_x*(dist_from_vl_x));
-                Force_vl[j].y=Kvl*(Dist_vl[j].y-check_y*(dist_from_vl_y));            
-                //ROS_INFO("Virtual Force of robot %d[%.3f,%.3f]",j,Force_vl[j].x,Force_vl[j].y);           
-                  send_fvl[j].linear.x =Force_vl[j].x;
-                  send_fvl[j].linear.y =Force_vl[j].y;  
-                 ROS_INFO("Cmd_vel robot %d x=%f y=%f",j, send_fvl[j].linear.x,send_fvl[j].linear.y);  
-                 ROS_INFO("-----------------------");
+               ROS_INFO("Ux= %d Uy= %d",unit_vec_x,unit_vec_y);
+               ROS_INFO("Dist_vl [%f,%f]",Dist_vl[j].x,Dist_vl[j].y);
+               float abs_dist_vl_x=abs(Dist_vl[j].x);
+               float abs_dist_vl_y=abs(Dist_vl[j].y);
+               ROS_INFO("ABS dist from VL =[%f,%f]",abs_dist_vl_x,abs_dist_vl_y);
+                Force_vl[j].x=Kvl*(abs(Dist_vl[j].x)-abs(formation_pos[j].x));
+                Force_vl[j].y=Kvl*(abs(Dist_vl[j].y)-abs(formation_pos[j].y));            
+                ROS_INFO("Virtual Force of robot %d[%.3f,%.3f]",j,Force_vl[j].x,Force_vl[j].y);           
+                  send_fvl[j].linear.x =unit_vec_x*Force_vl[j].x;
+                  send_fvl[j].linear.y =unit_vec_y*Force_vl[j].y;  
+                ROS_INFO("Cmd_vel robot %d x=%f y=%f",j, send_fvl[j].linear.x,send_fvl[j].linear.y);  
+                ROS_INFO("-----------------------");
                 }
                 
                 force0_pub.publish(send_fvl[0]);
