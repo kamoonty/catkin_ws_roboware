@@ -243,3 +243,11 @@ add_dependencies(string_test ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORT
 target_link_libraries(string_test
   ${catkin_LIBRARIES}
 )
+
+add_executable(list_param
+  src/list_param.cpp
+)
+add_dependencies(list_param ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(list_param
+  ${catkin_LIBRARIES}
+)

@@ -7,15 +7,21 @@
 #include <geometry_msgs/Twist.h>
 #include <stdlib.h> 
 #include "multi_amr_nectec/pos_msg.h"
-#include "math.h"
+//#include "math.h"
 //#include "std_msgs/String.h"
 geometry_msgs::Point get_vl;
 geometry_msgs::Point robot_pos[10] ; //allocate for max 10 robots
 //multi_amr_nectec::pos_msg get_msg;
 int team_size; //use for get param
 float Kvl;
-float dist_from_vl_x ;
-float dist_from_vl_y ;
+float pos_x_0;
+float pos_y_0;
+float pos_x_1;
+float pos_y_1;
+float pos_x_2;
+float pos_y_2;
+float pos_x_3;
+float pos_y_3;
 // We need to round value after subscribe because if not it can cause problem
 // when VL= 0.00000003 and Robot 1 Pos X = 0.00000004 it is not equal
 // roundf (number*100)/100
@@ -48,26 +54,28 @@ int main(int argc, char** argv)
  ros::Rate loopRate(20);
  nh.getParam("vl_force/team_size", team_size);
  nh.getParam("vl_force/Kvl", Kvl);
- nh.getParam("vl_force/dist_from_vl_x", dist_from_vl_x);
- nh.getParam("vl_force/dist_from_vl_y", dist_from_vl_y);
- //nh.getParam("vl_force/dist_from_vl_y_triangle", dist_from_vl_y_triangle);
+ nh.getParam("/pos_x_0", pos_x_0);
+ nh.getParam("/pos_y_0", pos_y_0);
+ nh.getParam("/pos_x_1", pos_x_1);
+ nh.getParam("/pos_y_1", pos_y_1);
+ nh.getParam("/pos_x_2", pos_x_2);
+ nh.getParam("/pos_y_2", pos_y_2);
+ nh.getParam("/pos_x_3", pos_x_3);
+ nh.getParam("/pos_y_3", pos_y_3);
  geometry_msgs::Twist send_fvl [team_size];
  geometry_msgs::Point Dist_vl [team_size];
  geometry_msgs::Point Force_vl [team_size];
  geometry_msgs::Point formation_pos[team_size];
  // Formation depend on those values below It is dVL in equation
- formation_pos[0].x=0;
- formation_pos[0].y=3;
-
- formation_pos[1].x=-3;
- formation_pos[1].y=0;
-
- formation_pos[2].x=0;
- formation_pos[2].y=-3;
-
- formation_pos[3].x=3;
- formation_pos[3].y=0;
-
+ formation_pos[0].x=pos_x_0;
+ formation_pos[0].y=pos_y_0;
+ formation_pos[1].x=pos_x_1;
+ formation_pos[1].y=pos_y_1;
+ formation_pos[2].x=pos_x_2;
+ formation_pos[2].y=pos_y_2;
+ formation_pos[3].x=pos_x_3;
+ formation_pos[3].y=pos_y_3;
+ 
  ros::Subscriber vl_pos_sub = nh.subscribe("vl_robot/pub_pos", 1000, vl_posCB);
  ros::Subscriber robot0_pos_sub = nh.subscribe("amr_0/pub_pos", 1000, robot0_posCB);
  ros::Subscriber robot1_pos_sub = nh.subscribe("amr_1/pub_pos", 1000, robot1_posCB);
@@ -86,7 +94,7 @@ int main(int argc, char** argv)
 while (nh.ok()) 
 { 
    for (int j = 0; j < team_size; j++)
-      {                   
+      {                  
               int unit_vec_x=0;
               int unit_vec_y=0;
               ROS_INFO("robot pos=[%f,%f] ",robot_pos[j].x,robot_pos[j].y);               
@@ -107,11 +115,13 @@ while (nh.ok())
                //ROS_INFO("Absolute distance of AMR %d from VL =%f",j,abs_dist);
                ROS_INFO("Ux= %d Uy= %d",unit_vec_x,unit_vec_y);
                ROS_INFO("Dist_vl [%f,%f]",Dist_vl[j].x,Dist_vl[j].y);
-               float abs_dist_vl_x=abs(Dist_vl[j].x);
-               float abs_dist_vl_y=abs(Dist_vl[j].y);
-               ROS_INFO("ABS dist from VL =[%f,%f]",abs_dist_vl_x,abs_dist_vl_y);
-                Force_vl[j].x=Kvl*(abs(Dist_vl[j].x)-abs(formation_pos[j].x));
-                Force_vl[j].y=Kvl*(abs(Dist_vl[j].y)-abs(formation_pos[j].y));            
+               //double abs_dist_vl_x=fabs(Dist_vl[j].x); 
+               //double abs_dist_vl_y=fabs(Dist_vl[j].y);
+              
+               //ROS_INFO("ABS dist_VL =[%f,%f]",abs_dist_vl_x,abs_dist_vl_y);
+                // Use fabs for float absolute
+                Force_vl[j].x=Kvl*(fabs(Dist_vl[j].x)-fabs(formation_pos[j].x));
+                Force_vl[j].y=Kvl*(fabs(Dist_vl[j].y)-fabs(formation_pos[j].y));            
                 ROS_INFO("Virtual Force of robot %d[%.3f,%.3f]",j,Force_vl[j].x,Force_vl[j].y);           
                   send_fvl[j].linear.x =unit_vec_x*Force_vl[j].x;
                   send_fvl[j].linear.y =unit_vec_y*Force_vl[j].y;  

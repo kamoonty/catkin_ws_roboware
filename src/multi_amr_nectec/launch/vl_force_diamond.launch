@@ -1,9 +1,7 @@
 <launch>
 <node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" >
   <param name ="team_size" value = "4" />
-  <param name ="Kvl" value = "0.1" />
-  <param name ="dist_from_vl_x" value = "1" />
-  <param name ="dist_from_vl_y" value = "1" />
-
+  <param name ="Kvl" value = "0.5" />
 </node>
+<rosparam command="load" file="$(find multi_amr_nectec)/config/diamond.yaml" />
 </launch>
