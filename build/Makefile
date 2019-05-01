@@ -805,19 +805,6 @@ std_msgs_generate_messages_lisp/fast:
 .PHONY : std_msgs_generate_messages_lisp/fast
 
 #=============================================================================
-# Target rules for targets named sub_odom
-
-# Build rule for target.
-sub_odom: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sub_odom
-.PHONY : sub_odom
-
-# fast build rule for target.
-sub_odom/fast:
-	$(MAKE) -f multi_amr_nectec/CMakeFiles/sub_odom.dir/build.make multi_amr_nectec/CMakeFiles/sub_odom.dir/build
-.PHONY : sub_odom/fast
-
-#=============================================================================
 # Target rules for targets named get_odom_robot
 
 # Build rule for target.
@@ -1581,7 +1568,6 @@ help:
 	@echo "... beginner_tutorials_generate_messages"
 	@echo "... roscpp_generate_messages_eus"
 	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... sub_odom"
 	@echo "... get_odom_robot"
 	@echo "... position_robot"
 	@echo "... inter_agent_force"

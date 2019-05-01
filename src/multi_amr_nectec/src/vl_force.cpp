@@ -1,12 +1,10 @@
 #include <ros/ros.h>
 #include <tf/transform_listener.h>
-//#include <boost/lexical_cast.hpp>
 #include <std_msgs/Float32.h>
-//#include <geometry_msgs/Point32.h>
 #include <geometry_msgs/Point.h>
 #include <geometry_msgs/Twist.h>
 #include <stdlib.h> 
-#include "multi_amr_nectec/pos_msg.h"
+//#include "multi_amr_nectec/pos_msg.h"
 //#include "math.h"
 //#include "std_msgs/String.h"
 geometry_msgs::Point get_vl;
@@ -15,8 +13,7 @@ geometry_msgs::Point robot_pos[10] ; //allocate for max 10 robots
 int team_size; //use for get param from launch file
 float Kvl;
 // We need to round value after subscribe because if not it can cause problem
-// when VL= 0.00000003 and Robot 1 Pos X = 0.00000004 it is not equal
-// roundf (number*100)/100
+// when VL= 0.00000003 and Robot 1 Pos X = 0.00000004 it is not equal so useroundf (number*100)/100
 void vl_posCB(const geometry_msgs::Point & vl_pos)
 {  get_vl.x=roundf(vl_pos.x*10000)/10000; // round to 5 decimal place
    get_vl.y=roundf(vl_pos.y*10000)/10000;
@@ -44,9 +41,10 @@ int main(int argc, char** argv)
  ros::init(argc, argv, "vl_force");
  ros::NodeHandle nh;
  ros::Rate loopRate(20);
+ //load param from launch file
  nh.getParam("vl_force/team_size", team_size);
  nh.getParam("vl_force/Kvl", Kvl);
- // load param for initial formation
+ // load param for initial formation from YAML file
  std::vector<double> initial_pos_x;
  std::vector<double> initial_pos_y;
  nh.getParam("initial_pos_x",initial_pos_x);
@@ -78,7 +76,6 @@ while (nh.ok())
               int unit_vec_x=0;
               int unit_vec_y=0;
               ROS_INFO("robot pos=[%f,%f] ",robot_pos[i].x,robot_pos[i].y);               
-            
                Dist_vl[i].x=get_vl.x-robot_pos[i].x;
                Dist_vl[i].y=get_vl.y-robot_pos[i].y;
                if(Dist_vl[i].x<0)
@@ -107,14 +104,11 @@ while (nh.ok())
                   send_fvl[i].linear.y =unit_vec_y*Force_vl[i].y;  
                 ROS_INFO("Cmd_vel robot %d x=%f y=%f",i, send_fvl[i].linear.x,send_fvl[i].linear.y);  
                 ROS_INFO("-----------------------");
-                }
-                
+                }              
                 force0_pub.publish(send_fvl[0]);
                 force1_pub.publish(send_fvl[1]);
                 force2_pub.publish(send_fvl[2]);
                 force3_pub.publish(send_fvl[3]);
-              
-      //ROS_INFO("-------SEND CMD VEL------");
       ros::spinOnce();
       loopRate.sleep();
 

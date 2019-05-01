@@ -168,21 +168,6 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-multi_amr_nectec/CMakeFiles/sub_odom.dir/rule:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/sub_odom.dir/rule
-.PHONY : multi_amr_nectec/CMakeFiles/sub_odom.dir/rule
-
-# Convenience name for target.
-sub_odom: multi_amr_nectec/CMakeFiles/sub_odom.dir/rule
-
-.PHONY : sub_odom
-
-# fast build rule for target.
-sub_odom/fast:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/sub_odom.dir/build.make multi_amr_nectec/CMakeFiles/sub_odom.dir/build
-.PHONY : sub_odom/fast
-
-# Convenience name for target.
 multi_amr_nectec/CMakeFiles/get_odom_robot.dir/rule:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/get_odom_robot.dir/rule
 .PHONY : multi_amr_nectec/CMakeFiles/get_odom_robot.dir/rule
@@ -1058,33 +1043,6 @@ src/inter_agent_force.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/inter_agent_force.dir/build.make multi_amr_nectec/CMakeFiles/inter_agent_force.dir/src/inter_agent_force.cpp.s
 .PHONY : src/inter_agent_force.cpp.s
 
-src/old_vl_force.o: src/old_vl_force.cpp.o
-
-.PHONY : src/old_vl_force.o
-
-# target to build an object file
-src/old_vl_force.cpp.o:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/sub_odom.dir/build.make multi_amr_nectec/CMakeFiles/sub_odom.dir/src/old_vl_force.cpp.o
-.PHONY : src/old_vl_force.cpp.o
-
-src/old_vl_force.i: src/old_vl_force.cpp.i
-
-.PHONY : src/old_vl_force.i
-
-# target to preprocess a source file
-src/old_vl_force.cpp.i:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/sub_odom.dir/build.make multi_amr_nectec/CMakeFiles/sub_odom.dir/src/old_vl_force.cpp.i
-.PHONY : src/old_vl_force.cpp.i
-
-src/old_vl_force.s: src/old_vl_force.cpp.s
-
-.PHONY : src/old_vl_force.s
-
-# target to generate assembly for a file
-src/old_vl_force.cpp.s:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/sub_odom.dir/build.make multi_amr_nectec/CMakeFiles/sub_odom.dir/src/old_vl_force.cpp.s
-.PHONY : src/old_vl_force.cpp.s
-
 src/position_robot.o: src/position_robot.cpp.o
 
 .PHONY : src/position_robot.o
@@ -1176,7 +1134,6 @@ help:
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... edit_cache"
-	@echo "... sub_odom"
 	@echo "... get_odom_robot"
 	@echo "... position_robot"
 	@echo "... test"
@@ -1242,9 +1199,6 @@ help:
 	@echo "... src/inter_agent_force.o"
 	@echo "... src/inter_agent_force.i"
 	@echo "... src/inter_agent_force.s"
-	@echo "... src/old_vl_force.o"
-	@echo "... src/old_vl_force.i"
-	@echo "... src/old_vl_force.s"
 	@echo "... src/position_robot.o"
 	@echo "... src/position_robot.i"
 	@echo "... src/position_robot.s"
