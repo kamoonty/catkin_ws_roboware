@@ -6,8 +6,9 @@
 
 int main(int argc, char **argv)
 { // Create a ROS node handle
+ros::init(argc, argv, "pass_list_test");
 ros::NodeHandle nh;
-
+ros::Rate loop_rate(1);
 // Construct a map of strings
 std::map<std::string,std::string> map_s, map_s2;
 map_s["a"] = "foo";
@@ -22,12 +23,23 @@ nh.getParam("my_string_map", map_s2);
 std::vector<double> my_double_list;
 double sum = 0;
 nh.getParam("my_double_list", my_double_list);
+while (ros::ok())
+  {
 for(unsigned i=0; i < my_double_list.size(); i++) {
-  sum += my_double_list[i];
-  ROS_INFO("Sum = %f",sum);
+  ROS_INFO("list[%d]= %f",i,my_double_list[i]);
+  //sum += my_double_list[i];
+  //ROS_INFO("Sum = %f",sum);
 }
 
-  ros::spin();
+
+
+
+ ros::spinOnce();
+ loop_rate.sleep();
+
+  }
+
+   
 
   return 0;
 }

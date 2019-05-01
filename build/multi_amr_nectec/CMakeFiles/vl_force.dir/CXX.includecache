@@ -29,8 +29,6 @@ ros/ros.h
 -
 tf/transform_listener.h
 -
-boost/lexical_cast.hpp
--
 std_msgs/Float32.h
 -
 geometry_msgs/Point.h

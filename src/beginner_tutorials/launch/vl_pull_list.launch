@@ -1,6 +1,4 @@
 <launch>
-<rosparam param="formation_pos_x">[2, -2, -2, 2]</rosparam>
-<rosparam param="formation_pos_y">[2, -2, -2, -2]</rosparam>
 <rosparam command="load" file="$(find multi_amr_nectec)/config/diamond.yaml" />
 
 <node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" >

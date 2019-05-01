@@ -1,0 +1,7 @@
+<launch>
+<rosparam command="load" file="$(find beginner_tutorials)/config/list.yaml" />
+
+<node pkg="beginner_tutorials" type="list_param" name="list_param" output="screen" >
+
+</node>
+</launch>

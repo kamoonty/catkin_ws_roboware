@@ -1,3 +1,5 @@
+initial_pos_x: [0,-2,0,2]
+initial_pos_y: [2,0,-2,0]
 pos_x_0: 0
 pos_y_0: 2
 pos_x_1: -2
