@@ -239,3 +239,11 @@ add_dependencies(get_odom_robot ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXP
 target_link_libraries(get_odom_robot
   ${catkin_LIBRARIES}
 )
+
+add_executable(orientation_control
+  src/orientation_control.cpp
+)
+add_dependencies(orientation_control ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(orientation_control
+  ${catkin_LIBRARIES}
+)

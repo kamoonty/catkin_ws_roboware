@@ -1,0 +1,8 @@
+prefix=/home/kanin/catkin_ws_roboware/install
+
+Name: neo_simulation
+Description: Description of neo_simulation
+Version: 0.1.0
+Cflags: 
+Libs: -L/home/kanin/catkin_ws_roboware/install/lib 
+Requires: 

@@ -101,7 +101,8 @@ while (nh.ok())
                 Force_vl[i].y=Kvl*(fabs(Dist_vl[i].y)-fabs(initial_pos_y[i]));            
                 ROS_INFO("Virtual Force of robot %d[%.3f,%.3f]",i,Force_vl[i].x,Force_vl[i].y);           
                   send_fvl[i].linear.x =unit_vec_x*Force_vl[i].x;
-                  send_fvl[i].linear.y =unit_vec_y*Force_vl[i].y;  
+                  send_fvl[i].linear.y =unit_vec_y*Force_vl[i].y; 
+                  //send_fvl[i].angular.x=0.5; 
                 ROS_INFO("Cmd_vel robot %d x=%f y=%f",i, send_fvl[i].linear.x,send_fvl[i].linear.y);  
                 ROS_INFO("-----------------------");
                 }              
