@@ -93,11 +93,11 @@ DWAPlannerROS:
 ###Trajectory Scoring Parameters
 
 
-  path_distance_bias : 48
+  path_distance_bias : 32
 
     #The weighting for how much the controller should stay close to the path it was given 
 
-  goal_distance_bias : 88
+  goal_distance_bias : 20
 
     #The weighting for how much the controller should attempt to reach its local goal, also controls speed 
 
