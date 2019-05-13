@@ -3,5 +3,5 @@
   <param name ="team_size" value = "4" />
   <param name ="Kvl" value = "0.5" />
 </node>
-<rosparam command="load" file="$(find multi_amr_nectec)/config/parallel.yaml" />
+<rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/parallel.yaml" />
 </launch>
