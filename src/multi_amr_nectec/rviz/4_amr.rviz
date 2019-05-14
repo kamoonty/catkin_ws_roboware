@@ -9,6 +9,7 @@ Panels:
         - /AMR_11/Shape1
         - /AMR_21/Shape1
         - /AMR_31/Shape1
+        - /Polygon1
         - /Global Costmap1
         - /Local costmap1
       Splitter Ratio: 0.501170933
@@ -414,7 +415,7 @@ Visualization Manager:
       Value: true
     - Alpha: 1
       Class: rviz/Polygon
-      Color: 25; 255; 0
+      Color: 255; 234; 2
       Enabled: true
       Name: Polygon
       Topic: /vl_robot/move_base/local_costmap/footprint
