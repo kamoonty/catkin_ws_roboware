@@ -20,8 +20,8 @@ void vl_posCB(const geometry_msgs::Point & vl_pos)
    get_pos_vl.y=roundf(vl_pos.y*10000)/10000;
   ROS_INFO("****Get VL Position [%f,%f]*****",get_pos_vl.x,get_pos_vl.y);
 }
-void vl_angCB(const geometry_msgs::Twist & robot_angular)
-{ get_angular_vl.angular.z=roundf(robot_angular.angular.z*10000)/10000; // round to 5 decimal place
+void vl_angCB(const geometry_msgs::Twist & robot_velocity)
+{ get_angular_vl.angular.z=roundf(robot_velocity.angular.z*10000)/10000; // round to 5 decimal place
   ROS_INFO("**** VL Yaw velocity [%f]*****",get_angular_vl.angular.z);
 }
 
@@ -61,7 +61,7 @@ int main(int argc, char** argv)
  geometry_msgs::Point Force_vl [team_size];
 
  ros::Subscriber vl_pos_sub = nh.subscribe("vl_robot/pub_pos", 1000, vl_posCB);
- ros::Subscriber vl_angular_sub = nh.subscribe("vl_robot/pub_angular", 1000, vl_angCB);
+ ros::Subscriber vl_angular_sub = nh.subscribe("vl_robot/pub_velocity", 1000, vl_angCB);
  
  ros::Subscriber robot0_pos_sub = nh.subscribe("amr_0/pub_pos", 1000, robot0_posCB);
  ros::Subscriber robot1_pos_sub = nh.subscribe("amr_1/pub_pos", 1000, robot1_posCB);
