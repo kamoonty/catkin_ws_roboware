@@ -20,7 +20,8 @@ geometry_msgs::Point vl_pos; //float 64 inside
 void odomCallback(const nav_msgs::Odometry::ConstPtr& odom)
 { 
   vl_pos.x=odom->pose.pose.position.x;
-  vl_pos.y=odom->pose.pose.position.y;   
+  vl_pos.y=odom->pose.pose.position.y; 
+ 
   //ROS_INFO("Seq: [%d]", odom->header.seq);
   //ROS_INFO("get odom seq: [%d]", get_odom->header.seq);
 /* ROS_INFO("Position-> x: [%f], y: [%f], z: [%f]", odom->pose.pose.position.x,odom->pose.pose.position.y, odom->pose.pose.position.z);

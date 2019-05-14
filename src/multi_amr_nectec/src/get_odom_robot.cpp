@@ -10,6 +10,8 @@
 
 geometry_msgs::Point robot_pos; //float 64 inside
 geometry_msgs::Quaternion robot_quat;
+geometry_msgs::Twist robot_linear;
+geometry_msgs::Twist robot_angular;
 void odomCallback(const nav_msgs::Odometry::ConstPtr& odom)
 { 
   robot_pos.x=odom->pose.pose.position.x;
@@ -20,7 +22,14 @@ void odomCallback(const nav_msgs::Odometry::ConstPtr& odom)
   robot_quat.y=odom->pose.pose.orientation.y;
   robot_quat.z=odom->pose.pose.orientation.z;
   robot_quat.w=odom->pose.pose.orientation.w;
+  
+  robot_linear.linear.x=odom->twist.twist.linear.x;
+  robot_linear.linear.y=odom->twist.twist.linear.y;
+  robot_linear.linear.z=0;// ground robot
 
+  robot_angular.angular.z=odom->twist.twist.angular.z;
+  // for omni rotation no need for x,y angular
+  
   //ROS_INFO("Seq: [%d]", odom->header.seq);
   //ROS_INFO("get odom seq: [%d]", get_odom->header.seq);
 /* ROS_INFO("Position-> x: [%f], y: [%f], z: [%f]", odom->pose.pose.position.x,odom->pose.pose.position.y, odom->pose.pose.position.z);
@@ -35,7 +44,10 @@ int main(int argc, char** argv) {
     ros::Subscriber sub = nh.subscribe("odom", 1000, odomCallback);
     ros::Publisher robot_pos_pub = nh.advertise<geometry_msgs::Point>("pub_pos", 1000);    
     ros::Publisher robot_quat_pub = nh.advertise<geometry_msgs::Quaternion>("pub_quat", 1000);    
+    ros::Publisher robot_linear_pub = nh.advertise<geometry_msgs::Point>("pub_linear", 1000);    
+    ros::Publisher robot_angular_pub = nh.advertise<geometry_msgs::Quaternion>("pub_angular", 1000);    
     
+
     ros::Rate loopRate(20);
 	while (ros::ok()) 
 {  
@@ -43,6 +55,9 @@ int main(int argc, char** argv) {
     //ROS_INFO("Orientation x: [%.3f], y: [%.3f], z: [%.3f], w: [%.3f]",robot_quat.x,robot_quat.y,robot_quat.z,robot_quat.w);
     robot_pos_pub.publish(robot_pos);
     robot_quat_pub.publish(robot_quat);
+    robot_linear_pub.publish(robot_linear);
+    robot_angular_pub.publish(robot_angular);
+
 	ros::spinOnce();
     loopRate.sleep();
 }

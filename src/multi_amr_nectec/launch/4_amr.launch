@@ -4,22 +4,21 @@
   <arg name="open_rviz" default="true"/>
   <arg name="open_gazebo" default="false"/>
   <arg name="team_size" value="4"/>
-<!--
-  <arg name="map_path1" default="$(find turtlebot3_nps)/maps/multi_map.yaml"/>
-  <arg name="map_path2" default="$(find turtlebot3_navigation)/maps/map.yaml"/>
-  
-  <arg name="world_path1" default="$(find turtlebot3_nps)/worlds/watkinslab.world"/>
-  <arg name="world_path2" default="$(find turtlebot3_gazebo)/worlds/turtlebot3_world.world"/>
- -->
+<!-- other robot map-->
+<arg name="watkin_map" default="$(find multi_amr_nectec)/maps/watkin_lab.yaml"/>
+<arg name="watkin_world" default="$(find multi_amr_nectec)/worlds/watkinslab.world"/>
  <arg name="map_empty" default="$(find multi_amr_nectec)/maps/map.yaml"/>
  <arg name="emptyworld" default="$(find turtlebot3_gazebo)/worlds/empty.world"/>
+<arg name="neo_track1_world" default="$(find neo_simulation)/worlds/neo_track1.world"/>
+<arg name="neo_track1_map" default="$(find neo_simulation)/maps/neo_track1.yaml"/>
+  
   <!-- Map server --> 
- <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_empty)" respawn="false" >
+ <node pkg="map_server" type="map_server" name="map_server" args="$(arg neo_track1_map)" respawn="false" >
     <param name="frame_id" value="/map" />
   </node>
   <!-- start gazebo --> 
 <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="default"/> 
+    <arg name="world_name" value="neo_track1_world"/> 
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="$(arg open_gazebo)"/>
