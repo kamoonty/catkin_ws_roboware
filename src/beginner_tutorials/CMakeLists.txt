@@ -251,3 +251,11 @@ add_dependencies(list_param ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTE
 target_link_libraries(list_param
   ${catkin_LIBRARIES}
 )
+
+add_executable(quat_to_euler
+  src/quat_to_euler.cpp
+)
+add_dependencies(quat_to_euler ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(quat_to_euler
+  ${catkin_LIBRARIES}
+)

@@ -267,6 +267,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "gtest/CMakeFiles/gmock.dir/DependInfo.cmake"
   "gtest/gtest/CMakeFiles/gtest.dir/DependInfo.cmake"
   "gtest/gtest/CMakeFiles/gtest_main.dir/DependInfo.cmake"
+  "beginner_tutorials/CMakeFiles/quat_to_euler.dir/DependInfo.cmake"
   "beginner_tutorials/CMakeFiles/talker.dir/DependInfo.cmake"
   "beginner_tutorials/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/DependInfo.cmake"
   "beginner_tutorials/CMakeFiles/std_msgs_generate_messages_eus.dir/DependInfo.cmake"

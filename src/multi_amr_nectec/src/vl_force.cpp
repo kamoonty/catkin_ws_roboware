@@ -9,7 +9,7 @@
 //#include "std_msgs/String.h"
 geometry_msgs::Point get_pos_vl;
 geometry_msgs::Point robot_pos[10] ; //allocate for max 10 robots
-geometry_msgs::Twist get_angular_vl;
+//geometry_msgs::Twist get_angular_vl;
 //multi_amr_nectec::pos_msg get_msg;
 int team_size; //use for get param from launch file
 float Kvl;
@@ -20,11 +20,12 @@ void vl_posCB(const geometry_msgs::Point & vl_pos)
    get_pos_vl.y=roundf(vl_pos.y*10000)/10000;
   ROS_INFO("****Get VL Position [%f,%f]*****",get_pos_vl.x,get_pos_vl.y);
 }
+/*
 void vl_angCB(const geometry_msgs::Twist & robot_velocity)
 { get_angular_vl.angular.z=roundf(robot_velocity.angular.z*10000)/10000; // round to 5 decimal place
   ROS_INFO("**** VL Yaw velocity [%f]*****",get_angular_vl.angular.z);
 }
-
+*/
 void robot0_posCB(const geometry_msgs::Point & pos)
 {  robot_pos[0].x=roundf(pos.x*10000)/10000; // round to 5 decimal place
    robot_pos[0].y=roundf(pos.y*10000)/10000;
@@ -61,7 +62,7 @@ int main(int argc, char** argv)
  geometry_msgs::Point Force_vl [team_size];
 
  ros::Subscriber vl_pos_sub = nh.subscribe("vl_robot/pub_pos", 1000, vl_posCB);
- ros::Subscriber vl_angular_sub = nh.subscribe("vl_robot/pub_velocity", 1000, vl_angCB);
+ //ros::Subscriber vl_angular_sub = nh.subscribe("vl_robot/pub_velocity", 1000, vl_angCB);
  
  ros::Subscriber robot0_pos_sub = nh.subscribe("amr_0/pub_pos", 1000, robot0_posCB);
  ros::Subscriber robot1_pos_sub = nh.subscribe("amr_1/pub_pos", 1000, robot1_posCB);
@@ -108,7 +109,7 @@ while (nh.ok())
                 ROS_INFO("Virtual Force of robot %d[%.3f,%.3f]",i,Force_vl[i].x,Force_vl[i].y);           
                   send_fvl[i].linear.x =unit_vec_x*Force_vl[i].x;
                   send_fvl[i].linear.y =unit_vec_y*Force_vl[i].y; 
-                  send_fvl[i].angular.z=get_angular_vl.angular.z; 
+                  //send_fvl[i].angular.z=get_angular_vl.angular.z; 
                 ROS_INFO("Cmd_vel robot %d x=%f y=%f",i, send_fvl[i].linear.x,send_fvl[i].linear.y);  
                 ROS_INFO("-----------------------");
                 }              

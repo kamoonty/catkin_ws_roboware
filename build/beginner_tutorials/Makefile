@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+beginner_tutorials/CMakeFiles/quat_to_euler.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 beginner_tutorials/CMakeFiles/quat_to_euler.dir/rule
+.PHONY : beginner_tutorials/CMakeFiles/quat_to_euler.dir/rule
+
+# Convenience name for target.
+quat_to_euler: beginner_tutorials/CMakeFiles/quat_to_euler.dir/rule
+
+.PHONY : quat_to_euler
+
+# fast build rule for target.
+quat_to_euler/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/quat_to_euler.dir/build.make beginner_tutorials/CMakeFiles/quat_to_euler.dir/build
+.PHONY : quat_to_euler/fast
+
+# Convenience name for target.
 beginner_tutorials/CMakeFiles/talker.dir/rule:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 beginner_tutorials/CMakeFiles/talker.dir/rule
 .PHONY : beginner_tutorials/CMakeFiles/talker.dir/rule
@@ -875,6 +890,33 @@ src/my_subscriber.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/my_subscriber.dir/build.make beginner_tutorials/CMakeFiles/my_subscriber.dir/src/my_subscriber.cpp.s
 .PHONY : src/my_subscriber.cpp.s
 
+src/quat_to_euler.o: src/quat_to_euler.cpp.o
+
+.PHONY : src/quat_to_euler.o
+
+# target to build an object file
+src/quat_to_euler.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/quat_to_euler.dir/build.make beginner_tutorials/CMakeFiles/quat_to_euler.dir/src/quat_to_euler.cpp.o
+.PHONY : src/quat_to_euler.cpp.o
+
+src/quat_to_euler.i: src/quat_to_euler.cpp.i
+
+.PHONY : src/quat_to_euler.i
+
+# target to preprocess a source file
+src/quat_to_euler.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/quat_to_euler.dir/build.make beginner_tutorials/CMakeFiles/quat_to_euler.dir/src/quat_to_euler.cpp.i
+.PHONY : src/quat_to_euler.cpp.i
+
+src/quat_to_euler.s: src/quat_to_euler.cpp.s
+
+.PHONY : src/quat_to_euler.s
+
+# target to generate assembly for a file
+src/quat_to_euler.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/quat_to_euler.dir/build.make beginner_tutorials/CMakeFiles/quat_to_euler.dir/src/quat_to_euler.cpp.s
+.PHONY : src/quat_to_euler.cpp.s
+
 src/string_test.o: src/string_test.cpp.o
 
 .PHONY : src/string_test.o
@@ -936,6 +978,8 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
+	@echo "... install/local"
+	@echo "... quat_to_euler"
 	@echo "... talker"
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_eus"
@@ -948,7 +992,6 @@ help:
 	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... _catkin_empty_exported_target"
-	@echo "... install/local"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
@@ -994,6 +1037,9 @@ help:
 	@echo "... src/my_subscriber.o"
 	@echo "... src/my_subscriber.i"
 	@echo "... src/my_subscriber.s"
+	@echo "... src/quat_to_euler.o"
+	@echo "... src/quat_to_euler.i"
+	@echo "... src/quat_to_euler.s"
 	@echo "... src/string_test.o"
 	@echo "... src/string_test.i"
 	@echo "... src/string_test.s"
