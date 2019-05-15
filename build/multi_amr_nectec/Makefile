@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+multi_amr_nectec/CMakeFiles/tf_quat2euler.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/tf_quat2euler.dir/rule
+.PHONY : multi_amr_nectec/CMakeFiles/tf_quat2euler.dir/rule
+
+# Convenience name for target.
+tf_quat2euler: multi_amr_nectec/CMakeFiles/tf_quat2euler.dir/rule
+
+.PHONY : tf_quat2euler
+
+# fast build rule for target.
+tf_quat2euler/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/tf_quat2euler.dir/build.make multi_amr_nectec/CMakeFiles/tf_quat2euler.dir/build
+.PHONY : tf_quat2euler/fast
+
+# Convenience name for target.
 multi_amr_nectec/CMakeFiles/orientation_control.dir/rule:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/orientation_control.dir/rule
 .PHONY : multi_amr_nectec/CMakeFiles/orientation_control.dir/rule
@@ -689,6 +704,33 @@ src/position_vl.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/position_vl.dir/build.make multi_amr_nectec/CMakeFiles/position_vl.dir/src/position_vl.cpp.s
 .PHONY : src/position_vl.cpp.s
 
+src/tf_quat2euler.o: src/tf_quat2euler.cpp.o
+
+.PHONY : src/tf_quat2euler.o
+
+# target to build an object file
+src/tf_quat2euler.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/tf_quat2euler.dir/build.make multi_amr_nectec/CMakeFiles/tf_quat2euler.dir/src/tf_quat2euler.cpp.o
+.PHONY : src/tf_quat2euler.cpp.o
+
+src/tf_quat2euler.i: src/tf_quat2euler.cpp.i
+
+.PHONY : src/tf_quat2euler.i
+
+# target to preprocess a source file
+src/tf_quat2euler.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/tf_quat2euler.dir/build.make multi_amr_nectec/CMakeFiles/tf_quat2euler.dir/src/tf_quat2euler.cpp.i
+.PHONY : src/tf_quat2euler.cpp.i
+
+src/tf_quat2euler.s: src/tf_quat2euler.cpp.s
+
+.PHONY : src/tf_quat2euler.s
+
+# target to generate assembly for a file
+src/tf_quat2euler.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/tf_quat2euler.dir/build.make multi_amr_nectec/CMakeFiles/tf_quat2euler.dir/src/tf_quat2euler.cpp.s
+.PHONY : src/tf_quat2euler.cpp.s
+
 src/vl_force.o: src/vl_force.cpp.o
 
 .PHONY : src/vl_force.o
@@ -724,6 +766,7 @@ help:
 	@echo "... depend"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... tf_quat2euler"
 	@echo "... install/strip"
 	@echo "... orientation_control"
 	@echo "... edit_cache"
@@ -771,6 +814,9 @@ help:
 	@echo "... src/position_vl.o"
 	@echo "... src/position_vl.i"
 	@echo "... src/position_vl.s"
+	@echo "... src/tf_quat2euler.o"
+	@echo "... src/tf_quat2euler.i"
+	@echo "... src/tf_quat2euler.s"
 	@echo "... src/vl_force.o"
 	@echo "... src/vl_force.i"
 	@echo "... src/vl_force.s"

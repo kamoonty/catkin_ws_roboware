@@ -247,3 +247,11 @@ add_dependencies(orientation_control ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catki
 target_link_libraries(orientation_control
   ${catkin_LIBRARIES}
 )
+
+add_executable(tf_quat2euler
+  src/tf_quat2euler.cpp
+)
+add_dependencies(tf_quat2euler ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(tf_quat2euler
+  ${catkin_LIBRARIES}
+)

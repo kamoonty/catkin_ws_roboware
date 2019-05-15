@@ -311,6 +311,19 @@ talker/fast:
 .PHONY : talker/fast
 
 #=============================================================================
+# Target rules for targets named std_msgs_generate_messages_lisp
+
+# Build rule for target.
+std_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_lisp
+.PHONY : std_msgs_generate_messages_lisp
+
+# fast build rule for target.
+std_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f beginner_tutorials/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make beginner_tutorials/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+.PHONY : std_msgs_generate_messages_lisp/fast
+
+#=============================================================================
 # Target rules for targets named geometry_msgs_generate_messages_lisp
 
 # Build rule for target.
@@ -361,6 +374,19 @@ roscpp_generate_messages_cpp: cmake_check_build_system
 roscpp_generate_messages_cpp/fast:
 	$(MAKE) -f beginner_tutorials/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make beginner_tutorials/CMakeFiles/roscpp_generate_messages_cpp.dir/build
 .PHONY : roscpp_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named subscribe_path
+
+# Build rule for target.
+subscribe_path: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 subscribe_path
+.PHONY : subscribe_path
+
+# fast build rule for target.
+subscribe_path/fast:
+	$(MAKE) -f beginner_tutorials/CMakeFiles/subscribe_path.dir/build.make beginner_tutorials/CMakeFiles/subscribe_path.dir/build
+.PHONY : subscribe_path/fast
 
 #=============================================================================
 # Target rules for targets named std_msgs_generate_messages_py
@@ -805,19 +831,6 @@ roscpp_generate_messages_eus/fast:
 .PHONY : roscpp_generate_messages_eus/fast
 
 #=============================================================================
-# Target rules for targets named std_msgs_generate_messages_lisp
-
-# Build rule for target.
-std_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_lisp
-.PHONY : std_msgs_generate_messages_lisp
-
-# fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f beginner_tutorials/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make beginner_tutorials/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
-
-#=============================================================================
 # Target rules for targets named random_edit
 
 # Build rule for target.
@@ -1260,6 +1273,19 @@ tf_generate_messages_lisp/fast:
 .PHONY : tf_generate_messages_lisp/fast
 
 #=============================================================================
+# Target rules for targets named tf_quat2euler
+
+# Build rule for target.
+tf_quat2euler: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tf_quat2euler
+.PHONY : tf_quat2euler
+
+# fast build rule for target.
+tf_quat2euler/fast:
+	$(MAKE) -f multi_amr_nectec/CMakeFiles/tf_quat2euler.dir/build.make multi_amr_nectec/CMakeFiles/tf_quat2euler.dir/build
+.PHONY : tf_quat2euler/fast
+
+#=============================================================================
 # Target rules for targets named orientation_control
 
 # Build rule for target.
@@ -1608,10 +1634,12 @@ help:
 	@echo "... gtest_main"
 	@echo "... quat_to_euler"
 	@echo "... talker"
+	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_cpp"
+	@echo "... subscribe_path"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... roscpp_generate_messages_nodejs"
@@ -1646,7 +1674,6 @@ help:
 	@echo "... list_param"
 	@echo "... beginner_tutorials_generate_messages"
 	@echo "... roscpp_generate_messages_eus"
-	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... random_edit"
 	@echo "... tf2_msgs_generate_messages_py"
 	@echo "... tf2_msgs_generate_messages_eus"
@@ -1681,6 +1708,7 @@ help:
 	@echo "... send_goal_multi"
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... tf_generate_messages_lisp"
+	@echo "... tf_quat2euler"
 	@echo "... orientation_control"
 	@echo "... multi_amr_nectec_generate_messages_eus"
 	@echo "... multi_amr_nectec_generate_messages_cpp"

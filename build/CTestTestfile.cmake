@@ -7,6 +7,7 @@
 subdirs("gtest")
 subdirs("beginner_tutorials")
 subdirs("multi_robot_neobotix")
+subdirs("rosbag_to_csv")
 subdirs("multi_navigation_tb3")
 subdirs("multi_amr_nectec")
 subdirs("amr_description")
