@@ -2,7 +2,7 @@
   <master auto="start"/>
   <param name="/use_sim_time" value="true"/>
   <arg name="open_rviz" default="true"/>
-  <arg name="open_gazebo" default="false"/>
+  <arg name="open_gazebo" default="true"/>
   <arg name="team_size" value="4"/>
 <!-- other robot map-->
 <arg name="watkin_map" default="$(find multi_amr_nectec)/maps/watkin_lab.yaml"/>
@@ -13,12 +13,12 @@
 <arg name="neo_track1_map" default="$(find neo_simulation)/maps/neo_track1.yaml"/>
   
   <!-- Map server --> 
- <node pkg="map_server" type="map_server" name="map_server" args="$(arg neo_track1_map)" respawn="false" >
+ <node pkg="map_server" type="map_server" name="map_server" args="$(arg watkin_map)" respawn="false" >
     <param name="frame_id" value="/map" />
   </node>
   <!-- start gazebo --> 
 <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(arg neo_track1_world)"/> 
+    <arg name="world_name" value="$(arg watkin_world)"/> 
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="$(arg open_gazebo)"/>
@@ -34,7 +34,7 @@
 <!-- AMR 0  -->
   <group ns="amr_0">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 5 -y 6 -z 0 -Y 0 -P 0 -R 0" />
+      <arg name="init_pose_gazebo" value="-x 0.5 -y 0 -z 0 -Y 0 -P 0 -R 0" />
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
       <arg name="robot_name" value="amr_0" />
     </include>
@@ -46,7 +46,7 @@
 <!-- AMR 1  -->
  <group ns="amr_1">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x -4 -y 7 -z 0 -Y 0 -P 0 -R 0" />  
+      <arg name="init_pose_gazebo" value="-x -0.5 -y 0 -z 0 -Y 0 -P 0 -R 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_1" />
     </include> 
@@ -54,7 +54,7 @@
     <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
   </group>
 
-<!-- AMR 2   --> 
+<!-- AMR 2   
  <group ns="amr_2">
     <param name="tf_prefix" value="amr_2" />
     <param name="amcl/initial_pose_x" value="0" />
@@ -67,8 +67,8 @@
     <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
     <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
   </group>
-
-<!-- AMR 3   -->
+--> 
+<!-- AMR 3   
  <group ns="amr_3">
    <param name="tf_prefix" value="amr_3" />
     <param name="amcl/initial_pose_x" value="0" />
@@ -81,7 +81,7 @@
     <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />  
     <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
   </group>
-
+-->
   <!--Get position   
 <node pkg="multi_amr_nectec" type="position_robot" name="position_robot" output="screen" >
 <param name ="team_size" value = "$(arg team_size)" />

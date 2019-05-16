@@ -412,8 +412,9 @@
   
   <joint name="laser_joint" type="fixed">
     <parent link="base_link"/>
-    <child link="laser_link"/>
-    <origin xyz="0 0 0.29" rpy="0 0 0"/>   <!--  modify height of rp lidar here -->
+    <child link="laser_link"/> 
+    <origin xyz="0 0 0.24" rpy="0 0 0"/>   <!--  modify height of rp lidar here -->
+    <!--  top shelf 0.29 -->
   </joint>
 
   <link name="laser_link">

@@ -1,0 +1,13 @@
+digraph G {
+"base_link" -> "sick_s300_laser_back_link"[label="Broadcaster: /robot1/robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1211.545 sec old)\nBuffer length: 0.000 sec\n"];
+"odom" -> "base_link"[label="Broadcaster: /gazebo\nAverage rate: 19.841 Hz\nMost recent transform: 1211.542 ( 0.003 sec old)\nBuffer length: 4.284 sec\n"];
+"base_link" -> "sick_s300_laser_front_link"[label="Broadcaster: /robot1/robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1211.545 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "wheel_back_left_link"[label="Broadcaster: /robot1/robot_state_publisher\nAverage rate: 18.824 Hz\nMost recent transform: 1211.509 ( 0.036 sec old)\nBuffer length: 4.250 sec\n"];
+"base_link" -> "wheel_back_right_link"[label="Broadcaster: /robot1/robot_state_publisher\nAverage rate: 18.824 Hz\nMost recent transform: 1211.509 ( 0.036 sec old)\nBuffer length: 4.250 sec\n"];
+"base_link" -> "wheel_front_left_link"[label="Broadcaster: /robot1/robot_state_publisher\nAverage rate: 18.824 Hz\nMost recent transform: 1211.509 ( 0.036 sec old)\nBuffer length: 4.250 sec\n"];
+"base_link" -> "wheel_front_right_link"[label="Broadcaster: /robot1/robot_state_publisher\nAverage rate: 18.824 Hz\nMost recent transform: 1211.509 ( 0.036 sec old)\nBuffer length: 4.250 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1211.545"[ shape=plaintext ] ;
+ }->"odom";
+}
