@@ -1,13 +1,13 @@
 <launch>
 <arg name="open_rviz" default="true"/>
 
- <group ns="fake">
+ <group ns="vl_robot">
   <node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
     <param name ="default_x" value = "0" />
     <param name ="default_y" value = "0" />
   </node>
   <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
-  <node pkg="beginner_tutorials" type="quat_to_euler" name="quat_to_euler" output="screen" />
+  <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
   
  </group> 
 

@@ -25,7 +25,7 @@ pub_pose_.publish(pose2d);
 
 int main(int argc, char **argv)
 {
-ros::init(argc, argv, "conversion_node");
+ros::init(argc, argv, "tf_quat2euler");
 
 ros::NodeHandle nh_;
 

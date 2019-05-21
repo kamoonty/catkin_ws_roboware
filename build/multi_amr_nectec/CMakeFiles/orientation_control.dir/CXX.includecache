@@ -21,6 +21,8 @@ geometry_msgs/Pose2D.h
 -
 stdlib.h
 -
+math.h
+/home/kanin/catkin_ws_roboware/src/multi_amr_nectec/src/math.h
 
 /opt/ros/kinetic/include/boost_161_condition_variable.h
 boost/thread/detail/platform.hpp

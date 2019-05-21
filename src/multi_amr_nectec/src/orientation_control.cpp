@@ -6,7 +6,7 @@
 #include <geometry_msgs/Pose2D.h>
 #include <stdlib.h> 
 //#include "multi_amr_nectec/pos_msg.h"
-//#include "math.h"
+#include "math.h"
 //#include "std_msgs/String.h"
 geometry_msgs::Pose2D get_pose2d_agent [10]; //allocate for max 10 robots
 geometry_msgs::Pose2D get_pose2d_vl;
@@ -24,7 +24,7 @@ void vl_velocityCB(const geometry_msgs::Twist & vl_velocity) //robot velocity co
 }
 void vl_pose2D_CB(const geometry_msgs::Pose2D & vl_pose2d) //robot pose 2d contain x y pos and theta (yaw position)
 { get_pose2d_vl.theta=roundf(vl_pose2d.theta*10000)/10000;
-ROS_INFO("**** VL angle(theta)= [%f]*****", get_pose2d_vl.theta);
+//ROS_INFO("**** VL angle(theta)= [%f]*****", get_pose2d_vl.theta);
 }
 
 void agent0_pose2D_CB(const geometry_msgs::Pose2D & agent_pose2d)
@@ -39,6 +39,16 @@ void agent2_pose2D_CB(const geometry_msgs::Pose2D & agent_pose2d)
 void agent3_pose2D_CB(const geometry_msgs::Pose2D & agent_pose2d)
 { get_pose2d_agent[3].theta=roundf(agent_pose2d.theta*10000)/10000;
 }
+float convert_to_degree(float theta)
+{            
+  if(theta<0)
+    {//ROS_INFO("Theta<0");  
+    theta =(2*M_PI)+theta;
+    theta=(theta/M_PI)*180;}
+else theta=(theta/M_PI)*180;
+return theta;
+}
+
 int main(int argc, char** argv) 
 {
  ros::init(argc, argv, "orientation_control");
@@ -59,23 +69,32 @@ int main(int argc, char** argv)
  ros::Publisher angular_force2_pub = nh.advertise<geometry_msgs::Twist>("amr_2/cmd_vel", 1000);
  ros::Publisher angular_force3_pub = nh.advertise<geometry_msgs::Twist>("amr_3/cmd_vel", 1000);
  float diff_angle [team_size];
+ 
  geometry_msgs::Twist send_velocity [team_size];
 
 while (nh.ok()) 
 { 
    for (int i = 0; i < team_size; i++)
-      {       ROS_INFO("-start loop-");
+      {       //ROS_INFO("-start loop-");
               int rotate_direction=0; // use for clockwise and anti clockwise
-              diff_angle[i]= (get_pose2d_vl.theta-get_pose2d_agent[i].theta);
+              float degree_vl = convert_to_degree(get_pose2d_vl.theta);
+              float degree_agent[team_size];
+              degree_agent[i]=convert_to_degree(get_pose2d_agent[i].theta);
+              ROS_INFO("VL angle =%f degree",degree_vl );
+              ROS_INFO("agent[%d] angle =%f degree",i,degree_agent[i] );
+              diff_angle[i]= (degree_vl-degree_agent[i]);
+              ROS_INFO("Diff angle agent %d = %f degree",i,degree_agent[i] );
               if(diff_angle[i]>0) //case1 vl_angle>robot_angle
               {rotate_direction=1;}   //turn anti clockwise
 
-              else if (diff_angle[i]<0)
+              else if (diff_angle[i]<0) //case2 vl_angle<robot_angle
               {rotate_direction=-1;}
-               
+              else if (diff_angle==0) 
+              {rotate_direction=0;}
               // Use fabs for float absolute
               send_velocity[i].angular.z=K_ang*fabs(diff_angle[i])*rotate_direction;
-              ROS_INFO("Angular celocity of robot %d =%f",i,send_velocity[i].angular.z );  
+              send_velocity[i].angular.z=(send_velocity[i].angular.z)*M_PI/180; //convert back to radian
+              ROS_INFO("Angular velocity of robot %d =%f",i,send_velocity[i].angular.z );  
               ROS_INFO("-----------------------");
       }              
       angular_force0_pub.publish(send_velocity[0]);
