@@ -2,23 +2,23 @@
   <master auto="start"/>
   <param name="/use_sim_time" value="true"/>
   <arg name="open_rviz" default="true"/>
-  <arg name="open_gazebo" default="true"/>
+  <arg name="open_gazebo" default="false"/>
   <arg name="team_size" value="4"/>
 <!-- other robot map-->
 <arg name="watkin_map" default="$(find multi_amr_nectec)/maps/watkin_lab.yaml"/>
 <arg name="watkin_world" default="$(find multi_amr_nectec)/worlds/watkinslab.world"/>
- <arg name="map_empty" default="$(find multi_amr_nectec)/maps/map.yaml"/>
+ <arg name="empty_map" default="$(find multi_amr_nectec)/maps/map.yaml"/>
  <arg name="emptyworld" default="$(find turtlebot3_gazebo)/worlds/empty.world"/>
 <arg name="neo_track1_world" default="$(find neo_simulation)/worlds/neo_track1.world"/>
 <arg name="neo_track1_map" default="$(find neo_simulation)/maps/neo_track1.yaml"/>
   
   <!-- Map server --> 
- <node pkg="map_server" type="map_server" name="map_server" args="$(arg watkin_map)" respawn="false" >
+ <node pkg="map_server" type="map_server" name="map_server" args="$(arg empty_map)" respawn="false" >
     <param name="frame_id" value="/map" />
   </node>
   <!-- start gazebo --> 
 <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(arg watkin_world)"/> 
+    <arg name="world_name" value="$(arg emptyworld)"/> 
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="$(arg open_gazebo)"/>
@@ -34,7 +34,7 @@
 <!-- AMR 0  -->
   <group ns="amr_0">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 0.5 -y 0 -z 0 -Y 0 -P 0 -R 0" />
+      <arg name="init_pose_gazebo" value="-x 3 -y 3 -z 0 -Y 0 -P 0 -R 0" />
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
       <arg name="robot_name" value="amr_0" />
       <arg name="robot_colour" value="blue"/>
@@ -47,7 +47,7 @@
 <!-- AMR 1  -->
  <group ns="amr_1">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x -0.5 -y 0 -z 0 -Y 0 -P 0 -R 0" />  
+      <arg name="init_pose_gazebo" value="-x -3 -y 3 -z 0 -Y 0 -P 0 -R 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_1" />
       <arg name="robot_colour" value="blue"/>
@@ -64,7 +64,7 @@
     <param name="amcl/initial_pose_x" value="0" />
     <param name="amcl/initial_pose_y" value="0" />
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x -3 -y -6 -z 0 -Y 0" />  
+      <arg name="init_pose_gazebo" value="-x -3 -y -3 -z 0 -Y 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />     
       <arg name="robot_name" value="amr_2" />
       <arg name="robot_colour" value="red"/>
@@ -79,7 +79,7 @@
     <param name="amcl/initial_pose_x" value="0" />
     <param name="amcl/initial_pose_y" value="0" />
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 5 -y -3 -z 0 -Y 0 -P 0 -R 0" />  
+      <arg name="init_pose_gazebo" value="-x 3 -y -3 -z 0 -Y 0 -P 0 -R 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_3" />
       <arg name="robot_colour" value="red"/>

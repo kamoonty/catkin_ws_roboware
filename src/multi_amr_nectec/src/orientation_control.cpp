@@ -20,10 +20,11 @@ float K_ang;
 
 void vl_velocityCB(const geometry_msgs::Twist & vl_velocity) //robot velocity contain x y yaw speed
 { get_velocity_vl.angular.z=roundf(vl_velocity.angular.z*10000)/10000; // round to 5 decimal place
-  ROS_INFO("**** VL Yaw velocity [%f]*****", get_velocity_vl.angular.z);
+  //ROS_INFO("**** VL Yaw velocity [%f]*****", get_velocity_vl.angular.z);
 }
 void vl_pose2D_CB(const geometry_msgs::Pose2D & vl_pose2d) //robot pose 2d contain x y pos and theta (yaw position)
 { get_pose2d_vl.theta=roundf(vl_pose2d.theta*10000)/10000;
+ROS_INFO("**** VL angle(theta)= [%f]*****", get_pose2d_vl.theta);
 }
 
 void agent0_pose2D_CB(const geometry_msgs::Pose2D & agent_pose2d)
@@ -40,17 +41,12 @@ void agent3_pose2D_CB(const geometry_msgs::Pose2D & agent_pose2d)
 }
 int main(int argc, char** argv) 
 {
- ros::init(argc, argv, "vl_force");
+ ros::init(argc, argv, "orientation_control");
  ros::NodeHandle nh;
  ros::Rate loopRate(20);
  //load param from launch file
- nh.getParam("orientation_force/team_size", team_size);
- nh.getParam("orientation_force/K_ang", K_ang);
-
- geometry_msgs::Twist send_fvl [team_size];
- geometry_msgs::Point Dist_vl [team_size];
- geometry_msgs::Point Force_vl [team_size];
- 
+ nh.getParam("orientation_control/team_size", team_size);
+ nh.getParam("orientation_control/K_ang", K_ang);
  ros::Subscriber vl_velocity_sub = nh.subscribe("vl_robot/pub_velocity", 1000, vl_velocityCB); // subscribe speed of VL in x y theta (m/s)
  ros::Subscriber vl_pose2d_sub = nh.subscribe("vl_robot/pose2d", 1000, vl_pose2D_CB);
  ros::Subscriber agent0_pose2d_sub = nh.subscribe("amr_0/pose2d", 1000, agent0_pose2D_CB);
@@ -62,53 +58,33 @@ int main(int argc, char** argv)
  ros::Publisher angular_force1_pub = nh.advertise<geometry_msgs::Twist>("amr_1/cmd_vel", 1000); 
  ros::Publisher angular_force2_pub = nh.advertise<geometry_msgs::Twist>("amr_2/cmd_vel", 1000);
  ros::Publisher angular_force3_pub = nh.advertise<geometry_msgs::Twist>("amr_3/cmd_vel", 1000);
-
+ float diff_angle [team_size];
+ geometry_msgs::Twist send_velocity [team_size];
 
 while (nh.ok()) 
 { 
    for (int i = 0; i < team_size; i++)
-      {        int state=0;
-               Dist_vl[i].x=get_pos_vl.x-robot_pos[i].x;
-               Dist_vl[i].y=get_pos_vl.y-robot_pos[i].y;
-               if(Dist_vl[i].x<0)
-               {unit_vec_x=-1;}
-               else if (Dist_vl[i].x>0)
-               {unit_vec_x=1;}
-               
-               if(Dist_vl[i].y<0)
-               {unit_vec_y=-1;}
-               else if (Dist_vl[i].y>0)
-               {unit_vec_y=1;}
-               float abs_dist = sqrt(pow((robot_pos[i].x-get_pos_vl.x),2)+pow((robot_pos[i].y-get_pos_vl.y),2)) ;         
-               //ROS_INFO("Dist from VL of AMR %d=[%f,%f]",i,Dist_vl[i].x,Dist_vl[i].y);
-               //ROS_INFO("Absolute distance of AMR %d from VL =%f",i,abs_dist);
-               ROS_INFO("Ux= %d Uy= %d",unit_vec_x,unit_vec_y);
-               ROS_INFO("Dist_vl [%f,%f]",Dist_vl[i].x,Dist_vl[i].y);
-               //double abs_dist_vl_x=fabs(Dist_vl[i].x); 
-               //double abs_dist_vl_y=fabs(Dist_vl[i].y);
-              
-               //ROS_INFO("ABS dist_VL =[%f,%f]",abs_dist_vl_x,abs_dist_vl_y);
-                // Use fabs for float absolute
-                Force_vl[i].x=Kvl*(fabs(Dist_vl[i].x)-fabs(initial_pos_x[i]));
-                Force_vl[i].y=Kvl*(fabs(Dist_vl[i].y)-fabs(initial_pos_y[i]));            
-                ROS_INFO("Virtual Force of robot %d[%.3f,%.3f]",i,Force_vl[i].x,Force_vl[i].y);           
-                  send_fvl[i].linear.x =unit_vec_x*Force_vl[i].x;
-                  send_fvl[i].linear.y =unit_vec_y*Force_vl[i].y; 
-                  send_fvl[i].angular.z=get_angular_vl.angular.z; 
-                ROS_INFO("Cmd_vel robot %d x=%f y=%f",i, send_fvl[i].linear.x,send_fvl[i].linear.y);  
-                ROS_INFO("-----------------------");
-                }              
-                force0_pub.publish(send_fvl[0]);
-                force1_pub.publish(send_fvl[1]);
-                force2_pub.publish(send_fvl[2]);
-                force3_pub.publish(send_fvl[3]);
-                
+      {       ROS_INFO("-start loop-");
+              int rotate_direction=0; // use for clockwise and anti clockwise
+              diff_angle[i]= (get_pose2d_vl.theta-get_pose2d_agent[i].theta);
+              if(diff_angle[i]>0) //case1 vl_angle>robot_angle
+              {rotate_direction=1;}   //turn anti clockwise
 
+              else if (diff_angle[i]<0)
+              {rotate_direction=-1;}
+               
+              // Use fabs for float absolute
+              send_velocity[i].angular.z=K_ang*fabs(diff_angle[i])*rotate_direction;
+              ROS_INFO("Angular celocity of robot %d =%f",i,send_velocity[i].angular.z );  
+              ROS_INFO("-----------------------");
+      }              
+      angular_force0_pub.publish(send_velocity[0]);
+      angular_force1_pub.publish(send_velocity[1]);
+      angular_force2_pub.publish(send_velocity[2]);
+      angular_force3_pub.publish(send_velocity[3]);
       ros::spinOnce();
       loopRate.sleep();
 
 }
-
-  //return 0;
 
 }

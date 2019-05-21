@@ -56,11 +56,6 @@ int main(int argc, char** argv)
  std::vector<double> initial_pos_y;
  nh.getParam("initial_pos_x",initial_pos_x);
  nh.getParam("initial_pos_y",initial_pos_y);
-
- geometry_msgs::Twist send_fvl [team_size];
- geometry_msgs::Point Dist_vl [team_size];
- geometry_msgs::Point Force_vl [team_size];
-
  ros::Subscriber vl_pos_sub = nh.subscribe("vl_robot/pub_pos", 1000, vl_posCB);
  //ros::Subscriber vl_angular_sub = nh.subscribe("vl_robot/pub_velocity", 1000, vl_angCB);
  
@@ -74,7 +69,9 @@ int main(int argc, char** argv)
  ros::Publisher force1_pub = nh.advertise<geometry_msgs::Twist>("amr_1/cmd_vel", 1000); 
  ros::Publisher force2_pub = nh.advertise<geometry_msgs::Twist>("amr_2/cmd_vel", 1000);
  ros::Publisher force3_pub = nh.advertise<geometry_msgs::Twist>("amr_3/cmd_vel", 1000);
- 
+ geometry_msgs::Twist send_fvl [team_size];
+ geometry_msgs::Point Dist_vl [team_size];
+ geometry_msgs::Point Force_vl [team_size];
 
 while (nh.ok()) 
 { 
