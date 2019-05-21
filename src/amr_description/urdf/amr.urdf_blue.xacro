@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <robot name="amr" xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:include filename="$(find amr_description)/urdf/amr.gazebo.xacro"/>
+  <xacro:include filename="$(find amr_description)/urdf/amr.gazebo_blue.xacro"/>
 
   <link name="base_link">
     <visual>
