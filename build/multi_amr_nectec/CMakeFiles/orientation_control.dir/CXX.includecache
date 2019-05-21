@@ -17,6 +17,8 @@ geometry_msgs/Point.h
 -
 geometry_msgs/Twist.h
 -
+geometry_msgs/Pose2D.h
+-
 stdlib.h
 -
 
@@ -150,6 +152,22 @@ ros/message_operations.h
 geometry_msgs/Point.h
 -
 geometry_msgs/Quaternion.h
+-
+
+/opt/ros/kinetic/include/geometry_msgs/Pose2D.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
 -
 
 /opt/ros/kinetic/include/geometry_msgs/PoseStamped.h

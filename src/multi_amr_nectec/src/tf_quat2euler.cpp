@@ -6,10 +6,9 @@
 ros::Publisher pub_pose_;
 
 void odometryCallback_(const nav_msgs::Odometry::ConstPtr msg) {
-geometry_msgs::Pose2D pose2d;
+geometry_msgs::Pose2D pose2d; //Pos2d consists of x y and theta (yaw) 
 pose2d.x = msg->pose.pose.position.x;
 pose2d.y = msg->pose.pose.position.y;
-
 tf::Quaternion q(
 msg->pose.pose.orientation.x,
 msg->pose.pose.orientation.y,
@@ -18,9 +17,10 @@ msg->pose.pose.orientation.w);
 tf::Matrix3x3 m(q);
 double roll, pitch, yaw;
 m.getRPY(roll, pitch, yaw);
-ROS_INFO("Yaw= %f",yaw);
 pose2d.theta = yaw;
 pub_pose_.publish(pose2d);
+//ROS_INFO("Yaw= %f",yaw); 
+
 }
 
 int main(int argc, char **argv)

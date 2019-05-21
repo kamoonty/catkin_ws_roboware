@@ -38,6 +38,7 @@
       <arg name="init_pose_gazebo" value="-x 3 -y 2 -z 0 -Y 0 -P 0 -R 0" />
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
       <arg name="robot_name" value="amr_0" />
+      <arg name="robot_colour" value="red"/>
     </include>
      <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
   </group>
@@ -48,6 +49,7 @@
       <arg name="init_pose_gazebo" value="-x -2 -y 4 -z 0 -Y 0 -P 0 -R 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_1" />
+      <arg name="robot_colour" value="red"/>
     </include> 
     <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
   </group>
@@ -61,6 +63,7 @@
       <arg name="init_pose_gazebo" value="-x -1 -y -2 -z 0 -Y 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />     
       <arg name="robot_name" value="amr_2" />
+      <arg name="robot_colour" value="red"/>
     </include> 
     <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
   </group>

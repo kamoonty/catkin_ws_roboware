@@ -9,6 +9,7 @@ multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.
 multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.o: /opt/ros/kinetic/include/geometry_msgs/Point32.h
 multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.o: /opt/ros/kinetic/include/geometry_msgs/PointStamped.h
 multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.o: /opt/ros/kinetic/include/geometry_msgs/Pose.h
+multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.o: /opt/ros/kinetic/include/geometry_msgs/Pose2D.h
 multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.o: /opt/ros/kinetic/include/geometry_msgs/PoseStamped.h
 multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.o: /opt/ros/kinetic/include/geometry_msgs/Quaternion.h
 multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.o: /opt/ros/kinetic/include/geometry_msgs/QuaternionStamped.h

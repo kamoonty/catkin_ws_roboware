@@ -3,48 +3,40 @@
 #include <std_msgs/Float32.h>
 #include <geometry_msgs/Point.h>
 #include <geometry_msgs/Twist.h>
+#include <geometry_msgs/Pose2D.h>
 #include <stdlib.h> 
 //#include "multi_amr_nectec/pos_msg.h"
 //#include "math.h"
 //#include "std_msgs/String.h"
-geometry_msgs::Quaternion get_robot_quat[10] ; //allocate for max 10 robots
-geometry_msgs::Twist get_angular_vl;
-//multi_amr_nectec::pos_msg get_msg;
+geometry_msgs::Pose2D get_pose2d_agent [10]; //allocate for max 10 robots
+geometry_msgs::Pose2D get_pose2d_vl;
+geometry_msgs::Twist get_velocity_vl; 
+
+
 int team_size; //use for get param from launch file
 float K_ang;
 // We need to round value after subscribe because if not it can cause problem
 // when VL= 0.00000003 and Robot 1 Pos X = 0.00000004 it is not equal so useroundf (number*100)/100
 
-void vl_angCB(const geometry_msgs::Twist & robot_velocity)
-{ get_angular_vl.angular.z=roundf(robot_velocity.angular.z*10000)/10000; // round to 5 decimal place
-  ROS_INFO("**** VL Yaw velocity [%f]*****",get_angular_vl.angular.z);
+void vl_velocityCB(const geometry_msgs::Twist & vl_velocity) //robot velocity contain x y yaw speed
+{ get_velocity_vl.angular.z=roundf(vl_velocity.angular.z*10000)/10000; // round to 5 decimal place
+  ROS_INFO("**** VL Yaw velocity [%f]*****", get_velocity_vl.angular.z);
+}
+void vl_pose2D_CB(const geometry_msgs::Pose2D & vl_pose2d) //robot pose 2d contain x y pos and theta (yaw position)
+{ get_pose2d_vl.theta=roundf(vl_pose2d.theta*10000)/10000;
 }
 
-void robot0_quatCB(const geometry_msgs::Quaternion & robot_quat)
-{ 
-  get_robot_quat[0].x=roundf(robot_quat.x*10000)/10000; 
-  get_robot_quat[0].y=roundf(robot_quat.y*10000)/10000; 
-  get_robot_quat[0].z=roundf(robot_quat.z*10000)/10000; 
-  get_robot_quat[0].w=roundf(robot_quat.w*10000)/10000; 
-  //ROS_INFO("AMR 0 pos [%f,%f]",robot_pos[0].x,robot_pos[0].y);
+void agent0_pose2D_CB(const geometry_msgs::Pose2D & agent_pose2d)
+{ get_pose2d_agent[0].theta=roundf(agent_pose2d.theta*10000)/10000;
 }
-void robot1_quatCB(const geometry_msgs::Quaternion & robot_quat)
-{ get_robot_quat[1].x=roundf(robot_quat.x*10000)/10000; 
-  get_robot_quat[1].y=roundf(robot_quat.y*10000)/10000; 
-  get_robot_quat[1].z=roundf(robot_quat.z*10000)/10000; 
-  get_robot_quat[1].w=roundf(robot_quat.w*10000)/10000;
+void agent1_pose2D_CB(const geometry_msgs::Pose2D & agent_pose2d)
+{ get_pose2d_agent[1].theta=roundf(agent_pose2d.theta*10000)/10000;
 }
-void robot2_quatCB(const geometry_msgs::Quaternion & robot_quat)
-{ get_robot_quat[2].x=roundf(robot_quat.x*10000)/10000; 
-  get_robot_quat[2].y=roundf(robot_quat.y*10000)/10000; 
-  get_robot_quat[2].z=roundf(robot_quat.z*10000)/10000; 
-  get_robot_quat[2].w=roundf(robot_quat.w*10000)/10000;
+void agent2_pose2D_CB(const geometry_msgs::Pose2D & agent_pose2d)
+{ get_pose2d_agent[2].theta=roundf(agent_pose2d.theta*10000)/10000;
 }
-void robot3_quatCB(const geometry_msgs::Quaternion & robot_quat)
-{ get_robot_quat[3].x=roundf(robot_quat.x*10000)/10000; 
-  get_robot_quat[3].y=roundf(robot_quat.y*10000)/10000; 
-  get_robot_quat[3].z=roundf(robot_quat.z*10000)/10000; 
-  get_robot_quat[3].w=roundf(robot_quat.w*10000)/10000;
+void agent3_pose2D_CB(const geometry_msgs::Pose2D & agent_pose2d)
+{ get_pose2d_agent[3].theta=roundf(agent_pose2d.theta*10000)/10000;
 }
 int main(int argc, char** argv) 
 {
@@ -55,32 +47,27 @@ int main(int argc, char** argv)
  nh.getParam("orientation_force/team_size", team_size);
  nh.getParam("orientation_force/K_ang", K_ang);
 
-
  geometry_msgs::Twist send_fvl [team_size];
  geometry_msgs::Point Dist_vl [team_size];
  geometry_msgs::Point Force_vl [team_size];
+ 
+ ros::Subscriber vl_velocity_sub = nh.subscribe("vl_robot/pub_velocity", 1000, vl_velocityCB); // subscribe speed of VL in x y theta (m/s)
+ ros::Subscriber vl_pose2d_sub = nh.subscribe("vl_robot/pose2d", 1000, vl_pose2D_CB);
+ ros::Subscriber agent0_pose2d_sub = nh.subscribe("amr_0/pose2d", 1000, agent0_pose2D_CB);
+ ros::Subscriber agent1_pose2d_sub = nh.subscribe("amr_1/pose2d", 1000, agent1_pose2D_CB);
+ ros::Subscriber agent2_pose2d_sub = nh.subscribe("amr_2/pose2d", 1000, agent2_pose2D_CB);
+ ros::Subscriber agent3_pose2d_sub = nh.subscribe("amr_3/pose2d", 1000, agent3_pose2D_CB);
 
- ros::Subscriber vl_angular_sub = nh.subscribe("vl_robot/pub_velocity", 1000, vl_angCB);
+ ros::Publisher angular_force0_pub = nh.advertise<geometry_msgs::Twist>("amr_0/cmd_vel", 1000);
+ ros::Publisher angular_force1_pub = nh.advertise<geometry_msgs::Twist>("amr_1/cmd_vel", 1000); 
+ ros::Publisher angular_force2_pub = nh.advertise<geometry_msgs::Twist>("amr_2/cmd_vel", 1000);
+ ros::Publisher angular_force3_pub = nh.advertise<geometry_msgs::Twist>("amr_3/cmd_vel", 1000);
 
- ros::Subscriber robot0_quat_sub = nh.subscribe("amr_0/pub_quat", 1000, robot0_quatCB);
- ros::Subscriber robot1_quat_sub = nh.subscribe("amr_1/pub_quat", 1000, robot1_quatCB);
- ros::Subscriber robot2_quat_sub = nh.subscribe("amr_2/pub_quat", 1000, robot2_quatCB);
- ros::Subscriber robot3_quat_sub = nh.subscribe("amr_3/pub_quat", 1000, robot3_quatCB);
- //ros::Subscriber vl_quat_sub = nh.subscribe("vl_robot/pub_quat", 1000, Callback);
- //ros::Subscriber robot_pos_sub = nh.subscribe<multi_amr_nectec::pos_msg>("robot_pos", 1000, boost::bind(robot_pos_Callback,_1,team_size));
- ros::Publisher force0_pub = nh.advertise<geometry_msgs::Twist>("amr_0/cmd_vel", 1000);
- ros::Publisher force1_pub = nh.advertise<geometry_msgs::Twist>("amr_1/cmd_vel", 1000); 
- ros::Publisher force2_pub = nh.advertise<geometry_msgs::Twist>("amr_2/cmd_vel", 1000);
- ros::Publisher force3_pub = nh.advertise<geometry_msgs::Twist>("amr_3/cmd_vel", 1000);
 
-/*
 while (nh.ok()) 
 { 
    for (int i = 0; i < team_size; i++)
-      {        //Calculate diffent angle here
-                //transform ang          
-             
-              //ROS_INFO("robot pos=[%f,%f] ",robot_pos[i].x,robot_pos[i].y);               
+      {        int state=0;
                Dist_vl[i].x=get_pos_vl.x-robot_pos[i].x;
                Dist_vl[i].y=get_pos_vl.y-robot_pos[i].y;
                if(Dist_vl[i].x<0)
@@ -121,7 +108,7 @@ while (nh.ok())
       loopRate.sleep();
 
 }
-*/
+
   //return 0;
 
 }
