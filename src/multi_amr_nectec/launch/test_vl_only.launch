@@ -5,10 +5,12 @@
   <node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
     <param name ="default_x" value = "0" />
     <param name ="default_y" value = "0" />
+     <param name ="default_theta" value = "1.0" />
   </node>
   <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
   <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
-  
+  <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_keyboard"  output="screen">
+  </node>
  </group> 
 
  <!-- RVIZ  --> 
@@ -16,8 +18,8 @@
     <node pkg="rviz" type="rviz" name="rviz" required="true"
          args="-d $(find multi_amr_nectec)/rviz/test_fake_odom.rviz"/>
 </group>
-  <!--<node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_keyboard"  output="screen">
-  </node>
+
+  <!--
   <node pkg="multi_amr_nectec" type="position_vl" name="position_vl" output="screen" />
   
   -->

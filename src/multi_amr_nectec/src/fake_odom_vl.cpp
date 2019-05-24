@@ -8,6 +8,7 @@
 geometry_msgs::Twist get_cmd_vel;
 float default_x;
 float default_y;
+float default_theta;
 /*
 geometry_msgs::Point get_vl;
 void VL_Callback(const geometry_msgs::Point & vl_pos)
@@ -29,13 +30,13 @@ int main(int argc, char** argv){
   tf::TransformBroadcaster odom_broadcaster;
   nh.getParam("fake_odom_vl/default_x",default_x);
   nh.getParam("fake_odom_vl/default_y",default_y);
-  
+  nh.getParam("fake_odom_vl/default_theta",default_theta);
   ros::Time current_time, last_time;
   current_time = ros::Time::now();
   last_time = ros::Time::now();
   double x = default_x;
   double y = default_y;
-  double th = 0.0;
+  double th = default_theta;
   ros::Rate loopRate(20);
   while(nh.ok()){
     ros::spinOnce();               // check for incoming messages
