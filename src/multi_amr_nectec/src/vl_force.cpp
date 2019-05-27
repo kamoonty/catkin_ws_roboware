@@ -74,7 +74,7 @@ int main(int argc, char** argv)
  ros::Publisher force3_pub = nh.advertise<geometry_msgs::Twist>("amr_3/cmd_vel", 1000);
  geometry_msgs::Twist send_fvl [team_size];
  geometry_msgs::Point Dist_vl [team_size];
- geometry_msgs::Point Force_vl [team_size];
+ geometry_msgs::Point absolute_distance [team_size];
  tf::TransformListener listener;
  
 while (nh.ok()) 
@@ -85,8 +85,8 @@ while (nh.ok())
 try{std::string robot_frame ("/amr_");
  robot_frame =robot_frame+ boost::lexical_cast<std::string>(i);
  robot_frame =robot_frame+"/base_link";
-    listener.waitForTransform(robot_frame,"/vl_robot/base_link", ros::Time(0), ros::Duration(10.0) );
-    listener.lookupTransform(robot_frame,"/vl_robot/base_link",ros::Time(0), transform);
+    listener.waitForTransform(robot_frame,"/base_link", ros::Time(0), ros::Duration(10.0) );
+    listener.lookupTransform(robot_frame,"/base_link",ros::Time(0), transform);
     }
     catch (tf::TransformException &ex) {
       ROS_ERROR("%s",ex.what());
@@ -122,11 +122,11 @@ double th = tf::getYaw(transform.getRotation());
               
                //ROS_INFO("ABS dist_VL =[%f,%f]",abs_dist_vl_x,abs_dist_vl_y);
                 // Use fabs for float absolute
-                Force_vl[i].x=Kvl*(fabs(Dist_vl[i].x)-fabs(initial_pos_x[i]));
-                Force_vl[i].y=Kvl*(fabs(Dist_vl[i].y)-fabs(initial_pos_y[i]));            
-                ROS_INFO("Virtual Force of robot %d[%.3f,%.3f]",i,Force_vl[i].x,Force_vl[i].y);           
-                  send_fvl[i].linear.x =spring_state_x*Force_vl[i].x;
-                  send_fvl[i].linear.y =spring_state_y*Force_vl[i].y; 
+                absolute_distance[i].x=(fabs(Dist_vl[i].x)-fabs(initial_pos_x[i]));
+                absolute_distance[i].y=(fabs(Dist_vl[i].y)-fabs(initial_pos_y[i]));            
+                ROS_INFO("Virtual Force of robot %d[%.3f,%.3f]",i,absolute_distance[i].x,absolute_distance[i].y);           
+                  send_fvl[i].linear.x =Kvl*spring_state_x*absolute_distance[i].x;
+                  send_fvl[i].linear.y =Kvl*spring_state_y*absolute_distance[i].y; 
                    //set Linear velocity threshold 
               if(send_fvl[i].linear.x>=1)
               {send_fvl[i].linear.x=1;

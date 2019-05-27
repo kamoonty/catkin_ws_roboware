@@ -2,7 +2,7 @@
   <master auto="start"/>
   <param name="/use_sim_time" value="true"/>
   <arg name="open_rviz" default="true"/>
-  <arg name="open_gazebo" default="false"/>
+  <arg name="open_gazebo" default="true"/>
   <arg name="team_size" value="4"/>
 <!-- other robot map-->
 <arg name="watkin_map" default="$(find multi_amr_nectec)/maps/watkin_lab.yaml"/>
@@ -113,28 +113,41 @@
  <!--Get angle from virtual leader robot  -->
 <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
   
- <!-- Run navigation stack     
+ <!-- Run navigation stack    --> 
  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-  <remap from="map" to="/map" />   -->
-    <!-- Costmaps 
+  <remap from="map" to="/map" />  
+    <!-- Costmaps -->
     <rosparam file="$(find multi_amr_nectec)/config/move_base/costmaps/costmap_common.yaml" command="load" ns="global_costmap" />
     <rosparam file="$(find multi_amr_nectec)/config/move_base/costmaps/costmap_common.yaml" command="load" ns="local_costmap" />
     <rosparam file="$(find multi_amr_nectec)/config/move_base/costmaps/costmap_local.yaml" command="load" />
     <rosparam file="$(find multi_amr_nectec)/config/move_base/costmaps/costmap_global.yaml" command="load" />
-      -->
-    <!-- Global Planner 
+
+    <!-- Global Planner -->
     <param name="base_global_planner" value="navfn/NavfnROS"/>
     <rosparam file="$(find multi_amr_nectec)/config/move_base/global_planner/NavFnROS/navfnros_planner.yaml" command="load" />
--->
-    <!-- Local Planner 
 
+    <!-- Local Planner -->
+    <!--  not use DWA yet
+    <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS"/>
+    <rosparam file="$(find multi_amr_nectec)/config/move_base/local_planner/dwa_local_planner/dwa_planner.yaml" command="load" />
+  -->
     <param name="base_local_planner" value="eband_local_planner/EBandPlannerROS"/>
     <rosparam file="$(find multi_amr_nectec)/config/move_base/local_planner/eband_local_planner/eband_planner.yaml" command="load" />
-    -->
-    <!-- Common
+
+    <!-- Common  -->
     <rosparam file="$(find multi_amr_nectec)/config/move_base/move_base/move_base.yaml" command="load" />
   </node>
--->
 </group>
- 
+<!-- VL force    --> 
+<node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" >
+  <param name ="team_size" value = "4" />
+  <param name ="Kvl" value = "3" />
+</node>
+<rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/rectangle.yaml" />
+
+<!--Orientation force    --> 
+<node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" >
+  <param name ="team_size" value = "4" />
+  <param name ="K_ang" value = "6" />
+</node> 
 </launch>
