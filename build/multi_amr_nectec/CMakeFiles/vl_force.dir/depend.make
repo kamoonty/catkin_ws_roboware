@@ -81,6 +81,7 @@ multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/in
 multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/include/std_msgs/Empty.h
 multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/include/std_msgs/Float32.h
 multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/include/std_msgs/Header.h
+multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/include/std_msgs/String.h
 multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/include/tf/FrameGraph.h
 multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/include/tf/FrameGraphRequest.h
 multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/include/tf/FrameGraphResponse.h

@@ -13,12 +13,12 @@
 <arg name="neo_track1_map" default="$(find neo_simulation)/maps/neo_track1.yaml"/>
   
   <!-- Map server --> 
- <node pkg="map_server" type="map_server" name="map_server" args="$(arg watkin_map)" respawn="false" >
+ <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_empty)" respawn="false" >
     <param name="frame_id" value="/map" />
   </node>
   <!-- start gazebo --> 
 <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(arg watkin_world)"/> 
+    <arg name="world_name" value="$(arg emptyworld)"/> 
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="$(arg open_gazebo)"/>
@@ -28,26 +28,27 @@
  <!-- RVIZ  --> 
   <group if="$(arg open_rviz)"> 
     <node pkg="rviz" type="rviz" name="rviz" required="true"
-         args="-d $(find multi_amr_nectec)/rviz/4_amr.rviz"/>
+         args="-d $(find multi_amr_nectec)/rviz/2_amr.rviz"/>
   </group>
 
 <!-- AMR 0  -->
   <group ns="amr_0">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 0.5 -y 0 -z 0 -Y 0 -P 0 -R 0" />
+      <arg name="init_pose_gazebo" value="-x 2 -y 0 -z 0 -Y 3.1415 -P 0 -R 0" />
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
       <arg name="robot_name" value="amr_0" />
       <arg name="robot_colour" value="blue"/>
     </include>
      <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
      <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
-  
+     <node pkg="multi_amr_nectec" type="transform_listener" name="transform_listener" output="screen" />
+
   </group>
 
 <!-- AMR 1  -->
  <group ns="amr_1">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x -0.5 -y 0 -z 0 -Y 0 -P 0 -R 0" />  
+      <arg name="init_pose_gazebo" value="-x -2 -y 0 -z 0 -Y 3.1415 -P 0 -R 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_1" />
       <arg name="robot_colour" value="red"/>
@@ -65,38 +66,39 @@
  <node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
   <param name ="default_x" value = "0" />
   <param name ="default_y" value = "0" />
+  <param name ="default_theta" value = "3.1415" />
 </node>
  <!--transform virtual leader odom to map   -->
- <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /odom 20" />
+ <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /vl_robot/odom 20" />
   <!--Get odom from virtual leader robot  -->
 <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
  <!--Get angle from virtual leader robot  -->
 <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
   
- <!-- Run navigation stack     -->
+ <!-- Run navigation stack     
  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-  <remap from="map" to="/map" />  
-    <!-- Costmaps -->
+  <remap from="map" to="/map" />  -->
+    <!-- Costmaps 
     <rosparam file="$(find multi_amr_nectec)/config/move_base/costmaps/costmap_common.yaml" command="load" ns="global_costmap" />
     <rosparam file="$(find multi_amr_nectec)/config/move_base/costmaps/costmap_common.yaml" command="load" ns="local_costmap" />
     <rosparam file="$(find multi_amr_nectec)/config/move_base/costmaps/costmap_local.yaml" command="load" />
     <rosparam file="$(find multi_amr_nectec)/config/move_base/costmaps/costmap_global.yaml" command="load" />
-
-    <!-- Global Planner -->
+-->
+    <!-- Global Planner 
     <param name="base_global_planner" value="navfn/NavfnROS"/>
     <rosparam file="$(find multi_amr_nectec)/config/move_base/global_planner/NavFnROS/navfnros_planner.yaml" command="load" />
-
+-->
     <!-- Local Planner -->
     <!--  <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS"/>
     <rosparam file="$(find multi_amr_nectec)/config/move_base/local_planner/dwa_local_planner/dwa_planner.yaml" command="load" />
-  -->
+  
     <param name="base_local_planner" value="eband_local_planner/EBandPlannerROS"/>
     <rosparam file="$(find multi_amr_nectec)/config/move_base/local_planner/eband_local_planner/eband_planner.yaml" command="load" />
-
-    <!-- Common -->
+-->
+    <!-- Common 
     <rosparam file="$(find multi_amr_nectec)/config/move_base/move_base/move_base.yaml" command="load" />
   </node>
-
+-->
 </group>
 
 </launch>
