@@ -1,8 +1,8 @@
 local_costmap:
   global_frame: /odom
   robot_base_frame: /base_link
-  update_frequency: 5.0
-  publish_frequency: 1
+  update_frequency: 5
+  publish_frequency: 3
   static_map: false
   rolling_window: true
   max_obstacle_width: 8.0

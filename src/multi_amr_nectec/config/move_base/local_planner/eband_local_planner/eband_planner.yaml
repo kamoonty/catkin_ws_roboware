@@ -25,7 +25,7 @@ EBandPlannerROS:
   k_prop : 4.0  
   k_damp : 3.5  
   Ctrl_Rate : 10.0  
-  virtual_mass : 25.0  
+  virtual_mass : 1.0  
   max_translational_acceleration : 0.5  
   rotation_correction_threshold : 0.5  
   differential_drive : False 

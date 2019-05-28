@@ -11,14 +11,15 @@
  <arg name="emptyworld" default="$(find turtlebot3_gazebo)/worlds/empty.world"/>
 <arg name="neo_track1_world" default="$(find neo_simulation)/worlds/neo_track1.world"/>
 <arg name="neo_track1_map" default="$(find neo_simulation)/maps/neo_track1.yaml"/>
-  
+<arg name="formation_test_world" default="$(find multi_amr_nectec)/worlds/formation_test.world"/>
+<arg name="formation_test_map" default="$(find multi_amr_nectec)/maps/formation_test.yaml"/>
   <!-- Map server --> 
- <node pkg="map_server" type="map_server" name="map_server" args="$(arg empty_map)" respawn="false" >
+ <node pkg="map_server" type="map_server" name="map_server" args="$(arg formation_test_map)" respawn="false" >
     <param name="frame_id" value="/map" />
   </node>
   <!-- start gazebo --> 
 <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(arg emptyworld)"/> 
+    <arg name="world_name" value="$(arg formation_test_world)"/> 
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="$(arg open_gazebo)"/>
@@ -138,16 +139,17 @@
     <rosparam file="$(find multi_amr_nectec)/config/move_base/move_base/move_base.yaml" command="load" />
   </node>
 </group>
-<!-- VL force    --> 
+<!-- VL force   
 <node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" >
   <param name ="team_size" value = "4" />
   <param name ="Kvl" value = "3" />
 </node>
 <rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/rectangle.yaml" />
-
-<!--Orientation force    --> 
+ --> 
+<!--Orientation force    
 <node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" >
   <param name ="team_size" value = "4" />
   <param name ="K_ang" value = "6" />
 </node> 
+--> 
 </launch>
