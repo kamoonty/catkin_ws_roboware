@@ -1,8 +1,8 @@
 <launch>
 <node pkg="multi_amr_nectec" type="inter_agent_force" name="inter_agent_force" output="screen" >
-  <param name ="team_size" value = "4" />
-  <param name ="Kij" value = "0.25" />
-  <param name ="dist_agent_x" value = "8" />
-  <param name ="dist_agent_y" value = "8" />
+  <param name ="team_size" value = "2" />
+  <param name ="Kij" value = "1" />
 </node>
+<rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/linear.yaml" />
+
 </launch>

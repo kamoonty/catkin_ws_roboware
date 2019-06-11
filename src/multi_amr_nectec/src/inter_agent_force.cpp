@@ -33,6 +33,8 @@ int main(int argc, char** argv)
  ros::Publisher force3_pub = nh.advertise<geometry_msgs::Twist>("amr_3/cmd_vel", 1000);
  
  geometry_msgs::Twist send_Fij [team_size];
+ geometry_msgs::Twist Fi_to_j [team_size];
+ geometry_msgs::Twist Fj_to_i [team_size];
  geometry_msgs::Point Dist_ij [team_size];
  geometry_msgs::Point absolute_distance [team_size];
  tf::TransformListener listener;
@@ -40,10 +42,13 @@ int main(int argc, char** argv)
 while (nh.ok()) 
 { 
    for (int n = 0; n < team_size; n++)    
-{     int i= n; //i= 0 1 2 3
+{     bool reverse =false;
+   //swap i j when the first loop done 
+      int i= n; //i= 0 1 2 3
       int j=n+1; // neighbor robot , j= 1 2 3 0
       if (i=team_size-1)  // closed loop robot position 
         {j=0;}
+     
 tf::StampedTransform transform;
 try{
  std::string robot_i ("/amr_");
@@ -83,28 +88,27 @@ double th = tf::getYaw(transform.getRotation());
                float initial_dij_x = sqrt(pow((initial_pos_x[i])-(initial_pos_x[j]),2)) ;         
                float initial_dij_y = sqrt(pow((initial_pos_y[i])-(initial_pos_y[j]),2)) ; 
 
-
                 // Use fabs for float absolute
-                absolute_distance[i].x=(fabs(Dist_ij[i].x)-fabs(initial_pos_x[i]));
-                absolute_distance[i].y=(fabs(Dist_ij[i].y)-fabs(initial_pos_y[i]));            
-                ROS_INFO("Virtual Force of robot %d[%.3f,%.3f]",i,absolute_distance[i].x,absolute_distance[i].y);           
-                  send_Fij[i].linear.x =Kij*spring_state_x*absolute_distance[i].x;
-                  send_Fij[i].linear.y =Kij*spring_state_y*absolute_distance[i].y; 
+                absolute_distance[n].x=(fabs(Dist_ij[n].x)-initial_dij_x);
+                absolute_distance[n].y=(fabs(Dist_ij[n].y)-initial_dij_y);            
+               send_Fij[n].linear.x =Kij*spring_state_x*absolute_distance[n].x;
+               send_Fij[n].linear.y =Kij*spring_state_y*absolute_distance[n].y; 
+               ROS_INFO("Fij of robot [%d,%d]= [%.3f,%.3f]",i,j,send_Fij[n].linear.x,absolute_distance[n].y);           
+                      
                    //set Linear velocity threshold 
-              if(send_Fij[i].linear.x>=1)
-              {send_Fij[i].linear.x=1;
+              if(send_Fij[n].linear.x>=1)
+              {send_Fij[n].linear.x=1;
               ROS_INFO("Threshold Vx max");}
               else if (send_Fij[i].linear.x<=-1)
-              {send_Fij[i].linear.x=-1;
+              {send_Fij[n].linear.x=-1;
                 ROS_INFO("Threshold Vx min");}
-              if(send_Fij[i].linear.y>=1)
-              {send_Fij[i].linear.y=1;
+              if(send_Fij[n].linear.y>=1)
+              {send_Fij[n].linear.y=1;
               ROS_INFO("Threshold Vy max");}
-              else if (send_Fij[i].linear.y<=-1)
-              {send_Fij[i].linear.y=-1;
+              else if (send_Fij[n].linear.y<=-1)
+              {send_Fij[n].linear.y=-1;
                 ROS_INFO("Threshold Vy min");}
-                  //send_Fij[i].angular.z=get_angular_vl.angular.z; 
-                ROS_INFO("Cmd_vel robot %d x=%f y=%f",i, send_Fij[i].linear.x,send_Fij[i].linear.y);  
+          
                 ROS_INFO("-----------------------");
          
      }              
