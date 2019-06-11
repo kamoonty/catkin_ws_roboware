@@ -13,11 +13,17 @@ tf/transform_listener.h
 -
 std_msgs/Float32.h
 -
+std_msgs/String.h
+-
 geometry_msgs/Point.h
 -
 geometry_msgs/Twist.h
 -
 stdlib.h
+-
+boost/lexical_cast.hpp
+-
+boost/lexical_cast.hpp
 -
 
 /opt/ros/kinetic/include/boost_161_condition_variable.h
@@ -1077,6 +1083,22 @@ ros/message_operations.h
 -
 
 /opt/ros/kinetic/include/std_msgs/Header.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
+/opt/ros/kinetic/include/std_msgs/String.h
 string
 -
 vector

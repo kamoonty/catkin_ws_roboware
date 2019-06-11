@@ -82,11 +82,15 @@ while (nh.ok())
    for (int i = 0; i < team_size; i++)
       {  
  tf::StampedTransform transform;
-try{std::string robot_frame ("/amr_");
- robot_frame =robot_frame+ boost::lexical_cast<std::string>(i);
- robot_frame =robot_frame+"/base_link";
-    listener.waitForTransform(robot_frame,"/base_link", ros::Time(0), ros::Duration(10.0) );
-    listener.lookupTransform(robot_frame,"/base_link",ros::Time(0), transform);
+try{std::string follower_robot ("/amr_");
+ std::string leader_robot ("/base_link");
+ follower_robot =follower_robot+ boost::lexical_cast<std::string>(i);
+ follower_robot =follower_robot+"/base_link";
+ 
+    listener.waitForTransform(follower_robot,leader_robot, ros::Time(0), ros::Duration(10.0) );
+    listener.lookupTransform(follower_robot,leader_robot,ros::Time(0), transform);
+    //base_link is refer to virtual leader robot
+    // we should replace to vl_robot/base_link later
     }
     catch (tf::TransformException &ex) {
       ROS_ERROR("%s",ex.what());
