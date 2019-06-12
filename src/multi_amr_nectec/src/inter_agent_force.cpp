@@ -39,18 +39,35 @@ int main(int argc, char** argv)
  geometry_msgs::Twist F_ij_node_right [team_size];
  pair<double, double> F_ij;
 while (nh.ok()) 
-{
+{ // robot 0 
   F_ij=CalcF_ij(0,1);
   F_ij_node_left[0].linear.x=F_ij.first;
   F_ij_node_left[0].linear.y=F_ij.second;
+  F_ij=CalcF_ij(0,3);
   F_ij_node_right[0].linear.x=F_ij.first;              
   F_ij_node_right[0].linear.y=F_ij.second;
-  F_ij=CalcF_ij(1,0);
+  //robot 1
+  F_ij=CalcF_ij(1,2);
   F_ij_node_left[1].linear.x=F_ij.first;
   F_ij_node_left[1].linear.y=F_ij.second;
+  F_ij=CalcF_ij(1,0);
   F_ij_node_right[1].linear.x=F_ij.first;              
   F_ij_node_right[1].linear.y=F_ij.second;
-
+  //robot 2
+  F_ij=CalcF_ij(2,3);
+  F_ij_node_left[2].linear.x=F_ij.first;
+  F_ij_node_left[2].linear.y=F_ij.second;
+  F_ij=CalcF_ij(2,1);
+  F_ij_node_right[2].linear.x=F_ij.first;              
+  F_ij_node_right[2].linear.y=F_ij.second;
+  // robot 3
+  F_ij=CalcF_ij(3,0);
+  F_ij_node_left[3].linear.x=F_ij.first;
+  F_ij_node_left[3].linear.y=F_ij.second;
+  F_ij=CalcF_ij(3,2);
+  F_ij_node_right[3].linear.x=F_ij.first;              
+  F_ij_node_right[3].linear.y=F_ij.second;
+  
   for (int n=0;n<team_size;n++)
 {send_Fij[n].linear.x=F_ij_node_left[n].linear.x+F_ij_node_right[n].linear.x;  
   send_Fij[n].linear.y=F_ij_node_left[n].linear.y+F_ij_node_right[n].linear.y;  
@@ -58,8 +75,8 @@ ROS_INFO("Sum of Fij robot %d = [%.3f,%.3f]",n,send_Fij[n].linear.x,send_Fij[n].
 }             
        force0_pub.publish(send_Fij[0]);
       force1_pub.publish(send_Fij[1]);
-      //force2_pub.publish(send_Fij[2]);
-      //force3_pub.publish(send_Fij[3]);          
+      force2_pub.publish(send_Fij[2]);
+      force3_pub.publish(send_Fij[3]);          
       ros::spinOnce();
       loopRate.sleep();  
 }
