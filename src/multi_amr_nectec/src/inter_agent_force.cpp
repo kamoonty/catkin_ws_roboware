@@ -65,6 +65,8 @@ ROS_INFO("Sum of Fij robot %d = [%.3f,%.3f]",n,send_Fij[n].linear.x,send_Fij[n].
 }
   //return 0;
 }
+
+
 pair<double, double> CalcF_ij(int i,int j)
 {geometry_msgs::Twist Fi_to_j ;
  geometry_msgs::Point Dist_ij ;
