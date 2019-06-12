@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+multi_amr_nectec/CMakeFiles/test_pair.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/test_pair.dir/rule
+.PHONY : multi_amr_nectec/CMakeFiles/test_pair.dir/rule
+
+# Convenience name for target.
+test_pair: multi_amr_nectec/CMakeFiles/test_pair.dir/rule
+
+.PHONY : test_pair
+
+# fast build rule for target.
+test_pair/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/test_pair.dir/build.make multi_amr_nectec/CMakeFiles/test_pair.dir/build
+.PHONY : test_pair/fast
+
+# Convenience name for target.
 multi_amr_nectec/CMakeFiles/transform_listener.dir/rule:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/transform_listener.dir/rule
 .PHONY : multi_amr_nectec/CMakeFiles/transform_listener.dir/rule
@@ -719,6 +734,33 @@ src/position_vl.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/position_vl.dir/build.make multi_amr_nectec/CMakeFiles/position_vl.dir/src/position_vl.cpp.s
 .PHONY : src/position_vl.cpp.s
 
+src/test_pair.o: src/test_pair.cpp.o
+
+.PHONY : src/test_pair.o
+
+# target to build an object file
+src/test_pair.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/test_pair.dir/build.make multi_amr_nectec/CMakeFiles/test_pair.dir/src/test_pair.cpp.o
+.PHONY : src/test_pair.cpp.o
+
+src/test_pair.i: src/test_pair.cpp.i
+
+.PHONY : src/test_pair.i
+
+# target to preprocess a source file
+src/test_pair.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/test_pair.dir/build.make multi_amr_nectec/CMakeFiles/test_pair.dir/src/test_pair.cpp.i
+.PHONY : src/test_pair.cpp.i
+
+src/test_pair.s: src/test_pair.cpp.s
+
+.PHONY : src/test_pair.s
+
+# target to generate assembly for a file
+src/test_pair.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/test_pair.dir/build.make multi_amr_nectec/CMakeFiles/test_pair.dir/src/test_pair.cpp.s
+.PHONY : src/test_pair.cpp.s
+
 src/tf_quat2euler.o: src/tf_quat2euler.cpp.o
 
 .PHONY : src/tf_quat2euler.o
@@ -808,6 +850,7 @@ help:
 	@echo "... depend"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... test_pair"
 	@echo "... transform_listener"
 	@echo "... tf_quat2euler"
 	@echo "... install/strip"
@@ -857,6 +900,9 @@ help:
 	@echo "... src/position_vl.o"
 	@echo "... src/position_vl.i"
 	@echo "... src/position_vl.s"
+	@echo "... src/test_pair.o"
+	@echo "... src/test_pair.i"
+	@echo "... src/test_pair.s"
 	@echo "... src/tf_quat2euler.o"
 	@echo "... src/tf_quat2euler.i"
 	@echo "... src/tf_quat2euler.s"

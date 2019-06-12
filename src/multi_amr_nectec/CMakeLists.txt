@@ -263,3 +263,11 @@ add_dependencies(transform_listener ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin
 target_link_libraries(transform_listener
   ${catkin_LIBRARIES}
 )
+
+add_executable(test_pair
+  src/test_pair.cpp
+)
+add_dependencies(test_pair ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(test_pair
+  ${catkin_LIBRARIES}
+)

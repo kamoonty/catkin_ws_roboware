@@ -6,7 +6,6 @@
 #include <geometry_msgs/Twist.h>
 #include <stdlib.h> 
 #include <boost/lexical_cast.hpp>
-#include <boost/lexical_cast.hpp>
 //#include "multi_amr_nectec/pos_msg.h"
 //#include "math.h"
 //#include "std_msgs/String.h"

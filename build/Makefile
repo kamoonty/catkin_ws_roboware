@@ -1273,6 +1273,19 @@ tf_generate_messages_lisp/fast:
 .PHONY : tf_generate_messages_lisp/fast
 
 #=============================================================================
+# Target rules for targets named test_pair
+
+# Build rule for target.
+test_pair: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_pair
+.PHONY : test_pair
+
+# fast build rule for target.
+test_pair/fast:
+	$(MAKE) -f multi_amr_nectec/CMakeFiles/test_pair.dir/build.make multi_amr_nectec/CMakeFiles/test_pair.dir/build
+.PHONY : test_pair/fast
+
+#=============================================================================
 # Target rules for targets named transform_listener
 
 # Build rule for target.
@@ -1721,6 +1734,7 @@ help:
 	@echo "... send_goal_multi"
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... tf_generate_messages_lisp"
+	@echo "... test_pair"
 	@echo "... transform_listener"
 	@echo "... tf_quat2euler"
 	@echo "... orientation_control"
