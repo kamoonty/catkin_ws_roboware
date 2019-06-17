@@ -40,7 +40,7 @@ int main(int argc, char** argv)
  pair<double, double> F_ij;
 while (nh.ok()) 
 { // robot 0 
-  F_ij=CalcF_ij(0,1);
+  /*F_ij=CalcF_ij(0,1);
   F_ij_node_left[0].linear.x=F_ij.first;
   F_ij_node_left[0].linear.y=F_ij.second;
   F_ij=CalcF_ij(0,3);
@@ -67,13 +67,21 @@ while (nh.ok())
   F_ij=CalcF_ij(3,2);
   F_ij_node_right[3].linear.x=F_ij.first;              
   F_ij_node_right[3].linear.y=F_ij.second;
-  
+  */
+  //for 2 robot 
+  F_ij=CalcF_ij(0,1);
+  F_ij_node_left[0].linear.x=F_ij.first;
+  F_ij_node_left[0].linear.y=F_ij.second;
+  F_ij=CalcF_ij(1,0);
+  F_ij_node_left[1].linear.x=F_ij.first;
+  F_ij_node_left[1].linear.y=F_ij.second;
+
   for (int n=0;n<team_size;n++)
 {send_Fij[n].linear.x=F_ij_node_left[n].linear.x+F_ij_node_right[n].linear.x;  
   send_Fij[n].linear.y=F_ij_node_left[n].linear.y+F_ij_node_right[n].linear.y;  
-ROS_INFO("Sum of Fij robot %d = [%.3f,%.3f]",n,send_Fij[n].linear.x,send_Fij[n].linear.y);                                 
+ROS_INFO("Total Fij robot %d = [%.3f,%.3f]",n,send_Fij[n].linear.x,send_Fij[n].linear.y);                                 
 }             
-       force0_pub.publish(send_Fij[0]);
+      force0_pub.publish(send_Fij[0]);
       force1_pub.publish(send_Fij[1]);
       force2_pub.publish(send_Fij[2]);
       force3_pub.publish(send_Fij[3]);          
@@ -136,17 +144,17 @@ double th = tf::getYaw(transform.getRotation());
                Fi_to_j.linear.y =Kij*spring_state_y*absolute_distance.y; 
                    
                    //set Linear velocity threshold 
-              if(Fi_to_j.linear.x>=1)
-              {Fi_to_j.linear.x=1;
+              if(Fi_to_j.linear.x>=0.5)
+              {Fi_to_j.linear.x=0.5;
               ROS_INFO("Threshold Vx max");}
-              else if (Fi_to_j.linear.x<=-1)
-              {Fi_to_j.linear.x=-1;
+              else if (Fi_to_j.linear.x<=-0.5)
+              {Fi_to_j.linear.x=-0.5;
                 ROS_INFO("Threshold Vx min");}
-              if(Fi_to_j.linear.y>=1)
-              {Fi_to_j.linear.y=1;
+              if(Fi_to_j.linear.y>=0.5)
+              {Fi_to_j.linear.y=0.5;
               ROS_INFO("Threshold Vy max");}
-              else if (Fi_to_j.linear.y<=-1)
-              {Fi_to_j.linear.y=-1;
+              else if (Fi_to_j.linear.y<=-0.5)
+              {Fi_to_j.linear.y=-0.5;
                 ROS_INFO("Threshold Vy min");} 
                 //Return result 
                 F_ij.first=Fi_to_j.linear.x;

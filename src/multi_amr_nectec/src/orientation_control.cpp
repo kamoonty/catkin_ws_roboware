@@ -95,8 +95,8 @@ while (nh.ok())
     if(diff_angle[i]>0) 
     {
     if(fabs(diff_angle[i])<180)
-       rotate_direction=1;
-    else rotate_direction=-1;
+       rotate_direction=1;  // clockwise 
+    else rotate_direction=-1; //anti clock wise
     }
 
     else if (diff_angle[i]<0)

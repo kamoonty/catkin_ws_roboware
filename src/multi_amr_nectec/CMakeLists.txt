@@ -264,10 +264,10 @@ target_link_libraries(transform_listener
   ${catkin_LIBRARIES}
 )
 
-add_executable(test_pair
-  src/test_pair.cpp
+add_executable(motion_generator
+  src/motion_generator.cpp
 )
-add_dependencies(test_pair ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(test_pair
+add_dependencies(motion_generator ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(motion_generator
   ${catkin_LIBRARIES}
 )

@@ -35,9 +35,14 @@ find_package(catkin REQUIRED)
 ## * In this file (CMakeLists.txt):
 ##   * add "message_generation" and every package in MSG_DEP_SET to
 find_package(catkin REQUIRED COMPONENTS
-  message_generation
-  roscpp
+    message_generation
+  actionlib
+  move_base_msgs
   geometry_msgs
+  roscpp
+  rospy
+  tf
+  nav_msgs
 )
 ##   * add "message_runtime" and every package in MSG_DEP_SET to
 ##     catkin_package(CATKIN_DEPENDS ...)
@@ -265,5 +270,13 @@ add_executable(subscribe_path
 )
 add_dependencies(subscribe_path ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(subscribe_path
+  ${catkin_LIBRARIES}
+)
+
+add_executable(get_robot_pos_test
+  src/get_robot_pos_test.cpp
+)
+add_dependencies(get_robot_pos_test ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(get_robot_pos_test
   ${catkin_LIBRARIES}
 )

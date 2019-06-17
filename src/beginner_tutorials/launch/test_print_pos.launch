@@ -1,0 +1,6 @@
+<launch>
+
+<node pkg="beginner_tutorials" type="get_robot_pos_test" name="get_robot_pos_test" output="screen" >
+
+</node>
+</launch>
