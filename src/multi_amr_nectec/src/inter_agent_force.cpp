@@ -17,7 +17,7 @@ int main(int argc, char** argv)
 {
  ros::init(argc, argv, "inter_agent_force");
  ros::NodeHandle nh;
- ros::Rate loopRate(20);
+ ros::Rate loopRate(1);
  //load param from launch file
  nh.getParam("inter_agent_force/team_size", team_size);
  nh.getParam("inter_agent_force/Kij", Kij);
@@ -65,13 +65,14 @@ try{
       ros::Duration(1.0).sleep();
       continue;
     }
+// get distance between two robots from TF
 double x = transform.getOrigin().getX();
 double y = transform.getOrigin().getY();
 double th = tf::getYaw(transform.getRotation());                       
               int spring_state_x=0;
               int spring_state_y=0;
          
-               Dist_ij.x=x; // get distance between two robots from TF
+               Dist_ij.x=x; 
                Dist_ij.y=y;
                if(Dist_ij.x<0)
                {spring_state_x=-1;}
@@ -87,7 +88,7 @@ double th = tf::getYaw(transform.getRotation());
                // calculate initial distance for each pair of robots
                float initial_dij_x = sqrt(pow((initial_pos_x[i])-(initial_pos_x[j]),2)) ;         
                float initial_dij_y = sqrt(pow((initial_pos_y[i])-(initial_pos_y[j]),2)) ; 
-
+               ROS_INFO("Initial dist =[%f,%f]",initial_dij_x,initial_dij_y);
                 // Use fabs for float absolute
                 absolute_distance.x=(fabs(Dist_ij.x)-initial_dij_x);
                 absolute_distance.y=(fabs(Dist_ij.y)-initial_dij_y);            
@@ -109,7 +110,7 @@ double th = tf::getYaw(transform.getRotation());
                 ROS_INFO("Threshold Vy min");} 
                 //Return result 
                 Fj_to_i.linear.x=-Fi_to_j.linear.x;
-                Fj_to_i.linear.x=-Fi_to_j.linear.y;
+                Fj_to_i.linear.y=-Fi_to_j.linear.y;
               ROS_INFO(" Calculated Fij of robot [%d,%d]= [%.3f,%.3f]",i,j,Fi_to_j.linear.x,Fi_to_j.linear.y);           
               ROS_INFO(" Calculated Fji of robot [%d,%d]= [%.3f,%.3f]",j,i,Fj_to_i.linear.x,Fj_to_i.linear.y);           
               ROS_INFO("----------------------------"); 
