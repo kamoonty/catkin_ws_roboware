@@ -1,2 +1,2 @@
-amr_description:beginner_tutorials:multi_amr_nectec:multi_navigation_tb3:multi_robot_neobotix:rosbag_to_csv
--DCMAKE_BUILD_TYPE=Debug -DCATKIN_DEVEL_PREFIX=/home/kanin/catkin_ws_roboware/devel -DCMAKE_INSTALL_PREFIX=/home/kanin/catkin_ws_roboware/install -G Unix Makefiles
+amr_description:beginner_tutorials:multi_amr_nectec:multi_navigation_tb3:multi_robot_neobotix:pid:rosbag_to_csv
+-DCATKIN_DEVEL_PREFIX=/home/kanin/catkin_ws_roboware/devel -DCMAKE_INSTALL_PREFIX=/home/kanin/catkin_ws_roboware/install -G Unix Makefiles
