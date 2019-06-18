@@ -10,12 +10,9 @@
 
 int team_size; //use for get param from launch file
 float Kij;
-using namespace std;
-std::vector<double> initial_pos_x;
-std::vector<double> initial_pos_y;
+
 // We need to round value after subscribe because if not it can cause problem
 // when VL= 0.00000003 and Robot 1 Pos X = 0.00000004 it is not equal so useroundf (number*100)/100
-pair<double, double> CalcF_ij(int i,int j);
 int main(int argc, char** argv) 
 {
  ros::init(argc, argv, "inter_agent_force");
@@ -25,7 +22,9 @@ int main(int argc, char** argv)
  nh.getParam("inter_agent_force/team_size", team_size);
  nh.getParam("inter_agent_force/Kij", Kij);
  // load param for initial formation from YAML file
-
+ 
+ std::vector<double> initial_pos_x;
+ std::vector<double> initial_pos_y;
  nh.getParam("initial_pos_x",initial_pos_x);
  nh.getParam("initial_pos_y",initial_pos_y);
 
@@ -34,71 +33,22 @@ int main(int argc, char** argv)
  ros::Publisher force2_pub = nh.advertise<geometry_msgs::Twist>("amr_2/cmd_vel", 1000);
  ros::Publisher force3_pub = nh.advertise<geometry_msgs::Twist>("amr_3/cmd_vel", 1000);
  
- geometry_msgs::Twist send_Fij [team_size];
- geometry_msgs::Twist F_ij_node_left  [team_size];
- geometry_msgs::Twist F_ij_node_right [team_size];
- pair<double, double> F_ij;
-while (nh.ok()) 
-{ // robot 0 
-  /*F_ij=CalcF_ij(0,1);
-  F_ij_node_left[0].linear.x=F_ij.first;
-  F_ij_node_left[0].linear.y=F_ij.second;
-  F_ij=CalcF_ij(0,3);
-  F_ij_node_right[0].linear.x=F_ij.first;              
-  F_ij_node_right[0].linear.y=F_ij.second;
-  //robot 1
-  F_ij=CalcF_ij(1,2);
-  F_ij_node_left[1].linear.x=F_ij.first;
-  F_ij_node_left[1].linear.y=F_ij.second;
-  F_ij=CalcF_ij(1,0);
-  F_ij_node_right[1].linear.x=F_ij.first;              
-  F_ij_node_right[1].linear.y=F_ij.second;
-  //robot 2
-  F_ij=CalcF_ij(2,3);
-  F_ij_node_left[2].linear.x=F_ij.first;
-  F_ij_node_left[2].linear.y=F_ij.second;
-  F_ij=CalcF_ij(2,1);
-  F_ij_node_right[2].linear.x=F_ij.first;              
-  F_ij_node_right[2].linear.y=F_ij.second;
-  // robot 3
-  F_ij=CalcF_ij(3,0);
-  F_ij_node_left[3].linear.x=F_ij.first;
-  F_ij_node_left[3].linear.y=F_ij.second;
-  F_ij=CalcF_ij(3,2);
-  F_ij_node_right[3].linear.x=F_ij.first;              
-  F_ij_node_right[3].linear.y=F_ij.second;
-  */
-  //for 2 robot 
-  F_ij=CalcF_ij(0,1);
-  F_ij_node_left[0].linear.x=F_ij.first;
-  F_ij_node_left[0].linear.y=F_ij.second;
-  F_ij=CalcF_ij(1,0);
-  F_ij_node_left[1].linear.x=F_ij.first;
-  F_ij_node_left[1].linear.y=F_ij.second;
-
-  for (int n=0;n<team_size;n++)
-{send_Fij[n].linear.x=F_ij_node_left[n].linear.x+F_ij_node_right[n].linear.x;  
-  send_Fij[n].linear.y=F_ij_node_left[n].linear.y+F_ij_node_right[n].linear.y;  
-ROS_INFO("Total Fij robot %d = [%.3f,%.3f]",n,send_Fij[n].linear.x,send_Fij[n].linear.y);                                 
-}             
-      force0_pub.publish(send_Fij[0]);
-      force1_pub.publish(send_Fij[1]);
-      force2_pub.publish(send_Fij[2]);
-      force3_pub.publish(send_Fij[3]);          
-      ros::spinOnce();
-      loopRate.sleep();  
-}
-  //return 0;
-}
-
-
-pair<double, double> CalcF_ij(int i,int j)
-{geometry_msgs::Twist Fi_to_j ;
+ geometry_msgs::Twist send_force [team_size];
+ geometry_msgs::Twist F_ij [team_size];
+ geometry_msgs::Twist F_ji [team_size];
+ tf::TransformListener listener;
+ geometry_msgs::Twist Fi_to_j ;
+ geometry_msgs::Twist Fj_to_i ;
  geometry_msgs::Point Dist_ij ;
- geometry_msgs::Point absolute_distance ;        
- tf::TransformListener listener;     
+ geometry_msgs::Point absolute_distance ; 
+while (nh.ok()) 
+{
+ for(int n=0;n<team_size;n++)
+ { 
+ int i=n;   //i=0 1 2 3
+ int j=n+1; //j=1 2 3 0
+ if(j==team_size) {j=0;}  
  tf::StampedTransform transform;
- pair<double, double> F_ij;
 try{
  std::string robot_i ("/amr_");
  robot_i =robot_i+ boost::lexical_cast<std::string>(i);
@@ -110,16 +60,17 @@ try{
     listener.waitForTransform(robot_i,robot_j, ros::Time(0), ros::Duration(10.0) );
     listener.lookupTransform(robot_i,robot_j,ros::Time(0), transform);
     }
-    catch (tf::TransformException &ex) 
-    {ROS_ERROR("%s",ex.what());
+    catch (tf::TransformException &ex) {
+      ROS_ERROR("%s",ex.what());
       ros::Duration(1.0).sleep();
-     }
+      continue;
+    }
 double x = transform.getOrigin().getX();
 double y = transform.getOrigin().getY();
 double th = tf::getYaw(transform.getRotation());                       
               int spring_state_x=0;
               int spring_state_y=0;
-              int n=0;
+         
                Dist_ij.x=x; // get distance between two robots from TF
                Dist_ij.y=y;
                if(Dist_ij.x<0)
@@ -157,9 +108,44 @@ double th = tf::getYaw(transform.getRotation());
               {Fi_to_j.linear.y=-0.5;
                 ROS_INFO("Threshold Vy min");} 
                 //Return result 
-                F_ij.first=Fi_to_j.linear.x;
-                F_ij.second=Fi_to_j.linear.y;
-              ROS_INFO(" Calculated Fij of robot [%d,%d]= [%.3f,%.3f]",i,j,F_ij.first,F_ij.second);           
-                ROS_INFO("----------------------------"); 
-return F_ij;
+                Fj_to_i.linear.x=-Fi_to_j.linear.x;
+                Fj_to_i.linear.x=-Fi_to_j.linear.y;
+              ROS_INFO(" Calculated Fij of robot [%d,%d]= [%.3f,%.3f]",i,j,Fi_to_j.linear.x,Fi_to_j.linear.y);           
+              ROS_INFO(" Calculated Fji of robot [%d,%d]= [%.3f,%.3f]",j,i,Fj_to_i.linear.x,Fj_to_i.linear.y);           
+              ROS_INFO("----------------------------"); 
+              F_ij[n].linear.x=Fi_to_j.linear.x;
+              F_ij[n].linear.y=Fi_to_j.linear.y; 
+
+              F_ji[n].linear.x=Fj_to_i.linear.x;
+              F_ji[n].linear.y=Fj_to_i.linear.y;
+ }
+
+
+
+// the value of F_ji depend on the robot position or robot order in formation
+send_force[0].linear.x= F_ij[0].linear.x+F_ji[3].linear.x;
+send_force[0].linear.y= F_ij[0].linear.y+F_ji[3].linear.y;
+
+send_force[1].linear.x= F_ij[1].linear.x+F_ji[0].linear.x;
+send_force[1].linear.y= F_ij[1].linear.y+F_ji[0].linear.y;
+
+send_force[2].linear.x= F_ij[2].linear.x+F_ji[1].linear.x;
+send_force[2].linear.y= F_ij[2].linear.y+F_ji[1].linear.y;
+
+send_force[3].linear.x= F_ij[3].linear.x+F_ji[2].linear.x;
+send_force[3].linear.y= F_ij[3].linear.y+F_ji[2].linear.y;
+
+  for(int n=0;n<team_size;n++)
+  {ROS_INFO("cmd_vel of amr %d=[%f,%f]",n,send_force[n].linear.x,send_force[n].linear.x); 
+  }
+      force0_pub.publish(send_force[0]);
+      force1_pub.publish(send_force[1]);
+      force2_pub.publish(send_force[2]);
+      force3_pub.publish(send_force[3]);     
+          
+      ros::spinOnce();
+      loopRate.sleep();  
 }
+  //return 0;
+}
+

@@ -118,7 +118,7 @@ double th = tf::getYaw(transform.getRotation());
                float abs_dist = sqrt(pow((robot_pos[i].x-get_pos_vl.x),2)+pow((robot_pos[i].y-get_pos_vl.y),2)) ;         
                //ROS_INFO("Dist from VL of AMR %d=[%f,%f]",i,Dist_vl[i].x,Dist_vl[i].y);
                //ROS_INFO("Absolute distance of AMR %d from VL =%f",i,abs_dist);
-               ROS_INFO("Ux= %d Uy= %d",spring_state_x,spring_state_y);
+               ROS_INFO("Spring state=[%d,%d]",spring_state_x,spring_state_y);
                ROS_INFO("Dist_vl [%f,%f]",Dist_vl[i].x,Dist_vl[i].y);
                //double abs_dist_vl_x=fabs(Dist_vl[i].x); 
                //double abs_dist_vl_y=fabs(Dist_vl[i].y);
@@ -147,10 +147,10 @@ double th = tf::getYaw(transform.getRotation());
                 ROS_INFO("Cmd_vel robot %d x=%f y=%f",i, send_fvl[i].linear.x,send_fvl[i].linear.y);  
                 ROS_INFO("-----------------------");
                 }              
-                force0_pub.publish(send_fvl[0]);
-                force1_pub.publish(send_fvl[1]);
-                force2_pub.publish(send_fvl[2]);
-                force3_pub.publish(send_fvl[3]);
+      force0_pub.publish(send_fvl[0]);
+      force1_pub.publish(send_fvl[1]);
+      force2_pub.publish(send_fvl[2]);
+      force3_pub.publish(send_fvl[3]);
                 
 
       ros::spinOnce();
