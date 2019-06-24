@@ -1,7 +1,7 @@
 <launch>
 <node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" >
   <param name ="team_size" value = "4" />
-  <param name ="K_ang" value = "6" />
+  <param name ="K_ang" value = "10" />
 
 </node>
 </launch>

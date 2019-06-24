@@ -7,12 +7,11 @@
 #include <stdlib.h> 
 #include <boost/lexical_cast.hpp>
 
-
+#include "std_msgs/MultiArrayLayout.h"
+#include "std_msgs/MultiArrayDimension.h"
+#include "std_msgs/Float32MultiArray.h"
 int team_size; //use for get param from launch file
 float Kij;
-
-// We need to round value after subscribe because if not it can cause problem
-// when VL= 0.00000003 and Robot 1 Pos X = 0.00000004 it is not equal so useroundf (number*100)/100
 int main(int argc, char** argv) 
 {
  ros::init(argc, argv, "inter_agent_force");
@@ -28,10 +27,8 @@ int main(int argc, char** argv)
  nh.getParam("initial_pos_x",initial_pos_x);
  nh.getParam("initial_pos_y",initial_pos_y);
 
- ros::Publisher force0_pub = nh.advertise<geometry_msgs::Twist>("amr_0/cmd_vel", 1000);
- ros::Publisher force1_pub = nh.advertise<geometry_msgs::Twist>("amr_1/cmd_vel", 1000); 
- ros::Publisher force2_pub = nh.advertise<geometry_msgs::Twist>("amr_2/cmd_vel", 1000);
- ros::Publisher force3_pub = nh.advertise<geometry_msgs::Twist>("amr_3/cmd_vel", 1000);
+ ros::Publisher pub_cmd_vel_x = nh.advertise<std_msgs::Float32MultiArray>("F_ij_x", 100);
+ ros::Publisher pub_cmd_vel_y = nh.advertise<std_msgs::Float32MultiArray>("F_ij_y", 100);
  
  geometry_msgs::Twist send_force [team_size];
  geometry_msgs::Twist F_ij [team_size];
@@ -42,7 +39,10 @@ int main(int argc, char** argv)
  geometry_msgs::Point Dist_ij ;
  geometry_msgs::Point absolute_distance ; 
 while (nh.ok()) 
-{
+{std_msgs::Float32MultiArray robot_cmd_vel_linear_x;
+ std_msgs::Float32MultiArray robot_cmd_vel_linear_y;
+ robot_cmd_vel_linear_x.data.clear();
+ robot_cmd_vel_linear_y.data.clear();
  for(int n=0;n<team_size;n++)
  { 
  int i=n;   //i=0 1 2 3
@@ -95,19 +95,6 @@ double th = tf::getYaw(transform.getRotation());
                Fi_to_j.linear.x =Kij*spring_state_x*absolute_distance.x;
                Fi_to_j.linear.y =Kij*spring_state_y*absolute_distance.y; 
                    
-                   //set Linear velocity threshold 
-              if(Fi_to_j.linear.x>=0.5)
-              {Fi_to_j.linear.x=0.5;
-              ROS_INFO("Threshold Vx max");}
-              else if (Fi_to_j.linear.x<=-0.5)
-              {Fi_to_j.linear.x=-0.5;
-                ROS_INFO("Threshold Vx min");}
-              if(Fi_to_j.linear.y>=0.5)
-              {Fi_to_j.linear.y=0.5;
-              ROS_INFO("Threshold Vy max");}
-              else if (Fi_to_j.linear.y<=-0.5)
-              {Fi_to_j.linear.y=-0.5;
-                ROS_INFO("Threshold Vy min");} 
                 //Return result 
                 Fj_to_i.linear.x=-Fi_to_j.linear.x;
                 Fj_to_i.linear.y=-Fi_to_j.linear.y;
@@ -120,8 +107,6 @@ double th = tf::getYaw(transform.getRotation());
               F_ji[n].linear.x=Fj_to_i.linear.x;
               F_ji[n].linear.y=Fj_to_i.linear.y;
  }
-
-
 
 // the value of F_ji depend on the robot position or robot order in formation
 send_force[0].linear.x= F_ij[0].linear.x+F_ji[3].linear.x;
@@ -137,12 +122,13 @@ send_force[3].linear.x= F_ij[3].linear.x+F_ji[2].linear.x;
 send_force[3].linear.y= F_ij[3].linear.y+F_ji[2].linear.y;
 
   for(int n=0;n<team_size;n++)
-  {ROS_INFO("cmd_vel of amr %d=[%f,%f]",n,send_force[n].linear.x,send_force[n].linear.x); 
+  {ROS_INFO("Inter force of amr %d=[%f,%f]",n,send_force[n].linear.x,send_force[n].linear.x); 
+  robot_cmd_vel_linear_x.data.push_back(send_force[n].linear.x);
+  robot_cmd_vel_linear_y.data.push_back(send_force[n].linear.y);
   }
-      force0_pub.publish(send_force[0]);
-      force1_pub.publish(send_force[1]);
-      force2_pub.publish(send_force[2]);
-      force3_pub.publish(send_force[3]);     
+
+      pub_cmd_vel_x.publish(robot_cmd_vel_linear_x);
+      pub_cmd_vel_y.publish(robot_cmd_vel_linear_y);    
           
       ros::spinOnce();
       loopRate.sleep();  

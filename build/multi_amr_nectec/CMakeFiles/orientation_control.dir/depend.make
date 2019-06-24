@@ -81,7 +81,10 @@ multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.
 multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.o: /opt/ros/kinetic/include/sensor_msgs/PointCloud.h
 multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.o: /opt/ros/kinetic/include/std_msgs/Empty.h
 multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.o: /opt/ros/kinetic/include/std_msgs/Float32.h
+multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.o: /opt/ros/kinetic/include/std_msgs/Float32MultiArray.h
 multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.o: /opt/ros/kinetic/include/std_msgs/Header.h
+multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.o: /opt/ros/kinetic/include/std_msgs/MultiArrayDimension.h
+multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.o: /opt/ros/kinetic/include/std_msgs/MultiArrayLayout.h
 multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.o: /opt/ros/kinetic/include/tf/FrameGraph.h
 multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.o: /opt/ros/kinetic/include/tf/FrameGraphRequest.h
 multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.o: /opt/ros/kinetic/include/tf/FrameGraphResponse.h
