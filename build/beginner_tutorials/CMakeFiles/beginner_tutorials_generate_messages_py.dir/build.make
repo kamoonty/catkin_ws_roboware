@@ -54,6 +54,7 @@ CMAKE_BINARY_DIR = /home/kanin/catkin_ws_roboware/build
 include beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_py.dir/progress.make
 
 beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_py: /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/_my_msg.py
+beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_py: /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/_cmd_vel.py
 beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_py: /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/_Num.py
 beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_py: /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/__init__.py
 
@@ -64,19 +65,28 @@ beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_py: /home/kan
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kanin/catkin_ws_roboware/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python from MSG beginner_tutorials/my_msg"
 	cd /home/kanin/catkin_ws_roboware/build/beginner_tutorials && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/my_msg.msg -Ibeginner_tutorials:/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p beginner_tutorials -o /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg
 
+/home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/_cmd_vel.py: /opt/ros/kinetic/lib/genpy/genmsg_py.py
+/home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/_cmd_vel.py: /home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg
+/home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/_cmd_vel.py: /opt/ros/kinetic/share/geometry_msgs/msg/Twist.msg
+/home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/_cmd_vel.py: /opt/ros/kinetic/share/geometry_msgs/msg/Vector3.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kanin/catkin_ws_roboware/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python from MSG beginner_tutorials/cmd_vel"
+	cd /home/kanin/catkin_ws_roboware/build/beginner_tutorials && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg -Ibeginner_tutorials:/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p beginner_tutorials -o /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg
+
 /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/_Num.py: /opt/ros/kinetic/lib/genpy/genmsg_py.py
 /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/_Num.py: /home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/Num.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kanin/catkin_ws_roboware/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python from MSG beginner_tutorials/Num"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kanin/catkin_ws_roboware/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python from MSG beginner_tutorials/Num"
 	cd /home/kanin/catkin_ws_roboware/build/beginner_tutorials && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/Num.msg -Ibeginner_tutorials:/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p beginner_tutorials -o /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg
 
 /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/__init__.py: /opt/ros/kinetic/lib/genpy/genmsg_py.py
 /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/__init__.py: /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/_my_msg.py
+/home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/__init__.py: /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/_cmd_vel.py
 /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/__init__.py: /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/_Num.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kanin/catkin_ws_roboware/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python msg __init__.py for beginner_tutorials"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kanin/catkin_ws_roboware/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Python msg __init__.py for beginner_tutorials"
 	cd /home/kanin/catkin_ws_roboware/build/beginner_tutorials && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg --initpy
 
 beginner_tutorials_generate_messages_py: beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_py
 beginner_tutorials_generate_messages_py: /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/_my_msg.py
+beginner_tutorials_generate_messages_py: /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/_cmd_vel.py
 beginner_tutorials_generate_messages_py: /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/_Num.py
 beginner_tutorials_generate_messages_py: /home/kanin/catkin_ws_roboware/devel/lib/python2.7/dist-packages/beginner_tutorials/msg/__init__.py
 beginner_tutorials_generate_messages_py: beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_py.dir/build.make

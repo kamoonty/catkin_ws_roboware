@@ -62,6 +62,9 @@ multi_amr_nectec/CMakeFiles/motion_generator.dir/src/motion_generator.cpp.o: /op
 multi_amr_nectec/CMakeFiles/motion_generator.dir/src/motion_generator.cpp.o: /opt/ros/kinetic/include/ros/wall_timer_options.h
 multi_amr_nectec/CMakeFiles/motion_generator.dir/src/motion_generator.cpp.o: /opt/ros/kinetic/include/rosconsole/macros_generated.h
 multi_amr_nectec/CMakeFiles/motion_generator.dir/src/motion_generator.cpp.o: /opt/ros/kinetic/include/std_msgs/Float32.h
+multi_amr_nectec/CMakeFiles/motion_generator.dir/src/motion_generator.cpp.o: /opt/ros/kinetic/include/std_msgs/Float32MultiArray.h
+multi_amr_nectec/CMakeFiles/motion_generator.dir/src/motion_generator.cpp.o: /opt/ros/kinetic/include/std_msgs/MultiArrayDimension.h
+multi_amr_nectec/CMakeFiles/motion_generator.dir/src/motion_generator.cpp.o: /opt/ros/kinetic/include/std_msgs/MultiArrayLayout.h
 multi_amr_nectec/CMakeFiles/motion_generator.dir/src/motion_generator.cpp.o: /opt/ros/kinetic/include/xmlrpcpp/XmlRpcDecl.h
 multi_amr_nectec/CMakeFiles/motion_generator.dir/src/motion_generator.cpp.o: /opt/ros/kinetic/include/xmlrpcpp/XmlRpcValue.h
 

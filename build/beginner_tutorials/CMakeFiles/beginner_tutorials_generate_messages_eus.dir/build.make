@@ -54,6 +54,7 @@ CMAKE_BINARY_DIR = /home/kanin/catkin_ws_roboware/build
 include beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus.dir/progress.make
 
 beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus: /home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/msg/my_msg.l
+beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus: /home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/msg/cmd_vel.l
 beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus: /home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/msg/Num.l
 beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus: /home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/manifest.l
 
@@ -64,17 +65,25 @@ beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus: /home/ka
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kanin/catkin_ws_roboware/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from beginner_tutorials/my_msg.msg"
 	cd /home/kanin/catkin_ws_roboware/build/beginner_tutorials && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/my_msg.msg -Ibeginner_tutorials:/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p beginner_tutorials -o /home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/msg
 
+/home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/msg/cmd_vel.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
+/home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/msg/cmd_vel.l: /home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg
+/home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/msg/cmd_vel.l: /opt/ros/kinetic/share/geometry_msgs/msg/Twist.msg
+/home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/msg/cmd_vel.l: /opt/ros/kinetic/share/geometry_msgs/msg/Vector3.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kanin/catkin_ws_roboware/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from beginner_tutorials/cmd_vel.msg"
+	cd /home/kanin/catkin_ws_roboware/build/beginner_tutorials && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg -Ibeginner_tutorials:/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p beginner_tutorials -o /home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/msg
+
 /home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/msg/Num.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
 /home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/msg/Num.l: /home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/Num.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kanin/catkin_ws_roboware/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from beginner_tutorials/Num.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kanin/catkin_ws_roboware/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp code from beginner_tutorials/Num.msg"
 	cd /home/kanin/catkin_ws_roboware/build/beginner_tutorials && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/Num.msg -Ibeginner_tutorials:/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p beginner_tutorials -o /home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/msg
 
 /home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/manifest.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kanin/catkin_ws_roboware/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp manifest code for beginner_tutorials"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kanin/catkin_ws_roboware/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating EusLisp manifest code for beginner_tutorials"
 	cd /home/kanin/catkin_ws_roboware/build/beginner_tutorials && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials beginner_tutorials std_msgs geometry_msgs
 
 beginner_tutorials_generate_messages_eus: beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus
 beginner_tutorials_generate_messages_eus: /home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/msg/my_msg.l
+beginner_tutorials_generate_messages_eus: /home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/msg/cmd_vel.l
 beginner_tutorials_generate_messages_eus: /home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/msg/Num.l
 beginner_tutorials_generate_messages_eus: /home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/manifest.l
 beginner_tutorials_generate_messages_eus: beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus.dir/build.make

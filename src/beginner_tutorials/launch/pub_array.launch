@@ -1,0 +1,6 @@
+<launch>
+
+<node pkg="beginner_tutorials" type="pub_array_cmd_vel" name="pub_array_cmd_vel" output="screen" >
+
+</node>
+</launch>

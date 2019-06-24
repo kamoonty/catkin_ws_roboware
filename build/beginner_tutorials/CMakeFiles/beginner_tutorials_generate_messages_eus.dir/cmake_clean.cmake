@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/beginner_tutorials_generate_messages_eus"
   "/home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/msg/my_msg.l"
+  "/home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/msg/cmd_vel.l"
   "/home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/msg/Num.l"
   "/home/kanin/catkin_ws_roboware/devel/share/roseus/ros/beginner_tutorials/manifest.l"
 )

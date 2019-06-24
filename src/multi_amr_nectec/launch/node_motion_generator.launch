@@ -1,0 +1,8 @@
+<launch>
+<node pkg="multi_amr_nectec" type="motion_generator" name="motion_generator" output="screen" >
+ <param name ="team_size" value = "4" />
+<param name ="v_linear_threshold" value = "0.8" />
+<param name ="v_angular_threshold" value = "0.3" />
+
+</node>
+</launch>

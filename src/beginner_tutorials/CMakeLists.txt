@@ -53,6 +53,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## Generate messages in the 'msg' folder
 add_message_files(FILES
+  cmd_vel.msg
   my_msg.msg
   Num.msg
 )
@@ -278,5 +279,21 @@ add_executable(get_robot_pos_test
 )
 add_dependencies(get_robot_pos_test ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(get_robot_pos_test
+  ${catkin_LIBRARIES}
+)
+
+add_executable(pub_array_cmd_vel
+  src/pub_array_cmd_vel.cpp
+)
+add_dependencies(pub_array_cmd_vel ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(pub_array_cmd_vel
+  ${catkin_LIBRARIES}
+)
+
+add_executable(sub_array_cmd_vel
+  src/sub_array_cmd_vel.cpp
+)
+add_dependencies(sub_array_cmd_vel ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(sub_array_cmd_vel
   ${catkin_LIBRARIES}
 )

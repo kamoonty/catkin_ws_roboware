@@ -80,7 +80,10 @@ multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/in
 multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/include/sensor_msgs/PointCloud.h
 multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/include/std_msgs/Empty.h
 multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/include/std_msgs/Float32.h
+multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/include/std_msgs/Float32MultiArray.h
 multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/include/std_msgs/Header.h
+multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/include/std_msgs/MultiArrayDimension.h
+multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/include/std_msgs/MultiArrayLayout.h
 multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/include/std_msgs/String.h
 multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/include/tf/FrameGraph.h
 multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.o: /opt/ros/kinetic/include/tf/FrameGraphRequest.h

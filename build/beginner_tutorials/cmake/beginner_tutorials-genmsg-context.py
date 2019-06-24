@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
-messages_str = "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/my_msg.msg;/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/Num.msg"
+messages_str = "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg;/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/my_msg.msg;/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/Num.msg"
 services_str = ""
 pkg_name = "beginner_tutorials"
 dependencies_str = "std_msgs;geometry_msgs"

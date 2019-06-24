@@ -39,6 +39,7 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/beginner_tutorials/msg" TYPE FILE FILES
+    "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg"
     "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/my_msg.msg"
     "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/Num.msg"
     )

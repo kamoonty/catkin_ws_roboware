@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+beginner_tutorials/CMakeFiles/sub_array_cmd_vel.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 beginner_tutorials/CMakeFiles/sub_array_cmd_vel.dir/rule
+.PHONY : beginner_tutorials/CMakeFiles/sub_array_cmd_vel.dir/rule
+
+# Convenience name for target.
+sub_array_cmd_vel: beginner_tutorials/CMakeFiles/sub_array_cmd_vel.dir/rule
+
+.PHONY : sub_array_cmd_vel
+
+# fast build rule for target.
+sub_array_cmd_vel/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/sub_array_cmd_vel.dir/build.make beginner_tutorials/CMakeFiles/sub_array_cmd_vel.dir/build
+.PHONY : sub_array_cmd_vel/fast
+
+# Convenience name for target.
 beginner_tutorials/CMakeFiles/get_robot_pos_test.dir/rule:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 beginner_tutorials/CMakeFiles/get_robot_pos_test.dir/rule
 .PHONY : beginner_tutorials/CMakeFiles/get_robot_pos_test.dir/rule
@@ -196,6 +211,21 @@ quat_to_euler: beginner_tutorials/CMakeFiles/quat_to_euler.dir/rule
 quat_to_euler/fast:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/quat_to_euler.dir/build.make beginner_tutorials/CMakeFiles/quat_to_euler.dir/build
 .PHONY : quat_to_euler/fast
+
+# Convenience name for target.
+beginner_tutorials/CMakeFiles/pub_array_cmd_vel.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 beginner_tutorials/CMakeFiles/pub_array_cmd_vel.dir/rule
+.PHONY : beginner_tutorials/CMakeFiles/pub_array_cmd_vel.dir/rule
+
+# Convenience name for target.
+pub_array_cmd_vel: beginner_tutorials/CMakeFiles/pub_array_cmd_vel.dir/rule
+
+.PHONY : pub_array_cmd_vel
+
+# fast build rule for target.
+pub_array_cmd_vel/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/pub_array_cmd_vel.dir/build.make beginner_tutorials/CMakeFiles/pub_array_cmd_vel.dir/build
+.PHONY : pub_array_cmd_vel/fast
 
 # Convenience name for target.
 beginner_tutorials/CMakeFiles/string_test.dir/rule:
@@ -331,6 +361,21 @@ beginner_tutorials_geneus: beginner_tutorials/CMakeFiles/beginner_tutorials_gene
 beginner_tutorials_geneus/fast:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/beginner_tutorials_geneus.dir/build.make beginner_tutorials/CMakeFiles/beginner_tutorials_geneus.dir/build
 .PHONY : beginner_tutorials_geneus/fast
+
+# Convenience name for target.
+beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus.dir/rule
+.PHONY : beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+beginner_tutorials_generate_messages_eus: beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus.dir/rule
+
+.PHONY : beginner_tutorials_generate_messages_eus
+
+# fast build rule for target.
+beginner_tutorials_generate_messages_eus/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus.dir/build.make beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus.dir/build
+.PHONY : beginner_tutorials_generate_messages_eus/fast
 
 # Convenience name for target.
 beginner_tutorials/CMakeFiles/tf_generate_messages_cpp.dir/rule:
@@ -648,21 +693,6 @@ nav_msgs_generate_messages_nodejs/fast:
 .PHONY : nav_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
-beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus.dir/rule:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus.dir/rule
-.PHONY : beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-beginner_tutorials_generate_messages_eus: beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus.dir/rule
-
-.PHONY : beginner_tutorials_generate_messages_eus
-
-# fast build rule for target.
-beginner_tutorials_generate_messages_eus/fast:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus.dir/build.make beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus.dir/build
-.PHONY : beginner_tutorials_generate_messages_eus/fast
-
-# Convenience name for target.
 beginner_tutorials/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 beginner_tutorials/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
 .PHONY : beginner_tutorials/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
@@ -676,6 +706,21 @@ geometry_msgs_generate_messages_py: beginner_tutorials/CMakeFiles/geometry_msgs_
 geometry_msgs_generate_messages_py/fast:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make beginner_tutorials/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
 .PHONY : geometry_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+beginner_tutorials/CMakeFiles/_beginner_tutorials_generate_messages_check_deps_cmd_vel.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 beginner_tutorials/CMakeFiles/_beginner_tutorials_generate_messages_check_deps_cmd_vel.dir/rule
+.PHONY : beginner_tutorials/CMakeFiles/_beginner_tutorials_generate_messages_check_deps_cmd_vel.dir/rule
+
+# Convenience name for target.
+_beginner_tutorials_generate_messages_check_deps_cmd_vel: beginner_tutorials/CMakeFiles/_beginner_tutorials_generate_messages_check_deps_cmd_vel.dir/rule
+
+.PHONY : _beginner_tutorials_generate_messages_check_deps_cmd_vel
+
+# fast build rule for target.
+_beginner_tutorials_generate_messages_check_deps_cmd_vel/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/_beginner_tutorials_generate_messages_check_deps_cmd_vel.dir/build.make beginner_tutorials/CMakeFiles/_beginner_tutorials_generate_messages_check_deps_cmd_vel.dir/build
+.PHONY : _beginner_tutorials_generate_messages_check_deps_cmd_vel/fast
 
 # Convenience name for target.
 beginner_tutorials/CMakeFiles/tf_generate_messages_lisp.dir/rule:
@@ -1232,6 +1277,33 @@ src/my_subscriber.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/my_subscriber.dir/build.make beginner_tutorials/CMakeFiles/my_subscriber.dir/src/my_subscriber.cpp.s
 .PHONY : src/my_subscriber.cpp.s
 
+src/pub_array_cmd_vel.o: src/pub_array_cmd_vel.cpp.o
+
+.PHONY : src/pub_array_cmd_vel.o
+
+# target to build an object file
+src/pub_array_cmd_vel.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/pub_array_cmd_vel.dir/build.make beginner_tutorials/CMakeFiles/pub_array_cmd_vel.dir/src/pub_array_cmd_vel.cpp.o
+.PHONY : src/pub_array_cmd_vel.cpp.o
+
+src/pub_array_cmd_vel.i: src/pub_array_cmd_vel.cpp.i
+
+.PHONY : src/pub_array_cmd_vel.i
+
+# target to preprocess a source file
+src/pub_array_cmd_vel.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/pub_array_cmd_vel.dir/build.make beginner_tutorials/CMakeFiles/pub_array_cmd_vel.dir/src/pub_array_cmd_vel.cpp.i
+.PHONY : src/pub_array_cmd_vel.cpp.i
+
+src/pub_array_cmd_vel.s: src/pub_array_cmd_vel.cpp.s
+
+.PHONY : src/pub_array_cmd_vel.s
+
+# target to generate assembly for a file
+src/pub_array_cmd_vel.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/pub_array_cmd_vel.dir/build.make beginner_tutorials/CMakeFiles/pub_array_cmd_vel.dir/src/pub_array_cmd_vel.cpp.s
+.PHONY : src/pub_array_cmd_vel.cpp.s
+
 src/quat_to_euler.o: src/quat_to_euler.cpp.o
 
 .PHONY : src/quat_to_euler.o
@@ -1285,6 +1357,33 @@ src/string_test.s: src/string_test.cpp.s
 src/string_test.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/string_test.dir/build.make beginner_tutorials/CMakeFiles/string_test.dir/src/string_test.cpp.s
 .PHONY : src/string_test.cpp.s
+
+src/sub_array_cmd_vel.o: src/sub_array_cmd_vel.cpp.o
+
+.PHONY : src/sub_array_cmd_vel.o
+
+# target to build an object file
+src/sub_array_cmd_vel.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/sub_array_cmd_vel.dir/build.make beginner_tutorials/CMakeFiles/sub_array_cmd_vel.dir/src/sub_array_cmd_vel.cpp.o
+.PHONY : src/sub_array_cmd_vel.cpp.o
+
+src/sub_array_cmd_vel.i: src/sub_array_cmd_vel.cpp.i
+
+.PHONY : src/sub_array_cmd_vel.i
+
+# target to preprocess a source file
+src/sub_array_cmd_vel.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/sub_array_cmd_vel.dir/build.make beginner_tutorials/CMakeFiles/sub_array_cmd_vel.dir/src/sub_array_cmd_vel.cpp.i
+.PHONY : src/sub_array_cmd_vel.cpp.i
+
+src/sub_array_cmd_vel.s: src/sub_array_cmd_vel.cpp.s
+
+.PHONY : src/sub_array_cmd_vel.s
+
+# target to generate assembly for a file
+src/sub_array_cmd_vel.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f beginner_tutorials/CMakeFiles/sub_array_cmd_vel.dir/build.make beginner_tutorials/CMakeFiles/sub_array_cmd_vel.dir/src/sub_array_cmd_vel.cpp.s
+.PHONY : src/sub_array_cmd_vel.cpp.s
 
 src/subscribe_path.o: src/subscribe_path.cpp.o
 
@@ -1350,8 +1449,10 @@ help:
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... edit_cache"
+	@echo "... sub_array_cmd_vel"
 	@echo "... get_robot_pos_test"
 	@echo "... quat_to_euler"
+	@echo "... pub_array_cmd_vel"
 	@echo "... string_test"
 	@echo "... my_publisher"
 	@echo "... listener"
@@ -1361,6 +1462,7 @@ help:
 	@echo "... beginner_tutorials_generate_messages_nodejs"
 	@echo "... beginner_tutorials_generate_messages_lisp"
 	@echo "... beginner_tutorials_geneus"
+	@echo "... beginner_tutorials_generate_messages_eus"
 	@echo "... tf_generate_messages_cpp"
 	@echo "... move_base_msgs_generate_messages_lisp"
 	@echo "... actionlib_generate_messages_eus"
@@ -1383,8 +1485,8 @@ help:
 	@echo "... actionlib_msgs_generate_messages_eus"
 	@echo "... actionlib_generate_messages_py"
 	@echo "... nav_msgs_generate_messages_nodejs"
-	@echo "... beginner_tutorials_generate_messages_eus"
 	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... _beginner_tutorials_generate_messages_check_deps_cmd_vel"
 	@echo "... tf_generate_messages_lisp"
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... tf_generate_messages_nodejs"
@@ -1430,12 +1532,18 @@ help:
 	@echo "... src/my_subscriber.o"
 	@echo "... src/my_subscriber.i"
 	@echo "... src/my_subscriber.s"
+	@echo "... src/pub_array_cmd_vel.o"
+	@echo "... src/pub_array_cmd_vel.i"
+	@echo "... src/pub_array_cmd_vel.s"
 	@echo "... src/quat_to_euler.o"
 	@echo "... src/quat_to_euler.i"
 	@echo "... src/quat_to_euler.s"
 	@echo "... src/string_test.o"
 	@echo "... src/string_test.i"
 	@echo "... src/string_test.s"
+	@echo "... src/sub_array_cmd_vel.o"
+	@echo "... src/sub_array_cmd_vel.i"
+	@echo "... src/sub_array_cmd_vel.s"
 	@echo "... src/subscribe_path.o"
 	@echo "... src/subscribe_path.i"
 	@echo "... src/subscribe_path.s"

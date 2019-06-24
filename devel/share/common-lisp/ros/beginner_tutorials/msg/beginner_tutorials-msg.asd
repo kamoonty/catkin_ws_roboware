@@ -7,6 +7,8 @@
   :components ((:file "_package")
     (:file "Num" :depends-on ("_package_Num"))
     (:file "_package_Num" :depends-on ("_package"))
+    (:file "cmd_vel" :depends-on ("_package_cmd_vel"))
+    (:file "_package_cmd_vel" :depends-on ("_package"))
     (:file "my_msg" :depends-on ("_package_my_msg"))
     (:file "_package_my_msg" :depends-on ("_package"))
   ))

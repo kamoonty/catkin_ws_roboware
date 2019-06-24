@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "beginner_tutorials: 2 messages, 0 services")
+message(STATUS "beginner_tutorials: 3 messages, 0 services")
 
 set(MSG_I_FLAGS "-Ibeginner_tutorials:/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg;-Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg")
 
@@ -22,6 +22,11 @@ add_custom_target(_beginner_tutorials_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "beginner_tutorials" "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/my_msg.msg" "geometry_msgs/Point"
 )
 
+get_filename_component(_filename "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg" NAME_WE)
+add_custom_target(_beginner_tutorials_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "beginner_tutorials" "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg" "geometry_msgs/Twist:geometry_msgs/Vector3"
+)
+
 get_filename_component(_filename "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/Num.msg" NAME_WE)
 add_custom_target(_beginner_tutorials_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "beginner_tutorials" "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/Num.msg" ""
@@ -37,6 +42,12 @@ _generate_msg_cpp(beginner_tutorials
   "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/my_msg.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Point.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/beginner_tutorials
+)
+_generate_msg_cpp(beginner_tutorials
+  "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Twist.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Vector3.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/beginner_tutorials
 )
 _generate_msg_cpp(beginner_tutorials
@@ -62,6 +73,8 @@ add_dependencies(beginner_tutorials_generate_messages beginner_tutorials_generat
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/my_msg.msg" NAME_WE)
 add_dependencies(beginner_tutorials_generate_messages_cpp _beginner_tutorials_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg" NAME_WE)
+add_dependencies(beginner_tutorials_generate_messages_cpp _beginner_tutorials_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/Num.msg" NAME_WE)
 add_dependencies(beginner_tutorials_generate_messages_cpp _beginner_tutorials_generate_messages_check_deps_${_filename})
 
@@ -78,6 +91,12 @@ _generate_msg_eus(beginner_tutorials
   "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/my_msg.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Point.msg"
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/beginner_tutorials
+)
+_generate_msg_eus(beginner_tutorials
+  "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Twist.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Vector3.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/beginner_tutorials
 )
 _generate_msg_eus(beginner_tutorials
@@ -103,6 +122,8 @@ add_dependencies(beginner_tutorials_generate_messages beginner_tutorials_generat
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/my_msg.msg" NAME_WE)
 add_dependencies(beginner_tutorials_generate_messages_eus _beginner_tutorials_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg" NAME_WE)
+add_dependencies(beginner_tutorials_generate_messages_eus _beginner_tutorials_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/Num.msg" NAME_WE)
 add_dependencies(beginner_tutorials_generate_messages_eus _beginner_tutorials_generate_messages_check_deps_${_filename})
 
@@ -119,6 +140,12 @@ _generate_msg_lisp(beginner_tutorials
   "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/my_msg.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Point.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/beginner_tutorials
+)
+_generate_msg_lisp(beginner_tutorials
+  "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Twist.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Vector3.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/beginner_tutorials
 )
 _generate_msg_lisp(beginner_tutorials
@@ -144,6 +171,8 @@ add_dependencies(beginner_tutorials_generate_messages beginner_tutorials_generat
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/my_msg.msg" NAME_WE)
 add_dependencies(beginner_tutorials_generate_messages_lisp _beginner_tutorials_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg" NAME_WE)
+add_dependencies(beginner_tutorials_generate_messages_lisp _beginner_tutorials_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/Num.msg" NAME_WE)
 add_dependencies(beginner_tutorials_generate_messages_lisp _beginner_tutorials_generate_messages_check_deps_${_filename})
 
@@ -160,6 +189,12 @@ _generate_msg_nodejs(beginner_tutorials
   "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/my_msg.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Point.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/beginner_tutorials
+)
+_generate_msg_nodejs(beginner_tutorials
+  "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Twist.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Vector3.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/beginner_tutorials
 )
 _generate_msg_nodejs(beginner_tutorials
@@ -185,6 +220,8 @@ add_dependencies(beginner_tutorials_generate_messages beginner_tutorials_generat
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/my_msg.msg" NAME_WE)
 add_dependencies(beginner_tutorials_generate_messages_nodejs _beginner_tutorials_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg" NAME_WE)
+add_dependencies(beginner_tutorials_generate_messages_nodejs _beginner_tutorials_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/Num.msg" NAME_WE)
 add_dependencies(beginner_tutorials_generate_messages_nodejs _beginner_tutorials_generate_messages_check_deps_${_filename})
 
@@ -201,6 +238,12 @@ _generate_msg_py(beginner_tutorials
   "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/my_msg.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Point.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/beginner_tutorials
+)
+_generate_msg_py(beginner_tutorials
+  "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Twist.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Vector3.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/beginner_tutorials
 )
 _generate_msg_py(beginner_tutorials
@@ -225,6 +268,8 @@ add_dependencies(beginner_tutorials_generate_messages beginner_tutorials_generat
 
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/my_msg.msg" NAME_WE)
+add_dependencies(beginner_tutorials_generate_messages_py _beginner_tutorials_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg" NAME_WE)
 add_dependencies(beginner_tutorials_generate_messages_py _beginner_tutorials_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/Num.msg" NAME_WE)
 add_dependencies(beginner_tutorials_generate_messages_py _beginner_tutorials_generate_messages_check_deps_${_filename})

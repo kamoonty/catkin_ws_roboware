@@ -6,15 +6,16 @@
 #include <geometry_msgs/Twist.h>
 #include <stdlib.h> 
 #include <boost/lexical_cast.hpp>
-//#include "multi_amr_nectec/pos_msg.h"
-//#include "math.h"
-//#include "std_msgs/String.h"
+
+#include "std_msgs/MultiArrayLayout.h"
+#include "std_msgs/MultiArrayDimension.h"
+#include "std_msgs/Float32MultiArray.h"
+
 geometry_msgs::Point get_pos_vl;
 geometry_msgs::Point robot_pos[10] ; //allocate for max 10 robots
-//geometry_msgs::Twist get_angular_vl;
-//multi_amr_nectec::pos_msg get_msg;
 int team_size; //use for get param from launch file
 float Kvl;
+
 // We need to round value after subscribe because if not it can cause problem
 // when VL= 0.00000003 and Robot 1 Pos X = 0.00000004 it is not equal so useroundf (number*100)/100
 void vl_posCB(const geometry_msgs::Point & vl_pos)
@@ -67,17 +68,24 @@ int main(int argc, char** argv)
  ros::Subscriber robot3_pos_sub = nh.subscribe("amr_3/pub_pos", 1000, robot3_posCB);
  //ros::Subscriber vl_quat_sub = nh.subscribe("vl_robot/pub_quat", 1000, Callback);
  //ros::Subscriber robot_pos_sub = nh.subscribe<multi_amr_nectec::pos_msg>("robot_pos", 1000, boost::bind(robot_pos_Callback,_1,team_size));
+ /*
  ros::Publisher force0_pub = nh.advertise<geometry_msgs::Twist>("amr_0/cmd_vel", 1000);
  ros::Publisher force1_pub = nh.advertise<geometry_msgs::Twist>("amr_1/cmd_vel", 1000); 
  ros::Publisher force2_pub = nh.advertise<geometry_msgs::Twist>("amr_2/cmd_vel", 1000);
  ros::Publisher force3_pub = nh.advertise<geometry_msgs::Twist>("amr_3/cmd_vel", 1000);
+ */
+ ros::Publisher pub_cmd_vel_x = nh.advertise<std_msgs::Float32MultiArray>("vl_force_cmd_vel_x", 100);
+ ros::Publisher pub_cmd_vel_y = nh.advertise<std_msgs::Float32MultiArray>("vl_force_cmd_vel_y", 100);
  geometry_msgs::Twist send_fvl [team_size];
  geometry_msgs::Point Dist_vl [team_size];
  geometry_msgs::Point absolute_distance [team_size];
  tf::TransformListener listener;
  
 while (nh.ok()) 
-{ 
+{  std_msgs::Float32MultiArray robot_cmd_vel_linear_x;
+   std_msgs::Float32MultiArray robot_cmd_vel_linear_y;
+   robot_cmd_vel_linear_x.data.clear();
+   robot_cmd_vel_linear_y.data.clear();
    for (int i = 0; i < team_size; i++)
       {  
  tf::StampedTransform transform;
@@ -130,29 +138,22 @@ double th = tf::getYaw(transform.getRotation());
                 ROS_INFO("Virtual Force of robot %d[%.3f,%.3f]",i,absolute_distance[i].x,absolute_distance[i].y);           
                   send_fvl[i].linear.x =Kvl*spring_state_x*absolute_distance[i].x;
                   send_fvl[i].linear.y =Kvl*spring_state_y*absolute_distance[i].y; 
-                   //set Linear velocity threshold 
-              if(send_fvl[i].linear.x>=1)
-              {send_fvl[i].linear.x=1;
-              ROS_INFO("Threshold Vx max");}
-              else if (send_fvl[i].linear.x<=-1)
-              {send_fvl[i].linear.x=-1;
-                ROS_INFO("Threshold Vx min");}
-              if(send_fvl[i].linear.y>=1)
-              {send_fvl[i].linear.y=1;
-              ROS_INFO("Threshold Vy max");}
-              else if (send_fvl[i].linear.y<=-1)
-              {send_fvl[i].linear.y=-1;
-                ROS_INFO("Threshold Vy min");}
+                   
+
                   //send_fvl[i].angular.z=get_angular_vl.angular.z; 
                 ROS_INFO("Cmd_vel robot %d x=%f y=%f",i, send_fvl[i].linear.x,send_fvl[i].linear.y);  
                 ROS_INFO("-----------------------");
+                
+                robot_cmd_vel_linear_x.data.push_back(send_fvl[i].linear.x);
+                robot_cmd_vel_linear_y.data.push_back(send_fvl[i].linear.y);
                 }              
-      force0_pub.publish(send_fvl[0]);
+      /*force0_pub.publish(send_fvl[0]);
       force1_pub.publish(send_fvl[1]);
       force2_pub.publish(send_fvl[2]);
       force3_pub.publish(send_fvl[3]);
-                
-
+       */         
+      pub_cmd_vel_x.publish(robot_cmd_vel_linear_x);
+      pub_cmd_vel_y.publish(robot_cmd_vel_linear_y);
       ros::spinOnce();
       loopRate.sleep();
 

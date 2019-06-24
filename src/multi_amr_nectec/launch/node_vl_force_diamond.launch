@@ -2,6 +2,7 @@
 <node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" >
   <param name ="team_size" value = "4" />
   <param name ="Kvl" value = "0.5" />
+
 </node>
 <rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/diamond.yaml" />
 </launch>

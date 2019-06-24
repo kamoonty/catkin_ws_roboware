@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/beginner_tutorials_generate_messages_cpp"
   "/home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials/my_msg.h"
+  "/home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials/cmd_vel.h"
   "/home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials/Num.h"
 )
 

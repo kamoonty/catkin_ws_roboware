@@ -54,6 +54,7 @@ CMAKE_BINARY_DIR = /home/kanin/catkin_ws_roboware/build
 include beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_cpp.dir/progress.make
 
 beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_cpp: /home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials/my_msg.h
+beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_cpp: /home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials/cmd_vel.h
 beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_cpp: /home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials/Num.h
 
 
@@ -64,14 +65,23 @@ beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_cpp: /home/ka
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kanin/catkin_ws_roboware/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code from beginner_tutorials/my_msg.msg"
 	cd /home/kanin/catkin_ws_roboware/src/beginner_tutorials && /home/kanin/catkin_ws_roboware/build/catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/my_msg.msg -Ibeginner_tutorials:/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p beginner_tutorials -o /home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials -e /opt/ros/kinetic/share/gencpp/cmake/..
 
+/home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials/cmd_vel.h: /opt/ros/kinetic/lib/gencpp/gen_cpp.py
+/home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials/cmd_vel.h: /home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg
+/home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials/cmd_vel.h: /opt/ros/kinetic/share/geometry_msgs/msg/Twist.msg
+/home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials/cmd_vel.h: /opt/ros/kinetic/share/geometry_msgs/msg/Vector3.msg
+/home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials/cmd_vel.h: /opt/ros/kinetic/share/gencpp/msg.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kanin/catkin_ws_roboware/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating C++ code from beginner_tutorials/cmd_vel.msg"
+	cd /home/kanin/catkin_ws_roboware/src/beginner_tutorials && /home/kanin/catkin_ws_roboware/build/catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/cmd_vel.msg -Ibeginner_tutorials:/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p beginner_tutorials -o /home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials -e /opt/ros/kinetic/share/gencpp/cmake/..
+
 /home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials/Num.h: /opt/ros/kinetic/lib/gencpp/gen_cpp.py
 /home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials/Num.h: /home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/Num.msg
 /home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials/Num.h: /opt/ros/kinetic/share/gencpp/msg.h.template
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kanin/catkin_ws_roboware/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating C++ code from beginner_tutorials/Num.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kanin/catkin_ws_roboware/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating C++ code from beginner_tutorials/Num.msg"
 	cd /home/kanin/catkin_ws_roboware/src/beginner_tutorials && /home/kanin/catkin_ws_roboware/build/catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg/Num.msg -Ibeginner_tutorials:/home/kanin/catkin_ws_roboware/src/beginner_tutorials/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p beginner_tutorials -o /home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials -e /opt/ros/kinetic/share/gencpp/cmake/..
 
 beginner_tutorials_generate_messages_cpp: beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_cpp
 beginner_tutorials_generate_messages_cpp: /home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials/my_msg.h
+beginner_tutorials_generate_messages_cpp: /home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials/cmd_vel.h
 beginner_tutorials_generate_messages_cpp: /home/kanin/catkin_ws_roboware/devel/include/beginner_tutorials/Num.h
 beginner_tutorials_generate_messages_cpp: beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_cpp.dir/build.make
 

@@ -662,6 +662,19 @@ setpoint_node/fast:
 .PHONY : setpoint_node/fast
 
 #=============================================================================
+# Target rules for targets named sub_array_cmd_vel
+
+# Build rule for target.
+sub_array_cmd_vel: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sub_array_cmd_vel
+.PHONY : sub_array_cmd_vel
+
+# fast build rule for target.
+sub_array_cmd_vel/fast:
+	$(MAKE) -f beginner_tutorials/CMakeFiles/sub_array_cmd_vel.dir/build.make beginner_tutorials/CMakeFiles/sub_array_cmd_vel.dir/build
+.PHONY : sub_array_cmd_vel/fast
+
+#=============================================================================
 # Target rules for targets named get_robot_pos_test
 
 # Build rule for target.
@@ -686,6 +699,19 @@ quat_to_euler: cmake_check_build_system
 quat_to_euler/fast:
 	$(MAKE) -f beginner_tutorials/CMakeFiles/quat_to_euler.dir/build.make beginner_tutorials/CMakeFiles/quat_to_euler.dir/build
 .PHONY : quat_to_euler/fast
+
+#=============================================================================
+# Target rules for targets named pub_array_cmd_vel
+
+# Build rule for target.
+pub_array_cmd_vel: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pub_array_cmd_vel
+.PHONY : pub_array_cmd_vel
+
+# fast build rule for target.
+pub_array_cmd_vel/fast:
+	$(MAKE) -f beginner_tutorials/CMakeFiles/pub_array_cmd_vel.dir/build.make beginner_tutorials/CMakeFiles/pub_array_cmd_vel.dir/build
+.PHONY : pub_array_cmd_vel/fast
 
 #=============================================================================
 # Target rules for targets named string_test
@@ -803,6 +829,19 @@ beginner_tutorials_geneus: cmake_check_build_system
 beginner_tutorials_geneus/fast:
 	$(MAKE) -f beginner_tutorials/CMakeFiles/beginner_tutorials_geneus.dir/build.make beginner_tutorials/CMakeFiles/beginner_tutorials_geneus.dir/build
 .PHONY : beginner_tutorials_geneus/fast
+
+#=============================================================================
+# Target rules for targets named beginner_tutorials_generate_messages_eus
+
+# Build rule for target.
+beginner_tutorials_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 beginner_tutorials_generate_messages_eus
+.PHONY : beginner_tutorials_generate_messages_eus
+
+# fast build rule for target.
+beginner_tutorials_generate_messages_eus/fast:
+	$(MAKE) -f beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus.dir/build.make beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus.dir/build
+.PHONY : beginner_tutorials_generate_messages_eus/fast
 
 #=============================================================================
 # Target rules for targets named tf_generate_messages_cpp
@@ -1078,19 +1117,6 @@ nav_msgs_generate_messages_nodejs/fast:
 .PHONY : nav_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
-# Target rules for targets named beginner_tutorials_generate_messages_eus
-
-# Build rule for target.
-beginner_tutorials_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 beginner_tutorials_generate_messages_eus
-.PHONY : beginner_tutorials_generate_messages_eus
-
-# fast build rule for target.
-beginner_tutorials_generate_messages_eus/fast:
-	$(MAKE) -f beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus.dir/build.make beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_eus.dir/build
-.PHONY : beginner_tutorials_generate_messages_eus/fast
-
-#=============================================================================
 # Target rules for targets named geometry_msgs_generate_messages_py
 
 # Build rule for target.
@@ -1102,6 +1128,19 @@ geometry_msgs_generate_messages_py: cmake_check_build_system
 geometry_msgs_generate_messages_py/fast:
 	$(MAKE) -f beginner_tutorials/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make beginner_tutorials/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
 .PHONY : geometry_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named _beginner_tutorials_generate_messages_check_deps_cmd_vel
+
+# Build rule for target.
+_beginner_tutorials_generate_messages_check_deps_cmd_vel: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _beginner_tutorials_generate_messages_check_deps_cmd_vel
+.PHONY : _beginner_tutorials_generate_messages_check_deps_cmd_vel
+
+# fast build rule for target.
+_beginner_tutorials_generate_messages_check_deps_cmd_vel/fast:
+	$(MAKE) -f beginner_tutorials/CMakeFiles/_beginner_tutorials_generate_messages_check_deps_cmd_vel.dir/build.make beginner_tutorials/CMakeFiles/_beginner_tutorials_generate_messages_check_deps_cmd_vel.dir/build
+.PHONY : _beginner_tutorials_generate_messages_check_deps_cmd_vel/fast
 
 #=============================================================================
 # Target rules for targets named tf_generate_messages_lisp
@@ -1856,8 +1895,10 @@ help:
 	@echo "... plant_sim"
 	@echo "... pid_gencfg"
 	@echo "... setpoint_node"
+	@echo "... sub_array_cmd_vel"
 	@echo "... get_robot_pos_test"
 	@echo "... quat_to_euler"
+	@echo "... pub_array_cmd_vel"
 	@echo "... string_test"
 	@echo "... my_publisher"
 	@echo "... listener"
@@ -1867,6 +1908,7 @@ help:
 	@echo "... beginner_tutorials_generate_messages_nodejs"
 	@echo "... beginner_tutorials_generate_messages_lisp"
 	@echo "... beginner_tutorials_geneus"
+	@echo "... beginner_tutorials_generate_messages_eus"
 	@echo "... tf_generate_messages_cpp"
 	@echo "... move_base_msgs_generate_messages_lisp"
 	@echo "... actionlib_generate_messages_eus"
@@ -1888,8 +1930,8 @@ help:
 	@echo "... actionlib_msgs_generate_messages_eus"
 	@echo "... actionlib_generate_messages_py"
 	@echo "... nav_msgs_generate_messages_nodejs"
-	@echo "... beginner_tutorials_generate_messages_eus"
 	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... _beginner_tutorials_generate_messages_check_deps_cmd_vel"
 	@echo "... tf_generate_messages_lisp"
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... tf_generate_messages_nodejs"
