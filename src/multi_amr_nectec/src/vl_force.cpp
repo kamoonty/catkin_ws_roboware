@@ -11,7 +11,7 @@
 #include "std_msgs/MultiArrayDimension.h"
 #include "std_msgs/Float32MultiArray.h"
 int team_size; //use for get param from launch file
-float Kvl;
+float Kvl,Cvl;
 
 int main(int argc, char** argv) 
 {
@@ -21,6 +21,7 @@ int main(int argc, char** argv)
  //load param from launch file
  nh.getParam("vl_force/team_size", team_size);
  nh.getParam("vl_force/Kvl", Kvl);
+ nh.getParam("vl_force/Cvl", Cvl);
  // load param for initial formation from YAML file
  std::vector<double> initial_pos_x;
  std::vector<double> initial_pos_y;
@@ -83,9 +84,7 @@ double th = tf::getYaw(transform.getRotation());
                 absolute_distance[i].y=(fabs(Dist_vl[i].y)-fabs(initial_pos_y[i]));            
                 ROS_INFO("Virtual Force of robot %d[%.3f,%.3f]",i,absolute_distance[i].x,absolute_distance[i].y);           
                   send_fvl[i].linear.x =Kvl*spring_state_x*absolute_distance[i].x;
-                  send_fvl[i].linear.y =Kvl*spring_state_y*absolute_distance[i].y; 
-                   
-
+                  send_fvl[i].linear.y =Kvl*spring_state_y*absolute_distance[i].y;                    
                 ROS_INFO("F_vl of robot %d x=%f y=%f",i, send_fvl[i].linear.x,send_fvl[i].linear.y);  
                 ROS_INFO("-----------------------");
                 
