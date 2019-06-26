@@ -82,6 +82,7 @@
 /home/kanin/catkin_ws_roboware/build/beginner_tutorials/CMakeFiles/install.dir
 /home/kanin/catkin_ws_roboware/build/beginner_tutorials/CMakeFiles/list_install_components.dir
 /home/kanin/catkin_ws_roboware/build/beginner_tutorials/CMakeFiles/edit_cache.dir
+/home/kanin/catkin_ws_roboware/build/beginner_tutorials/CMakeFiles/diff_function.dir
 /home/kanin/catkin_ws_roboware/build/beginner_tutorials/CMakeFiles/sub_array_cmd_vel.dir
 /home/kanin/catkin_ws_roboware/build/beginner_tutorials/CMakeFiles/get_robot_pos_test.dir
 /home/kanin/catkin_ws_roboware/build/beginner_tutorials/CMakeFiles/quat_to_euler.dir

@@ -662,6 +662,19 @@ setpoint_node/fast:
 .PHONY : setpoint_node/fast
 
 #=============================================================================
+# Target rules for targets named diff_function
+
+# Build rule for target.
+diff_function: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 diff_function
+.PHONY : diff_function
+
+# fast build rule for target.
+diff_function/fast:
+	$(MAKE) -f beginner_tutorials/CMakeFiles/diff_function.dir/build.make beginner_tutorials/CMakeFiles/diff_function.dir/build
+.PHONY : diff_function/fast
+
+#=============================================================================
 # Target rules for targets named sub_array_cmd_vel
 
 # Build rule for target.
@@ -1895,6 +1908,7 @@ help:
 	@echo "... plant_sim"
 	@echo "... pid_gencfg"
 	@echo "... setpoint_node"
+	@echo "... diff_function"
 	@echo "... sub_array_cmd_vel"
 	@echo "... get_robot_pos_test"
 	@echo "... quat_to_euler"

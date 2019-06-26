@@ -18,6 +18,9 @@ int main(int argc, char** argv)
  ros::init(argc, argv, "vl_force");
  ros::NodeHandle nh;
  ros::Rate loopRate(20);
+ float diff_time=0.05; //20Hz=0.05 sec
+ //ros::Time prev_time;
+ //ros::Duration diff_time;
  //load param from launch file
  nh.getParam("vl_force/team_size", team_size);
  nh.getParam("vl_force/Kvl", Kvl);
@@ -33,8 +36,10 @@ int main(int argc, char** argv)
  geometry_msgs::Twist send_fvl [team_size];
  geometry_msgs::Point Dist_vl [team_size];
  geometry_msgs::Point absolute_distance [team_size];
+ geometry_msgs::Point first_data [team_size];
+ geometry_msgs::Point second_data [team_size];
+ geometry_msgs::Point diff_value [team_size];
  tf::TransformListener listener;
- 
 while (nh.ok()) 
 {  std_msgs::Float32MultiArray robot_cmd_vel_linear_x;
    std_msgs::Float32MultiArray robot_cmd_vel_linear_y;
@@ -82,9 +87,28 @@ double th = tf::getYaw(transform.getRotation());
                ROS_INFO("Dist_vl [%f,%f]",Dist_vl[i].x,Dist_vl[i].y);
                 absolute_distance[i].x=(fabs(Dist_vl[i].x)-fabs(initial_pos_x[i]));
                 absolute_distance[i].y=(fabs(Dist_vl[i].y)-fabs(initial_pos_y[i]));            
-                ROS_INFO("Virtual Force of robot %d[%.3f,%.3f]",i,absolute_distance[i].x,absolute_distance[i].y);           
-                  send_fvl[i].linear.x =Kvl*spring_state_x*absolute_distance[i].x;
-                  send_fvl[i].linear.y =Kvl*spring_state_y*absolute_distance[i].y;                    
+                ROS_INFO("Absolute distance of robot %d[%.3f,%.3f]",i,absolute_distance[i].x,absolute_distance[i].y);           
+     
+      // calculate delta_t
+        //rate = 20Hz
+         first_data[i].x= absolute_distance[i].x;
+         first_data[i].y= absolute_distance[i].y;
+      if(second_data[i].x!=0&&second_data[i].y!=0)
+       {  ROS_INFO("first_data robot %d= [%f,%f]",i,first_data[i].x,first_data[i].y);
+         ROS_INFO("second_data robot %d= [%f,%f]",i,second_data[i].x,second_data[i].y);
+        diff_value[i].x= (fabs(first_data[i].x)-fabs(second_data[i].x))/diff_time;
+        diff_value[i].y= (fabs(first_data[i].y)-fabs(second_data[i].y))/diff_time;
+       second_data[i].x=first_data[i].x;
+       second_data[i].y=first_data[i].y;
+       ROS_INFO("Diff of robot %d = [%f,%f]",i,diff_value[i].x,diff_value[i].y);
+       }
+       else
+       {second_data[i].x=first_data[i].x;
+       second_data[i].y=first_data[i].y;
+       ROS_INFO("!!!!Enter First loop!!!");
+       }     
+                  send_fvl[i].linear.x =spring_state_x*(Kvl*absolute_distance[i].x+Cvl*diff_value[i].x);
+                  send_fvl[i].linear.y =spring_state_y*(Kvl*absolute_distance[i].y+Cvl*diff_value[i].y);                    
                 ROS_INFO("F_vl of robot %d x=%f y=%f",i, send_fvl[i].linear.x,send_fvl[i].linear.y);  
                 ROS_INFO("-----------------------");
                 

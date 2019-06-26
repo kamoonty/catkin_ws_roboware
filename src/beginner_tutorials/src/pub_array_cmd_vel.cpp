@@ -14,11 +14,13 @@ int main(int argc, char **argv)
 	ros::init(argc, argv, "arrayPublisher");
 
 	ros::NodeHandle n;
-
 	ros::Publisher pub = n.advertise<std_msgs::Float32MultiArray>("array", 100);
+    
+
+	
 
 	while (ros::ok())
-	{
+	{   
 		std_msgs::Float32MultiArray array;
 		//Clear array
 		array.data.clear();
@@ -33,10 +35,12 @@ int main(int argc, char **argv)
 		pub.publish(array);
 		//Let the world know
 		ROS_INFO("I published something!");
+
 		//Do this.
 		ros::spinOnce();
 		//Added a delay so not to spam
-		sleep(1);
+		sleep(2);
+	
 	}
 
 }

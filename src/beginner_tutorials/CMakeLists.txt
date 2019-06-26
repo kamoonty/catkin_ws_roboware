@@ -297,3 +297,11 @@ add_dependencies(sub_array_cmd_vel ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_
 target_link_libraries(sub_array_cmd_vel
   ${catkin_LIBRARIES}
 )
+
+add_executable(diff_function
+  src/diff_function.cpp
+)
+add_dependencies(diff_function ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(diff_function
+  ${catkin_LIBRARIES}
+)
