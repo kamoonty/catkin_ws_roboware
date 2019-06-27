@@ -34,7 +34,7 @@ pub_pose_ = nh_.advertise<geometry_msgs::Pose2D>("pose2d", 1);
 //ros::Publisher pos_pub = nh.advertise<geometry_msgs::Pose2D>("pos", 1000);
 
 
-ros::Rate loop_rate(20);
+ros::Rate loop_rate(100);
 while (ros::ok())
   {
     

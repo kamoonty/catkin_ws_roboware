@@ -16,7 +16,7 @@ int main(int argc, char** argv)
 {
  ros::init(argc, argv, "inter_agent_force");
  ros::NodeHandle nh;
- ros::Rate loopRate(20);
+ ros::Rate loopRate(100);
  //load param from launch file
  nh.getParam("inter_agent_force/team_size", team_size);
  nh.getParam("inter_agent_force/Kij", Kij);

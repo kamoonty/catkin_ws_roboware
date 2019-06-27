@@ -17,8 +17,8 @@ int main(int argc, char** argv)
 {
  ros::init(argc, argv, "vl_force");
  ros::NodeHandle nh;
- ros::Rate loopRate(20);
- float diff_time=0.05; //20Hz=0.05 sec
+ ros::Rate loopRate(100);
+ float diff_time=0.01; //20Hz=0.05 sec
  //ros::Time prev_time;
  //ros::Duration diff_time;
  //load param from launch file
