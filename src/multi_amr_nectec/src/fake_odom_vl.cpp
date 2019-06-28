@@ -37,7 +37,7 @@ int main(int argc, char** argv){
   double x = default_x;
   double y = default_y;
   double th = default_theta;
-  ros::Rate loopRate(20);
+  ros::Rate loopRate(100);
   while(nh.ok()){
     ros::spinOnce();               // check for incoming messages
     current_time = ros::Time::now();   

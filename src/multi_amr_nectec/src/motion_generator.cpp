@@ -75,7 +75,7 @@ int main(int argc, char **argv)
 {
 ros::init(argc, argv, "motion_generator");
 ros::NodeHandle nh;
-ros::Rate loopRate(100);
+ros::Rate loopRate(5);
 nh.getParam("motion_generator/team_size", team_size);
 nh.getParam("motion_generator/v_linear_threshold",v_linear_threshold);
 nh.getParam("motion_generator/v_angular_threshold",v_angular_threshold);

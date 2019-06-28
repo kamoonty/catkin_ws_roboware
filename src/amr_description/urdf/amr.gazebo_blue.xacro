@@ -187,7 +187,6 @@
     </sensor>
   </gazebo>
 
-
   <gazebo reference="camera_rgb_frame">  
     <sensor type="depth" name="camera">
       <always_on>true</always_on>

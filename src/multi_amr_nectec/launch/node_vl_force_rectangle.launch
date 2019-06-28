@@ -1,8 +1,8 @@
 <launch>
 <node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" >
   <param name ="team_size" value = "4" />
-  <param name ="Kvl" value = "200" />
-   <param name ="Cvl" value = "10" />
+  <param name ="Kvl" value = "2000" />
+   <param name ="Cvl" value = "0" />
 
 </node>
 <rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/rectangle.yaml" />

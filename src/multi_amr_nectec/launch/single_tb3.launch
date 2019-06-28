@@ -1,0 +1,25 @@
+<launch>
+    <arg name="robot_name"/>
+    <arg name="init_pose_gazebo"/>
+    <arg name="init_pose_rviz"/>
+    <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+    <arg name="move_forward_only" default="false"/>
+    <param name="tf_prefix" value="$(arg robot_name)" />
+
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="$(arg init_pose_gazebo) -urdf -param robot_description -model $(arg robot_name)" output="screen"/>
+
+   <!--To publish Joint and Robot state-->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+  <param name="rate" value="20.0"/>
+  </node>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher">
+  <param name="publish_frequency" value="20.0"/>
+  </node>
+<!--transform odom to map at 50 Hz  or 20 ms-->
+ <node pkg="tf" type="static_transform_publisher" name="odom_map_broadcaster" args="0 0 0 0 0 0 /map $(arg robot_name)/odom 50" />
+
+
+
+</launch>

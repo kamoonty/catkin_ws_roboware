@@ -29,8 +29,8 @@ ros::init(argc, argv, "tf_quat2euler");
 
 ros::NodeHandle nh_;
 
-ros::Subscriber sub_odom_ = nh_.subscribe("odom", 1, odometryCallback_);
-pub_pose_ = nh_.advertise<geometry_msgs::Pose2D>("pose2d", 1);
+ros::Subscriber sub_odom_ = nh_.subscribe("odom", 1000, odometryCallback_);
+pub_pose_ = nh_.advertise<geometry_msgs::Pose2D>("pose2d", 1000);
 //ros::Publisher pos_pub = nh.advertise<geometry_msgs::Pose2D>("pos", 1000);
 
 

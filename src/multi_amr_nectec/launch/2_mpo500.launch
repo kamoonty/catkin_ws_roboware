@@ -2,7 +2,7 @@
   <master auto="start"/>
   <param name="/use_sim_time" value="true"/>
   <arg name="open_rviz" default="true"/>
-  <arg name="open_gazebo" default="false"/>
+  <arg name="open_gazebo" default="true"/>
   <arg name="team_size" value="2"/>
 <!-- other robot map-->
 <arg name="watkin_map" default="$(find multi_amr_nectec)/maps/watkin_lab.yaml"/>
@@ -33,31 +33,25 @@
 
 <!-- AMR 0  -->
   <group ns="amr_0">
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 6 -y 0 -z 0 -Y 3.1415 -P 0 -R 0" />
+    <include file="$(find multi_amr_nectec)/launch/single_mpo500.launch" >
+      <arg name="init_pose_gazebo" value="-x 7 -y 0 -z 0 -Y 3.1415 -P 0 -R 0" />
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
       <arg name="robot_name" value="amr_0" />
-      <arg name="robot_colour" value="blue"/>
     </include>
-     <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
      <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
  
   </group>
 
 <!-- AMR 1  -->
  <group ns="amr_1">
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x -6 -y 0 -z 0 -Y 3.1415 -P 0 -R 0" />  
+    <include file="$(find multi_amr_nectec)/launch/single_mpo500.launch" >
+      <arg name="init_pose_gazebo" value="-x -7 -y 0 -z 0 -Y 3.1415 -P 0 -R 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_1" />
-      <arg name="robot_colour" value="red"/>
       
     </include> 
-    <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
-    <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
+  <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
   </group>
-
-
 
 
  <group ns="vl_robot">
@@ -68,42 +62,19 @@
   <param name ="default_theta" value = "3.1415" />
 </node>
  <!--transform virtual leader odom to map   -->
- <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /odom 20" />
+ <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /odom 10" />
   <!--Get odom from virtual leader robot  -->
 <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
  <!--Get angle from virtual leader robot  -->
 <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
-  
- <?ignore 
- <!-- Run navigation stack    --> 
- <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-  <remap from="map" to="/map" />  
-    <!-- Costmaps -->
-    <rosparam file="$(find multi_amr_nectec)/config/move_base/costmaps/costmap_common.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find multi_amr_nectec)/config/move_base/costmaps/costmap_common.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find multi_amr_nectec)/config/move_base/costmaps/costmap_local.yaml" command="load" />
-    <rosparam file="$(find multi_amr_nectec)/config/move_base/costmaps/costmap_global.yaml" command="load" />
-
-    <!-- Global Planner -->
-    <param name="base_global_planner" value="navfn/NavfnROS"/>
-    <rosparam file="$(find multi_amr_nectec)/config/move_base/global_planner/NavFnROS/navfnros_planner.yaml" command="load" />
-
-    <!-- Local Planner -->
-
-    <param name="base_local_planner" value="eband_local_planner/EBandPlannerROS"/>
-    <rosparam file="$(find multi_amr_nectec)/config/move_base/local_planner/eband_local_planner/eband_planner.yaml" command="load" />
-
-    <!-- Common  -->
-    <rosparam file="$(find multi_amr_nectec)/config/move_base/move_base/move_base.yaml" command="load" />
-  </node>
-?>
 
 </group>
 
 <!-- VL force    
 <node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" >
   <param name ="team_size" value = "2" />
-  <param name ="Kvl" value = "3" />
+  <param name ="Kvl" value = "2000" />
+  <param name ="Cvl" value = "0" />
 </node>
 <rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/linear.yaml" />
 --> 
@@ -111,6 +82,16 @@
 <node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" >
   <param name ="team_size" value = "2" />
   <param name ="K_ang" value = "6" />
+</node>
+--> 
+<!--
+<node pkg="multi_amr_nectec" type="motion_generator" name="motion_generator" output="screen" >
+ <param name ="team_size" value = "4" />
+<param name ="v_linear_threshold" value = "1.5" />
+<param name ="v_angular_threshold" value = "0.3" />
+<param name ="robot_mass" value = "40" />
+<param name ="robot_radious" value = "0.5" />
+<param name ="robot_inertia" value = "1" />
 </node>
 --> 
 </launch>
