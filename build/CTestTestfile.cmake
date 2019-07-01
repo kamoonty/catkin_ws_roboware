@@ -5,10 +5,15 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
+subdirs("hector_gazebo/hector_gazebo")
+subdirs("hector_gazebo/hector_gazebo_worlds")
+subdirs("hector_gazebo/hector_sensors_gazebo")
 subdirs("multi_robot_neobotix")
 subdirs("rosbag_to_csv")
 subdirs("pid")
 subdirs("beginner_tutorials")
 subdirs("multi_navigation_tb3")
+subdirs("hector_gazebo/hector_gazebo_plugins")
 subdirs("multi_amr_nectec")
+subdirs("hector_gazebo/hector_gazebo_thermal_camera")
 subdirs("amr_description")

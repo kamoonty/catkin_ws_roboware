@@ -1,0 +1,8 @@
+prefix=/home/kanin/catkin_ws_roboware/install
+
+Name: hector_gazebo_thermal_camera
+Description: Description of hector_gazebo_thermal_camera
+Version: 0.5.1
+Cflags: -I/home/kanin/catkin_ws_roboware/install/include
+Libs: -L/home/kanin/catkin_ws_roboware/install/lib 
+Requires: gazebo_plugins
