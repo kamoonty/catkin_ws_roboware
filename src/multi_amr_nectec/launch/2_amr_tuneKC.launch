@@ -49,7 +49,7 @@
  <group ns="amr_1">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
       <arg name="init_pose_gazebo" value="-x -7 -y 0 -z 0 -Y 3.1415 -P 0 -R 0" />  
-      <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
+      <arg name="init_pose_rviz" value="-7 0 0 3.1415 0 0" /> 
       <arg name="robot_name" value="amr_1" />
       <arg name="robot_colour" value="red"/>
       
@@ -66,7 +66,7 @@
   <param name ="default_theta" value = "3.1415" />
 </node>
  <!--transform virtual leader odom to map   -->
- <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /odom 10" />
+ <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 3.1415 0 0 /map /odom 10" />
   <!--Get odom from virtual leader robot  -->
 <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
  <!--Get angle from virtual leader robot  -->
@@ -77,25 +77,25 @@
 <!-- VL force    
 <node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" >
   <param name ="team_size" value = "2" />
-  <param name ="Kvl" value = "300" />
-  <param name ="Cvl" value = "200" />
+  <param name ="Kvl" value = "1000" />
+  <param name ="Cvl" value = "0" />
 </node>
 <rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/linear.yaml" />
 --> 
-<!--Orientation force    
+<!--Orientation force   -->  
 <node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" >
   <param name ="team_size" value = "2" />
   <param name ="K_ang" value = "6" />
 </node>
---> 
-<!--
+
+<!--motion generetor--> 
 <node pkg="multi_amr_nectec" type="motion_generator" name="motion_generator" output="screen" >
  <param name ="team_size" value = "2" />
 <param name ="v_linear_threshold" value = "1.0" />
-<param name ="v_angular_threshold" value = "0.3" />
+<param name ="v_angular_threshold" value = "0.4" />
 <param name ="robot_mass" value = "40" />
 <param name ="robot_radious" value = "0.5" />
 <param name ="robot_inertia" value = "1" />
 </node>
---> 
+
 </launch>
