@@ -4,6 +4,9 @@
   <arg name="open_rviz" default="true"/>
   <arg name="open_gazebo" default="false"/>
   <arg name="team_size" value="2"/>
+  <arg name="record_data" default="true" />
+  <arg name="Kvl" default="0" />
+  <arg name="Cvl" default="0" />
 <!-- other robot map-->
 <arg name="watkin_map" default="$(find multi_amr_nectec)/maps/watkin_lab.yaml"/>
 <arg name="watkin_world" default="$(find multi_amr_nectec)/worlds/watkinslab.world"/>
@@ -74,28 +77,33 @@
 
 </group>
 
-<!-- VL force    
+<!-- VL force   -->
 <node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" >
   <param name ="team_size" value = "2" />
-  <param name ="Kvl" value = "1000" />
-  <param name ="Cvl" value = "0" />
+  <param name ="Kvl" value = "$(arg Kvl)" />
+  <param name ="Cvl" value = "$(arg Cvl)" />
 </node>
 <rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/linear.yaml" />
---> 
-<!--Orientation force   -->  
+  
+<!--Orientation force    
 <node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" >
   <param name ="team_size" value = "2" />
   <param name ="K_ang" value = "6" />
 </node>
-
-<!--motion generetor--> 
+--> 
+<!--motion generetor -->
 <node pkg="multi_amr_nectec" type="motion_generator" name="motion_generator" output="screen" >
  <param name ="team_size" value = "2" />
-<param name ="v_linear_threshold" value = "1.0" />
+<param name ="v_linear_threshold" value = "10000" />
 <param name ="v_angular_threshold" value = "0.4" />
 <param name ="robot_mass" value = "40" />
 <param name ="robot_radious" value = "0.5" />
-<param name ="robot_inertia" value = "1" />
+<param name ="robot_inertia" value = "0.77" />
 </node>
+
+<!--ROSBAG Record -->
+ <node pkg="rosbag" type="record" name="rosbag_record_data" output="screen"
+       args="record -o /home/kanin/ROSbag/testK=$(arg Kvl)C=$(arg Cvl) /amr_0/pose2d /amr_0/cmd_vel /F_vl_x /F_vl_y"
+       if="$(arg record_data)" /> 
 
 </launch>
