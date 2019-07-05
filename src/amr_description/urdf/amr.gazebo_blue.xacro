@@ -88,7 +88,7 @@
       <alwaysOn>true</alwaysOn>
       <jointName>wheel_fl_joint, wheel_fr_joint, wheel_rl_joint, wheel_rr_joint</jointName>
       <robotNameSpace>/</robotNameSpace>
-      <updateRate>100</updateRate>
+      <updateRate>100.0</updateRate>
     </plugin>
   </gazebo>
  <!--
@@ -116,13 +116,14 @@
    <plugin name="ros_force_based_controller" filename="libgazebo_ros_force_based_move.so">
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
+      <odometryFrame>map</odometryFrame>
       <odometryRate>100.0</odometryRate>
       <robotBaseFrame>base_link</robotBaseFrame>
-      <publish_odom_tf>true </publish_odom_tf>
-      <yaw_velocity_p_gain>150</yaw_velocity_p_gain>
+      <publishOdometryTf>true </publishOdometryTf>
+      <yaw_velocity_p_gain>100</yaw_velocity_p_gain>
       <x_velocity_p_gain>15</x_velocity_p_gain>
-      <y_velocity_p_gain>15</y_velocity_p_gain>
+      <y_velocity_p_gain>500</y_velocity_p_gain>
+      
     </plugin>
   </gazebo>
    <!--
