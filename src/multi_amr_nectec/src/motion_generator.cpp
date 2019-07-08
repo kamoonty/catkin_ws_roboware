@@ -13,6 +13,7 @@ float v_angular_threshold;
 float robot_mass;
 float robot_inertia;
 float robot_radious;
+float delta_time;
 geometry_msgs::Twist Fvl[10];
 geometry_msgs::Twist Fij[10];
 geometry_msgs::Twist F_rot[10];
@@ -75,13 +76,14 @@ int main(int argc, char **argv)
 {
 ros::init(argc, argv, "motion_generator");
 ros::NodeHandle nh;
-ros::Rate loopRate(20);
+ros::Rate loopRate(100);
 nh.getParam("motion_generator/team_size", team_size);
 nh.getParam("motion_generator/v_linear_threshold",v_linear_threshold);
 nh.getParam("motion_generator/v_angular_threshold",v_angular_threshold);
 nh.getParam("motion_generator/robot_mass", robot_mass);
 nh.getParam("motion_generator/robot_inertia", robot_inertia);
 nh.getParam("motion_generator/robot_radious", robot_radious);
+nh.getParam("motion_generator/delta_time", delta_time);
 ros::Subscriber Fvl_x_sub = nh.subscribe("F_vl_x", 1000, Fvl_x_CB);
 ros::Subscriber Fvl_y_sub = nh.subscribe("F_vl_y", 1000, Fvl_y_CB);
 ros::Subscriber Fij_x_sub = nh.subscribe("F_ij_x", 1000, Fij_x_CB);
@@ -95,16 +97,30 @@ ros::Publisher amr_1_cmd_vel_pub = nh.advertise<geometry_msgs::Twist>("amr_1/cmd
 ros::Publisher amr_2_cmd_vel_pub = nh.advertise<geometry_msgs::Twist>("amr_2/cmd_vel", 1000);
 ros::Publisher amr_3_cmd_vel_pub = nh.advertise<geometry_msgs::Twist>("amr_3/cmd_vel", 1000);
 geometry_msgs::Twist final_cmd_vel [team_size];
-float delta_t=1;
+//geometry_msgs::Point first_linear_v [team_size];
+//geometry_msgs::Point second_linear_v [team_size];
 while (nh.ok()) 
 {
-float lamda=2;
 for(int n=0;n<team_size;n++)
 {
-final_cmd_vel[n].linear.x=(Fvl[n].linear.x+Fij[n].linear.x)*delta_t/robot_mass;
-final_cmd_vel[n].linear.y =(Fvl[n].linear.y+Fij[n].linear.y)*delta_t/robot_mass;
-final_cmd_vel[n].angular.z= (F_rot[n].angular.z)*robot_radious*delta_t/robot_inertia;
-
+final_cmd_vel[n].linear.x=((Fvl[n].linear.x+Fij[n].linear.x)*delta_time/robot_mass);
+final_cmd_vel[n].linear.y =((Fvl[n].linear.y+Fij[n].linear.y)*delta_time/robot_mass);
+final_cmd_vel[n].angular.z= (F_rot[n].angular.z)*robot_radious*delta_time/robot_inertia;
+// store previous velocity
+/*
+  		first_linear_v[n].x= final_cmd_vel[n].linear.x;
+        first_linear_v[n].y= final_cmd_vel[n].linear.y;	
+      if(second_linear_v[n].x!=0&&second_linear_v[n].y!=0)
+       {  
+       second_linear_v[n].x=first_linear_v[n].x;
+       second_linear_v[n].y=first_linear_v[n].y;
+       }
+       else
+       {second_linear_v[n].x=first_linear_v[n].x;
+       second_linear_v[n].y=first_linear_v[n].y;
+       ROS_INFO("!!!!Enter First loop!!!");
+       }  
+*/
 //Linear Velocity Threshold 
 if(final_cmd_vel[n].linear.x>=v_linear_threshold)
               {final_cmd_vel[n].linear.x=v_linear_threshold;

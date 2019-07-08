@@ -12,19 +12,20 @@
 #include "std_msgs/Float32MultiArray.h"
 int team_size; //use for get param from launch file
 float Kvl,Cvl;
-
+ float delta_time; //20Hz=0.05 sec
 int main(int argc, char** argv) 
 {
  ros::init(argc, argv, "vl_force");
  ros::NodeHandle nh;
- ros::Rate loopRate(20);
- float diff_time=0.05; //20Hz=0.05 sec
+ ros::Rate loopRate(100);
+
  //ros::Time prev_time;
- //ros::Duration diff_time;
+ //ros::Duration delta_time;
  //load param from launch file
  nh.getParam("vl_force/team_size", team_size);
  nh.getParam("vl_force/Kvl", Kvl);
  nh.getParam("vl_force/Cvl", Cvl);
+ nh.getParam("vl_force/delta_time", delta_time);
  // load param for initial formation from YAML file
  std::vector<double> initial_pos_x;
  std::vector<double> initial_pos_y;
@@ -96,8 +97,8 @@ double th = tf::getYaw(transform.getRotation());
       if(second_data[i].x!=0&&second_data[i].y!=0)
        {  ROS_INFO("first_data robot %d= [%f,%f]",i,first_data[i].x,first_data[i].y);
          ROS_INFO("second_data robot %d= [%f,%f]",i,second_data[i].x,second_data[i].y);
-        diff_value[i].x= (fabs(first_data[i].x)-fabs(second_data[i].x))/diff_time;
-        diff_value[i].y= (fabs(first_data[i].y)-fabs(second_data[i].y))/diff_time;
+        diff_value[i].x= (fabs(first_data[i].x)-fabs(second_data[i].x))/delta_time;
+        diff_value[i].y= (fabs(first_data[i].y)-fabs(second_data[i].y))/delta_time;
        second_data[i].x=first_data[i].x;
        second_data[i].y=first_data[i].y;
        ROS_INFO("Diff of robot %d = [%f,%f]",i,diff_value[i].x,diff_value[i].y);

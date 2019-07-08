@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
     // send array
     ros::Publisher robot_pos_pub = nh.advertise<multi_amr_nectec::pos_msg>("robot_pos",1000);
     pair<double, double> currPosition;
-	ros::Rate loopRate(20);
+	ros::Rate loopRate(100);
     multi_amr_nectec::pos_msg msg;  // the message to be published  
     nh.getParam("position_robot/team_size", team_size);
     geometry_msgs::Point robot_pos [team_size];

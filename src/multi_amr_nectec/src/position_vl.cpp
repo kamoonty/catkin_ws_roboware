@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
     ros::NodeHandle nh;   
     ros::Publisher vl_pos_pub = nh.advertise<geometry_msgs::Point>("vl_pos", 1000);
     ros::Subscriber sub = nh.subscribe("odom", 1000, odomCallback);
-    ros::Rate loopRate(20);
+    ros::Rate loopRate(100);
 	while (ros::ok()) 
 {  
    

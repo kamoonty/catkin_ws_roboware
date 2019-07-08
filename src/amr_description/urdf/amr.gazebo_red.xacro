@@ -112,6 +112,7 @@
     </plugin>
   </gazebo>
   -->
+  <!--
     <gazebo>
    <plugin name="ros_force_based_controller" filename="libgazebo_ros_force_based_move.so">
       <commandTopic>cmd_vel</commandTopic>
@@ -126,21 +127,17 @@
       <cmdVelTimeOut>0.25</cmdVelTimeOut>
     </plugin>
   </gazebo>
-   <!--
+   -->
    <gazebo>
     <plugin filename="libgazebo_ros_planar_move.so" name="amr_planar_controller">
       <commandTopic>cmd_vel</commandTopic>
-      <leftFrontJoint>wheel_fl_joint</leftFrontJoint>
-      <rightFrontJoint>wheel_fr_joint</rightFrontJoint>
-      <leftRearJoint>wheel_rl_joint</leftRearJoint>
-      <rightRearJoint>wheel_rr_joint</rightRearJoint>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
       <odometryRate>100</odometryRate>
       <robotBaseFrame>base_link</robotBaseFrame>
     </plugin>
   </gazebo>
--->
+
 
   <gazebo>
     <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">

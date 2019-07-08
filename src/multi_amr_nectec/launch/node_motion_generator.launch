@@ -1,8 +1,8 @@
 <launch>
 <node pkg="multi_amr_nectec" type="motion_generator" name="motion_generator" output="screen" >
  <param name ="team_size" value = "4" />
-<param name ="v_linear_threshold" value = "100000" />
-<param name ="v_angular_threshold" value = "10" />
+<param name ="v_linear_threshold" value = "1.0" />
+<param name ="v_angular_threshold" value = "1.0" />
 <param name ="robot_mass" value = "40" />
 <param name ="robot_radious" value = "0.5" />
 <param name ="robot_inertia" value = "0.77" />

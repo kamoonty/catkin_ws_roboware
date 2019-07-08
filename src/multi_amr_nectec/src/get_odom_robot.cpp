@@ -49,7 +49,7 @@ int main(int argc, char** argv) {
     ros::Publisher robot_velocity_pub = nh.advertise<geometry_msgs::Twist>("pub_velocity", 1000);    
    
 
-    ros::Rate loopRate(20);
+    ros::Rate loopRate(100);
 	while (ros::ok()) 
 {  
     //ROS_INFO("Robot pos [%.3f,%.3f]",robot_pos.x,robot_pos.y);
