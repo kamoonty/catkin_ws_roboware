@@ -1,0 +1,47 @@
+ <launch>
+    <arg name="robot_name"/>
+    <arg name="init_pose_gazebo"/>
+    <arg name="init_pose_rviz"/>
+    <arg name="move_forward_only" default="false"/>
+
+    <param name="tf_prefix" value="$(arg robot_name)" />
+  <!-- Configuration of Ridgeback which you would like to simulate.
+       See ridgeback_description for details. -->
+  <arg name="config" default="$(optenv RIDGEBACK_CONFIG base)" />
+  <!-- Load Ridgeback's description, controllers, and teleop nodes. -->
+  <include file="$(find ridgeback_description)/launch/description.launch">
+    <arg name="config" value="$(arg config)" />
+  </include>
+  <include file="$(find ridgeback_control)/launch/control.launch" />
+
+  <rosparam param="/gazebo_ros_control/pid_gains">
+    front_left_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    front_right_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    rear_left_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    rear_right_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+  </rosparam>
+
+
+  <!--Robot description to param server-->
+ <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="$(arg init_pose_gazebo) -urdf -param robot_description -model $(arg robot_name) " output="screen"/>
+  
+
+</launch>
+
+ 
+ 
+ 
+
+

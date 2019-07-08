@@ -1,0 +1,97 @@
+<launch>
+  <master auto="start"/>
+  <param name="/use_sim_time" value="true"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="open_gazebo" default="true"/>
+  <arg name="team_size" value="2"/>
+<!-- other robot map-->
+<arg name="watkin_map" default="$(find multi_amr_nectec)/maps/watkin_lab.yaml"/>
+<arg name="watkin_world" default="$(find multi_amr_nectec)/worlds/watkinslab.world"/>
+ <arg name="map_empty" default="$(find multi_amr_nectec)/maps/map.yaml"/>
+ <arg name="emptyworld" default="$(find turtlebot3_gazebo)/worlds/empty.world"/>
+<arg name="neo_track1_world" default="$(find neo_simulation)/worlds/neo_track1.world"/>
+<arg name="neo_track1_map" default="$(find neo_simulation)/maps/neo_track1.yaml"/>
+  
+  <!-- Map server --> 
+ <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_empty)" respawn="false" >
+    <param name="frame_id" value="/map" />
+  </node>
+  <!-- start gazebo --> 
+<include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg emptyworld)"/> 
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="$(arg open_gazebo)"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+</include>
+ <!-- RVIZ  --> 
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+         args="-d $(find multi_amr_nectec)/rviz/2_amr.rviz"/>
+  </group>
+
+<!-- AMR 0  -->
+  <group ns="amr_0">
+    <include file="$(find multi_amr_nectec)/launch/single_ridgeback.launch" >
+      <arg name="init_pose_gazebo" value="-x 7 -y 0 -z 0 -Y 3.1415 -P 0 -R 0" />
+      <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
+      <arg name="robot_name" value="amr_0" />
+    </include>
+     <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
+ 
+  </group>
+
+<!-- AMR 1  
+ <group ns="amr_1">
+    <include file="$(find multi_amr_nectec)/launch/single_ridgeback.launch" >
+      <arg name="init_pose_gazebo" value="-x -7 -y 0 -z 0 -Y 3.1415 -P 0 -R 0" />  
+      <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
+      <arg name="robot_name" value="amr_1" />
+      
+    </include> 
+  <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
+  </group>
+-->
+
+ <group ns="vl_robot">
+ <!--VL localization -->
+ <node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
+  <param name ="default_x" value = "0" />
+  <param name ="default_y" value = "0" />
+  <param name ="default_theta" value = "3.1415" />
+</node>
+ <!--transform virtual leader odom to map   -->
+ <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /odom 10" />
+  <!--Get odom from virtual leader robot  -->
+<node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
+ <!--Get angle from virtual leader robot  -->
+<node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
+
+</group>
+
+<!-- VL force    
+<node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" >
+  <param name ="team_size" value = "2" />
+  <param name ="Kvl" value = "2000" />
+  <param name ="Cvl" value = "0" />
+</node>
+<rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/linear.yaml" />
+--> 
+<!--Orientation force    
+<node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" >
+  <param name ="team_size" value = "2" />
+  <param name ="K_ang" value = "6" />
+</node>
+--> 
+<!--
+<node pkg="multi_amr_nectec" type="motion_generator" name="motion_generator" output="screen" >
+ <param name ="team_size" value = "4" />
+<param name ="v_linear_threshold" value = "1.5" />
+<param name ="v_angular_threshold" value = "0.3" />
+<param name ="robot_mass" value = "40" />
+<param name ="robot_radious" value = "0.5" />
+<param name ="robot_inertia" value = "1" />
+</node>
+--> 
+</launch>

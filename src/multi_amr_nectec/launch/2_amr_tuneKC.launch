@@ -2,15 +2,15 @@
   <master auto="start"/>
   <param name="/use_sim_time" value="true"/>
   <arg name="open_rviz" default="true"/>
-  <arg name="open_gazebo" default="true"/>
+  <arg name="open_gazebo" default="false"/>
   <arg name="record_data" default="false" />
 
-  <arg name="vl_force" default="false" />
+  <arg name="vl_force" default="true" />
   <arg name="rotational_force" default="false" />
   <arg name="inter_agent_force" default="false" />
-  <arg name="motion_generator" default="false" />
+  <arg name="motion_generator" default="true" />
   <!-- Define Paramerters here for robot formation-->
-  <arg name="Kvl" default="100" />
+  <arg name="Kvl" default="500" />
   <arg name="Cvl" default="0" />
   <arg name="Kij" default="0" />
   <arg name="Cij" default="0" />
@@ -53,20 +53,20 @@
 <!-- AMR 0  -->
   <group ns="amr_0">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 7 -y 0 -z 0 -Y 3.1415 -P 0 -R 0" />
-      <arg name="init_pose_rviz" value="0 0 0 0  0 0" />    
+      <arg name="init_pose_gazebo" value="-x 2 -y 0 -z 0 -Y 3.1415 -P 0 -R 0" />
+      <arg name="init_pose_rviz" value="2 0 0 3.1415 0 0" />    
       <arg name="robot_name" value="amr_0" />
       <arg name="robot_colour" value="blue"/>
     </include>
      <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
- 
+    
   </group>
 
 <!-- AMR 1  -->
  <group ns="amr_1">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
       <arg name="init_pose_gazebo" value="-x -7 -y 0 -z 0 -Y 3.1415 -P 0 -R 0" />  
-      <arg name="init_pose_rviz" value="-7 0 0 3.1415 0 0" /> 
+      <arg name="init_pose_rviz" value="-3 0 0 3.1415 0 0" /> 
       <arg name="robot_name" value="amr_1" />
       <arg name="robot_colour" value="red"/>
       

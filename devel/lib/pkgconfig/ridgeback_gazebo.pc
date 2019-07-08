@@ -1,0 +1,8 @@
+prefix=/home/kanin/catkin_ws_roboware/devel
+
+Name: ridgeback_gazebo
+Description: Description of ridgeback_gazebo
+Version: 0.0.3
+Cflags: 
+Libs: -L/home/kanin/catkin_ws_roboware/devel/lib 
+Requires: 

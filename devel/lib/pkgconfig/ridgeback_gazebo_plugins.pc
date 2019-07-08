@@ -1,0 +1,8 @@
+prefix=/home/kanin/catkin_ws_roboware/devel
+
+Name: ridgeback_gazebo_plugins
+Description: Description of ridgeback_gazebo_plugins
+Version: 0.0.3
+Cflags: -I/home/kanin/catkin_ws_roboware/src/ridgeback_simulator/ridgeback_gazebo_plugins/include
+Libs: -L/home/kanin/catkin_ws_roboware/devel/lib 
+Requires: roscpp std_msgs geometry_msgs nav_msgs tf message_runtime

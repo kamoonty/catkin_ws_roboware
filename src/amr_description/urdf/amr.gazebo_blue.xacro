@@ -116,16 +116,35 @@
    <plugin name="ros_force_based_controller" filename="libgazebo_ros_force_based_move.so">
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
-      <odometryFrame>map</odometryFrame>
+      <odometryFrame>odom</odometryFrame>
       <odometryRate>100.0</odometryRate>
       <robotBaseFrame>base_link</robotBaseFrame>
-      <publishOdometryTf>true </publishOdometryTf>
+      <publishOdometryTf>true</publishOdometryTf>
       <yaw_velocity_p_gain>100</yaw_velocity_p_gain>
-      <x_velocity_p_gain>15</x_velocity_p_gain>
-      <y_velocity_p_gain>500</y_velocity_p_gain>
-      
+      <x_velocity_p_gain>150</x_velocity_p_gain>
+      <y_velocity_p_gain>1000</y_velocity_p_gain>
+      <cmdVelTimeOut>0.25</cmdVelTimeOut>
     </plugin>
   </gazebo>
+  <!--
+   <gazebo>
+     <plugin name="ridgeback_ros_force_based_move" filename="libridgeback_ros_force_based_move.so">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>100</odometryRate>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <cmdVelTimeOut>0.25</cmdVelTimeOut>
+  
+      <publishOdometryTf>false</publishOdometryTf>
+      
+      <yaw_velocity_p_gain>300.0</yaw_velocity_p_gain>
+      <x_velocity_p_gain>200</x_velocity_p_gain>
+      <y_velocity_p_gain>5000</y_velocity_p_gain>
+    </plugin>
+    </gazebo>
+    -->
+
    <!--
    <gazebo>
     <plugin filename="libgazebo_ros_planar_move.so" name="amr_planar_controller">

@@ -1,0 +1,8 @@
+prefix=/home/kanin/catkin_ws_roboware/devel
+
+Name: ridgeback_viz
+Description: Description of ridgeback_viz
+Version: 0.1.1
+Cflags: 
+Libs: -L/home/kanin/catkin_ws_roboware/devel/lib 
+Requires: 

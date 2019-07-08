@@ -1,0 +1,8 @@
+prefix=/home/kanin/catkin_ws_roboware/devel
+
+Name: mecanum_gazebo_plugin
+Description: Description of mecanum_gazebo_plugin
+Version: 0.0.3
+Cflags: 
+Libs: -L/home/kanin/catkin_ws_roboware/devel/lib 
+Requires: 
