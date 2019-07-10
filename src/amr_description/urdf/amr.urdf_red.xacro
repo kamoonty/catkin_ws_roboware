@@ -401,22 +401,21 @@
   </joint>
 
   <link name="imu_link"/>
-
+<!--
   <joint name="scan_joint" type="fixed">
     <parent link="laser_link"/>
     <child link="base_scan"/>
     <origin xyz="0 0 0.03" rpy="0 0 0"/>
   </joint>
-  
+   
   <link name="base_scan"/>
-  
   <joint name="laser_joint" type="fixed">
     <parent link="base_link"/>
-    <child link="laser_link"/> 
-    <origin xyz="0 0 0.24" rpy="0 0 0"/>   <!--  modify height of rp lidar here -->
-    <!--  top shelf 0.29 -->
+    <child link="laser_link"/>
+    <origin xyz="0 0 0.29" rpy="0 0 0"/>   -->  <!--  modify height of rp lidar here -->
+  <!--
   </joint>
-
+  
   <link name="laser_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -438,6 +437,7 @@
       <inertia ixx="0.007841" ixy="0" ixz="0.000033" iyy="0.007681" iyz="0" izz="0.011137"/>
     </inertial>
   </link>
+-->
   <!--
   <joint name="camera_joint" type="fixed">
     <origin xyz="0.08 0.0 0.396" rpy="0 0 1.57"/>

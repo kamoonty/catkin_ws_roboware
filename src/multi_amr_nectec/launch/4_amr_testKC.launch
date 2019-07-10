@@ -2,7 +2,7 @@
   <master auto="start"/>
   <param name="/use_sim_time" value="true"/>
   <arg name="open_rviz" default="true"/>
-  <arg name="open_gazebo" default="true"/>
+  <arg name="open_gazebo" default="false"/>
   <arg name="record_data" default="true" />
 
   <arg name="vl_force" default="true" />
@@ -16,7 +16,7 @@
   <arg name="Cij" default="0" />
 <!-- K angular should be low to let robot move in cartesion in time-->
   <arg name="K_ang" default="0.5" />
-  <arg name="team_size" value="2"/>
+  <arg name="team_size" value="4"/>
   <arg name="v_linear_threshold" value="1000"/>
   <arg name="v_angular_threshold" value="1000"/>
   <arg name="robot_mass" value="40"/>
@@ -49,31 +49,65 @@
  <!-- RVIZ  --> 
   <group if="$(arg open_rviz)"> 
     <node pkg="rviz" type="rviz" name="rviz" required="true"
-         args="-d $(find multi_amr_nectec)/rviz/2_amr.rviz"/>
+         args="-d $(find multi_amr_nectec)/rviz/4_amr.rviz"/>
   </group>
+
 
 <!-- AMR 0  -->
   <group ns="amr_0">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 0.5 -y 0 -z 0.1 -Y 1.5707 -P 0 -R 0" />
+      <arg name="init_pose_gazebo" value="-x 7 -y 7 -z 0 -Y 0 " />
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
       <arg name="robot_name" value="amr_0" />
       <arg name="robot_colour" value="blue"/>
     </include>
+     <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
      <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
-    
+  
   </group>
 
-<!-- AMR 1   -->
+<!-- AMR 1  -->
  <group ns="amr_1">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x -0.5 -y 0 -z 0.1 -Y 1.5707 -P 0 -R 0" />  
+      <arg name="init_pose_gazebo" value="-x -7 -y 7 -z 0 -Y 0 " />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_1" />
-      <arg name="robot_colour" value="red"/>
-     
+      <arg name="robot_colour" value="blue"/>
+      <param name="robot_description" command="$(find xacro)/xacro --inorder $(find amr_description)/urdf/amr.urdf_red.xacro" />
+   
     </include> 
-  <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
+    <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
+    <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
+  </group>
+
+<!-- AMR 2   --> 
+ <group ns="amr_2">
+    <param name="tf_prefix" value="amr_2" />
+    <param name="amcl/initial_pose_x" value="0" />
+    <param name="amcl/initial_pose_y" value="0" />
+    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+      <arg name="init_pose_gazebo" value="-x -7 -y -7 -z 0 -Y 0" />  
+      <arg name="init_pose_rviz" value="0 0 0 0 0 0" />     
+      <arg name="robot_name" value="amr_2" />
+      <arg name="robot_colour" value="red"/>
+    </include> 
+    <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
+    <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
+  </group>
+
+<!-- AMR 3    -->
+ <group ns="amr_3">
+   <param name="tf_prefix" value="amr_3" />
+    <param name="amcl/initial_pose_x" value="0" />
+    <param name="amcl/initial_pose_y" value="0" />
+    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+      <arg name="init_pose_gazebo" value="-x 7 -y -7 -z 0 -Y 0" />  
+      <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
+      <arg name="robot_name" value="amr_3" />
+      <arg name="robot_colour" value="red"/>
+    </include>
+    <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />  
+    <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
   </group>
 
 
@@ -82,7 +116,7 @@
  <node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
   <param name ="default_x" value = "0" />
   <param name ="default_y" value = "0" />
-  <param name ="default_theta" value = "1.5707" />
+  <param name ="default_theta" value = "0" />
 </node>
  <!--transform virtual leader odom to map   -->
  <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /odom 10" />
@@ -93,7 +127,7 @@
 
 </group>
 <!--Load parameter     -->
-<rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/linear.yaml" />
+<rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/rectangle.yaml" />
 
 <!--Rotational force   --> 
 <node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" if="$(arg rotational_force)" >

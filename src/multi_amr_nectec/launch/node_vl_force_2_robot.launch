@@ -1,7 +1,7 @@
 <launch>
 <node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" >
   <param name ="team_size" value = "2" />
-  <param name ="Kvl" value = "30" />
+  <param name ="Kvl" value = "100" />
   <param name ="Cvl" value = "0" />
   <param name ="delta_time" value = "0.01" />
 </node>

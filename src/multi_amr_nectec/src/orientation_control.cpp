@@ -55,7 +55,7 @@ int main(int argc, char** argv)
 {
  ros::init(argc, argv, "orientation_control");
  ros::NodeHandle nh;
- ros::Rate loopRate(20);
+ ros::Rate loopRate(100);
  //load param from launch file
  nh.getParam("orientation_control/team_size", team_size);
  nh.getParam("orientation_control/K_ang", K_ang);
@@ -65,15 +65,15 @@ int main(int argc, char** argv)
  ros::Subscriber agent1_pose2d_sub = nh.subscribe("amr_1/pose2d", 1000, agent1_pose2D_CB);
  ros::Subscriber agent2_pose2d_sub = nh.subscribe("amr_2/pose2d", 1000, agent2_pose2D_CB);
  ros::Subscriber agent3_pose2d_sub = nh.subscribe("amr_3/pose2d", 1000, agent3_pose2D_CB);
- ros::Publisher pub_cmd_angular_z = nh.advertise<std_msgs::Float32MultiArray>("F_rot", 100);
+ ros::Publisher pub_rotational_force = nh.advertise<std_msgs::Float32MultiArray>("F_rot", 100);
  
  float diff_angle [team_size];
  float previous_velocity;
- geometry_msgs::Twist send_velocity [team_size];
+ geometry_msgs::Twist calculate_rotational_force [team_size];
 
 while (nh.ok()) 
-{ std_msgs::Float32MultiArray robot_cmd_vel_angular_z;
-  robot_cmd_vel_angular_z.data.clear();
+{ std_msgs::Float32MultiArray robot_rotational_force;
+  robot_rotational_force.data.clear();
    for (int i = 0; i < team_size; i++)
       {       //ROS_INFO("-start loop-");
               int rotate_direction=0; // use for clockwise and anti clockwise direction
@@ -100,23 +100,23 @@ while (nh.ok())
     }
 
         // Use fabs for float absolute
-              send_velocity[i].angular.z=K_ang*fabs(diff_angle[i])*rotate_direction;
-              send_velocity[i].angular.z=(send_velocity[i].angular.z)*M_PI/180; //convert back to radian
+              calculate_rotational_force[i].angular.z=K_ang*fabs(diff_angle[i])*rotate_direction;
+              calculate_rotational_force[i].angular.z=(calculate_rotational_force[i].angular.z)*M_PI/180; //convert back to radian
 
-                // to avoid suddenly move between 0 and 360
-    if(fabs(diff_angle[i])>=345&&fabs(diff_angle[i])<=360)
-    {send_velocity[i].angular.z=previous_velocity; //reduce speed to the same as previous loop 
-       ROS_INFO(" Reduce speed to avoid jerk rotation-"); }
+                // to avoid suddenly move between 0 or 360
+    if(fabs(diff_angle[i])>=180&&fabs(diff_angle[i])<=360)
+    {calculate_rotational_force[i].angular.z=previous_velocity; //reduce speed to the same as previous loop 
+       ROS_INFO("-Reduce speed to avoid jerk rotation-"); }
       
-              previous_velocity=send_velocity[i].angular.z;
+              previous_velocity=calculate_rotational_force[i].angular.z;
               
-              ROS_INFO("Angular velocity -> robot %d =%f",i,send_velocity[i].angular.z );  
+              ROS_INFO("Rotational Force -> robot %d =%f",i,calculate_rotational_force[i].angular.z );  
               ROS_INFO("-----------------------");
-      robot_cmd_vel_angular_z.data.push_back(send_velocity[i].angular.z);
+      robot_rotational_force.data.push_back(calculate_rotational_force[i].angular.z);
       
       }            
 
-     pub_cmd_angular_z.publish(robot_cmd_vel_angular_z);
+     pub_rotational_force.publish(robot_rotational_force);
 
       ros::spinOnce();
       loopRate.sleep();
