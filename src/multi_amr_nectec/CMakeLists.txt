@@ -263,3 +263,11 @@ add_dependencies(motion_generator ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_E
 target_link_libraries(motion_generator
   ${catkin_LIBRARIES}
 )
+
+add_executable(vl_trajectory_linear
+  src/vl_trajectory_linear.cpp
+)
+add_dependencies(vl_trajectory_linear ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(vl_trajectory_linear
+  ${catkin_LIBRARIES}
+)

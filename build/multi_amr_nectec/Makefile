@@ -482,6 +482,21 @@ tf_quat2euler/fast:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/tf_quat2euler.dir/build.make multi_amr_nectec/CMakeFiles/tf_quat2euler.dir/build
 .PHONY : tf_quat2euler/fast
 
+# Convenience name for target.
+multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/rule
+.PHONY : multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/rule
+
+# Convenience name for target.
+vl_trajectory_linear: multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/rule
+
+.PHONY : vl_trajectory_linear
+
+# fast build rule for target.
+vl_trajectory_linear/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/build
+.PHONY : vl_trajectory_linear/fast
+
 src/fake_odom_vl.o: src/fake_odom_vl.cpp.o
 
 .PHONY : src/fake_odom_vl.o
@@ -725,6 +740,33 @@ src/vl_force.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_force.dir/build.make multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.s
 .PHONY : src/vl_force.cpp.s
 
+src/vl_trajectory_linear.o: src/vl_trajectory_linear.cpp.o
+
+.PHONY : src/vl_trajectory_linear.o
+
+# target to build an object file
+src/vl_trajectory_linear.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/src/vl_trajectory_linear.cpp.o
+.PHONY : src/vl_trajectory_linear.cpp.o
+
+src/vl_trajectory_linear.i: src/vl_trajectory_linear.cpp.i
+
+.PHONY : src/vl_trajectory_linear.i
+
+# target to preprocess a source file
+src/vl_trajectory_linear.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/src/vl_trajectory_linear.cpp.i
+.PHONY : src/vl_trajectory_linear.cpp.i
+
+src/vl_trajectory_linear.s: src/vl_trajectory_linear.cpp.s
+
+.PHONY : src/vl_trajectory_linear.s
+
+# target to generate assembly for a file
+src/vl_trajectory_linear.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/src/vl_trajectory_linear.cpp.s
+.PHONY : src/vl_trajectory_linear.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -759,6 +801,7 @@ help:
 	@echo "... install/strip"
 	@echo "... orientation_control"
 	@echo "... tf_quat2euler"
+	@echo "... vl_trajectory_linear"
 	@echo "... src/fake_odom_vl.o"
 	@echo "... src/fake_odom_vl.i"
 	@echo "... src/fake_odom_vl.s"
@@ -786,6 +829,9 @@ help:
 	@echo "... src/vl_force.o"
 	@echo "... src/vl_force.i"
 	@echo "... src/vl_force.s"
+	@echo "... src/vl_trajectory_linear.o"
+	@echo "... src/vl_trajectory_linear.i"
+	@echo "... src/vl_trajectory_linear.s"
 .PHONY : help
 
 

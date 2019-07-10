@@ -2,22 +2,22 @@
   <master auto="start"/>
   <param name="/use_sim_time" value="true"/>
   <arg name="open_rviz" default="true"/>
-  <arg name="open_gazebo" default="false"/>
+  <arg name="open_gazebo" default="true"/>
   <arg name="record_data" default="true" />
 
   <arg name="vl_force" default="true" />
-  <arg name="rotational_force" default="false" />
+  <arg name="rotational_force" default="true" />
   <arg name="inter_agent_force" default="false" />
   <arg name="motion_generator" default="true" />
   <!-- Define Paramerters here for robot formation-->
-  <arg name="Kvl" default="2300" />
+  <arg name="Kvl" default="30" />
   <arg name="Cvl" default="0" />
   <arg name="Kij" default="0" />
   <arg name="Cij" default="0" />
-  <arg name="K_ang" default="10" />
+  <arg name="K_ang" default="5" />
   <arg name="team_size" value="2"/>
-  <arg name="v_linear_threshold" value="10000"/>
-  <arg name="v_angular_threshold" value="10000"/>
+  <arg name="v_linear_threshold" value="1.0"/>
+  <arg name="v_angular_threshold" value="0.4"/>
   <arg name="robot_mass" value="40"/>
   <arg name="robot_radious" value="0.5"/>
   <arg name="robot_inertia" value="0.77"/>
@@ -54,7 +54,7 @@
 <!-- AMR 0  -->
   <group ns="amr_0">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 3 -y 0 -z 0.1 -Y 1.5707 -P 0 -R 0" />
+      <arg name="init_pose_gazebo" value="-x 2 -y 0 -z 0.1 -Y 1.5707 -P 0 -R 0" />
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
       <arg name="robot_name" value="amr_0" />
       <arg name="robot_colour" value="blue"/>
@@ -66,7 +66,7 @@
 <!-- AMR 1   -->
  <group ns="amr_1">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x -3 -y 0 -z 0.1 -Y 1.5707 -P 0 -R 0" />  
+      <arg name="init_pose_gazebo" value="-x -2 -y 0 -z 0.1 -Y 1.5707 -P 0 -R 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_1" />
       <arg name="robot_colour" value="red"/>
@@ -127,7 +127,10 @@
 
 <!--ROSBAG Record -->
  <node pkg="rosbag" type="record" name="rosbag_record_data" output="screen"
-       args="record -O /home/kanin/ROSbag/test_planar_move_Kvl=$(arg Kvl)Cvl=$(arg Cvl).bag /amr_0/pose2d /amr_0/cmd_vel /F_vl_x /F_vl_y"
+       args="record -O /home/kanin/ROSbag/test_planar_move_Kvl=$(arg Kvl)Cvl=$(arg Cvl).bag /amr_0/pose2d /amr_0/cmd_vel /F_vl_x /F_vl_y /vl_robot/pose2d /vl_robot/cmd_vel"
        if="$(arg record_data)" /> 
+ <!--trajectory of VL  
+<node pkg="multi_amr_nectec" type="vl_trajectory_linear" name="vl_trajectory_linear" output="screen" />
+-->
 
 </launch>

@@ -13,6 +13,9 @@
     <arg name="config" value="$(arg config)" />
   </include>
   <include file="$(find ridgeback_control)/launch/control.launch" />
+  <include file="$(find ridgeback_control)/launch/teleop.launch">
+    <arg name="joystick" value="false"/>
+  </include>
 
   <rosparam param="/gazebo_ros_control/pid_gains">
     front_left_wheel:
@@ -32,8 +35,7 @@
       i: 0.1
       d: 0
   </rosparam>
-
-
+  
   <!--Robot description to param server-->
  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="$(arg init_pose_gazebo) -urdf -param robot_description -model $(arg robot_name) " output="screen"/>
   

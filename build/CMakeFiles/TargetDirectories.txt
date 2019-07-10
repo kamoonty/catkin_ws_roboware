@@ -355,6 +355,7 @@
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/install/strip.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/orientation_control.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/tf_quat2euler.dir
+/home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir
 /home/kanin/catkin_ws_roboware/build/ridgeback_simulator/ridgeback_gazebo_plugins/CMakeFiles/install/strip.dir
 /home/kanin/catkin_ws_roboware/build/ridgeback_simulator/ridgeback_gazebo_plugins/CMakeFiles/install/local.dir
 /home/kanin/catkin_ws_roboware/build/ridgeback_simulator/ridgeback_gazebo_plugins/CMakeFiles/install.dir

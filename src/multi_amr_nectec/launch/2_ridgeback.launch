@@ -1,7 +1,7 @@
 <launch>
   <master auto="start"/>
   <param name="/use_sim_time" value="true"/>
-  <arg name="open_rviz" default="true"/>
+  <arg name="open_rviz" default="false"/>
   <arg name="open_gazebo" default="true"/>
   <arg name="team_size" value="2"/>
 <!-- other robot map-->
@@ -31,14 +31,72 @@
          args="-d $(find multi_amr_nectec)/rviz/2_amr.rviz"/>
   </group>
 
+  <!-- Configuration of Ridgeback which you would like to simulate.
+       See ridgeback_description for details. -->
+
+  <!-- Load Ridgeback's description, controllers, and teleop nodes. -->
+  <arg name="config_des" default="$(optenv RIDGEBACK_CONFIG base)" />
+  <param name="robot_description"
+         command="$(find ridgeback_description)/scripts/env_run
+                  $(find ridgeback_description)/urdf/configs/$(arg config_des)
+                  $(find xacro)/xacro $(find ridgeback_description)/urdf/ridgeback.urdf.xacro
+                  --inorder " />
+ 
+
+
+
 <!-- AMR 0  -->
   <group ns="amr_0">
-    <include file="$(find multi_amr_nectec)/launch/single_ridgeback.launch" >
-      <arg name="init_pose_gazebo" value="-x 7 -y 0 -z 0 -Y 3.1415 -P 0 -R 0" />
+
+      <arg name="init_pose_gazebo" value="-x 0 -y 0 -z 0.1 -Y 0 -P 0 -R 0" />
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
       <arg name="robot_name" value="amr_0" />
-    </include>
-     <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
+      <!--control -->
+ <rosparam command="load" file="$(find ridgeback_control)/config/control.yaml" />
+  <group if="$(optenv RIDGEBACK_CONTROL_EXTRAS 0)" >
+    <rosparam command="load" file="$(env RIDGEBACK_CONTROL_EXTRAS_PATH)" />
+  </group>
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        args="ridgeback_joint_publisher ridgeback_velocity_controller" />
+
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" />
+
+  <node pkg="topic_tools" type="relay" name="cmd_vel_relay"
+        args="cmd_vel ridgeback_velocity_controller/amr_0/cmd_vel" />
+   <!--teleop -->
+   <arg name="config" default="planar" />
+  <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
+    <remap from="twist_marker_server/cmd_vel" to="amr_0/cmd_vel" />
+    <rosparam command="load" file="$(find interactive_marker_twist_server)/config/$(arg config).yaml" />
+  </node>
+  
+ <rosparam param="/gazebo_ros_control/pid_gains">
+    front_left_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    front_right_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    rear_left_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    rear_right_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+  </rosparam>
+
+  
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+
+ <!--Robot description to param server-->
+ <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="$(arg init_pose_gazebo) -urdf -param /robot_description -model $(arg robot_name) " output="screen"/>
+  
  
   </group>
 
@@ -54,44 +112,5 @@
   </group>
 -->
 
- <group ns="vl_robot">
- <!--VL localization -->
- <node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
-  <param name ="default_x" value = "0" />
-  <param name ="default_y" value = "0" />
-  <param name ="default_theta" value = "3.1415" />
-</node>
- <!--transform virtual leader odom to map   -->
- <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /odom 10" />
-  <!--Get odom from virtual leader robot  -->
-<node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
- <!--Get angle from virtual leader robot  -->
-<node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
 
-</group>
-
-<!-- VL force    
-<node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" >
-  <param name ="team_size" value = "2" />
-  <param name ="Kvl" value = "2000" />
-  <param name ="Cvl" value = "0" />
-</node>
-<rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/linear.yaml" />
---> 
-<!--Orientation force    
-<node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" >
-  <param name ="team_size" value = "2" />
-  <param name ="K_ang" value = "6" />
-</node>
---> 
-<!--
-<node pkg="multi_amr_nectec" type="motion_generator" name="motion_generator" output="screen" >
- <param name ="team_size" value = "4" />
-<param name ="v_linear_threshold" value = "1.5" />
-<param name ="v_angular_threshold" value = "0.3" />
-<param name ="robot_mass" value = "40" />
-<param name ="robot_radious" value = "0.5" />
-<param name ="robot_inertia" value = "1" />
-</node>
---> 
 </launch>

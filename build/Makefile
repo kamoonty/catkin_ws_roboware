@@ -2898,6 +2898,19 @@ tf_quat2euler/fast:
 .PHONY : tf_quat2euler/fast
 
 #=============================================================================
+# Target rules for targets named vl_trajectory_linear
+
+# Build rule for target.
+vl_trajectory_linear: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 vl_trajectory_linear
+.PHONY : vl_trajectory_linear
+
+# fast build rule for target.
+vl_trajectory_linear/fast:
+	$(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/build
+.PHONY : vl_trajectory_linear/fast
+
+#=============================================================================
 # Target rules for targets named ridgeback_ros_force_based_move
 
 # Build rule for target.
@@ -3575,6 +3588,7 @@ help:
 	@echo "... motion_generator"
 	@echo "... orientation_control"
 	@echo "... tf_quat2euler"
+	@echo "... vl_trajectory_linear"
 	@echo "... ridgeback_ros_force_based_move"
 	@echo "... gazebo_ros_thermal_depth_camera"
 	@echo "... trajectory_msgs_generate_messages_nodejs"
