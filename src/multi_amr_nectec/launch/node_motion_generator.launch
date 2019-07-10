@@ -6,6 +6,6 @@
 <param name ="robot_mass" value = "40" />
 <param name ="robot_radious" value = "0.5" />
 <param name ="robot_inertia" value = "0.77" />
-
+  <param name ="delta_time" value = "1" />
 </node>
 </launch>

@@ -68,6 +68,7 @@ int main(int argc, char** argv)
  ros::Publisher pub_cmd_angular_z = nh.advertise<std_msgs::Float32MultiArray>("F_rot", 100);
  
  float diff_angle [team_size];
+ float previous_velocity;
  geometry_msgs::Twist send_velocity [team_size];
 
 while (nh.ok()) 
@@ -82,9 +83,9 @@ while (nh.ok())
               ROS_INFO("VL angle =%f degree",degree_vl );
               ROS_INFO("agent[%d] angle =%f degree",i,degree_agent[i] );
               diff_angle[i]= (degree_vl-degree_agent[i]);
-              ROS_INFO("Diff angle agent %d = %f degree",i,degree_agent[i] );
-           
-    if(diff_angle[i]>0) 
+              ROS_INFO("Diff angle agent %d = %f degree",i,diff_angle[i] );
+         // to avoid unnecessary rotation  
+    if(diff_angle[i]>=0) 
     {
     if(fabs(diff_angle[i])<180)
        rotate_direction=1;  // clockwise 
@@ -97,15 +98,24 @@ while (nh.ok())
        rotate_direction=-1;
     else rotate_direction=1;
     }
-              // Use fabs for float absolute
-       
+
+        // Use fabs for float absolute
               send_velocity[i].angular.z=K_ang*fabs(diff_angle[i])*rotate_direction;
               send_velocity[i].angular.z=(send_velocity[i].angular.z)*M_PI/180; //convert back to radian
-       
-              ROS_INFO("Angular velocity of robot %d =%f",i,send_velocity[i].angular.z );  
+
+                // to avoid suddenly move between 0 and 360
+    if(fabs(diff_angle[i])>=345&&fabs(diff_angle[i])<=360)
+    {send_velocity[i].angular.z=previous_velocity; //reduce speed to the same as previous loop 
+       ROS_INFO(" Reduce speed to avoid jerk rotation-"); }
+      
+              previous_velocity=send_velocity[i].angular.z;
+              
+              ROS_INFO("Angular velocity -> robot %d =%f",i,send_velocity[i].angular.z );  
               ROS_INFO("-----------------------");
       robot_cmd_vel_angular_z.data.push_back(send_velocity[i].angular.z);
-      }              
+      
+      }            
+
      pub_cmd_angular_z.publish(robot_cmd_vel_angular_z);
 
       ros::spinOnce();
