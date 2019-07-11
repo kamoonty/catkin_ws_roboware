@@ -1,7 +1,7 @@
 <launch>
   <master auto="start"/>
   <param name="/use_sim_time" value="true"/>
-  <arg name="open_rviz" default="false"/>
+  <arg name="open_rviz" default="true"/>
   <arg name="open_gazebo" default="true"/>
   <arg name="team_size" value="2"/>
 <!-- other robot map-->
@@ -11,14 +11,16 @@
  <arg name="emptyworld" default="$(find turtlebot3_gazebo)/worlds/empty.world"/>
 <arg name="neo_track1_world" default="$(find neo_simulation)/worlds/neo_track1.world"/>
 <arg name="neo_track1_map" default="$(find neo_simulation)/maps/neo_track1.yaml"/>
-  
+<arg name="asphalt_plane" default="$(find multi_amr_nectec)/worlds/asphalt_plane.world"/>
+<arg name="formation_test_world" default="$(find multi_amr_nectec)/worlds/formation_test.world"/>
+<arg name="formation_test_map" default="$(find multi_amr_nectec)/maps/formation_test.yaml"/>
   <!-- Map server --> 
- <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_empty)" respawn="false" >
+ <node pkg="map_server" type="map_server" name="map_server" args="$(arg formation_test_map)" respawn="false" >
     <param name="frame_id" value="/map" />
   </node>
   <!-- start gazebo --> 
 <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(arg emptyworld)"/> 
+    <arg name="world_name" value="$(arg formation_test_world)"/> 
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="$(arg open_gazebo)"/>
@@ -27,13 +29,21 @@
 </include>
  <!-- RVIZ  --> 
   <group if="$(arg open_rviz)"> 
-    <node pkg="rviz" type="rviz" name="rviz" required="true"
-         args="-d $(find multi_amr_nectec)/rviz/2_amr.rviz"/>
+  <param name="use_gui" value="true"/>
+  <arg name="config" default="robot" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ridgeback_viz)/rviz/$(arg config).rviz" />
   </group>
 
-  <!-- Configuration of Ridgeback which you would like to simulate.
-       See ridgeback_description for details. -->
+  
+ 
 
+<!-- AMR 0  -->
+  <group ns="amr_0">
+      <arg name="init_pose_gazebo" value="-x 2 -y 2 -z 0.1 -Y 0 -P 0 -R 0" />   
+      <arg name="robot_name" value="amr_0" />
+      <param name="tf_prefix" value="$(arg robot_name)" />
+      <!-- Configuration of Ridgeback which you would like to simulate.
+       See ridgeback_description for details. -->
   <!-- Load Ridgeback's description, controllers, and teleop nodes. -->
   <arg name="config_des" default="$(optenv RIDGEBACK_CONFIG base)" />
   <param name="robot_description"
@@ -41,30 +51,27 @@
                   $(find ridgeback_description)/urdf/configs/$(arg config_des)
                   $(find xacro)/xacro $(find ridgeback_description)/urdf/ridgeback.urdf.xacro
                   --inorder " />
+                  
+  <!-- Spawn Ridgeback -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" args="-urdf -model $(arg robot_name) -param robot_description $(arg init_pose_gazebo)" />
  
+  
+  <!--  -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
-
-
-<!-- AMR 0  -->
-  <group ns="amr_0">
-
-      <arg name="init_pose_gazebo" value="-x 0 -y 0 -z 0.1 -Y 0 -P 0 -R 0" />
-      <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
-      <arg name="robot_name" value="amr_0" />
-      <!--control -->
+      <!--control 
  <rosparam command="load" file="$(find ridgeback_control)/config/control.yaml" />
   <group if="$(optenv RIDGEBACK_CONTROL_EXTRAS 0)" >
     <rosparam command="load" file="$(env RIDGEBACK_CONTROL_EXTRAS_PATH)" />
   </group>
-
   <node name="controller_spawner" pkg="controller_manager" type="spawner"
         args="ridgeback_joint_publisher ridgeback_velocity_controller" />
-
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" />
-
   <node pkg="topic_tools" type="relay" name="cmd_vel_relay"
         args="cmd_vel ridgeback_velocity_controller/amr_0/cmd_vel" />
-   <!--teleop -->
+-->
+        
+   <!--teleop 
    <arg name="config" default="planar" />
   <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
     <remap from="twist_marker_server/cmd_vel" to="amr_0/cmd_vel" />
@@ -89,14 +96,7 @@
       i: 0.1
       d: 0
   </rosparam>
-
-  
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
-
-
- <!--Robot description to param server-->
- <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="$(arg init_pose_gazebo) -urdf -param /robot_description -model $(arg robot_name) " output="screen"/>
-  
+-->
  
   </group>
 

@@ -16,10 +16,9 @@
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher">
   <param name="publish_frequency" value="100.0"/>
   </node>
-  <!-- Run fake localization compatible with AMCL output 
-  <node pkg="fake_localization" type="fake_localization" name="fake_localization" output="screen" />
- -->
- <!--transform odon to map at 50 Hz  or 20 ms-->
+ 
+
+ <!--transform odom to map at 100 Hz  or 10 ms-->
  <node pkg="tf" type="static_transform_publisher" name="odom_map_broadcaster" args="$(arg init_pose_rviz) /map $(arg robot_name)/odom 10" />
 
 </launch>

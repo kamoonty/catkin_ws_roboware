@@ -130,7 +130,22 @@
       <cmdVelTimeOut>0.25</cmdVelTimeOut>
     </plugin>
   </gazebo>
-   -->
+ <gazebo> 
+     <plugin name="ridgeback_ros_force_based_move" filename="libridgeback_ros_force_based_move.so">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>100</odometryRate>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <cmdVelTimeOut>0.25</cmdVelTimeOut>
+      <publishOdometryTf>0</publishOdometryTf>
+      <yaw_velocity_p_gain>500.0</yaw_velocity_p_gain>
+      <x_velocity_p_gain>10000.0</x_velocity_p_gain>
+      <y_velocity_p_gain>10000.0</y_velocity_p_gain>
+    </plugin>
+    </gazebo>
+-->
+  
    <gazebo>
     <plugin filename="libgazebo_ros_planar_move.so" name="amr_planar_controller">
       <commandTopic>cmd_vel</commandTopic>
@@ -140,8 +155,6 @@
       <robotBaseFrame>base_link</robotBaseFrame>
     </plugin>
   </gazebo>
-
-
   <gazebo>
     <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
       <alwaysOn>true</alwaysOn>
