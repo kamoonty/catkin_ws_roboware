@@ -55,7 +55,7 @@
 <!-- AMR 0  -->
   <group ns="amr_0">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 0.5 -y 0 -z 0.1 -Y 1.5 -P 0 -R 0" />
+      <arg name="init_pose_gazebo" value="-x 0.5 -y 0 -z 0.1 -Y 1.57079632679 -P 0 -R 0" />
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
       <arg name="robot_name" value="amr_0" />
       <arg name="robot_colour" value="blue"/>
@@ -66,7 +66,7 @@
 <!-- AMR 1   -->
  <group ns="amr_1">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x -0.5 -y 0 -z 0.1 -Y 1.5 -P 0 -R 0" />  
+      <arg name="init_pose_gazebo" value="-x -0.5 -y 0 -z 0.1 -Y 1.57079632679 -P 0 -R 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_1" />
       <arg name="robot_colour" value="red"/>
@@ -81,7 +81,7 @@
  <node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
   <param name ="default_x" value = "0" />
   <param name ="default_y" value = "0" />
-  <param name ="default_theta" value = "1.5" />
+  <param name ="default_theta" value = "1.57079632679" />
 </node>
  <!--transform virtual leader odom to map   -->
  <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /odom 10" />
@@ -127,12 +127,12 @@
 <param name ="delta_time" value = "1" />
 </node>
 
- <!-- Linear trajectory of VL  --> 
+ <!-- Linear trajectory of VL  
 <node pkg="multi_amr_nectec" type="vl_trajectory_linear" name="vl_trajectory_linear" output="screen" />
-
-<!--trajectory of VL S curve 
+--> 
+<!--trajectory of VL S curve -->
 <node pkg="multi_amr_nectec" type="vl_trajectory_s_curve" name="vl_trajectory_s_curve" output="screen" />
--->
+
 <!--ROSBAG Record -->
  <node pkg="rosbag" type="record" name="rosbag_record_data" output="screen"
        args="record -O /home/kanin/ROSbag/$(arg team_size)_robot_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
