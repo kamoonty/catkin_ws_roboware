@@ -2768,6 +2768,19 @@ _multi_amr_nectec_generate_messages_check_deps_pos_msg/fast:
 .PHONY : _multi_amr_nectec_generate_messages_check_deps_pos_msg/fast
 
 #=============================================================================
+# Target rules for targets named vl_trajectory_s_curve
+
+# Build rule for target.
+vl_trajectory_s_curve: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 vl_trajectory_s_curve
+.PHONY : vl_trajectory_s_curve
+
+# fast build rule for target.
+vl_trajectory_s_curve/fast:
+	$(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_s_curve.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_s_curve.dir/build
+.PHONY : vl_trajectory_s_curve/fast
+
+#=============================================================================
 # Target rules for targets named get_odom_robot
 
 # Build rule for target.
@@ -3578,6 +3591,7 @@ help:
 	@echo "... multi_amr_nectec_genpy"
 	@echo "... position_robot"
 	@echo "... _multi_amr_nectec_generate_messages_check_deps_pos_msg"
+	@echo "... vl_trajectory_s_curve"
 	@echo "... get_odom_robot"
 	@echo "... multi_amr_nectec_gencpp"
 	@echo "... multi_amr_nectec_generate_messages_py"

@@ -333,6 +333,21 @@ _multi_amr_nectec_generate_messages_check_deps_pos_msg/fast:
 .PHONY : _multi_amr_nectec_generate_messages_check_deps_pos_msg/fast
 
 # Convenience name for target.
+multi_amr_nectec/CMakeFiles/vl_trajectory_s_curve.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/vl_trajectory_s_curve.dir/rule
+.PHONY : multi_amr_nectec/CMakeFiles/vl_trajectory_s_curve.dir/rule
+
+# Convenience name for target.
+vl_trajectory_s_curve: multi_amr_nectec/CMakeFiles/vl_trajectory_s_curve.dir/rule
+
+.PHONY : vl_trajectory_s_curve
+
+# fast build rule for target.
+vl_trajectory_s_curve/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_s_curve.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_s_curve.dir/build
+.PHONY : vl_trajectory_s_curve/fast
+
+# Convenience name for target.
 multi_amr_nectec/CMakeFiles/get_odom_robot.dir/rule:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/get_odom_robot.dir/rule
 .PHONY : multi_amr_nectec/CMakeFiles/get_odom_robot.dir/rule
@@ -767,6 +782,33 @@ src/vl_trajectory_linear.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/src/vl_trajectory_linear.cpp.s
 .PHONY : src/vl_trajectory_linear.cpp.s
 
+src/vl_trajectory_s_curve.o: src/vl_trajectory_s_curve.cpp.o
+
+.PHONY : src/vl_trajectory_s_curve.o
+
+# target to build an object file
+src/vl_trajectory_s_curve.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_s_curve.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_s_curve.dir/src/vl_trajectory_s_curve.cpp.o
+.PHONY : src/vl_trajectory_s_curve.cpp.o
+
+src/vl_trajectory_s_curve.i: src/vl_trajectory_s_curve.cpp.i
+
+.PHONY : src/vl_trajectory_s_curve.i
+
+# target to preprocess a source file
+src/vl_trajectory_s_curve.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_s_curve.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_s_curve.dir/src/vl_trajectory_s_curve.cpp.i
+.PHONY : src/vl_trajectory_s_curve.cpp.i
+
+src/vl_trajectory_s_curve.s: src/vl_trajectory_s_curve.cpp.s
+
+.PHONY : src/vl_trajectory_s_curve.s
+
+# target to generate assembly for a file
+src/vl_trajectory_s_curve.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_s_curve.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_s_curve.dir/src/vl_trajectory_s_curve.cpp.s
+.PHONY : src/vl_trajectory_s_curve.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -788,6 +830,7 @@ help:
 	@echo "... multi_amr_nectec_genpy"
 	@echo "... position_robot"
 	@echo "... _multi_amr_nectec_generate_messages_check_deps_pos_msg"
+	@echo "... vl_trajectory_s_curve"
 	@echo "... get_odom_robot"
 	@echo "... multi_amr_nectec_gencpp"
 	@echo "... multi_amr_nectec_generate_messages_py"
@@ -832,6 +875,9 @@ help:
 	@echo "... src/vl_trajectory_linear.o"
 	@echo "... src/vl_trajectory_linear.i"
 	@echo "... src/vl_trajectory_linear.s"
+	@echo "... src/vl_trajectory_s_curve.o"
+	@echo "... src/vl_trajectory_s_curve.i"
+	@echo "... src/vl_trajectory_s_curve.s"
 .PHONY : help
 
 

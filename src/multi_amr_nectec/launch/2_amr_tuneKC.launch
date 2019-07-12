@@ -13,9 +13,9 @@
   <arg name="Kvl" default="50" />
   <arg name="Cvl" default="0" />
   <arg name="Kij" default="0" />
-  <arg name="Cij" default="0" />
+  <arg name="Cij" default="0" /> 
 <!-- K angular should be low to let robot move in cartesion in time-->
-  <arg name="K_ang" default="0.5" />
+  <arg name="K_ang" default="1" />
   <arg name="team_size" value="2"/>
   <arg name="v_linear_threshold" value="1000"/>
   <arg name="v_angular_threshold" value="1000"/>
@@ -55,7 +55,7 @@
 <!-- AMR 0  -->
   <group ns="amr_0">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 0.5 -y 0 -z 0.1 -Y 1.5707 -P 0 -R 0" />
+      <arg name="init_pose_gazebo" value="-x 0.5 -y 0 -z 0.1 -Y 1.5 -P 0 -R 0" />
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
       <arg name="robot_name" value="amr_0" />
       <arg name="robot_colour" value="blue"/>
@@ -66,7 +66,7 @@
 <!-- AMR 1   -->
  <group ns="amr_1">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x -0.5 -y 0 -z 0.1 -Y 1.5707 -P 0 -R 0" />  
+      <arg name="init_pose_gazebo" value="-x -0.5 -y 0 -z 0.1 -Y 1.5 -P 0 -R 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_1" />
       <arg name="robot_colour" value="red"/>
@@ -81,7 +81,7 @@
  <node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
   <param name ="default_x" value = "0" />
   <param name ="default_y" value = "0" />
-  <param name ="default_theta" value = "1.5707" />
+  <param name ="default_theta" value = "1.5" />
 </node>
  <!--transform virtual leader odom to map   -->
  <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /odom 10" />
@@ -94,11 +94,7 @@
 <!--Load parameter     -->
 <rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/linear.yaml" />
 
-<!--Rotational force   --> 
-<node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" if="$(arg rotational_force)" >
-  <param name ="team_size" value = "$(arg team_size)" />
-  <param name ="K_ang" value = "$(arg K_ang)" />
-</node>
+
 <!-- VL force     -->
 <node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" if="$(arg vl_force)">
   <param name ="team_size" value = "$(arg team_size)" />
@@ -112,8 +108,14 @@
   <param name ="Kij" value = "$(arg Kij)" />
   <param name ="Cij" value = "$(arg Cij)" />
 </node>
-
- 
+ <!--Rotational force -->  
+<node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" if="$(arg rotational_force)" >
+  <param name ="team_size" value = "$(arg team_size)" />
+  <param name ="K_ang" value = "$(arg K_ang)" />
+</node>
+<!--Delay rotational force     
+<node pkg="timed_roslaunch" type="timed_roslaunch.sh" args="1.5 multi_amr_nectec node_orientation_control.launch" name="delay_rotational_force" output="screen" />
+-->
 <!--motion generator -->
 <node pkg="multi_amr_nectec" type="motion_generator" name="motion_generator" output="screen" if="$(arg motion_generator)" >
  <param name ="team_size" value = "$(arg team_size)" />
@@ -125,12 +127,15 @@
 <param name ="delta_time" value = "1" />
 </node>
 
+ <!-- Linear trajectory of VL  --> 
+<node pkg="multi_amr_nectec" type="vl_trajectory_linear" name="vl_trajectory_linear" output="screen" />
+
+<!--trajectory of VL S curve 
+<node pkg="multi_amr_nectec" type="vl_trajectory_s_curve" name="vl_trajectory_s_curve" output="screen" />
+-->
 <!--ROSBAG Record -->
  <node pkg="rosbag" type="record" name="rosbag_record_data" output="screen"
-       args="record -O /home/kanin/ROSbag/2_robot_planar_move_Kvl=$(arg Kvl)Cvl=$(arg Cvl).bag /amr_0/pose2d /amr_0/cmd_vel /amr_1/pose2d /amr_1/cmd_vel /F_vl_x /F_vl_y /vl_robot/pose2d /vl_robot/cmd_vel"
+       args="record -O /home/kanin/ROSbag/$(arg team_size)_robot_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
+       /amr_0/pose2d /amr_0/cmd_vel /amr_1/pose2d /amr_1/cmd_vel /F_vl_x /F_vl_y /vl_robot/pose2d /vl_robot/cmd_vel"
        if="$(arg record_data)" /> 
- <!--trajectory of VL  
-<node pkg="multi_amr_nectec" type="vl_trajectory_linear" name="vl_trajectory_linear" output="screen" />
--->
-
 </launch>

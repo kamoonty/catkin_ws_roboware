@@ -686,6 +686,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "multi_amr_nectec/CMakeFiles/multi_amr_nectec_genpy.dir/DependInfo.cmake"
   "multi_amr_nectec/CMakeFiles/position_robot.dir/DependInfo.cmake"
   "multi_amr_nectec/CMakeFiles/_multi_amr_nectec_generate_messages_check_deps_pos_msg.dir/DependInfo.cmake"
+  "multi_amr_nectec/CMakeFiles/vl_trajectory_s_curve.dir/DependInfo.cmake"
   "multi_amr_nectec/CMakeFiles/get_odom_robot.dir/DependInfo.cmake"
   "multi_amr_nectec/CMakeFiles/multi_amr_nectec_gencpp.dir/DependInfo.cmake"
   "multi_amr_nectec/CMakeFiles/multi_amr_nectec_generate_messages_py.dir/DependInfo.cmake"

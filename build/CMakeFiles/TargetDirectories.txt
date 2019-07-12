@@ -342,6 +342,7 @@
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/multi_amr_nectec_genpy.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/position_robot.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/_multi_amr_nectec_generate_messages_check_deps_pos_msg.dir
+/home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/vl_trajectory_s_curve.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/get_odom_robot.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/multi_amr_nectec_gencpp.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/multi_amr_nectec_generate_messages_py.dir
