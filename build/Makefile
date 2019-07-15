@@ -2625,6 +2625,19 @@ hector_gazebo_reset_plugin/fast:
 .PHONY : hector_gazebo_reset_plugin/fast
 
 #=============================================================================
+# Target rules for targets named vl_trajectory_circle
+
+# Build rule for target.
+vl_trajectory_circle: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 vl_trajectory_circle
+.PHONY : vl_trajectory_circle
+
+# fast build rule for target.
+vl_trajectory_circle/fast:
+	$(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_circle.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_circle.dir/build
+.PHONY : vl_trajectory_circle/fast
+
+#=============================================================================
 # Target rules for targets named multi_amr_nectec_genlisp
 
 # Build rule for target.
@@ -3580,6 +3593,7 @@ help:
 	@echo "... std_srvs_generate_messages_py"
 	@echo "... hector_gazebo_plugins_genpy"
 	@echo "... hector_gazebo_reset_plugin"
+	@echo "... vl_trajectory_circle"
 	@echo "... multi_amr_nectec_genlisp"
 	@echo "... multi_amr_nectec_generate_messages_nodejs"
 	@echo "... multi_amr_nectec_generate_messages_eus"

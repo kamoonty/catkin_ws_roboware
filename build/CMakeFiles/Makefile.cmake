@@ -675,6 +675,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "hector_gazebo/hector_gazebo_plugins/CMakeFiles/std_srvs_generate_messages_py.dir/DependInfo.cmake"
   "hector_gazebo/hector_gazebo_plugins/CMakeFiles/hector_gazebo_plugins_genpy.dir/DependInfo.cmake"
   "hector_gazebo/hector_gazebo_plugins/CMakeFiles/hector_gazebo_reset_plugin.dir/DependInfo.cmake"
+  "multi_amr_nectec/CMakeFiles/vl_trajectory_circle.dir/DependInfo.cmake"
   "multi_amr_nectec/CMakeFiles/multi_amr_nectec_genlisp.dir/DependInfo.cmake"
   "multi_amr_nectec/CMakeFiles/multi_amr_nectec_generate_messages_nodejs.dir/DependInfo.cmake"
   "multi_amr_nectec/CMakeFiles/multi_amr_nectec_generate_messages_eus.dir/DependInfo.cmake"

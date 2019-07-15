@@ -279,3 +279,11 @@ add_dependencies(vl_trajectory_s_curve ${${PROJECT_NAME}_EXPORTED_TARGETS} ${cat
 target_link_libraries(vl_trajectory_s_curve
   ${catkin_LIBRARIES}
 )
+
+add_executable(vl_trajectory_circle
+  src/vl_trajectory_circle.cpp
+)
+add_dependencies(vl_trajectory_circle ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(vl_trajectory_circle
+  ${catkin_LIBRARIES}
+)

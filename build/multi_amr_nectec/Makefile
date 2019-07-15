@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+multi_amr_nectec/CMakeFiles/vl_trajectory_circle.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/vl_trajectory_circle.dir/rule
+.PHONY : multi_amr_nectec/CMakeFiles/vl_trajectory_circle.dir/rule
+
+# Convenience name for target.
+vl_trajectory_circle: multi_amr_nectec/CMakeFiles/vl_trajectory_circle.dir/rule
+
+.PHONY : vl_trajectory_circle
+
+# fast build rule for target.
+vl_trajectory_circle/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_circle.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_circle.dir/build
+.PHONY : vl_trajectory_circle/fast
+
+# Convenience name for target.
 multi_amr_nectec/CMakeFiles/multi_amr_nectec_genlisp.dir/rule:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/multi_amr_nectec_genlisp.dir/rule
 .PHONY : multi_amr_nectec/CMakeFiles/multi_amr_nectec_genlisp.dir/rule
@@ -755,6 +770,33 @@ src/vl_force.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_force.dir/build.make multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.s
 .PHONY : src/vl_force.cpp.s
 
+src/vl_trajectory_circle.o: src/vl_trajectory_circle.cpp.o
+
+.PHONY : src/vl_trajectory_circle.o
+
+# target to build an object file
+src/vl_trajectory_circle.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_circle.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_circle.dir/src/vl_trajectory_circle.cpp.o
+.PHONY : src/vl_trajectory_circle.cpp.o
+
+src/vl_trajectory_circle.i: src/vl_trajectory_circle.cpp.i
+
+.PHONY : src/vl_trajectory_circle.i
+
+# target to preprocess a source file
+src/vl_trajectory_circle.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_circle.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_circle.dir/src/vl_trajectory_circle.cpp.i
+.PHONY : src/vl_trajectory_circle.cpp.i
+
+src/vl_trajectory_circle.s: src/vl_trajectory_circle.cpp.s
+
+.PHONY : src/vl_trajectory_circle.s
+
+# target to generate assembly for a file
+src/vl_trajectory_circle.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_circle.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_circle.dir/src/vl_trajectory_circle.cpp.s
+.PHONY : src/vl_trajectory_circle.cpp.s
+
 src/vl_trajectory_linear.o: src/vl_trajectory_linear.cpp.o
 
 .PHONY : src/vl_trajectory_linear.o
@@ -818,6 +860,7 @@ help:
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... vl_trajectory_circle"
 	@echo "... multi_amr_nectec_genlisp"
 	@echo "... multi_amr_nectec_generate_messages_nodejs"
 	@echo "... edit_cache"
@@ -872,6 +915,9 @@ help:
 	@echo "... src/vl_force.o"
 	@echo "... src/vl_force.i"
 	@echo "... src/vl_force.s"
+	@echo "... src/vl_trajectory_circle.o"
+	@echo "... src/vl_trajectory_circle.i"
+	@echo "... src/vl_trajectory_circle.s"
 	@echo "... src/vl_trajectory_linear.o"
 	@echo "... src/vl_trajectory_linear.i"
 	@echo "... src/vl_trajectory_linear.s"
