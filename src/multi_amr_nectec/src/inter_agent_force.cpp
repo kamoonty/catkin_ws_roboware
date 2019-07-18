@@ -12,6 +12,7 @@
 #include "std_msgs/Float32MultiArray.h"
 int team_size; //use for get param from launch file
 float Kij;
+float delta_time; //20Hz=0.05 sec
 int main(int argc, char** argv) 
 {
  ros::init(argc, argv, "inter_agent_force");
@@ -20,6 +21,7 @@ int main(int argc, char** argv)
  //load param from launch file
  nh.getParam("inter_agent_force/team_size", team_size);
  nh.getParam("inter_agent_force/Kij", Kij);
+  nh.getParam("inter_agent_force/delta_time", delta_time);
  // load param for initial formation from YAML file
  
  std::vector<double> initial_pos_x;

@@ -12,7 +12,7 @@
 #include "std_msgs/Float32MultiArray.h"
 int team_size; //use for get param from launch file
 float Kvl,Cvl;
- float delta_time; //20Hz=0.05 sec
+float delta_time; //20Hz=0.05 sec
 int main(int argc, char** argv) 
 {
  ros::init(argc, argv, "vl_force");
@@ -90,8 +90,7 @@ double th = tf::getYaw(transform.getRotation());
                 absolute_distance[i].y=(fabs(Dist_vl[i].y)-fabs(initial_pos_y[i]));            
                 ROS_INFO("Absolute distance of robot %d[%.3f,%.3f]",i,absolute_distance[i].x,absolute_distance[i].y);           
      
-      // calculate delta_t
-        //rate = 20Hz
+      // equation ro calculate damper equation
          first_data[i].x= absolute_distance[i].x;
          first_data[i].y= absolute_distance[i].y;
       if(second_data[i].x!=0&&second_data[i].y!=0)
@@ -101,7 +100,7 @@ double th = tf::getYaw(transform.getRotation());
         diff_value[i].y= (fabs(first_data[i].y)-fabs(second_data[i].y))/delta_time;
        second_data[i].x=first_data[i].x;
        second_data[i].y=first_data[i].y;
-       ROS_INFO("Diff of robot %d = [%f,%f]",i,diff_value[i].x,diff_value[i].y);
+       ROS_INFO("Differentiate distance of robot %d = [%f,%f]",i,diff_value[i].x,diff_value[i].y);
        }
        else
        {second_data[i].x=first_data[i].x;

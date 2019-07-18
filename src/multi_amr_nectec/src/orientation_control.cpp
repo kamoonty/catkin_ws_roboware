@@ -13,10 +13,11 @@
 geometry_msgs::Pose2D get_pose2d_agent [10]; //allocate for max 10 robots
 geometry_msgs::Pose2D get_pose2d_vl;
 geometry_msgs::Twist get_velocity_vl; 
-
+float delta_time;
 
 int team_size; //use for get param from launch file
 float K_ang;
+float D_ang;
 // We need to round value after subscribe because if not it can cause problem
 // when VL= 0.00000003 and Robot 1 Pos X = 0.00000004 it is not equal so useroundf (number*100)/100
 
@@ -59,15 +60,20 @@ int main(int argc, char** argv)
  //load param from launch file
  nh.getParam("orientation_control/team_size", team_size);
  nh.getParam("orientation_control/K_ang", K_ang);
+ nh.getParam("orientation_control/D_ang", D_ang);
+ nh.getParam("orientation_control/delta_time", delta_time);
  ros::Subscriber vl_velocity_sub = nh.subscribe("vl_robot/pub_velocity", 1000, vl_velocityCB); // subscribe speed of VL in x y theta (m/s)
  ros::Subscriber vl_pose2d_sub = nh.subscribe("vl_robot/pose2d", 1000, vl_pose2D_CB);
  ros::Subscriber agent0_pose2d_sub = nh.subscribe("amr_0/pose2d", 1000, agent0_pose2D_CB);
  ros::Subscriber agent1_pose2d_sub = nh.subscribe("amr_1/pose2d", 1000, agent1_pose2D_CB);
  ros::Subscriber agent2_pose2d_sub = nh.subscribe("amr_2/pose2d", 1000, agent2_pose2D_CB);
  ros::Subscriber agent3_pose2d_sub = nh.subscribe("amr_3/pose2d", 1000, agent3_pose2D_CB);
- ros::Publisher pub_rotational_force = nh.advertise<std_msgs::Float32MultiArray>("F_rot", 100);
+ ros::Publisher pub_rotational_force = nh.advertise<std_msgs::Float32MultiArray>("F_rot", 1000);
  
  float diff_angle [team_size];
+ float first_data [team_size];
+ float second_data [team_size];
+ float diff_value [team_size];
  float previous_velocity;
  geometry_msgs::Twist calculate_rotational_force [team_size];
 
@@ -98,20 +104,30 @@ while (nh.ok())
        rotate_direction=-1;
     else rotate_direction=1;
     }
+    // equation to calculate damper equation
+         first_data[i]= fabs(diff_angle[i]);
+      if(second_data[i]!=0)
+       { diff_value[i]= (fabs(first_data[i])-fabs(second_data[i]))/delta_time;
+       second_data[i]=first_data[i];
+       ROS_INFO("Differentiate data angle of robot %d = %f",i,diff_value[i]);
+       }
+       else
+       {second_data[i]=first_data[i];
+       ROS_INFO("!!!!Enter First loop!!!");
+       }     
 
-        // Use fabs for float absolute
-              calculate_rotational_force[i].angular.z=K_ang*fabs(diff_angle[i])*rotate_direction;
-              calculate_rotational_force[i].angular.z=(calculate_rotational_force[i].angular.z)*M_PI/180; //convert back to radian
+      // Use fabs for float absolute
+      calculate_rotational_force[i].angular.z=rotate_direction*(K_ang*fabs(diff_angle[i])+D_ang*diff_value[i]);
+      calculate_rotational_force[i].angular.z=(calculate_rotational_force[i].angular.z)*M_PI/180; //convert back to radian
 
-                // to avoid suddenly move between 0 or 360
+      // to avoid jerk movement between 0 or 360
     if(fabs(diff_angle[i])>=180&&fabs(diff_angle[i])<=360)
     {calculate_rotational_force[i].angular.z=previous_velocity; //reduce speed to the same as previous loop 
-       ROS_INFO("-Reduce speed to avoid jerk rotation-"); }
-      
-              previous_velocity=calculate_rotational_force[i].angular.z;
-              
-              ROS_INFO("Rotational Force -> robot %d =%f",i,calculate_rotational_force[i].angular.z );  
-              ROS_INFO("-----------------------");
+       ROS_INFO("-Reduce speed to avoid jerk rotation-"); }    
+    previous_velocity=calculate_rotational_force[i].angular.z;
+      // Publish data        
+      ROS_INFO("Rotational Force -> robot %d =%f",i,calculate_rotational_force[i].angular.z );  
+      ROS_INFO("-----------------------");
       robot_rotational_force.data.push_back(calculate_rotational_force[i].angular.z);
       
       }            
