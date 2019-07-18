@@ -74,7 +74,7 @@ int main(int argc, char** argv)
  float first_data [team_size];
  float second_data [team_size];
  float diff_value [team_size];
- float previous_velocity;
+ float previous_velocity [team_size];
  geometry_msgs::Twist calculate_rotational_force [team_size];
 
 while (nh.ok()) 
@@ -86,10 +86,11 @@ while (nh.ok())
               float degree_vl = convert_to_degree(get_pose2d_vl.theta);
               float degree_agent[team_size];
               degree_agent[i]=convert_to_degree(get_pose2d_agent[i].theta);
+              ROS_INFO("Robot %d",i );
               ROS_INFO("VL angle =%f degree",degree_vl );
-              ROS_INFO("agent[%d] angle =%f degree",i,degree_agent[i] );
+              ROS_INFO("Agent[%d] angle =%f degree",i,degree_agent[i] );
               diff_angle[i]= (degree_vl-degree_agent[i]);
-              ROS_INFO("Diff angle agent %d = %f degree",i,diff_angle[i] );
+              ROS_INFO("Angle between VL and agent %d = %f degree",i,diff_angle[i] );
          // to avoid unnecessary rotation  
     if(diff_angle[i]>=0) 
     {
@@ -104,10 +105,13 @@ while (nh.ok())
        rotate_direction=-1;
     else rotate_direction=1;
     }
-    // equation to calculate damper equation
+    // equation to calculate damper equation  // still has problem when angle between 0 and 360 so we set
+    // D_ang=0 first
          first_data[i]= fabs(diff_angle[i]);
       if(second_data[i]!=0)
-       { diff_value[i]= (fabs(first_data[i])-fabs(second_data[i]))/delta_time;
+       { ROS_INFO("First Data = %f",first_data[i]);
+        ROS_INFO("Second Data = %f",second_data[i]);
+         diff_value[i]= (fabs(first_data[i])-fabs(second_data[i]))/delta_time;
        second_data[i]=first_data[i];
        ROS_INFO("Differentiate data angle of robot %d = %f",i,diff_value[i]);
        }
@@ -122,9 +126,9 @@ while (nh.ok())
 
       // to avoid jerk movement between 0 or 360
     if(fabs(diff_angle[i])>=180&&fabs(diff_angle[i])<=360)
-    {calculate_rotational_force[i].angular.z=previous_velocity; //reduce speed to the same as previous loop 
-       ROS_INFO("-Reduce speed to avoid jerk rotation-"); }    
-    previous_velocity=calculate_rotational_force[i].angular.z;
+    {calculate_rotational_force[i].angular.z=previous_velocity[i]; //reduce speed to the same as previous loop 
+       ROS_INFO("-Fix speed same as previous velocity to avoid jerk rotation-"); }    
+    previous_velocity[i]=calculate_rotational_force[i].angular.z;
       // Publish data        
       ROS_INFO("Rotational Force -> robot %d =%f",i,calculate_rotational_force[i].angular.z );  
       ROS_INFO("-----------------------");

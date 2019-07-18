@@ -16,6 +16,7 @@
   <arg name="Cij" default="0" /> 
 <!-- K angular should be low to let robot move in cartesion in time-->
   <arg name="K_ang" default="1" />
+  <arg name="D_ang" default="0" />
   <arg name="team_size" value="2"/>
   <arg name="v_linear_threshold" value="1000"/>
   <arg name="v_angular_threshold" value="1000"/>
@@ -107,11 +108,14 @@
   <param name ="team_size" value = "$(arg team_size)" />
   <param name ="Kij" value = "$(arg Kij)" />
   <param name ="Cij" value = "$(arg Cij)" />
+   <param name ="delta_time" value = "$(arg delta_time)" />
 </node>
  <!--Rotational force -->  
 <node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" if="$(arg rotational_force)" >
   <param name ="team_size" value = "$(arg team_size)" />
   <param name ="K_ang" value = "$(arg K_ang)" />
+  <param name ="D_ang" value = "$(arg D_ang)" />
+  <param name ="delta_time" value = "$(arg delta_time)" />
 </node>
 <!--Delay rotational force     
 <node pkg="timed_roslaunch" type="timed_roslaunch.sh" args="1.5 multi_amr_nectec node_orientation_control.launch" name="delay_rotational_force" output="screen" />

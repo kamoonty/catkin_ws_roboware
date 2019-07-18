@@ -5,17 +5,18 @@
   <arg name="open_gazebo" default="false"/>
   <arg name="record_data" default="true" />
 
-  <arg name="vl_force" default="true" />
-  <arg name="rotational_force" default="true" />
+  <arg name="vl_force" default="false" />
+  <arg name="rotational_force" default="false" />
   <arg name="inter_agent_force" default="false" />
-  <arg name="motion_generator" default="true" />
+  <arg name="motion_generator" default="false" />
   <!-- Define Paramerters here for robot formation-->
   <arg name="Kvl" default="300" />
   <arg name="Cvl" default="0" />
-  <arg name="Kij" default="0" />
-  <arg name="Cij" default="0" />
+  <arg name="Kij" default="100" />
+  <arg name="Cij" default="1" />
 <!-- K angular should be low to let robot move in cartesion in time-->
   <arg name="K_ang" default="2" />
+  <arg name="D_ang" default="0" />
   <arg name="team_size" value="4"/>
   <arg name="v_linear_threshold" value="1000"/>
   <arg name="v_angular_threshold" value="1000"/>
@@ -133,6 +134,8 @@
 <node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" if="$(arg rotational_force)" >
   <param name ="team_size" value = "$(arg team_size)" />
   <param name ="K_ang" value = "$(arg K_ang)" />
+    <param name ="D_ang" value = "$(arg D_ang)" />
+  <param name ="delta_time" value = "$(arg delta_time)" />
 </node>
 <!-- VL force     -->
 <node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" if="$(arg vl_force)">

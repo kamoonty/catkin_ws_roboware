@@ -16,6 +16,7 @@
   <arg name="Cij" default="0" />
 <!-- K angular should be low to let robot move in cartesion in time-->
   <arg name="K_ang" default="2" />
+  <arg name="D_ang" default="0" />
   <arg name="team_size" value="4"/>
   <arg name="v_linear_threshold" value="1000"/>
   <arg name="v_angular_threshold" value="1000"/>
@@ -133,6 +134,8 @@
 <node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" if="$(arg rotational_force)" >
   <param name ="team_size" value = "$(arg team_size)" />
   <param name ="K_ang" value = "$(arg K_ang)" />
+  <param name ="D_ang" value = "$(arg D_ang)" />
+  <param name ="delta_time" value = "$(arg delta_time)" />
 </node>
 <!-- VL force     -->
 <node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" if="$(arg vl_force)">

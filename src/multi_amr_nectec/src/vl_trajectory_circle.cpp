@@ -18,7 +18,7 @@ while (ros::ok())
   if (t>=2&&t<60) //delay for 2 secs
     {final_cmd_vel.linear.x=0.5;
    final_cmd_vel.angular.z=-0.25;
-    ROS_INFO("First half circle");
+    ROS_INFO("Virtual leader run for 2 loops of a circle");
     }   
      
   if(t>=60)
