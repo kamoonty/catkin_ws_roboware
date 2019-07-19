@@ -13,7 +13,7 @@
   <arg name="Kvl" default="300" />
   <arg name="Cvl" default="0" />
   <arg name="Kij" default="100" />
-  <arg name="Cij" default="1" />
+  <arg name="Cij" default="0" />
 <!-- K angular should be low to let robot move in cartesion in time-->
   <arg name="K_ang" default="2" />
   <arg name="D_ang" default="0" />
@@ -149,6 +149,7 @@
   <param name ="team_size" value = "$(arg team_size)" />
   <param name ="Kij" value = "$(arg Kij)" />
   <param name ="Cij" value = "$(arg Cij)" />
+  <param name ="delta_time" value = "$(arg delta_time)" />
 </node>
 
  
