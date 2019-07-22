@@ -1,0 +1,8 @@
+prefix=/home/kanin/catkin_ws_roboware/install
+
+Name: mecanum_sim
+Description: Description of mecanum_sim
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/kanin/catkin_ws_roboware/install/lib 
+Requires: 

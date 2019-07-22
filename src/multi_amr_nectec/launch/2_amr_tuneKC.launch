@@ -3,9 +3,9 @@
   <param name="/use_sim_time" value="true"/>
   <arg name="open_rviz" default="true"/>
   <arg name="open_gazebo" default="false"/>
-  <arg name="record_data" default="true" />
+  <arg name="record_data" default="false" />
   
-  <arg name="vl_force" default="true" />
+  <arg name="vl_force" default="false" />
   <arg name="rotational_force" default="true" />
   <arg name="inter_agent_force" default="false" />
   <arg name="motion_generator" default="true" />
@@ -83,9 +83,10 @@
   <param name ="default_x" value = "0" />
   <param name ="default_y" value = "0" />
   <param name ="default_theta" value = "1.57079632679" />
+
 </node>
  <!--transform virtual leader odom to map   -->
- <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /odom 10" />
+ <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /vl/odom 10" />
   <!--Get odom from virtual leader robot  -->
 <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
  <!--Get angle from virtual leader robot  -->
@@ -137,9 +138,9 @@
 <!--trajectory of VL S curve
 <node pkg="multi_amr_nectec" type="vl_trajectory_s_curve" name="vl_trajectory_s_curve" output="screen" />
  -->
- <!--trajectory of VL circle  -->
+ <!--trajectory of VL circle 
 <node pkg="multi_amr_nectec" type="vl_trajectory_circle" name="vl_trajectory_circle" output="screen" />
-
+ -->
 <!--ROSBAG Record -->
  <node pkg="rosbag" type="record" name="rosbag_record_data" output="screen"
        args="record -O /home/kanin/ROSbag/circle_path_$(arg team_size)_robot_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
