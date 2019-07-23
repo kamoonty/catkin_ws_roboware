@@ -119,8 +119,8 @@
   <param name ="default_y" value = "0" />
   <param name ="default_theta" value = "0" />
 </node>
- <!--transform virtual leader odom to map   -->
- <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /odom 10" />
+ <!--transform virtual leader odom to map-->
+ <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /vl/odom 10" />
   <!--Get odom from virtual leader robot  -->
 <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
  <!--Get angle from virtual leader robot  -->

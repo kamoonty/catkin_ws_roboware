@@ -81,8 +81,8 @@
   <param name ="default_y" value = "0" />
 </node>
 
- <!--transform fake_odom to map   -->
- <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /odom 20" />
+ <!--transform virtual leader odom to map-->
+ <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /vl/odom 10" />
   <!--Get odom from fake robot  -->
 <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
  </group>

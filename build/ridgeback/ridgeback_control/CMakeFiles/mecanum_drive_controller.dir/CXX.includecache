@@ -50,20 +50,6 @@ boost/assign.hpp
 mecanum_drive_controller/mecanum_drive_controller.h
 -
 
-/home/kanin/catkin_ws_roboware/src/ridgeback/ridgeback_control/src/odometry.cpp
-mecanum_drive_controller/odometry.h
--
-tf/transform_datatypes.h
--
-boost/bind.hpp
--
-
-/home/kanin/catkin_ws_roboware/src/ridgeback/ridgeback_control/src/speed_limiter.cpp
-algorithm
--
-mecanum_drive_controller/speed_limiter.h
--
-
 /opt/ros/kinetic/include/class_loader/./class_loader.hpp
 boost/bind.hpp
 -

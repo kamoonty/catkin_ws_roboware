@@ -3,20 +3,40 @@
     <arg name="init_pose_gazebo"/>
     <arg name="init_pose_rviz"/>
     <arg name="move_forward_only" default="false"/>
-
-    <param name="tf_prefix" value="$(arg robot_name)" />
+    <param name="tf_prefix" value="$(arg robot_name)"/>
+      <!-- Refer to ridgeback_description launch file. -->
   <!-- Configuration of Ridgeback which you would like to simulate.
        See ridgeback_description for details. -->
-  <arg name="config" default="$(optenv RIDGEBACK_CONFIG base)" />
+  <arg name="config" default="$(optenv RIDGEBACK_CONFIG empty)" />
   <!-- Load Ridgeback's description, controllers, and teleop nodes. -->
-  <include file="$(find ridgeback_description)/launch/description.launch">
-    <arg name="config" value="$(arg config)" />
-  </include>
-  <include file="$(find ridgeback_control)/launch/control.launch" />
-  <include file="$(find ridgeback_control)/launch/teleop.launch">
-    <arg name="joystick" value="false"/>
-  </include>
-
+ <param name="robot_description"
+         command="$(find ridgeback_description)/scripts/env_run
+                  $(find ridgeback_description)/urdf/configs/$(arg config)
+                  $(find xacro)/xacro $(find ridgeback_description)/urdf/ridgeback.urdf.xacro
+                  --inorder " /> 
+  <node name="ridgeback_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+ 
+ <!-- Refer to ridgeback_controller launch file it require to remap with amr_0/-->
+ <rosparam command="load" file="$(find ridgeback_control)/config/control_$(arg robot_name).yaml" />
+  
+  <group if="$(optenv RIDGEBACK_CONTROL_EXTRAS 0)" >
+    <rosparam command="load" file="$(env RIDGEBACK_CONTROL_EXTRAS_PATH)" />
+  </group>
+  
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" 
+        args="ridgeback_joint_publisher ridgeback_velocity_controller" output="screen" />
+    
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" />
+  <!--
+  <node pkg="topic_tools" type="relay" name="cmd_vel_relay"
+        args="$(arg robot_name)/cmd_vel /$(arg robot_name)/ridgeback_velocity_controller/cmd_vel" />
+-->
+ <!--twist marker for RVIZ just for visualization
+  <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
+    <remap from="twist_marker_server/cmd_vel" to="/cmd_vel" />
+    <rosparam command="load" file="$(find interactive_marker_twist_server)/config/planar.yaml" />
+  </node>
+-->
   <rosparam param="/gazebo_ros_control/pid_gains">
     front_left_wheel:
       p: 1
@@ -36,9 +56,11 @@
       d: 0
   </rosparam>
   
-  <!--Robot description to param server-->
- <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="$(arg init_pose_gazebo) -urdf -param robot_description -model $(arg robot_name) " output="screen"/>
-  
+<!-- Spawn Ridgeback  -->
+ <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" 
+ args="$(arg init_pose_gazebo) -urdf -param robot_description -model $(arg robot_name) -namespace $(arg robot_name) " output="screen"/>
+ <!--transform odom to map at 100 Hz  or 10 ms-->
+ <node pkg="tf" type="static_transform_publisher" name="odom_map_broadcaster" args="$(arg init_pose_rviz) /map $(arg robot_name)/odom 10" />
 
 </launch>
 
