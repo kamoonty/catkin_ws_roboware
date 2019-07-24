@@ -1,9 +1,10 @@
  <launch>
     <arg name="robot_name"/>
+    <arg name="name_space" default="$(arg robot_name)"/>
     <arg name="init_pose_gazebo"/>
     <arg name="init_pose_rviz"/>
     <arg name="move_forward_only" default="false"/>
-    <param name="tf_prefix" value="$(arg robot_name)"/>
+  
       <!-- Refer to ridgeback_description launch file. -->
   <!-- Configuration of Ridgeback which you would like to simulate.
        See ridgeback_description for details. -->
@@ -13,25 +14,57 @@
          command="$(find ridgeback_description)/scripts/env_run
                   $(find ridgeback_description)/urdf/configs/$(arg config)
                   $(find xacro)/xacro $(find ridgeback_description)/urdf/ridgeback.urdf.xacro
-                  --inorder " /> 
-  <node name="ridgeback_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+                  --inorder name_space:=$(arg name_space)" /> 
+  <node name="ridgeback_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
+  <param name="tf_prefix" value=""/>
+  </node>
  
  <!-- Refer to ridgeback_controller launch file it require to remap with amr_0/-->
- <rosparam command="load" file="$(find ridgeback_control)/config/control_$(arg robot_name).yaml" />
+ <rosparam command="load" file="$(find ridgeback_control)/config/control_edit.yaml" />
   
   <group if="$(optenv RIDGEBACK_CONTROL_EXTRAS 0)" >
     <rosparam command="load" file="$(env RIDGEBACK_CONTROL_EXTRAS_PATH)" />
   </group>
   
-    <node name="controller_spawner" pkg="controller_manager" type="spawner" 
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" ns="/$(arg robot_name)"
         args="ridgeback_joint_publisher ridgeback_velocity_controller" output="screen" />
     
-  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" />
-  <!--
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" output="screen" >
+    <param name="debug" value="false" />
+    <param name="debug_out_file" value="debug_odom_ekf.txt" />
+    <param name="print_diagnostics" value="true" />
+    <param name="frequency" value="50" />  
+    <param name="two_d_mode" value="true" />
+    <param name="publish_tf" value="true" />
+
+    <param name="map_frame" value="/map" />
+  <param name="odom_frame" value="$(arg name_space)/odom" />
+    <param name="base_link_frame" value="$(arg name_space)/base_link" />
+    <param name="world_frame" value="$(arg name_space)/odom" />
+    <remap from="base_link" to="amr_0/base_link"/>
+    
+    <param name="odom0" value="/$(arg name_space)/ridgeback_velocity_controller/odom" />
+    <rosparam param="odom0_config">
+                [false, false, false,
+                 false, false, false,
+                 true, true, false,
+                 false, false, true,
+                 false, false, false]</rosparam>
+     <param name="odom0_differential" value="false" />  
+    <param name="imu0" value="/$(arg name_space)/imu/data" />
+    <rosparam param="imu0_config">
+                [false, false, false,
+                false, false, false,
+                false, false, false,
+                false, false, true,
+                true, true, false]</rosparam> 
+    <param name="imu0_differential" value="false" />                     
+  </node>
+  <!---->
   <node pkg="topic_tools" type="relay" name="cmd_vel_relay"
         args="$(arg robot_name)/cmd_vel /$(arg robot_name)/ridgeback_velocity_controller/cmd_vel" />
--->
- <!--twist marker for RVIZ just for visualization
+
+ <!--twist marker for RVIZ just for move robot via mouse 
   <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
     <remap from="twist_marker_server/cmd_vel" to="/cmd_vel" />
     <rosparam command="load" file="$(find interactive_marker_twist_server)/config/planar.yaml" />
@@ -58,10 +91,12 @@
   
 <!-- Spawn Ridgeback  -->
  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" 
- args="$(arg init_pose_gazebo) -urdf -param robot_description -model $(arg robot_name) -namespace $(arg robot_name) " output="screen"/>
+ args="$(arg init_pose_gazebo) -urdf -param robot_description -model $(arg robot_name) " output="screen"/>
  <!--transform odom to map at 100 Hz  or 10 ms-->
- <node pkg="tf" type="static_transform_publisher" name="odom_map_broadcaster" args="$(arg init_pose_rviz) /map $(arg robot_name)/odom 10" />
-
+ <node pkg="tf" type="static_transform_publisher" name="odom_map_broadcaster" args="$(arg init_pose_rviz) /map $(arg robot_name)/odom  20" />
+<!--
+<node pkg="tf" type="static_transform_publisher" name="base_link_broadcaster" args="$(arg init_pose_rviz) /base_link $(arg robot_name)/base_link  20" />
+-->
 </launch>
 
  

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="name_space"/>
+  <arg name="initial_pose"/>
+
+    <arg name="config" default="$(optenv RIDGEBACK_CONFIG empty)" />
+  <!-- Load Ridgeback's description, controllers, and teleop nodes. -->
+ <param name="robot_description"
+         command="$(find ridgeback_description)/scripts/env_run
+                  $(find ridgeback_description)/urdf/configs/$(arg config)
+                  $(find xacro)/xacro $(find ridgeback_description)/urdf/ridgeback.urdf.xacro
+                  --inorder name_space:=$(arg name_space)" /> 
+  
+ 
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <!-- Load ridgeback control information -->
+ <include file="$(find ridgeback_control)/launch/control_edit.launch" >
+    <arg name="name_space" value="$(arg name_space)"/>
+  </include>
+
+  <rosparam param="/gazebo_ros_control/pid_gains">
+    front_left_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    front_right_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    rear_left_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    rear_right_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+  </rosparam>
+  
+
+  <!-- Spawn robot in gazebo -->
+  <node name="spawn_ridgeback_model" pkg="gazebo_ros" type="spawn_model"
+    args="$(arg initial_pose) -urdf -param robot_description -model $(arg name_space) -robotNamespace $(arg name_space)" output="screen">
+  </node>
+</launch>
