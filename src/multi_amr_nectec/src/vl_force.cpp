@@ -50,7 +50,7 @@ while (nh.ok())
       {  
  tf::StampedTransform transform;
 try{std::string follower_robot ("/amr_");
- std::string leader_robot ("vl/base_link");
+ std::string leader_robot ("vl_robot/base_link");
  follower_robot =follower_robot+ boost::lexical_cast<std::string>(i);
  follower_robot =follower_robot+"/base_link";
  

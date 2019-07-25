@@ -1,0 +1,8 @@
+prefix=/home/kanin/catkin_ws_roboware/install
+
+Name: husky_control
+Description: Description of husky_control
+Version: 0.3.3
+Cflags: 
+Libs: -L/home/kanin/catkin_ws_roboware/install/lib 
+Requires: 

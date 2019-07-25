@@ -1,0 +1,8 @@
+prefix=/home/kanin/catkin_ws_roboware/install
+
+Name: gripper_action_controller
+Description: Description of gripper_action_controller
+Version: 0.15.0
+Cflags: -I/home/kanin/catkin_ws_roboware/install/include
+Libs: -L/home/kanin/catkin_ws_roboware/install/lib -lgripper_action_controller
+Requires: actionlib cmake_modules controller_interface control_msgs hardware_interface realtime_tools trajectory_msgs

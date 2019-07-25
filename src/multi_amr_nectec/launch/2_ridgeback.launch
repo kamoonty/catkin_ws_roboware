@@ -1,8 +1,8 @@
 <launch>
   <master auto="start"/>
   <param name="/use_sim_time" value="true"/>
-  <arg name="open_rviz" default="true"/>
-  <arg name="open_gazebo" default="false"/>
+  <arg name="open_rviz" default="false"/>
+  <arg name="open_gazebo" default="true"/>
   <arg name="team_size" value="2"/>
 <!-- other robot map-->
 <arg name="watkin_map" default="$(find multi_amr_nectec)/maps/watkin_lab.yaml"/>
@@ -38,14 +38,18 @@
   <group ns="amr_0">
          <param name="tf_prefix" value="amr_0"/>
   <include file="$(find multi_amr_nectec)/launch/single_ridgeback.launch" >
-     <arg name="init_pose_gazebo" value="-x 5 -y 5 -z 0.1 -Y 1.57079632679 -P 0 -R 0" />
+     <arg name="init_pose_gazebo" value="-x 0 -y 0 -z 0.1 -Y 1.57079632679 -P 0 -R 0" />
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
       <arg name="robot_name" value="amr_0" />
       <arg name="name_space" value="amr_0"/>
 
   </include>
   </group>
-  
+ <!--
+ 
+  <include file="$(find multi_amr_nectec)/launch/spawn_load.launch" >
+   </include>
+ -->
 <!-- AMR 0 
   <group ns="amr_1">
   <param name="tf_prefix" value="amr_1"/>

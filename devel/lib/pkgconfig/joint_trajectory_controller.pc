@@ -1,0 +1,8 @@
+prefix=/home/kanin/catkin_ws_roboware/devel
+
+Name: joint_trajectory_controller
+Description: Description of joint_trajectory_controller
+Version: 0.15.0
+Cflags: -I/home/kanin/catkin_ws_roboware/src/ros_controllers/joint_trajectory_controller/include
+Libs: -L/home/kanin/catkin_ws_roboware/devel/lib -ljoint_trajectory_controller
+Requires: actionlib angles roscpp urdf control_toolbox controller_interface hardware_interface realtime_tools control_msgs trajectory_msgs

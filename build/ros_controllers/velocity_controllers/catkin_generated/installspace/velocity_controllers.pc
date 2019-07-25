@@ -1,0 +1,8 @@
+prefix=/home/kanin/catkin_ws_roboware/install
+
+Name: velocity_controllers
+Description: Description of velocity_controllers
+Version: 0.15.0
+Cflags: -I/home/kanin/catkin_ws_roboware/install/include
+Libs: -L/home/kanin/catkin_ws_roboware/install/lib -lvelocity_controllers
+Requires: angles control_msgs control_toolbox controller_interface forward_command_controller realtime_tools urdf

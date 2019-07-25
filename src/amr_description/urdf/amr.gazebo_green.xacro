@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+<robot name="amr_sim" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:arg name="laser_visual" default="false"/>
+  <xacro:arg name="imu_visual"   default="false"/>
+  
+  <gazebo reference="base_link">
+    <material>Gazebo/Green</material>
+    <mu1>2.0</mu1>
+    <mu2>2.0</mu2>
+    <fdir1>1 0 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="bumper_link">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  
+  <gazebo reference="plate_link1">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <!--
+  <gazebo reference="plate_link2">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  
+  <gazebo reference="camera_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  -->
+  <gazebo reference="laser_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="wheel_fl_link">
+    <kp>100000.0</kp>
+    <kd>10.0</kd>
+    <mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <fdir1>1 0 0</fdir1>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.00</minDepth>
+    
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>
+
+  <gazebo reference="wheel_fr_link">
+    <kp>100000.0</kp>
+    <kd>10.0</kd>
+    <mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <fdir1>1 0 0</fdir1>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.00</minDepth>
+    
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>
+  
+  <gazebo reference="wheel_rl_link">
+    <kp>100000.0</kp>
+    <kd>10.0</kd>
+    <mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <fdir1>1 0 0</fdir1> 
+    <maxVel>1.0</maxVel>
+    <minDepth>0.00</minDepth>
+    
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>
+  
+  <gazebo reference="wheel_rr_link">
+    <kp>100000.0</kp> 
+    <kd>10.0</kd>
+    <mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <fdir1>1 0 0</fdir1> 
+    <maxVel>1.0</maxVel>
+    <minDepth>0.00</minDepth>
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>
+
+  <gazebo reference="imu_link">
+    <sensor type="imu" name="imu">
+      <always_on>true</always_on>
+      <visualize>$(arg imu_visual)</visualize>
+    </sensor>
+    <material>Gazebo/Green</material>
+  </gazebo>
+  
+  
+  <gazebo>
+    <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+      <alwaysOn>true</alwaysOn>
+      <jointName>wheel_fl_joint, wheel_fr_joint, wheel_rl_joint, wheel_rr_joint</jointName>
+      <robotNameSpace>/</robotNameSpace>
+      <updateRate>100.0</updateRate>
+    </plugin>
+  </gazebo>
+ <!--
+  <gazebo>
+    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>50.0</updateRate>
+      <robotNamespace>/</robotNamespace>
+      <leftFrontJoint>wheel_fl_joint</leftFrontJoint>
+      <rightFrontJoint>wheel_fr_joint</rightFrontJoint>
+      <leftRearJoint>wheel_rl_joint</leftRearJoint>
+      <rightRearJoint>wheel_rr_joint</rightRearJoint>
+      <wheelSeparation>0.334</wheelSeparation>
+      <wheelDiameter>0.144</wheelDiameter>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <torque>20</torque>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <broadcastTF>true</broadcastTF>
+    </plugin>
+  </gazebo>
+  -->
+   <!--
+    <gazebo>
+   <plugin name="ros_force_based_controller" filename="libgazebo_ros_force_based_move.so">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>100.0</odometryRate>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <publishOdometryTf>true</publishOdometryTf>
+      <yaw_velocity_p_gain>100</yaw_velocity_p_gain>
+      <x_velocity_p_gain>150</x_velocity_p_gain>
+      <y_velocity_p_gain>1000</y_velocity_p_gain>
+      <cmdVelTimeOut>0.25</cmdVelTimeOut>
+    </plugin>
+  </gazebo>
+ 
+   <gazebo> 
+     <plugin name="ridgeback_ros_force_based_move" filename="libridgeback_ros_force_based_move.so">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>100</odometryRate>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <cmdVelTimeOut>0.25</cmdVelTimeOut>
+      <publishOdometryTf>0</publishOdometryTf>
+      <yaw_velocity_p_gain>500.0</yaw_velocity_p_gain>
+      <x_velocity_p_gain>10000.0</x_velocity_p_gain>
+      <y_velocity_p_gain>10000.0</y_velocity_p_gain>
+    </plugin>
+    </gazebo>
+   -->
+
+   <!---->
+   <gazebo>
+    <plugin filename="libgazebo_ros_planar_move.so" name="amr_planar_controller">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>100</odometryRate>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+      <alwaysOn>true</alwaysOn>
+      <bodyName>imu_link</bodyName>
+      <frameName>imu_link</frameName>
+      <topicName>imu</topicName>
+      <serviceName>imu_service</serviceName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <updateRate>100</updateRate>
+      <imu>
+        <noise>
+          <type>gaussian</type>
+          <rate>
+            <mean>0.0</mean>
+            <stddev>2e-4</stddev>
+            <bias_mean>0.0000075</bias_mean>
+            <bias_stddev>0.0000008</bias_stddev>
+          </rate>
+          <accel>
+            <mean>0.0</mean>
+            <stddev>1.7e-2</stddev>
+            <bias_mean>0.1</bias_mean>
+            <bias_stddev>0.001</bias_stddev>
+          </accel>
+        </noise>
+      </imu>
+    </plugin>
+  </gazebo>
+<!-- -->
+  <gazebo reference="base_scan">
+    <sensor type="ray" name="lds_lfcd_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>$(arg laser_visual)</visualize>
+      <update_rate>10</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>
+            <min_angle>0.0</min_angle>
+            <max_angle>6.28319</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.120</min>
+          <max>3.5</max>
+          <resolution>0.015</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_lds_lfcd_controller" filename="libgazebo_ros_laser.so">
+        <topicName>scan</topicName>
+        <frameName>base_scan</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+<!-- 
+  <gazebo reference="camera_rgb_frame">  
+    <sensor type="depth" name="camera">
+      <always_on>true</always_on>
+      <pose>0.0085 0.0105 0.0197 0 0 0</pose>
+      <update_rate>30</update_rate>
+      <camera>
+        <horizontal_fov>1.01229</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>B8G8R8</format>
+          </image>
+          <clip>
+            <near>0.3</near>
+            <far>10</far>
+          </clip>
+        </camera>
+      <plugin name="kinect_camera_controller" filename="libgazebo_ros_openni_kinect.so">
+        <cameraName>camera</cameraName>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0</updateRate>
+        <imageTopicName>rgb/image_raw</imageTopicName>
+        <depthImageTopicName>depth/image_raw</depthImageTopicName>
+        <pointCloudTopicName>depth/points</pointCloudTopicName>
+        <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+        <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
+        <frameName>camera_depth_optical_frame</frameName>
+        <baseline>0.1</baseline>
+        <distortion_k1>0.0</distortion_k1>
+        <distortion_k2>0.0</distortion_k2>
+        <distortion_k3>0.0</distortion_k3>
+        <distortion_t1>0.0</distortion_t1>
+        <distortion_t2>0.0</distortion_t2>
+        <pointCloudCutoff>0.4</pointCloudCutoff>
+      </plugin>
+    </sensor>
+  </gazebo>
+ -->
+</robot>

@@ -1,0 +1,8 @@
+prefix=/home/kanin/catkin_ws_roboware/devel
+
+Name: husky_msgs
+Description: Description of husky_msgs
+Version: 0.3.3
+Cflags: -I/home/kanin/catkin_ws_roboware/devel/include
+Libs: -L/home/kanin/catkin_ws_roboware/devel/lib 
+Requires: std_msgs message_runtime
