@@ -3,13 +3,13 @@
   <xacro:arg name="laser_visual" default="false"/>
   <xacro:arg name="imu_visual"   default="false"/>
   
-   
   <gazebo reference="base_link">
-    <material>Gazebo/Red</material>
+    <material>Gazebo/Yellow</material>
     <mu1>20.0</mu1>
     <mu2>20.0</mu2>
     <fdir1>1 0 0</fdir1>
   </gazebo>
+
   <gazebo reference="bumper_link">
     <material>Gazebo/Grey</material>
   </gazebo>
@@ -90,32 +90,14 @@
     <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
       <alwaysOn>true</alwaysOn>
       <jointName>wheel_fl_joint, wheel_fr_joint, wheel_rl_joint, wheel_rr_joint</jointName>
-      <robotNameSpace>/</robotNameSpace>
-      <updateRate>100</updateRate>
+    <!-- Name space tag may be removed
+      <robotNamespace>$(arg name_space)</robotNamespace>
+      -->
+      <updateRate>100.0</updateRate>
     </plugin>
   </gazebo>
- <!--
-  <gazebo>
-    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
-      <alwaysOn>true</alwaysOn>
-      <updateRate>50.0</updateRate>
-      <robotNamespace>/</robotNamespace>
-      <leftFrontJoint>wheel_fl_joint</leftFrontJoint>
-      <rightFrontJoint>wheel_fr_joint</rightFrontJoint>
-      <leftRearJoint>wheel_rl_joint</leftRearJoint>
-      <rightRearJoint>wheel_rr_joint</rightRearJoint>
-      <wheelSeparation>0.334</wheelSeparation>
-      <wheelDiameter>0.144</wheelDiameter>
-      <robotBaseFrame>base_link</robotBaseFrame>
-      <torque>20</torque>
-      <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>odom</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
-      <broadcastTF>true</broadcastTF>
-    </plugin>
-  </gazebo>
-  -->
-  <!--
+
+   <!--
     <gazebo>
    <plugin name="ros_force_based_controller" filename="libgazebo_ros_force_based_move.so">
       <commandTopic>cmd_vel</commandTopic>
@@ -123,14 +105,24 @@
       <odometryFrame>odom</odometryFrame>
       <odometryRate>100.0</odometryRate>
       <robotBaseFrame>base_link</robotBaseFrame>
-      <publishOdometryTf>true </publishOdometryTf>
+      <publishOdometryTf>true</publishOdometryTf>
       <yaw_velocity_p_gain>100</yaw_velocity_p_gain>
       <x_velocity_p_gain>150</x_velocity_p_gain>
       <y_velocity_p_gain>1000</y_velocity_p_gain>
       <cmdVelTimeOut>0.25</cmdVelTimeOut>
     </plugin>
   </gazebo>
- <gazebo> 
+ -->
+   <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <!-- Name space tag may be removed
+      <robotNamespace>$(arg name_space)</robotNamespace>
+      -->
+      <robotParam>robot_description</robotParam>
+       <legacyModeNS>true</legacyModeNS>
+    </plugin>
+</gazebo>
+   <gazebo> 
      <plugin name="ridgeback_ros_force_based_move" filename="libridgeback_ros_force_based_move.so">
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
@@ -144,45 +136,28 @@
       <y_velocity_p_gain>10000.0</y_velocity_p_gain>
     </plugin>
     </gazebo>
--->
-  
-   <gazebo>
-    <plugin filename="libgazebo_ros_planar_move.so" name="amr_planar_controller">
-      <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>odom</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
-      <odometryRate>100</odometryRate>
-      <robotBaseFrame>base_link</robotBaseFrame>
-    </plugin>
-  </gazebo>
-  <gazebo>
-    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
-      <alwaysOn>true</alwaysOn>
-      <bodyName>imu_link</bodyName>
-      <frameName>imu_link</frameName>
-      <topicName>imu</topicName>
-      <serviceName>imu_service</serviceName>
-      <gaussianNoise>0.0</gaussianNoise>
-      <updateRate>100</updateRate>
-      <imu>
-        <noise>
-          <type>gaussian</type>
-          <rate>
-            <mean>0.0</mean>
-            <stddev>2e-4</stddev>
-            <bias_mean>0.0000075</bias_mean>
-            <bias_stddev>0.0000008</bias_stddev>
-          </rate>
-          <accel>
-            <mean>0.0</mean>
-            <stddev>1.7e-2</stddev>
-            <bias_mean>0.1</bias_mean>
-            <bias_stddev>0.001</bias_stddev>
-          </accel>
-        </noise>
-      </imu>
-    </plugin>
-  </gazebo>
+   
+
+     <gazebo>
+      <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
+        <!--<robotNamespace>$(arg name_space)</robotNamespace>
+        <frameId>$(arg name_space)/base_link</frameId>
+        -->
+        <robotParam>robot_description</robotParam>
+        <updateRate>100.0</updateRate>
+        <bodyName>base_link</bodyName>
+        <topicName>imu/data</topicName>
+        <accelDrift>0.005 0.005 0.005</accelDrift>
+        <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
+        <rateDrift>0.005 0.005 0.005 </rateDrift>
+        <rateGaussianNoise>0.005 0.005 0.005 </rateGaussianNoise>
+        <headingDrift>0.005</headingDrift>
+        <headingGaussianNoise>0.005</headingGaussianNoise>
+      </plugin>
+    </gazebo>
+
+
+
 <!--
   <gazebo reference="base_scan">
     <sensor type="ray" name="lds_lfcd_sensor">

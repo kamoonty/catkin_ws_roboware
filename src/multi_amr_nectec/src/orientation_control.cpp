@@ -125,10 +125,11 @@ while (nh.ok())
       calculate_rotational_force[i].angular.z=(calculate_rotational_force[i].angular.z)*M_PI/180; //convert back to radian
 
       // to avoid jerk movement between 0 or 360
-    if(fabs(diff_angle[i])>=180&&fabs(diff_angle[i])<=360)
+    /*if(fabs(diff_angle[i])>=180&&fabs(diff_angle[i])<=360)
     {calculate_rotational_force[i].angular.z=previous_velocity[i]; //reduce speed to the same as previous loop 
        ROS_INFO("-Fix speed same as previous velocity to avoid jerk rotation-"); }    
     previous_velocity[i]=calculate_rotational_force[i].angular.z;
+*/
       // Publish data        
       ROS_INFO("Rotational Force -> robot %d =%f",i,calculate_rotational_force[i].angular.z );  
       ROS_INFO("-----------------------");

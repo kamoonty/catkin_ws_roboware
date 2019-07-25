@@ -5,19 +5,19 @@
   
   <gazebo reference="base_link">
     <material>Gazebo/Green</material>
-    <mu1>2.0</mu1>
-    <mu2>2.0</mu2>
+    <mu1>20.0</mu1>
+    <mu2>20.0</mu2>
     <fdir1>1 0 0</fdir1>
   </gazebo>
 
   <gazebo reference="bumper_link">
     <material>Gazebo/Grey</material>
   </gazebo>
-  
+   <!--
   <gazebo reference="plate_link1">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <!--
+ 
   <gazebo reference="plate_link2">
     <material>Gazebo/Grey</material>
   </gazebo>

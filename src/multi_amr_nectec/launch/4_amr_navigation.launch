@@ -2,12 +2,12 @@
   <master auto="start"/>
   <param name="/use_sim_time" value="true"/>
   <arg name="open_rviz" default="true"/>
-  <arg name="open_gazebo" default="false"/>
+  <arg name="open_gazebo" default="true"/>
 
    <arg name="record_data" default="false" />
   <arg name="vl_force" default="true" />
   <arg name="rotational_force" default="true" />
-  <arg name="inter_agent_force" default="false" />
+  <arg name="inter_agent_force" default="true" />
   <arg name="motion_generator" default="true" />
   <!-- Define Paramerters here for robot formation-->
   <arg name="Kvl" default="200" />
@@ -18,8 +18,8 @@
   <arg name="K_ang" default="4" />
   <arg name="D_ang" default="0" />
   <arg name="team_size" value="4"/>
-  <arg name="v_linear_threshold" value="1.5"/>
-  <arg name="v_angular_threshold" value="1.5"/>
+  <arg name="v_linear_threshold" value="1.0"/>
+  <arg name="v_angular_threshold" value="0.3"/>
   <arg name="robot_mass" value="40"/>
   <arg name="robot_radious" value="0.5"/>
   <arg name="robot_inertia" value="0.77"/>
@@ -151,6 +151,8 @@
   </node>
  
 </group>
+
+
 <!--Load parameter     -->
 <rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/diamond.yaml" />
 
@@ -203,9 +205,10 @@
  <!--trajectory of VL circle 
 <node pkg="multi_amr_nectec" type="vl_trajectory_circle" name="vl_trajectory_circle" output="screen" />
  -->
-<!-- Spawn load  
- <include file="$(find multi_amr_nectec)/launch/spawn_load.launch" >
-   </include>
--->
+<!-- Spawn load  -->
+<node pkg="timed_roslaunch" type="timed_roslaunch.sh" args="6 $(find multi_amr_nectec)/launch/spawn_load.launch" name="delay_spawn" output="screen" />
+
+
+
 
 </launch>

@@ -51,7 +51,7 @@
       <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.15" iyz="0" izz="0.2"/>
     </inertial>
   </link>
-  
+   <!--
   <joint name="plate_joint1" type="fixed">
     <parent link="base_link"/>
     <child link="plate_link1"/>
@@ -121,7 +121,7 @@
       <inertia ixx="0.014" ixy="0" ixz="0" iyy="0.024" iyz="0" izz="0.028"/>
     </inertial>
   </link>
-  <!--
+ 
    <joint name="plate_joint2" type="fixed">
     <parent link="base_link"/>
     <child link="plate_link2"/>
