@@ -52,6 +52,7 @@
          args="-d $(find multi_amr_nectec)/rviz/4_amr.rviz"/>
   </group>
 
+
 <!-- AMR 0  -->
   <group ns="amr_0">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
@@ -109,7 +110,6 @@
     <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
   
   </group>
-
 
  <group ns="vl_robot">
    <param name="tf_prefix" value="vl_robot" />

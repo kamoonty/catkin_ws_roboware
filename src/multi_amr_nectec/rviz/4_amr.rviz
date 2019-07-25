@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /Local costmap1
         - /AMR_11/Shape1
         - /AMR_21/Shape1
         - /AMR_31/Shape1
@@ -61,115 +62,31 @@ Visualization Manager:
       Unreliable: false
       Use Timestamp: false
       Value: true
+    - Alpha: 0.699999988
+      Class: rviz/Map
+      Color Scheme: costmap
+      Draw Behind: false
+      Enabled: true
+      Name: Global Costmap
+      Topic: /vl_robot/move_base/global_costmap/costmap
+      Unreliable: false
+      Use Timestamp: false
+      Value: true
+    - Alpha: 0.699999988
+      Class: rviz/Map
+      Color Scheme: map
+      Draw Behind: false
+      Enabled: true
+      Name: Local costmap
+      Topic: /vl_robot/move_base/local_costmap/costmap
+      Unreliable: false
+      Use Timestamp: false
+      Value: true
     - Class: rviz/TF
       Enabled: true
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        amr_0/base_link:
-          Value: true
-        amr_0/bumper_link:
-          Value: true
-        amr_0/imu_link:
-          Value: true
-        amr_0/odom:
-          Value: true
-        amr_0/plate_link1:
-          Value: true
-        amr_0/wheel_fl_axle_link:
-          Value: true
-        amr_0/wheel_fl_link:
-          Value: true
-        amr_0/wheel_fr_axle_link:
-          Value: true
-        amr_0/wheel_fr_link:
-          Value: true
-        amr_0/wheel_rl_axle_link:
-          Value: true
-        amr_0/wheel_rl_link:
-          Value: true
-        amr_0/wheel_rr_axle_link:
-          Value: true
-        amr_0/wheel_rr_link:
-          Value: true
-        amr_1/base_link:
-          Value: true
-        amr_1/bumper_link:
-          Value: true
-        amr_1/imu_link:
-          Value: true
-        amr_1/odom:
-          Value: true
-        amr_1/plate_link1:
-          Value: true
-        amr_1/wheel_fl_axle_link:
-          Value: true
-        amr_1/wheel_fl_link:
-          Value: true
-        amr_1/wheel_fr_axle_link:
-          Value: true
-        amr_1/wheel_fr_link:
-          Value: true
-        amr_1/wheel_rl_axle_link:
-          Value: true
-        amr_1/wheel_rl_link:
-          Value: true
-        amr_1/wheel_rr_axle_link:
-          Value: true
-        amr_1/wheel_rr_link:
-          Value: true
-        amr_2/base_link:
-          Value: true
-        amr_2/bumper_link:
-          Value: true
-        amr_2/imu_link:
-          Value: true
-        amr_2/odom:
-          Value: true
-        amr_2/plate_link1:
-          Value: true
-        amr_2/wheel_fl_axle_link:
-          Value: true
-        amr_2/wheel_fl_link:
-          Value: true
-        amr_2/wheel_fr_axle_link:
-          Value: true
-        amr_2/wheel_fr_link:
-          Value: true
-        amr_2/wheel_rl_axle_link:
-          Value: true
-        amr_2/wheel_rl_link:
-          Value: true
-        amr_2/wheel_rr_axle_link:
-          Value: true
-        amr_2/wheel_rr_link:
-          Value: true
-        amr_3/base_link:
-          Value: true
-        amr_3/bumper_link:
-          Value: true
-        amr_3/imu_link:
-          Value: true
-        amr_3/odom:
-          Value: true
-        amr_3/plate_link1:
-          Value: true
-        amr_3/wheel_fl_axle_link:
-          Value: true
-        amr_3/wheel_fl_link:
-          Value: true
-        amr_3/wheel_fr_axle_link:
-          Value: true
-        amr_3/wheel_fr_link:
-          Value: true
-        amr_3/wheel_rl_axle_link:
-          Value: true
-        amr_3/wheel_rl_link:
-          Value: true
-        amr_3/wheel_rr_axle_link:
-          Value: true
-        amr_3/wheel_rr_link:
-          Value: true
         map:
           Value: true
         vl_robot/base_link:
@@ -209,86 +126,6 @@ Visualization Manager:
       Show Names: false
       Tree:
         map:
-          amr_0/odom:
-            amr_0/base_link:
-              amr_0/bumper_link:
-                {}
-              amr_0/imu_link:
-                {}
-              amr_0/plate_link1:
-                {}
-              amr_0/wheel_fl_axle_link:
-                amr_0/wheel_fl_link:
-                  {}
-              amr_0/wheel_fr_axle_link:
-                amr_0/wheel_fr_link:
-                  {}
-              amr_0/wheel_rl_axle_link:
-                amr_0/wheel_rl_link:
-                  {}
-              amr_0/wheel_rr_axle_link:
-                amr_0/wheel_rr_link:
-                  {}
-          amr_1/odom:
-            amr_1/base_link:
-              amr_1/bumper_link:
-                {}
-              amr_1/imu_link:
-                {}
-              amr_1/plate_link1:
-                {}
-              amr_1/wheel_fl_axle_link:
-                amr_1/wheel_fl_link:
-                  {}
-              amr_1/wheel_fr_axle_link:
-                amr_1/wheel_fr_link:
-                  {}
-              amr_1/wheel_rl_axle_link:
-                amr_1/wheel_rl_link:
-                  {}
-              amr_1/wheel_rr_axle_link:
-                amr_1/wheel_rr_link:
-                  {}
-          amr_2/odom:
-            amr_2/base_link:
-              amr_2/bumper_link:
-                {}
-              amr_2/imu_link:
-                {}
-              amr_2/plate_link1:
-                {}
-              amr_2/wheel_fl_axle_link:
-                amr_2/wheel_fl_link:
-                  {}
-              amr_2/wheel_fr_axle_link:
-                amr_2/wheel_fr_link:
-                  {}
-              amr_2/wheel_rl_axle_link:
-                amr_2/wheel_rl_link:
-                  {}
-              amr_2/wheel_rr_axle_link:
-                amr_2/wheel_rr_link:
-                  {}
-          amr_3/odom:
-            amr_3/base_link:
-              amr_3/bumper_link:
-                {}
-              amr_3/imu_link:
-                {}
-              amr_3/plate_link1:
-                {}
-              amr_3/wheel_fl_axle_link:
-                amr_3/wheel_fl_link:
-                  {}
-              amr_3/wheel_fr_axle_link:
-                amr_3/wheel_fr_link:
-                  {}
-              amr_3/wheel_rl_axle_link:
-                amr_3/wheel_rl_link:
-                  {}
-              amr_3/wheel_rr_axle_link:
-                amr_3/wheel_rr_link:
-                  {}
           vl_robot/odom:
             vl_robot/base_link:
               vl_robot/bumper_link:
@@ -658,26 +495,6 @@ Visualization Manager:
       Topic: /vl_robot/move_base/local_costmap/footprint
       Unreliable: false
       Value: true
-    - Alpha: 0.699999988
-      Class: rviz/Map
-      Color Scheme: costmap
-      Draw Behind: false
-      Enabled: true
-      Name: Global Costmap
-      Topic: /vl_robot/move_base/global_costmap/costmap
-      Unreliable: false
-      Use Timestamp: false
-      Value: true
-    - Alpha: 0.699999988
-      Class: rviz/Map
-      Color Scheme: map
-      Draw Behind: false
-      Enabled: true
-      Name: Local costmap
-      Topic: /vl_robot/move_base/local_costmap/costmap
-      Unreliable: false
-      Use Timestamp: false
-      Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -742,11 +559,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Scale: 42.9130211
+      Scale: 30.9070702
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz)
-      X: -7.57570457
-      Y: 8.6072216
+      X: -0.754342556
+      Y: 3.27227569
     Saved: ~
 Window Geometry:
   Displays:
