@@ -71,6 +71,7 @@ int main(int argc, char** argv)
  ros::Publisher pub_rotational_force = nh.advertise<std_msgs::Float32MultiArray>("F_rot", 1000);
  
  float diff_angle [team_size];
+ float new_diff_angle [team_size];
  float first_data [team_size];
  float second_data [team_size];
  float diff_value [team_size];
@@ -105,9 +106,17 @@ while (nh.ok())
        rotate_direction=-1;
     else rotate_direction=1;
     }
+    // avoid Q1 and Q4 calculation
+     if(fabs(diff_angle[i])>=180&&fabs(diff_angle[i])<=360)
+    { //ROS_INFO("diff_angle=%f",diff_angle[i]); 
+      new_diff_angle[i]=360-fabs(diff_angle[i]);
+      diff_angle[i]=new_diff_angle[i];
+       ROS_INFO("New Angle between VL and agent %d = %f degree",i,diff_angle[i] );
+       }    
+
     // equation to calculate damper equation  // still has problem when angle between 0 and 360 so we set
     // D_ang=0 first
-         first_data[i]= fabs(diff_angle[i]);
+   /*      first_data[i]= fabs(diff_angle[i]);
       if(second_data[i]!=0)
        { ROS_INFO("First Data = %f",first_data[i]);
         ROS_INFO("Second Data = %f",second_data[i]);
@@ -119,17 +128,18 @@ while (nh.ok())
        {second_data[i]=first_data[i];
        ROS_INFO("!!!!Enter First loop!!!");
        }     
-
+*/
       // Use fabs for float absolute
       calculate_rotational_force[i].angular.z=rotate_direction*(K_ang*fabs(diff_angle[i])+D_ang*diff_value[i]);
       calculate_rotational_force[i].angular.z=(calculate_rotational_force[i].angular.z)*M_PI/180; //convert back to radian
 
-  /* */   // to avoid jerk movement between 0 or 360
-    if(fabs(diff_angle[i])>=300&&fabs(diff_angle[i])<=360)
+  /*   // to avoid jerk movement between 0 or 360
+    if(fabs(diff_angle[i])>=180&&fabs(diff_angle[i])<=360)
     {calculate_rotational_force[i].angular.z=previous_velocity[i]; //reduce speed to the same as previous loop 
        ROS_INFO("-Fix speed same as previous velocity to avoid jerk rotation-"); }    
     previous_velocity[i]=calculate_rotational_force[i].angular.z;
 
+*/ 
       // Publish data        
       ROS_INFO("Rotational Force -> robot %d =%f",i,calculate_rotational_force[i].angular.z );  
       ROS_INFO("-----------------------");
