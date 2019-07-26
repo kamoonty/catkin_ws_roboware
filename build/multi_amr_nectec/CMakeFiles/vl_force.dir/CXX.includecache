@@ -23,6 +23,8 @@ stdlib.h
 -
 boost/lexical_cast.hpp
 -
+math.h
+-
 std_msgs/MultiArrayLayout.h
 /home/kanin/catkin_ws_roboware/src/multi_amr_nectec/src/std_msgs/MultiArrayLayout.h
 std_msgs/MultiArrayDimension.h

@@ -6,7 +6,7 @@
 #include <geometry_msgs/Twist.h>
 #include <stdlib.h> 
 #include <boost/lexical_cast.hpp>
-
+#include <math.h>
 #include "std_msgs/MultiArrayLayout.h"
 #include "std_msgs/MultiArrayDimension.h"
 #include "std_msgs/Float32MultiArray.h"
@@ -34,12 +34,14 @@ int main(int argc, char** argv)
 
  ros::Publisher pub_cmd_vel_x = nh.advertise<std_msgs::Float32MultiArray>("F_vl_x", 100);
  ros::Publisher pub_cmd_vel_y = nh.advertise<std_msgs::Float32MultiArray>("F_vl_y", 100);
+ ros::Publisher pub_spring_energy_robot0 = nh.advertise<geometry_msgs::Point>("amr0_E_springVL", 100);
  geometry_msgs::Twist send_fvl [team_size];
  geometry_msgs::Point Dist_vl [team_size];
  geometry_msgs::Point absolute_distance [team_size];
  geometry_msgs::Point first_data [team_size];
  geometry_msgs::Point second_data [team_size];
  geometry_msgs::Point diff_value [team_size];
+ geometry_msgs::Point spring_energy [team_size];
  tf::TransformListener listener;
 while (nh.ok()) 
 {  std_msgs::Float32MultiArray robot_cmd_vel_linear_x;
@@ -88,8 +90,11 @@ double th = tf::getYaw(transform.getRotation());
                ROS_INFO("Dist_vl [%f,%f]",Dist_vl[i].x,Dist_vl[i].y);
                 absolute_distance[i].x=(fabs(Dist_vl[i].x)-fabs(initial_pos_x[i]));
                 absolute_distance[i].y=(fabs(Dist_vl[i].y)-fabs(initial_pos_y[i]));            
-                ROS_INFO("Absolute distance of robot %d[%.3f,%.3f]",i,absolute_distance[i].x,absolute_distance[i].y);           
-     
+                ROS_INFO("Absolute distance of robot %d[%f,%f]",i,absolute_distance[i].x,absolute_distance[i].y);           
+     // calculation potential spring energy
+      spring_energy[i].x=0.5*Kvl*pow((absolute_distance[i].x),2);
+      spring_energy[i].y=0.5*Kvl*pow((absolute_distance[i].y),2);
+      ROS_INFO("Spring energy= [%f,%f]",spring_energy[i].x,spring_energy[i].y);
       // equation ro calculate damper equation
          first_data[i].x= absolute_distance[i].x;
          first_data[i].y= absolute_distance[i].y;
@@ -115,7 +120,9 @@ double th = tf::getYaw(transform.getRotation());
                 robot_cmd_vel_linear_x.data.push_back(send_fvl[i].linear.x);
                 robot_cmd_vel_linear_y.data.push_back(send_fvl[i].linear.y);
                 }              
-           
+      pub_spring_energy_robot0.publish(spring_energy[0]);
+
+  
       pub_cmd_vel_x.publish(robot_cmd_vel_linear_x);
       pub_cmd_vel_y.publish(robot_cmd_vel_linear_y);
       ros::spinOnce();

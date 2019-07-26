@@ -4,7 +4,7 @@
   <arg name="open_rviz" default="true"/>
   <arg name="open_gazebo" default="true"/>
 
-   <arg name="record_data" default="false" />
+   <arg name="record_data" default="true" />
   <arg name="vl_force" default="true" />
   <arg name="rotational_force" default="true" />
   <arg name="inter_agent_force" default="true" />
@@ -19,7 +19,7 @@
   <arg name="D_ang" default="0" />
   <arg name="team_size" value="4"/>
   <arg name="v_linear_threshold" value="1.0"/>
-  <arg name="v_angular_threshold" value="0.3"/>
+  <arg name="v_angular_threshold" value="1.0"/>
   <arg name="robot_mass" value="40"/>
   <arg name="robot_radious" value="0.5"/>
   <arg name="robot_inertia" value="0.77"/>
@@ -192,8 +192,8 @@
 
 <!--ROSBAG Record -->
  <node pkg="rosbag" type="record" name="rosbag_record_data" output="screen"
-       args="record -O /home/kanin/ROSbag/$(arg team_size)_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
-       /amr_0/pose2d /amr_0/cmd_vel /amr_1/pose2d /amr_1/cmd_vel /amr_2/pose2d /amr_2/cmd_vel /amr_3/pose2d /amr_3/cmd_vel /F_vl_x /F_vl_y /vl_robot/pose2d /vl_robot/cmd_vel"
+       args="record -O /home/kanin/ROSbag/navigation_$(arg team_size)_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
+       /amr0_E_springVL /amr_0/pose2d /amr_0/cmd_vel /amr_1/pose2d /amr_1/cmd_vel /amr_2/pose2d /amr_2/cmd_vel /amr_3/pose2d /amr_3/cmd_vel /F_vl_x /F_vl_y /vl_robot/pose2d /vl_robot/cmd_vel"
        if="$(arg record_data)" /> 
 
  <!-- Linear trajectory of VL  

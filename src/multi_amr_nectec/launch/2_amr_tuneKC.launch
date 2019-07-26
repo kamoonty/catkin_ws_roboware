@@ -6,7 +6,7 @@
   <arg name="record_data" default="false" />
   <arg name="spawn_load" default="false" />
   <arg name="vl_force" default="false" />
-  <arg name="rotational_force" default="true" />
+  <arg name="rotational_force" default="false" />
   <arg name="inter_agent_force" default="false" />
   <arg name="motion_generator" default="true" />
   <!-- Define Paramerters here for robot formation-->
@@ -16,7 +16,7 @@
   <arg name="Cij" default="0" /> 
 <!-- K angular should be low to let robot move in cartesion in time-->
   <arg name="K_ang" default="1" />
-  <arg name="D_ang" default="0" />
+  <arg name="D_ang" default="1" />
   <arg name="team_size" value="2"/>
   <arg name="v_linear_threshold" value="1000"/>
   <arg name="v_angular_threshold" value="1000"/>
