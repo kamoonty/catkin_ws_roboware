@@ -42,6 +42,12 @@ void agent2_pose2D_CB(const geometry_msgs::Pose2D & agent_pose2d)
 void agent3_pose2D_CB(const geometry_msgs::Pose2D & agent_pose2d)
 { get_pose2d_agent[3].theta=roundf(agent_pose2d.theta*10000)/10000;
 }
+void agent4_pose2D_CB(const geometry_msgs::Pose2D & agent_pose2d)
+{ get_pose2d_agent[4].theta=roundf(agent_pose2d.theta*10000)/10000;
+}
+void agent5_pose2D_CB(const geometry_msgs::Pose2D & agent_pose2d)
+{ get_pose2d_agent[5].theta=roundf(agent_pose2d.theta*10000)/10000;
+}
 float convert_to_degree(float theta)
 {            
   if(theta<0)
@@ -68,6 +74,8 @@ int main(int argc, char** argv)
  ros::Subscriber agent1_pose2d_sub = nh.subscribe("amr_1/pose2d", 1000, agent1_pose2D_CB);
  ros::Subscriber agent2_pose2d_sub = nh.subscribe("amr_2/pose2d", 1000, agent2_pose2D_CB);
  ros::Subscriber agent3_pose2d_sub = nh.subscribe("amr_3/pose2d", 1000, agent3_pose2D_CB);
+ ros::Subscriber agent4_pose2d_sub = nh.subscribe("amr_4/pose2d", 1000, agent3_pose2D_CB);
+ ros::Subscriber agent5_pose2d_sub = nh.subscribe("amr_5/pose2d", 1000, agent3_pose2D_CB);
  ros::Publisher pub_rotational_force = nh.advertise<std_msgs::Float32MultiArray>("F_rot", 1000);
  
  float diff_angle [team_size];

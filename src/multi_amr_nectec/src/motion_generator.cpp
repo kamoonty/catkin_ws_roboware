@@ -96,6 +96,8 @@ ros::Publisher amr_0_cmd_vel_pub = nh.advertise<geometry_msgs::Twist>("amr_0/cmd
 ros::Publisher amr_1_cmd_vel_pub = nh.advertise<geometry_msgs::Twist>("amr_1/cmd_vel", 1000); 
 ros::Publisher amr_2_cmd_vel_pub = nh.advertise<geometry_msgs::Twist>("amr_2/cmd_vel", 1000);
 ros::Publisher amr_3_cmd_vel_pub = nh.advertise<geometry_msgs::Twist>("amr_3/cmd_vel", 1000);
+ros::Publisher amr_4_cmd_vel_pub = nh.advertise<geometry_msgs::Twist>("amr_4/cmd_vel", 1000);
+ros::Publisher amr_5_cmd_vel_pub = nh.advertise<geometry_msgs::Twist>("amr_5/cmd_vel", 1000);
 geometry_msgs::Twist final_cmd_vel [team_size];
 //geometry_msgs::Point first_linear_v [team_size];
 //geometry_msgs::Point second_linear_v [team_size];
@@ -149,8 +151,8 @@ amr_0_cmd_vel_pub.publish(final_cmd_vel[0]);
 amr_1_cmd_vel_pub.publish(final_cmd_vel[1]);
 amr_2_cmd_vel_pub.publish(final_cmd_vel[2]);
 amr_3_cmd_vel_pub.publish(final_cmd_vel[3]);
-
-
+amr_4_cmd_vel_pub.publish(final_cmd_vel[4]);
+amr_5_cmd_vel_pub.publish(final_cmd_vel[5]);
 ros::spinOnce();
 loopRate.sleep(); 
 }
