@@ -7,23 +7,23 @@
 
   <arg name="vl_force" default="true" />
   <arg name="rotational_force" default="true" />
-  <arg name="inter_agent_force" default="false" />
+  <arg name="inter_agent_force" default="true" />
   <arg name="motion_generator" default="true" />
   <!-- Define Paramerters here for robot formation-->
-  <arg name="Kvl" default="500" />
-  <arg name="Cvl" default="1" />
-  <arg name="Kij" default="100" />
-  <arg name="Cij" default="0" />
+  <arg name="Kvl" default="100" />
+  <arg name="Cvl" default="15" />
+  <arg name="Kij" default="50" />
+  <arg name="Cij" default="10" />
 <!-- K angular should be low to let robot move in cartesion in time-->
-  <arg name="K_ang" default="2" />
+  <arg name="K_ang" default="3" />
   <arg name="D_ang" default="0" />
   <arg name="team_size" value="4"/>
-  <arg name="v_linear_threshold" value="100"/>
-  <arg name="v_angular_threshold" value="100"/>
+  <arg name="v_linear_threshold" value="0.5"/>
+  <arg name="v_angular_threshold" value="0.5"/>
   <arg name="robot_mass" value="40"/>
   <arg name="robot_radious" value="0.5"/>
   <arg name="robot_inertia" value="0.77"/>
-  <arg name="delta_time" value="0.01"/> 
+  <arg name="delta_time" value="1"/> 
 <!-- other robot map-->
 <arg name="watkin_map" default="$(find multi_amr_nectec)/maps/watkin_lab.yaml"/>
 <arg name="watkin_world" default="$(find multi_amr_nectec)/worlds/watkinslab.world"/>
@@ -56,7 +56,7 @@
 <!-- AMR 0  -->
   <group ns="amr_0">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 0 -y 1 -z 0 -Y 0 " />
+      <arg name="init_pose_gazebo" value="-x 4 -y 3 -z 0 -Y -2 " />
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
       <arg name="robot_name" value="amr_0" />
       <arg name="robot_colour" value="blue"/>
@@ -69,7 +69,7 @@
 <!-- AMR 1  -->
  <group ns="amr_1">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x -1 -y 0 -z 0 -Y 0 " />  
+      <arg name="init_pose_gazebo" value="-x -2 -y 4 -z 0 -Y 0.5 " />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_1" />
       <arg name="robot_colour" value="blue"/>
@@ -86,7 +86,7 @@
     <param name="amcl/initial_pose_x" value="0" />
     <param name="amcl/initial_pose_y" value="0" />
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 0 -y -1 -z 0 -Y 0" />  
+      <arg name="init_pose_gazebo" value="-x 1 -y -3 -z 0 -Y 1" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />     
       <arg name="robot_name" value="amr_2" />
       <arg name="robot_colour" value="red"/>
@@ -101,7 +101,7 @@
     <param name="amcl/initial_pose_x" value="0" />
     <param name="amcl/initial_pose_y" value="0" />
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 1 -y 0 -z 0 -Y 0" />  
+      <arg name="init_pose_gazebo" value="-x 3 -y -3 -z 0 -Y -1" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_3" />
       <arg name="robot_colour" value="red"/>
@@ -116,7 +116,7 @@
  <node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
   <param name ="default_x" value = "0" />
   <param name ="default_y" value = "0" />
-  <param name ="default_theta" value = "0" />
+  <param name ="default_theta" value = "1.57079632679" />
 </node>
  <!--transform virtual leader odom to map-->
  <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /vl_robot/odom 10" />
@@ -127,7 +127,7 @@
 
 </group>
 <!--Load parameter     -->
-<rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/diamond.yaml" />
+<rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/4_amr_diamond.yaml" />
 
 <!--Rotational force   --> 
 <node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" if="$(arg rotational_force)" >
@@ -165,7 +165,7 @@
 
 <!--ROSBAG Record -->
  <node pkg="rosbag" type="record" name="rosbag_record_data" output="screen"
-       args="record -O /home/kanin/ROSbag/rectangular_s_curve_$(arg team_size)_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
+       args="record -O /home/kanin/ROSbag/rectangular_agregation_limitspeed_$(arg team_size)_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
        /amr0_E_springVL /amr_0/pose2d /amr_0/cmd_vel /amr_1/pose2d /amr_1/cmd_vel /amr_2/pose2d /amr_2/cmd_vel /amr_3/pose2d /amr_3/cmd_vel /F_vl_x /F_vl_y /vl_robot/pose2d /vl_robot/cmd_vel"
        if="$(arg record_data)" /> 
 

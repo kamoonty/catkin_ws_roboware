@@ -74,8 +74,9 @@ int main(int argc, char** argv)
  ros::Subscriber agent1_pose2d_sub = nh.subscribe("amr_1/pose2d", 1000, agent1_pose2D_CB);
  ros::Subscriber agent2_pose2d_sub = nh.subscribe("amr_2/pose2d", 1000, agent2_pose2D_CB);
  ros::Subscriber agent3_pose2d_sub = nh.subscribe("amr_3/pose2d", 1000, agent3_pose2D_CB);
- ros::Subscriber agent4_pose2d_sub = nh.subscribe("amr_4/pose2d", 1000, agent3_pose2D_CB);
- ros::Subscriber agent5_pose2d_sub = nh.subscribe("amr_5/pose2d", 1000, agent3_pose2D_CB);
+
+ ros::Subscriber agent4_pose2d_sub = nh.subscribe("amr_4/pose2d", 1000, agent4_pose2D_CB);
+ ros::Subscriber agent5_pose2d_sub = nh.subscribe("amr_5/pose2d", 1000, agent5_pose2D_CB);
  ros::Publisher pub_rotational_force = nh.advertise<std_msgs::Float32MultiArray>("F_rot", 1000);
  
  float diff_angle [team_size];

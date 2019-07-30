@@ -12,7 +12,7 @@ Panels:
         - /AMR_31/Shape1
         - /VL_LaserScan1
       Splitter Ratio: 0.501170933
-    Tree Height: 477
+    Tree Height: 359
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -28,7 +28,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: VL_LaserScan
+    SyncSource: ""
 Toolbars:
   toolButtonStyle: 2
 Visualization Manager:
@@ -95,8 +95,6 @@ Visualization Manager:
           Value: true
         amr_0/odom:
           Value: true
-        amr_0/plate_link1:
-          Value: true
         amr_0/wheel_fl_axle_link:
           Value: true
         amr_0/wheel_fl_link:
@@ -120,8 +118,6 @@ Visualization Manager:
         amr_1/imu_link:
           Value: true
         amr_1/odom:
-          Value: true
-        amr_1/plate_link1:
           Value: true
         amr_1/wheel_fl_axle_link:
           Value: true
@@ -147,8 +143,6 @@ Visualization Manager:
           Value: true
         amr_2/odom:
           Value: true
-        amr_2/plate_link1:
-          Value: true
         amr_2/wheel_fl_axle_link:
           Value: true
         amr_2/wheel_fl_link:
@@ -173,8 +167,6 @@ Visualization Manager:
           Value: true
         amr_3/odom:
           Value: true
-        amr_3/plate_link1:
-          Value: true
         amr_3/wheel_fl_axle_link:
           Value: true
         amr_3/wheel_fl_link:
@@ -195,33 +187,7 @@ Visualization Manager:
           Value: true
         vl_robot/base_link:
           Value: true
-        vl_robot/base_scan:
-          Value: true
-        vl_robot/bumper_link:
-          Value: true
-        vl_robot/imu_link:
-          Value: true
-        vl_robot/laser_link:
-          Value: true
         vl_robot/odom:
-          Value: true
-        vl_robot/plate_link1:
-          Value: true
-        vl_robot/wheel_fl_axle_link:
-          Value: true
-        vl_robot/wheel_fl_link:
-          Value: true
-        vl_robot/wheel_fr_axle_link:
-          Value: true
-        vl_robot/wheel_fr_link:
-          Value: true
-        vl_robot/wheel_rl_axle_link:
-          Value: true
-        vl_robot/wheel_rl_link:
-          Value: true
-        vl_robot/wheel_rr_axle_link:
-          Value: true
-        vl_robot/wheel_rr_link:
           Value: true
       Marker Scale: 1
       Name: TF
@@ -235,8 +201,6 @@ Visualization Manager:
               amr_0/bumper_link:
                 {}
               amr_0/imu_link:
-                {}
-              amr_0/plate_link1:
                 {}
               amr_0/wheel_fl_axle_link:
                 amr_0/wheel_fl_link:
@@ -256,8 +220,6 @@ Visualization Manager:
                 {}
               amr_1/imu_link:
                 {}
-              amr_1/plate_link1:
-                {}
               amr_1/wheel_fl_axle_link:
                 amr_1/wheel_fl_link:
                   {}
@@ -275,8 +237,6 @@ Visualization Manager:
               amr_2/bumper_link:
                 {}
               amr_2/imu_link:
-                {}
-              amr_2/plate_link1:
                 {}
               amr_2/wheel_fl_axle_link:
                 amr_2/wheel_fl_link:
@@ -296,8 +256,6 @@ Visualization Manager:
                 {}
               amr_3/imu_link:
                 {}
-              amr_3/plate_link1:
-                {}
               amr_3/wheel_fl_axle_link:
                 amr_3/wheel_fl_link:
                   {}
@@ -312,27 +270,7 @@ Visualization Manager:
                   {}
           vl_robot/odom:
             vl_robot/base_link:
-              vl_robot/bumper_link:
-                {}
-              vl_robot/imu_link:
-                {}
-              vl_robot/laser_link:
-                vl_robot/base_scan:
-                  {}
-              vl_robot/plate_link1:
-                {}
-              vl_robot/wheel_fl_axle_link:
-                vl_robot/wheel_fl_link:
-                  {}
-              vl_robot/wheel_fr_axle_link:
-                vl_robot/wheel_fr_link:
-                  {}
-              vl_robot/wheel_rl_axle_link:
-                vl_robot/wheel_rl_link:
-                  {}
-              vl_robot/wheel_rr_axle_link:
-                vl_robot/wheel_rr_link:
-                  {}
+              {}
       Update Interval: 0
       Value: true
     - Angle Tolerance: 0.100000001
@@ -743,7 +681,7 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Scale: 14.9511747
+      Scale: 41.4607849
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz)
       X: 2.73730493
