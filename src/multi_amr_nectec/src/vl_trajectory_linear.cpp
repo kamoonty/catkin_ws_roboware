@@ -19,7 +19,7 @@ while (ros::ok())
   {final_cmd_vel.linear.x=0.5;
     ROS_INFO("Running with i=%d t=%f",i,t);
   }
-  if (t>10) //specify time here
+  if (t>12) //specify time here
   {final_cmd_vel.linear.x=0;
         ROS_INFO("End of 10 secs");}     
      i=i+1;

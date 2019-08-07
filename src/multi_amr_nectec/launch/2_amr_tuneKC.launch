@@ -5,8 +5,8 @@
   <arg name="open_gazebo" default="false"/>
   <arg name="record_data" default="false" />
   <arg name="spawn_load" default="false" />
-  <arg name="vl_force" default="false" />
-  <arg name="rotational_force" default="false" />
+  <arg name="vl_force" default="true" />
+  <arg name="rotational_force" default="true" />
   <arg name="inter_agent_force" default="false" />
   <arg name="motion_generator" default="true" />
   <!-- Define Paramerters here for robot formation-->

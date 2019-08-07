@@ -1,3 +1,4 @@
+#This formation  need to set all of robot headings to 1.57
 initial_pos_x: [2,0,-2,0]
 initial_pos_y: [0,-2,0,2]
 

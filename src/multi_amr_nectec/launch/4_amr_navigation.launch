@@ -2,10 +2,9 @@
   <master auto="start"/>
   <param name="/use_sim_time" value="true"/>
   <arg name="open_rviz" default="true"/>
-  <arg name="open_gazebo" default="true"/>
-
-   <arg name="record_data" default="true" />
-  <arg name="vl_force" default="true" />
+  <arg name="open_gazebo" default="false"/>
+  <arg name="record_data" default="false" />
+  <arg name="vl_force" default="false" />
   <arg name="rotational_force" default="true" />
   <arg name="inter_agent_force" default="true" />
   <arg name="motion_generator" default="true" />
@@ -18,8 +17,8 @@
   <arg name="K_ang" default="4" />
   <arg name="D_ang" default="0" />
   <arg name="team_size" value="4"/>
-  <arg name="v_linear_threshold" value="1.0"/>
-  <arg name="v_angular_threshold" value="1.0"/>
+  <arg name="v_linear_threshold" value="1000"/>
+  <arg name="v_angular_threshold" value="1000"/>
   <arg name="robot_mass" value="40"/>
   <arg name="robot_radious" value="0.5"/>
   <arg name="robot_inertia" value="0.77"/>
@@ -154,7 +153,7 @@
 
 
 <!--Load parameter     -->
-<rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/diamond.yaml" />
+<rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/4_amr_diamond.yaml" />
 
 <!--Rotational force   --> 
 <node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" if="$(arg rotational_force)" >
