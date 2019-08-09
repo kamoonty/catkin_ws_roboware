@@ -7,6 +7,7 @@
 #include "std_msgs/MultiArrayDimension.h"
 #include "std_msgs/Float32MultiArray.h"
 
+
 int team_size; //use for get param from launch file
 float v_linear_threshold;
 float v_angular_threshold;
@@ -101,6 +102,7 @@ ros::Publisher amr_5_cmd_vel_pub = nh.advertise<geometry_msgs::Twist>("amr_5/cmd
 geometry_msgs::Twist final_cmd_vel [team_size];
 //geometry_msgs::Point first_linear_v [team_size];
 //geometry_msgs::Point second_linear_v [team_size];
+  
 while (nh.ok()) 
 {
 for(int n=0;n<team_size;n++)
@@ -154,8 +156,10 @@ amr_3_cmd_vel_pub.publish(final_cmd_vel[3]);
 amr_4_cmd_vel_pub.publish(final_cmd_vel[4]);
 amr_5_cmd_vel_pub.publish(final_cmd_vel[5]);
 ros::spinOnce();
+
 loopRate.sleep(); 
 }
+
 
 //return 0;
 }

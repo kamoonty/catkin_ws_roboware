@@ -3,20 +3,21 @@
   <param name="/use_sim_time" value="true"/>
   <arg name="open_rviz" default="true"/>
   <arg name="open_gazebo" default="false"/>
-  <arg name="record_data" default="false" />
+  <arg name="record_data" default="true" />
+
   <arg name="spawn_load" default="false" />
   <arg name="vl_force" default="true" />
-  <arg name="rotational_force" default="true" />
+  <arg name="rotational_force" default="false" />
   <arg name="inter_agent_force" default="false" />
   <arg name="motion_generator" default="true" />
   <!-- Define Paramerters here for robot formation-->
-  <arg name="Kvl" default="200" />
+  <arg name="Kvl" default="500" />
   <arg name="Cvl" default="1" />
   <arg name="Kij" default="0" />
   <arg name="Cij" default="0" /> 
 <!-- K angular should be low to let robot move in cartesion in time-->
   <arg name="K_ang" default="1" />
-  <arg name="D_ang" default="1" />
+  <arg name="D_ang" default="0" />
   <arg name="team_size" value="2"/>
   <arg name="v_linear_threshold" value="1000"/>
   <arg name="v_angular_threshold" value="1000"/>
@@ -56,7 +57,7 @@
 <!-- AMR 0  -->
   <group ns="amr_0">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 0.5 -y 0 -z 0.1 -Y 0 -P 0 -R 0" />
+      <arg name="init_pose_gazebo" value="-x 0.5 -y 0 -z 0.1 -Y 1.57079632679 -P 0 -R 0" />
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
       <arg name="robot_name" value="amr_0" />
       <arg name="robot_colour" value="blue"/>
@@ -67,7 +68,7 @@
 <!-- AMR 1   -->
  <group ns="amr_1">
     <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x -0.5 -y 0 -z 0.1 -Y 0 -P 0 -R 0" />  
+      <arg name="init_pose_gazebo" value="-x -0.5 -y 0 -z 0.1 -Y 1.57079632679 -P 0 -R 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_1" />
       <arg name="robot_colour" value="red"/>
@@ -82,7 +83,7 @@
  <node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
   <param name ="default_x" value = "0" />
   <param name ="default_y" value = "0" />
-  <param name ="default_theta" value = "1.57079632679" />
+  <param name ="default_theta" value = "0" />
 
 </node>
  <!--transform virtual leader odom to map   -->
@@ -132,9 +133,9 @@
 <param name ="delta_time" value = "1" />
 </node>
 
- <!-- Linear trajectory of VL  
+ <!-- Linear trajectory of VL  -->
 <node pkg="multi_amr_nectec" type="vl_trajectory_linear" name="vl_trajectory_linear" output="screen" />
---> 
+ 
 <!--trajectory of VL S curve
 <node pkg="multi_amr_nectec" type="vl_trajectory_s_curve" name="vl_trajectory_s_curve" output="screen" />
  -->
@@ -143,7 +144,7 @@
  -->
 <!--ROSBAG Record -->
  <node pkg="rosbag" type="record" name="rosbag_record_data" output="screen"
-       args="record -O /home/kanin/ROSbag/circle_path_$(arg team_size)_robot_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
+       args="record -O /home/kanin/ROSbag/linear_path__sideway$(arg team_size)_robot_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
        /amr_0/pose2d /amr_0/cmd_vel /amr_1/pose2d /amr_1/cmd_vel /F_vl_x /F_vl_y /vl_robot/pose2d /vl_robot/cmd_vel"
        if="$(arg record_data)" /> 
 

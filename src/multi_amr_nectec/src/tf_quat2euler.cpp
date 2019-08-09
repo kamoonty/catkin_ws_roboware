@@ -38,8 +38,6 @@ ros::Rate loop_rate(100);
 while (ros::ok())
   {
     
-        
-    
     ros::spinOnce();
 
     loop_rate.sleep();

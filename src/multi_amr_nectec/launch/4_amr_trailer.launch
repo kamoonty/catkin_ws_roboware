@@ -6,12 +6,12 @@
   <arg name="record_data" default="true" />
 
   <arg name="vl_force" default="true" />
-  <arg name="rotational_force" default="true" />
-  <arg name="inter_agent_force" default="true" />
+  <arg name="rotational_force" default="false" />
+  <arg name="inter_agent_force" default="false" />
   <arg name="motion_generator" default="true" />
   <!-- Define Paramerters here for robot formation-->
-  <arg name="Kvl" default="500" />
-  <arg name="Cvl" default="1" />
+  <arg name="Kvl" default="300" />
+  <arg name="Cvl" default="0" />
   <arg name="Kij" default="100" />
   <arg name="Cij" default="0" />
 <!-- K angular should be low to let robot move in cartesion in time-->
@@ -62,7 +62,7 @@
       <arg name="robot_name" value="amr_0" />
       <arg name="robot_colour" value="blue"/>
     </include>
-     <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
+  
      <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
   
   </group>
@@ -77,7 +77,7 @@
       <param name="robot_description" command="$(find xacro)/xacro --inorder $(find amr_description)/urdf/amr.urdf_red.xacro" />
    
     </include> 
-    <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
+
     <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
   </group>
 
@@ -92,7 +92,7 @@
       <arg name="robot_name" value="amr_2" />
       <arg name="robot_colour" value="red"/>
     </include> 
-    <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
+
     <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
   </group>
 
@@ -107,7 +107,7 @@
       <arg name="robot_name" value="amr_3" />
       <arg name="robot_colour" value="red"/>
     </include>
-    <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />  
+ 
     <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
   </group>
 
@@ -121,9 +121,7 @@
 </node>
 <!--transform virtual leader odom to map-->
  <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /vl_robot/odom 10" />
-  <!--Get odom from virtual leader robot  -->
-<node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
- <!--Get angle from virtual leader robot  -->
+  <!--Get pose2d from virtual leader robot  -->
 <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
 
 </group>
@@ -166,10 +164,10 @@
 
 <!--ROSBAG Record -->
  <node pkg="rosbag" type="record" name="rosbag_record_data" output="screen"
-       args="record -O /home/kanin/ROSbag/trailer_straight_$(arg team_size)_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
+       args="record -O /home/kanin/ROSbag/trailer_linear_multi_thread_$(arg team_size)_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
        /amr0_E_springVL /amr_0/pose2d /amr_0/cmd_vel /amr_1/pose2d /amr_1/cmd_vel /amr_2/pose2d /amr_2/cmd_vel /amr_3/pose2d /amr_3/cmd_vel /F_vl_x /F_vl_y /vl_robot/pose2d /vl_robot/cmd_vel"
        if="$(arg record_data)" /> 
- <!-- Linear trajectory of VL  --> 
+ <!-- Linear trajectory of VL-->   
 <node pkg="multi_amr_nectec" type="vl_trajectory_linear" name="vl_trajectory_linear" output="screen" />
 
 <!--trajectory of VL S curve  

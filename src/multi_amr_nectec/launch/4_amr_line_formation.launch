@@ -6,12 +6,12 @@
   <arg name="record_data" default="true" />
 
   <arg name="vl_force" default="true" />
-  <arg name="rotational_force" default="true" />
+  <arg name="rotational_force" default="false" />
   <arg name="inter_agent_force" default="false" />
   <arg name="motion_generator" default="true" />
   <!-- Define Paramerters here for robot formation-->
   <arg name="Kvl" default="300" />
-  <arg name="Cvl" default="1" />
+  <arg name="Cvl" default="0" />
   <arg name="Kij" default="0" />
   <arg name="Cij" default="0" />
 <!-- K angular should be low to let robot move in cartesion in time-->
@@ -166,15 +166,15 @@
 
 <!--ROSBAG Record -->
  <node pkg="rosbag" type="record" name="rosbag_record_data" output="screen"
-       args="record -O /home/kanin/ROSbag/S_curve_linear_$(arg team_size)_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
+       args="record -O /home/kanin/ROSbag/line_formation_linear_$(arg team_size)_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
        /amr_0/pose2d /amr_0/cmd_vel /amr_1/pose2d /amr_1/cmd_vel /amr_2/pose2d /amr_2/cmd_vel /amr_3/pose2d /amr_3/cmd_vel /F_vl_x /F_vl_y /vl_robot/pose2d /vl_robot/cmd_vel"
        if="$(arg record_data)" /> 
- <!-- Linear trajectory of VL  
+ <!-- Linear trajectory of VL  --> 
 <node pkg="multi_amr_nectec" type="vl_trajectory_linear" name="vl_trajectory_linear" output="screen" />
---> 
-<!--trajectory of VL S curve --> 
-<node pkg="multi_amr_nectec" type="vl_trajectory_s_curve" name="vl_trajectory_s_curve" output="screen" />
 
+<!--trajectory of VL S curve 
+<node pkg="multi_amr_nectec" type="vl_trajectory_s_curve" name="vl_trajectory_s_curve" output="screen" />
+--> 
  <!--trajectory of VL circle  
 <node pkg="multi_amr_nectec" type="vl_trajectory_circle" name="vl_trajectory_circle" output="screen" />
 -->

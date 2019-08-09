@@ -15,17 +15,17 @@ int i;
 float t;
 while (ros::ok())
   { t=i*0.01;
-  if (t>=2&&t<17) //delay for 15 secs
-    {final_cmd_vel.linear.x=0.5;
-   final_cmd_vel.angular.z=-0.2;
+  if (t>=2&&t<33) //delay for 15 secs
+    {final_cmd_vel.linear.x=0.2;
+   final_cmd_vel.angular.z=-0.1;
     ROS_INFO("First half circle");
     }   
-  else if (t>=17&&t<32) //specify time here
-   {final_cmd_vel.linear.x=0.5;
-  final_cmd_vel.angular.z=0.2;
+  else if (t>=33&&t<64) //specify time here
+   {final_cmd_vel.linear.x=0.2;
+  final_cmd_vel.angular.z=0.1;
         ROS_INFO("Second First half circle");}       
 
-  if(t>=32)
+  if(t>=64)
   {final_cmd_vel.linear.x=0;
   final_cmd_vel.angular.z=0;
         ROS_INFO("End");}     

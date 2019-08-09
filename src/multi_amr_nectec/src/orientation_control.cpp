@@ -126,7 +126,7 @@ while (nh.ok())
     // equation to calculate damper equation  
     // still has problem when angle between 0 and 360 so we set
     // D_ang=0 first
-   /*  */    first_data[i]= fabs(diff_angle[i]);
+      first_data[i]= fabs(diff_angle[i]);
       if(second_data[i]!=0)
        { ROS_INFO("First Data = %f",first_data[i]);
         ROS_INFO("Second Data = %f",second_data[i]);

@@ -3,23 +3,23 @@
   <param name="/use_sim_time" value="true"/>
   <arg name="open_rviz" default="true"/>
   <arg name="open_gazebo" default="false"/>
-  <arg name="record_data" default="true" />
+  <arg name="record_data" default="false" />
 
   <arg name="vl_force" default="true" />
   <arg name="rotational_force" default="true" />
   <arg name="inter_agent_force" default="true" />
   <arg name="motion_generator" default="true" />
   <!-- Define Paramerters here for robot formation-->
-  <arg name="Kvl" default="100" />
-  <arg name="Cvl" default="15" />
-  <arg name="Kij" default="50" />
-  <arg name="Cij" default="10" />
+  <arg name="Kvl" default="500" />
+  <arg name="Cvl" default="10" />
+  <arg name="Kij" default="200" />
+  <arg name="Cij" default="5" />
 <!-- K angular should be low to let robot move in cartesion in time-->
-  <arg name="K_ang" default="3" />
+  <arg name="K_ang" default="20" />
   <arg name="D_ang" default="0" />
   <arg name="team_size" value="4"/>
   <arg name="v_linear_threshold" value="0.5"/>
-  <arg name="v_angular_threshold" value="0.5"/>
+  <arg name="v_angular_threshold" value="0.4"/>
   <arg name="robot_mass" value="40"/>
   <arg name="robot_radious" value="0.5"/>
   <arg name="robot_inertia" value="0.77"/>
@@ -53,63 +53,61 @@
          args="-d $(find multi_amr_nectec)/rviz/4_amr.rviz"/>
   </group>
 
-<!-- AMR 0  -->
-  <group ns="amr_0">
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 0 -y 2 -z 0 -Y 1.57079632679 " />
-      <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
-      <arg name="robot_name" value="amr_0" />
-      <arg name="robot_colour" value="blue"/>
-    </include>
-     <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
-     <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
-  
-  </group>
+<!-- AMR 0 -->
+<group ns="amr_0">
+<include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+<arg name="init_pose_gazebo" value="-x 0 -y 2 -z 0 -Y 1.57079632679 " />
+<arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
+<arg name="robot_name" value="amr_0" />
+<arg name="robot_colour" value="blue"/>
+</include>
+<node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
+<node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
 
-<!-- AMR 1  -->
- <group ns="amr_1">
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x -2 -y 0 -z 0 -Y 1.57079632679 " />  
-      <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
-      <arg name="robot_name" value="amr_1" />
-      <arg name="robot_colour" value="blue"/>
-      <param name="robot_description" command="$(find xacro)/xacro --inorder $(find amr_description)/urdf/amr.urdf_red.xacro" />
-   
-    </include> 
-    <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
-    <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
-  </group>
+</group>
 
-<!-- AMR 2   --> 
- <group ns="amr_2">
-    <param name="tf_prefix" value="amr_2" />
-    <param name="amcl/initial_pose_x" value="0" />
-    <param name="amcl/initial_pose_y" value="0" />
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 0 -y -2 -z 0 -Y 1.57079632679" />  
-      <arg name="init_pose_rviz" value="0 0 0 0 0 0" />     
-      <arg name="robot_name" value="amr_2" />
-      <arg name="robot_colour" value="red"/>
-    </include> 
-    <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
-    <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
-  </group>
+<!-- AMR 1 -->
+<group ns="amr_1">
+<include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+<arg name="init_pose_gazebo" value="-x -2 -y 0 -z 0 -Y 1.57079632679 " /> 
+<arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
+<arg name="robot_name" value="amr_1" />
+<arg name="robot_colour" value="blue"/>
+<param name="robot_description" command="$(find xacro)/xacro --inorder $(find amr_description)/urdf/amr.urdf_red.xacro" />
+</include> 
+<node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
+<node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
+</group>
 
-<!-- AMR 3    -->
- <group ns="amr_3">
-   <param name="tf_prefix" value="amr_3" />
-    <param name="amcl/initial_pose_x" value="0" />
-    <param name="amcl/initial_pose_y" value="0" />
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 2 -y 0 -z 0 -Y 1.57079632679" />  
-      <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
-      <arg name="robot_name" value="amr_3" />
-      <arg name="robot_colour" value="red"/>
-    </include>
-    <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />  
-    <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
-  </group>
+<!-- AMR 2 --> 
+<group ns="amr_2">
+<param name="tf_prefix" value="amr_2" />
+<param name="amcl/initial_pose_x" value="0" />
+<param name="amcl/initial_pose_y" value="0" />
+<include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+<arg name="init_pose_gazebo" value="-x 0 -y -2 -z 0 -Y 1.57079632679" /> 
+<arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
+<arg name="robot_name" value="amr_2" />
+<arg name="robot_colour" value="red"/>
+</include> 
+<node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
+<node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
+</group>
 
+<!-- AMR 3 -->
+<group ns="amr_3">
+<param name="tf_prefix" value="amr_3" />
+<param name="amcl/initial_pose_x" value="0" />
+<param name="amcl/initial_pose_y" value="0" />
+<include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+<arg name="init_pose_gazebo" value="-x 2 -y 0 -z 0 -Y 1.57079632679" /> 
+<arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
+<arg name="robot_name" value="amr_3" />
+<arg name="robot_colour" value="red"/>
+</include>
+<node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
+<node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
+</group>
 
  <group ns="vl_robot">
  <!--VL localization -->
@@ -165,20 +163,17 @@
 
 <!--ROSBAG Record -->
  <node pkg="rosbag" type="record" name="rosbag_record_data" output="screen"
-       args="record -O /home/kanin/ROSbag/rectangular_linear_path_$(arg team_size)_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
-       /amr0_E_springVL /amr_0/pose2d /amr_0/cmd_vel /amr_1/pose2d /amr_1/cmd_vel /amr_2/pose2d /amr_2/cmd_vel /amr_3/pose2d /amr_3/cmd_vel /F_vl_x /F_vl_y /vl_robot/pose2d /vl_robot/cmd_vel"
+       args="record -O /home/kanin/ROSbag/diamond_sine_path$(arg team_size)_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
+       /amr0_E_springVL /amr_0/pose2d /amr_0/cmd_vel /amr_1/pose2d /amr_1/cmd_vel /amr_2/pose2d /amr_2/cmd_vel /amr_3/pose2d /amr_3/cmd_vel /F_vl_x /F_vl_y /vl_robot/pose2d /vl_robot/cmd_vel
+       /amr_0/odom /amr_1/odom /amr_2/odom /amr_3/odom"
        if="$(arg record_data)" /> 
 
-<!--
-  <include file="$(find multi_amr_nectec)/launch/spawn_load.launch" >
-  <arg name="init_pose_gazebo" value="-x 0 -y -0 -z 0 -Y 0" /> 
-   </include>
- Linear trajectory of VL  -->
+<!-- Linear trajectory of VL  
 <node pkg="multi_amr_nectec" type="vl_trajectory_linear" name="vl_trajectory_linear" output="screen" />
- 
-<!--trajectory of VL S curve 
+--> 
+<!--trajectory of VL S curve--> 
 <node pkg="multi_amr_nectec" type="vl_trajectory_s_curve" name="vl_trajectory_s_curve" output="screen" />
--->
+
  <!--trajectory of VL circle 
 <node pkg="multi_amr_nectec" type="vl_trajectory_circle" name="vl_trajectory_circle" output="screen" />
  -->
