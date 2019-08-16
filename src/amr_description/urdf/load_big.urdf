@@ -4,21 +4,21 @@
   <link name="my_box">
     <inertial>
       <origin xyz="0 0 0" />
-      <mass value="300.0" />
+      <mass value="500.0" />
       <inertia  ixx="1.66" ixy="0.0"  ixz="0.0"  iyy="1.66"  iyz="0.0"  izz="1.66" />
     </inertial>
 
     <visual>
       <origin xyz="0 0 0"/>
       <geometry>
-        <box size="4 4 0.1" />
+        <box size="5 5 0.2" />
       </geometry>
     </visual>
 
     <collision>
       <origin xyz="0 0 0"/>
       <geometry>
-        <box size="4 4 0.1" />
+        <box size="5 5 0.2" />
       </geometry>
     </collision>
   </link>

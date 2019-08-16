@@ -6,12 +6,12 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /AMR_01/Shape1
         - /AMR_11/Shape1
         - /AMR_21/Shape1
-        - /AMR_31
         - /AMR_31/Shape1
-        - /AMR_41
         - /AMR_41/Shape1
+        - /VL_robot1/Shape1
       Splitter Ratio: 0.501170933
     Tree Height: 505
   - Class: rviz/Selection
@@ -343,9 +343,9 @@ Visualization Manager:
         Axes Radius: 0.100000001
         Color: 255; 25; 0
         Head Length: 0.300000012
-        Head Radius: 0.100000001
+        Head Radius: 0.300000012
         Shaft Length: 0.5
-        Shaft Radius: 0.0500000007
+        Shaft Radius: 0.100000001
         Value: Arrow
       Topic: /amr_0/odom
       Unreliable: false
@@ -377,9 +377,9 @@ Visualization Manager:
         Axes Radius: 0.100000001
         Color: 26; 79; 255
         Head Length: 0.300000012
-        Head Radius: 0.100000001
+        Head Radius: 0.300000012
         Shaft Length: 0.5
-        Shaft Radius: 0.0500000007
+        Shaft Radius: 0.100000001
         Value: Arrow
       Topic: /amr_1/odom
       Unreliable: false
@@ -411,9 +411,9 @@ Visualization Manager:
         Axes Radius: 0.100000001
         Color: 80; 255; 106
         Head Length: 0.300000012
-        Head Radius: 0.100000001
+        Head Radius: 0.300000012
         Shaft Length: 0.5
-        Shaft Radius: 0.0500000007
+        Shaft Radius: 0.100000001
         Value: Arrow
       Topic: /amr_2/odom
       Unreliable: false
@@ -445,9 +445,9 @@ Visualization Manager:
         Axes Radius: 0.100000001
         Color: 255; 107; 253
         Head Length: 0.300000012
-        Head Radius: 0.100000001
+        Head Radius: 0.300000012
         Shaft Length: 0.5
-        Shaft Radius: 0.0500000007
+        Shaft Radius: 0.100000001
         Value: Arrow
       Topic: /amr_3/odom
       Unreliable: false
@@ -479,9 +479,9 @@ Visualization Manager:
         Axes Radius: 0.100000001
         Color: 25; 255; 221
         Head Length: 0.300000012
-        Head Radius: 0.100000001
+        Head Radius: 0.300000012
         Shaft Length: 0.5
-        Shaft Radius: 0.0500000007
+        Shaft Radius: 0.100000001
         Value: Arrow
       Topic: /amr_4/odom
       Unreliable: false
@@ -513,9 +513,9 @@ Visualization Manager:
         Axes Radius: 0.100000001
         Color: 255; 233; 65
         Head Length: 0.300000012
-        Head Radius: 0.100000001
+        Head Radius: 0.300000012
         Shaft Length: 0.5
-        Shaft Radius: 0.0500000007
+        Shaft Radius: 0.100000001
         Value: Arrow
       Topic: /vl_robot/odom
       Unreliable: false
@@ -758,11 +758,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Scale: 114.974014
+      Scale: 60.5113182
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz)
-      X: 0.575576425
-      Y: -0.0068187518
+      X: 3.73427153
+      Y: -0.353047818
     Saved: ~
 Window Geometry:
   Displays:

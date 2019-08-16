@@ -287,3 +287,11 @@ add_dependencies(vl_trajectory_circle ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catk
 target_link_libraries(vl_trajectory_circle
   ${catkin_LIBRARIES}
 )
+
+add_executable(inter_agent_force_rectangle
+  src/inter_agent_force_rectangle.cpp
+)
+add_dependencies(inter_agent_force_rectangle ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(inter_agent_force_rectangle
+  ${catkin_LIBRARIES}
+)

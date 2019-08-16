@@ -10,16 +10,16 @@
   <arg name="inter_agent_force" default="false" />
   <arg name="motion_generator" default="true" />
   <!-- Define Paramerters here for robot formation-->
-  <arg name="Kvl" default="500" />
-  <arg name="Cvl" default="0" />
-  <arg name="Kij" default="50" />
-  <arg name="Cij" default="10" />
+  <arg name="Kvl" default="300" />
+  <arg name="Cvl" default="10" />
+  <arg name="Kij" default="200" />
+  <arg name="Cij" default="5" />
 <!-- K angular should be low to let robot move in cartesion in time-->
-  <arg name="K_ang" default="3" />
+  <arg name="K_ang" default="20" />
   <arg name="D_ang" default="0" />
   <arg name="team_size" value="4"/>
-  <arg name="v_linear_threshold" value="1000"/>
-  <arg name="v_angular_threshold" value="1000"/>
+  <arg name="v_linear_threshold" value="0.5"/>
+  <arg name="v_angular_threshold" value="0.4"/>
   <arg name="robot_mass" value="40"/>
   <arg name="robot_radious" value="0.5"/>
   <arg name="robot_inertia" value="0.77"/>
@@ -165,21 +165,21 @@
 
 <!--ROSBAG Record -->
  <node pkg="rosbag" type="record" name="rosbag_record_data" output="screen"
-       args="record -O /home/kanin/ROSbag/rectangular_linear$(arg team_size)_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
+       args="record -O /home/kanin/ROSbag/rectangular_sine_path$(arg team_size)_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
        /amr0_E_springVL /amr_0/pose2d /amr_0/cmd_vel /amr_1/pose2d /amr_1/cmd_vel /amr_2/pose2d /amr_2/cmd_vel /amr_3/pose2d /amr_3/cmd_vel /F_vl_x /F_vl_y /vl_robot/pose2d /vl_robot/cmd_vel"
        if="$(arg record_data)" /> 
 
-<!-- Linear trajectory of VL   -->
+<!-- Linear trajectory of VL   
 <node pkg="multi_amr_nectec" type="vl_trajectory_linear" name="vl_trajectory_linear" output="screen" />
-
-<!--trajectory of VL S curve 
-<node pkg="multi_amr_nectec" type="vl_trajectory_s_curve" name="vl_trajectory_s_curve" output="screen" />
 -->
+<!--trajectory of VL S curve -->
+<node pkg="multi_amr_nectec" type="vl_trajectory_s_curve" name="vl_trajectory_s_curve" output="screen" />
+
  <!--trajectory of VL circle 
 <node pkg="multi_amr_nectec" type="vl_trajectory_circle" name="vl_trajectory_circle" output="screen" />
  -->
-<!-- Spawn load  
+<!-- Spawn load 
  <include file="$(find multi_amr_nectec)/launch/spawn_load.launch" >
    </include>
--->
+ -->
 </launch>
