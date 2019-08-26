@@ -1,0 +1,8 @@
+prefix=/home/kanin/catkin_ws_roboware/devel
+
+Name: lino_visualize
+Description: Description of lino_visualize
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/kanin/catkin_ws_roboware/devel/lib 
+Requires: 

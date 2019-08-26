@@ -80,39 +80,6 @@ install/fast: preinstall/fast
 	/usr/local/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/local/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/local/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/local/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -134,6 +101,39 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/local/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/local/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/local/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,124 +168,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-pid/CMakeFiles/autotune.dir/rule:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 pid/CMakeFiles/autotune.dir/rule
-.PHONY : pid/CMakeFiles/autotune.dir/rule
+pid/CMakeFiles/plant_sim.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 pid/CMakeFiles/plant_sim.dir/rule
+.PHONY : pid/CMakeFiles/plant_sim.dir/rule
 
 # Convenience name for target.
-autotune: pid/CMakeFiles/autotune.dir/rule
+plant_sim: pid/CMakeFiles/plant_sim.dir/rule
 
-.PHONY : autotune
+.PHONY : plant_sim
 
 # fast build rule for target.
-autotune/fast:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f pid/CMakeFiles/autotune.dir/build.make pid/CMakeFiles/autotune.dir/build
-.PHONY : autotune/fast
-
-# Convenience name for target.
-pid/CMakeFiles/sim_time.dir/rule:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 pid/CMakeFiles/sim_time.dir/rule
-.PHONY : pid/CMakeFiles/sim_time.dir/rule
-
-# Convenience name for target.
-sim_time: pid/CMakeFiles/sim_time.dir/rule
-
-.PHONY : sim_time
-
-# fast build rule for target.
-sim_time/fast:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f pid/CMakeFiles/sim_time.dir/build.make pid/CMakeFiles/sim_time.dir/build
-.PHONY : sim_time/fast
-
-# Convenience name for target.
-pid/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/rule:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 pid/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/rule
-.PHONY : pid/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-dynamic_reconfigure_generate_messages_lisp: pid/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/rule
-
-.PHONY : dynamic_reconfigure_generate_messages_lisp
-
-# fast build rule for target.
-dynamic_reconfigure_generate_messages_lisp/fast:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f pid/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/build.make pid/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/build
-.PHONY : dynamic_reconfigure_generate_messages_lisp/fast
-
-# Convenience name for target.
-pid/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/rule:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 pid/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/rule
-.PHONY : pid/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-dynamic_reconfigure_generate_messages_eus: pid/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/rule
-
-.PHONY : dynamic_reconfigure_generate_messages_eus
-
-# fast build rule for target.
-dynamic_reconfigure_generate_messages_eus/fast:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f pid/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/build.make pid/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/build
-.PHONY : dynamic_reconfigure_generate_messages_eus/fast
-
-# Convenience name for target.
-pid/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/rule:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 pid/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/rule
-.PHONY : pid/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-dynamic_reconfigure_generate_messages_nodejs: pid/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/rule
-
-.PHONY : dynamic_reconfigure_generate_messages_nodejs
-
-# fast build rule for target.
-dynamic_reconfigure_generate_messages_nodejs/fast:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f pid/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/build.make pid/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/build
-.PHONY : dynamic_reconfigure_generate_messages_nodejs/fast
-
-# Convenience name for target.
-pid/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/rule:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 pid/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/rule
-.PHONY : pid/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-dynamic_reconfigure_generate_messages_cpp: pid/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/rule
-
-.PHONY : dynamic_reconfigure_generate_messages_cpp
-
-# fast build rule for target.
-dynamic_reconfigure_generate_messages_cpp/fast:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f pid/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/build.make pid/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/build
-.PHONY : dynamic_reconfigure_generate_messages_cpp/fast
-
-# Convenience name for target.
-pid/CMakeFiles/dynamic_reconfigure_gencfg.dir/rule:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 pid/CMakeFiles/dynamic_reconfigure_gencfg.dir/rule
-.PHONY : pid/CMakeFiles/dynamic_reconfigure_gencfg.dir/rule
-
-# Convenience name for target.
-dynamic_reconfigure_gencfg: pid/CMakeFiles/dynamic_reconfigure_gencfg.dir/rule
-
-.PHONY : dynamic_reconfigure_gencfg
-
-# fast build rule for target.
-dynamic_reconfigure_gencfg/fast:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f pid/CMakeFiles/dynamic_reconfigure_gencfg.dir/build.make pid/CMakeFiles/dynamic_reconfigure_gencfg.dir/build
-.PHONY : dynamic_reconfigure_gencfg/fast
-
-# Convenience name for target.
-pid/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/rule:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 pid/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/rule
-.PHONY : pid/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/rule
-
-# Convenience name for target.
-dynamic_reconfigure_generate_messages_py: pid/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/rule
-
-.PHONY : dynamic_reconfigure_generate_messages_py
-
-# fast build rule for target.
-dynamic_reconfigure_generate_messages_py/fast:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f pid/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/build.make pid/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/build
-.PHONY : dynamic_reconfigure_generate_messages_py/fast
+plant_sim/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f pid/CMakeFiles/plant_sim.dir/build.make pid/CMakeFiles/plant_sim.dir/build
+.PHONY : plant_sim/fast
 
 # Convenience name for target.
 pid/CMakeFiles/controller.dir/rule:
@@ -303,19 +198,34 @@ controller/fast:
 .PHONY : controller/fast
 
 # Convenience name for target.
-pid/CMakeFiles/plant_sim.dir/rule:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 pid/CMakeFiles/plant_sim.dir/rule
-.PHONY : pid/CMakeFiles/plant_sim.dir/rule
+pid/CMakeFiles/sim_time.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 pid/CMakeFiles/sim_time.dir/rule
+.PHONY : pid/CMakeFiles/sim_time.dir/rule
 
 # Convenience name for target.
-plant_sim: pid/CMakeFiles/plant_sim.dir/rule
+sim_time: pid/CMakeFiles/sim_time.dir/rule
 
-.PHONY : plant_sim
+.PHONY : sim_time
 
 # fast build rule for target.
-plant_sim/fast:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f pid/CMakeFiles/plant_sim.dir/build.make pid/CMakeFiles/plant_sim.dir/build
-.PHONY : plant_sim/fast
+sim_time/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f pid/CMakeFiles/sim_time.dir/build.make pid/CMakeFiles/sim_time.dir/build
+.PHONY : sim_time/fast
+
+# Convenience name for target.
+pid/CMakeFiles/setpoint_node.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 pid/CMakeFiles/setpoint_node.dir/rule
+.PHONY : pid/CMakeFiles/setpoint_node.dir/rule
+
+# Convenience name for target.
+setpoint_node: pid/CMakeFiles/setpoint_node.dir/rule
+
+.PHONY : setpoint_node
+
+# fast build rule for target.
+setpoint_node/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f pid/CMakeFiles/setpoint_node.dir/build.make pid/CMakeFiles/setpoint_node.dir/build
+.PHONY : setpoint_node/fast
 
 # Convenience name for target.
 pid/CMakeFiles/pid_gencfg.dir/rule:
@@ -333,19 +243,19 @@ pid_gencfg/fast:
 .PHONY : pid_gencfg/fast
 
 # Convenience name for target.
-pid/CMakeFiles/setpoint_node.dir/rule:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 pid/CMakeFiles/setpoint_node.dir/rule
-.PHONY : pid/CMakeFiles/setpoint_node.dir/rule
+pid/CMakeFiles/autotune.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 pid/CMakeFiles/autotune.dir/rule
+.PHONY : pid/CMakeFiles/autotune.dir/rule
 
 # Convenience name for target.
-setpoint_node: pid/CMakeFiles/setpoint_node.dir/rule
+autotune: pid/CMakeFiles/autotune.dir/rule
 
-.PHONY : setpoint_node
+.PHONY : autotune
 
 # fast build rule for target.
-setpoint_node/fast:
-	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f pid/CMakeFiles/setpoint_node.dir/build.make pid/CMakeFiles/setpoint_node.dir/build
-.PHONY : setpoint_node/fast
+autotune/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f pid/CMakeFiles/autotune.dir/build.make pid/CMakeFiles/autotune.dir/build
+.PHONY : autotune/fast
 
 src/autotune.o: src/autotune.cpp.o
 
@@ -517,23 +427,17 @@ help:
 	@echo "... depend"
 	@echo "... install/local"
 	@echo "... install"
-	@echo "... edit_cache"
-	@echo "... rebuild_cache"
-	@echo "... autotune"
-	@echo "... sim_time"
-	@echo "... dynamic_reconfigure_generate_messages_lisp"
-	@echo "... dynamic_reconfigure_generate_messages_eus"
-	@echo "... test"
-	@echo "... dynamic_reconfigure_generate_messages_nodejs"
 	@echo "... install/strip"
 	@echo "... list_install_components"
-	@echo "... dynamic_reconfigure_generate_messages_cpp"
-	@echo "... dynamic_reconfigure_gencfg"
-	@echo "... dynamic_reconfigure_generate_messages_py"
-	@echo "... controller"
 	@echo "... plant_sim"
-	@echo "... pid_gencfg"
+	@echo "... controller"
+	@echo "... sim_time"
 	@echo "... setpoint_node"
+	@echo "... pid_gencfg"
+	@echo "... test"
+	@echo "... edit_cache"
+	@echo "... autotune"
+	@echo "... rebuild_cache"
 	@echo "... src/autotune.o"
 	@echo "... src/autotune.i"
 	@echo "... src/autotune.s"

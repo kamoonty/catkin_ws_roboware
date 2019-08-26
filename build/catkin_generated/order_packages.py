@@ -2,4 +2,4 @@
 source_root_dir = "/home/kanin/catkin_ws_roboware/src"
 whitelisted_packages = "".split(';') if "" != "" else []
 blacklisted_packages = "".split(';') if "" != "" else []
-underlay_workspaces = "/home/kanin/catkin_ws_roboware/devel;/home/kanin/catkin_ws/devel;/opt/ros/kinetic".split(';') if "/home/kanin/catkin_ws_roboware/devel;/home/kanin/catkin_ws/devel;/opt/ros/kinetic" != "" else []
+underlay_workspaces = "/home/kanin/linorobot_ws/devel;/home/kanin/catkin_ws_roboware/devel;/home/kanin/catkin_ws/devel;/opt/ros/kinetic".split(';') if "/home/kanin/linorobot_ws/devel;/home/kanin/catkin_ws_roboware/devel;/home/kanin/catkin_ws/devel;/opt/ros/kinetic" != "" else []

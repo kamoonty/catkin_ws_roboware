@@ -295,3 +295,11 @@ add_dependencies(inter_agent_force_rectangle ${${PROJECT_NAME}_EXPORTED_TARGETS}
 target_link_libraries(inter_agent_force_rectangle
   ${catkin_LIBRARIES}
 )
+
+add_executable(real_robot_straight
+  src/real_robot_straight.cpp
+)
+add_dependencies(real_robot_straight ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(real_robot_straight
+  ${catkin_LIBRARIES}
+)
