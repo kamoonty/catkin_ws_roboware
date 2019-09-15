@@ -12,7 +12,7 @@
 //#include "std_msgs/String.h"
 geometry_msgs::Pose2D get_pose2d_agent [10]; //allocate for max 10 robots
 geometry_msgs::Pose2D get_pose2d_vl;
-geometry_msgs::Twist get_velocity_vl; 
+geometry_msgs::Twist get_velocity_vl;  // un used
 float delta_time;
 
 int team_size; //use for get param from launch file
@@ -21,10 +21,13 @@ float D_ang;
 // We need to round value after subscribe because if not it can cause problem
 // when VL= 0.00000003 and Robot 1 Pos X = 0.00000004 it is not equal so useroundf (number*100)/100
 
+// un used
 void vl_velocityCB(const geometry_msgs::Twist & vl_velocity) //robot velocity contain x y yaw speed
 { get_velocity_vl.angular.z=roundf(vl_velocity.angular.z*10000)/10000; // round to 5 decimal place
   //ROS_INFO("**** VL Yaw velocity [%f]*****", get_velocity_vl.angular.z);
 }
+// un used
+
 void vl_pose2D_CB(const geometry_msgs::Pose2D & vl_pose2d) //robot pose 2d contain x y pos and theta (yaw position)
 { get_pose2d_vl.theta=roundf(vl_pose2d.theta*10000)/10000;
 //ROS_INFO("**** VL angle(theta)= [%f]*****", get_pose2d_vl.theta);

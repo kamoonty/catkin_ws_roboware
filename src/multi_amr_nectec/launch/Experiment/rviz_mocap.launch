@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+         args="-d $(find multi_amr_nectec)/rviz/mocap_rviz_nin.rviz"/>
+         
+</launch>

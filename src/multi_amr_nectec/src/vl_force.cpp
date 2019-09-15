@@ -56,7 +56,7 @@ try{std::string follower_robot ("/amr_");
  follower_robot =follower_robot+ boost::lexical_cast<std::string>(i);
  follower_robot =follower_robot+"/base_link";
  
-    listener.waitForTransform(follower_robot,leader_robot, ros::Time(0), ros::Duration(10.0) );
+    listener.waitForTransform(follower_robot,leader_robot, ros::Time(0), ros::Duration(100.0) );
     listener.lookupTransform(follower_robot,leader_robot,ros::Time(0), transform);
     //base_link is refer to virtual leader robot
     // we should replace to vl_robot/base_link later

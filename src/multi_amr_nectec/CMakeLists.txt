@@ -303,3 +303,19 @@ add_dependencies(real_robot_straight ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catki
 target_link_libraries(real_robot_straight
   ${catkin_LIBRARIES}
 )
+
+add_executable(exper_vl_force
+  src/exper_vl_force.cpp
+)
+add_dependencies(exper_vl_force ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(exper_vl_force
+  ${catkin_LIBRARIES}
+)
+
+add_executable(get_pose_optitrack
+  src/get_pose_optitrack.cpp
+)
+add_dependencies(get_pose_optitrack ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(get_pose_optitrack
+  ${catkin_LIBRARIES}
+)
