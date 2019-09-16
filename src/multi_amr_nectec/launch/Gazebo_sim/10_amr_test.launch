@@ -52,10 +52,9 @@
          args="-d $(find multi_amr_nectec)/rviz/4_amr.rviz"/>
   </group>
 
-
 <!-- AMR 0  -->
   <group ns="amr_0">
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+    <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
       <arg name="init_pose_gazebo" value="-x -5 -y 5 -z 0 -Y 1.5707 " />
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
       <arg name="robot_name" value="amr_0" />
@@ -68,7 +67,7 @@
 
 <!-- AMR 1  -->
  <group ns="amr_1">
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+    <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
       <arg name="init_pose_gazebo" value="-x -4 -y 4 -z 0 -Y 1.5707 " />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_1" />
@@ -83,7 +82,7 @@
     <param name="tf_prefix" value="amr_2" />
     <param name="amcl/initial_pose_x" value="0" />
     <param name="amcl/initial_pose_y" value="0" />
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+    <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
       <arg name="init_pose_gazebo" value="-x -3 -y 3 -z 0 -Y 1.5707" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />     
       <arg name="robot_name" value="amr_2" />
@@ -98,7 +97,7 @@
    <param name="tf_prefix" value="amr_3" />
     <param name="amcl/initial_pose_x" value="0" />
     <param name="amcl/initial_pose_y" value="0" />
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+    <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
       <arg name="init_pose_gazebo" value="-x -2 -y 2 -z 0 -Y 1.5707" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_3" />
@@ -113,7 +112,7 @@
    <param name="tf_prefix" value="amr_4" />
     <param name="amcl/initial_pose_x" value="0" />
     <param name="amcl/initial_pose_y" value="0" />
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+    <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
       <arg name="init_pose_gazebo" value="-x -1 -y 1 -z 0 -Y 1.5707" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_4" />
@@ -127,7 +126,7 @@
    <param name="tf_prefix" value="amr_5" />
     <param name="amcl/initial_pose_x" value="0" />
     <param name="amcl/initial_pose_y" value="0" />
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+    <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
       <arg name="init_pose_gazebo" value="-x 0 -y 0 -z 0 -Y 1.5707" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_5" />
@@ -141,7 +140,7 @@
    <param name="tf_prefix" value="amr_6" />
     <param name="amcl/initial_pose_x" value="0" />
     <param name="amcl/initial_pose_y" value="0" />
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+    <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
       <arg name="init_pose_gazebo" value="-x 1 -y 1 -z 0 -Y 1.5707" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_6" />
@@ -155,7 +154,7 @@
    <param name="tf_prefix" value="amr_7" />
     <param name="amcl/initial_pose_x" value="0" />
     <param name="amcl/initial_pose_y" value="0" />
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+    <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
       <arg name="init_pose_gazebo" value="-x 2 -y 2 -z 0 -Y 1.5707" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_7" />
@@ -169,7 +168,7 @@
    <param name="tf_prefix" value="amr_8" />
     <param name="amcl/initial_pose_x" value="0" />
     <param name="amcl/initial_pose_y" value="0" />
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+    <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
       <arg name="init_pose_gazebo" value="-x 3 -y 3 -z 0 -Y 1.5707" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_8" />
@@ -183,7 +182,7 @@
    <param name="tf_prefix" value="amr_9" />
     <param name="amcl/initial_pose_x" value="0" />
     <param name="amcl/initial_pose_y" value="0" />
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+    <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
       <arg name="init_pose_gazebo" value="-x 4 -y 4 -z 0 -Y 1.5707" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_9" />
@@ -197,7 +196,7 @@
    <param name="tf_prefix" value="amr_10" />
     <param name="amcl/initial_pose_x" value="0" />
     <param name="amcl/initial_pose_y" value="0" />
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+    <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
       <arg name="init_pose_gazebo" value="-x 5 -y 5 -z 0 -Y 1.5707" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_10" />

@@ -4224,6 +4224,19 @@ mocap_optitrack_mocap_node/fast:
 .PHONY : mocap_optitrack_mocap_node/fast
 
 #=============================================================================
+# Target rules for targets named vl_trajectory_sideway
+
+# Build rule for target.
+vl_trajectory_sideway: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 vl_trajectory_sideway
+.PHONY : vl_trajectory_sideway
+
+# fast build rule for target.
+vl_trajectory_sideway/fast:
+	$(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_sideway.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_sideway.dir/build
+.PHONY : vl_trajectory_sideway/fast
+
+#=============================================================================
 # Target rules for targets named inter_agent_force_rectangle
 
 # Build rule for target.
@@ -4339,6 +4352,19 @@ inter_agent_force: cmake_check_build_system
 inter_agent_force/fast:
 	$(MAKE) -f multi_amr_nectec/CMakeFiles/inter_agent_force.dir/build.make multi_amr_nectec/CMakeFiles/inter_agent_force.dir/build
 .PHONY : inter_agent_force/fast
+
+#=============================================================================
+# Target rules for targets named vl_trajectory_diagonal
+
+# Build rule for target.
+vl_trajectory_diagonal: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 vl_trajectory_diagonal
+.PHONY : vl_trajectory_diagonal
+
+# fast build rule for target.
+vl_trajectory_diagonal/fast:
+	$(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_diagonal.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_diagonal.dir/build
+.PHONY : vl_trajectory_diagonal/fast
 
 #=============================================================================
 # Target rules for targets named multi_amr_nectec_generate_messages
@@ -7876,6 +7902,7 @@ help:
 	@echo "... clean_test_results_mocap_optitrack"
 	@echo "... run_tests_mocap_optitrack_roslaunch-check"
 	@echo "... mocap_optitrack_mocap_node"
+	@echo "... vl_trajectory_sideway"
 	@echo "... inter_agent_force_rectangle"
 	@echo "... vl_trajectory_circle"
 	@echo "... multi_amr_nectec_genlisp"
@@ -7885,6 +7912,7 @@ help:
 	@echo "... multi_amr_nectec_generate_messages_lisp"
 	@echo "... multi_amr_nectec_geneus"
 	@echo "... inter_agent_force"
+	@echo "... vl_trajectory_diagonal"
 	@echo "... multi_amr_nectec_generate_messages"
 	@echo "... multi_amr_nectec_gennodejs"
 	@echo "... multi_amr_nectec_genpy"

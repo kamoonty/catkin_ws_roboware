@@ -56,18 +56,6 @@ CMAKE_BINARY_DIR = /home/kanin/catkin_ws_roboware/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/local/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/local/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -88,6 +76,18 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/local/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/local/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -166,6 +166,21 @@ preinstall/fast:
 depend:
 	cd /home/kanin/catkin_ws_roboware/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+# Convenience name for target.
+multi_amr_nectec/CMakeFiles/vl_trajectory_sideway.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/vl_trajectory_sideway.dir/rule
+.PHONY : multi_amr_nectec/CMakeFiles/vl_trajectory_sideway.dir/rule
+
+# Convenience name for target.
+vl_trajectory_sideway: multi_amr_nectec/CMakeFiles/vl_trajectory_sideway.dir/rule
+
+.PHONY : vl_trajectory_sideway
+
+# fast build rule for target.
+vl_trajectory_sideway/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_sideway.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_sideway.dir/build
+.PHONY : vl_trajectory_sideway/fast
 
 # Convenience name for target.
 multi_amr_nectec/CMakeFiles/inter_agent_force_rectangle.dir/rule:
@@ -301,6 +316,21 @@ inter_agent_force: multi_amr_nectec/CMakeFiles/inter_agent_force.dir/rule
 inter_agent_force/fast:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/inter_agent_force.dir/build.make multi_amr_nectec/CMakeFiles/inter_agent_force.dir/build
 .PHONY : inter_agent_force/fast
+
+# Convenience name for target.
+multi_amr_nectec/CMakeFiles/vl_trajectory_diagonal.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/vl_trajectory_diagonal.dir/rule
+.PHONY : multi_amr_nectec/CMakeFiles/vl_trajectory_diagonal.dir/rule
+
+# Convenience name for target.
+vl_trajectory_diagonal: multi_amr_nectec/CMakeFiles/vl_trajectory_diagonal.dir/rule
+
+.PHONY : vl_trajectory_diagonal
+
+# fast build rule for target.
+vl_trajectory_diagonal/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_diagonal.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_diagonal.dir/build
+.PHONY : vl_trajectory_diagonal/fast
 
 # Convenience name for target.
 multi_amr_nectec/CMakeFiles/multi_amr_nectec_generate_messages.dir/rule:
@@ -965,6 +995,33 @@ src/vl_trajectory_circle.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_circle.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_circle.dir/src/vl_trajectory_circle.cpp.s
 .PHONY : src/vl_trajectory_circle.cpp.s
 
+src/vl_trajectory_diagonal.o: src/vl_trajectory_diagonal.cpp.o
+
+.PHONY : src/vl_trajectory_diagonal.o
+
+# target to build an object file
+src/vl_trajectory_diagonal.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_diagonal.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_diagonal.dir/src/vl_trajectory_diagonal.cpp.o
+.PHONY : src/vl_trajectory_diagonal.cpp.o
+
+src/vl_trajectory_diagonal.i: src/vl_trajectory_diagonal.cpp.i
+
+.PHONY : src/vl_trajectory_diagonal.i
+
+# target to preprocess a source file
+src/vl_trajectory_diagonal.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_diagonal.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_diagonal.dir/src/vl_trajectory_diagonal.cpp.i
+.PHONY : src/vl_trajectory_diagonal.cpp.i
+
+src/vl_trajectory_diagonal.s: src/vl_trajectory_diagonal.cpp.s
+
+.PHONY : src/vl_trajectory_diagonal.s
+
+# target to generate assembly for a file
+src/vl_trajectory_diagonal.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_diagonal.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_diagonal.dir/src/vl_trajectory_diagonal.cpp.s
+.PHONY : src/vl_trajectory_diagonal.cpp.s
+
 src/vl_trajectory_linear.o: src/vl_trajectory_linear.cpp.o
 
 .PHONY : src/vl_trajectory_linear.o
@@ -1019,15 +1076,43 @@ src/vl_trajectory_s_curve.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_s_curve.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_s_curve.dir/src/vl_trajectory_s_curve.cpp.s
 .PHONY : src/vl_trajectory_s_curve.cpp.s
 
+src/vl_trajectory_sideway.o: src/vl_trajectory_sideway.cpp.o
+
+.PHONY : src/vl_trajectory_sideway.o
+
+# target to build an object file
+src/vl_trajectory_sideway.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_sideway.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_sideway.dir/src/vl_trajectory_sideway.cpp.o
+.PHONY : src/vl_trajectory_sideway.cpp.o
+
+src/vl_trajectory_sideway.i: src/vl_trajectory_sideway.cpp.i
+
+.PHONY : src/vl_trajectory_sideway.i
+
+# target to preprocess a source file
+src/vl_trajectory_sideway.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_sideway.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_sideway.dir/src/vl_trajectory_sideway.cpp.i
+.PHONY : src/vl_trajectory_sideway.cpp.i
+
+src/vl_trajectory_sideway.s: src/vl_trajectory_sideway.cpp.s
+
+.PHONY : src/vl_trajectory_sideway.s
+
+# target to generate assembly for a file
+src/vl_trajectory_sideway.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_sideway.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_sideway.dir/src/vl_trajectory_sideway.cpp.s
+.PHONY : src/vl_trajectory_sideway.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... install"
+	@echo "... vl_trajectory_sideway"
 	@echo "... inter_agent_force_rectangle"
 	@echo "... vl_trajectory_circle"
 	@echo "... multi_amr_nectec_genlisp"
@@ -1038,6 +1123,7 @@ help:
 	@echo "... multi_amr_nectec_generate_messages_lisp"
 	@echo "... multi_amr_nectec_geneus"
 	@echo "... inter_agent_force"
+	@echo "... vl_trajectory_diagonal"
 	@echo "... multi_amr_nectec_generate_messages"
 	@echo "... multi_amr_nectec_gennodejs"
 	@echo "... multi_amr_nectec_genpy"
@@ -1102,12 +1188,18 @@ help:
 	@echo "... src/vl_trajectory_circle.o"
 	@echo "... src/vl_trajectory_circle.i"
 	@echo "... src/vl_trajectory_circle.s"
+	@echo "... src/vl_trajectory_diagonal.o"
+	@echo "... src/vl_trajectory_diagonal.i"
+	@echo "... src/vl_trajectory_diagonal.s"
 	@echo "... src/vl_trajectory_linear.o"
 	@echo "... src/vl_trajectory_linear.i"
 	@echo "... src/vl_trajectory_linear.s"
 	@echo "... src/vl_trajectory_s_curve.o"
 	@echo "... src/vl_trajectory_s_curve.i"
 	@echo "... src/vl_trajectory_s_curve.s"
+	@echo "... src/vl_trajectory_sideway.o"
+	@echo "... src/vl_trajectory_sideway.i"
+	@echo "... src/vl_trajectory_sideway.s"
 .PHONY : help
 
 

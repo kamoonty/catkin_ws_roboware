@@ -37,7 +37,7 @@
 <!-- AMR 0  -->
   <group ns="amr_0">
          <param name="tf_prefix" value="amr_0"/>
-  <include file="$(find multi_amr_nectec)/launch/single_ridgeback.launch" >
+  <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_ridgeback.launch" >
      <arg name="init_pose_gazebo" value="-x 0 -y 0 -z 0.1 -Y 1.57079632679 -P 0 -R 0" />
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
       <arg name="robot_name" value="amr_0" />

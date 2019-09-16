@@ -1,8 +1,8 @@
 <launch>
   <master auto="start"/>
   <param name="/use_sim_time" value="true"/>
-  <arg name="open_rviz" default="true"/>
-  <arg name="open_gazebo" default="false"/>
+  <arg name="open_rviz" default="false"/>
+  <arg name="open_gazebo" default="true"/>
   <arg name="record_data" default="true" />
 
   <arg name="vl_force" default="true" />
@@ -55,7 +55,7 @@
 
 <!-- AMR 0 -->
 <group ns="amr_0">
-<include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+<include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
 <arg name="init_pose_gazebo" value="-x 0 -y 2 -z 0 -Y 1.57079632679 " />
 <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
 <arg name="robot_name" value="amr_0" />
@@ -68,7 +68,7 @@
 
 <!-- AMR 1 -->
 <group ns="amr_1">
-<include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+<include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
 <arg name="init_pose_gazebo" value="-x -2 -y 0 -z 0 -Y 1.57079632679 " /> 
 <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
 <arg name="robot_name" value="amr_1" />
@@ -84,7 +84,7 @@
 <param name="tf_prefix" value="amr_2" />
 <param name="amcl/initial_pose_x" value="0" />
 <param name="amcl/initial_pose_y" value="0" />
-<include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+<include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
 <arg name="init_pose_gazebo" value="-x 0 -y -2 -z 0 -Y 1.57079632679" /> 
 <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
 <arg name="robot_name" value="amr_2" />
@@ -99,7 +99,7 @@
 <param name="tf_prefix" value="amr_3" />
 <param name="amcl/initial_pose_x" value="0" />
 <param name="amcl/initial_pose_y" value="0" />
-<include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+<include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
 <arg name="init_pose_gazebo" value="-x 2 -y 0 -z 0 -Y 1.57079632679" /> 
 <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
 <arg name="robot_name" value="amr_3" />
@@ -163,7 +163,7 @@
 
 <!--ROSBAG Record -->
  <node pkg="rosbag" type="record" name="rosbag_record_data" output="screen"
-       args="record -O /home/kanin/ROSbag/diamond_sine_path_$(arg team_size)_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
+       args="record -O /home/kanin/ROSbag/diamond_sideways3_$(arg team_size)_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
        /amr0_E_springVL /amr_0/pose2d /amr_0/cmd_vel /amr_1/pose2d /amr_1/cmd_vel /amr_2/pose2d /amr_2/cmd_vel /amr_3/pose2d /amr_3/cmd_vel /F_vl_x /F_vl_y /vl_robot/pose2d /vl_robot/cmd_vel
        /amr_0/odom /amr_1/odom /amr_2/odom /amr_3/odom"
        if="$(arg record_data)" /> 
@@ -171,14 +171,20 @@
 <!-- Linear trajectory of VL  
 <node pkg="multi_amr_nectec" type="vl_trajectory_linear" name="vl_trajectory_linear" output="screen" />
 --> 
-<!--trajectory of VL S curve--> 
+<!--trajectory of VL S curve
 <node pkg="multi_amr_nectec" type="vl_trajectory_s_curve" name="vl_trajectory_s_curve" output="screen" />
-
+--> 
  <!--trajectory of VL circle 
 <node pkg="multi_amr_nectec" type="vl_trajectory_circle" name="vl_trajectory_circle" output="screen" />
  -->
+ <!--trajectory of VL Sideways
+<node pkg="multi_amr_nectec" type="vl_trajectory_sideway" name="vl_trajectory_sideway" output="screen" />
+ --> 
+ <!--trajectory of VL Diagonal
+<node pkg="multi_amr_nectec" type="vl_trajectory_diagonal" name="vl_trajectory_diagonal" output="screen" />
+--> 
 <!-- Spawn load  
- <include file="$(find multi_amr_nectec)/launch/spawn_load.launch" >
+ <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/spawn_load.launch" >
    </include>
 -->
 </launch>

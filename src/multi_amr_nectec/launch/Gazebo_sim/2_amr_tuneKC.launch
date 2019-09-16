@@ -56,7 +56,7 @@
 
 <!-- AMR 0  -->
   <group ns="amr_0">
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+    <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
       <arg name="init_pose_gazebo" value="-x 0.5 -y 0 -z 0.1 -Y 1.57079632679 -P 0 -R 0" />
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
       <arg name="robot_name" value="amr_0" />
@@ -67,7 +67,7 @@
 
 <!-- AMR 1   -->
  <group ns="amr_1">
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
+    <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
       <arg name="init_pose_gazebo" value="-x -0.5 -y 0 -z 0.1 -Y 1.57079632679 -P 0 -R 0" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="amr_1" />
@@ -132,10 +132,12 @@
 <param name ="robot_inertia" value = "$(arg robot_inertia)" />
 <param name ="delta_time" value = "1" />
 </node>
+ <!--trajectory of VL Sideways--> 
+<node pkg="multi_amr_nectec" type="vl_trajectory_sideway" name="vl_trajectory_sideway" output="screen" />
 
- <!-- Linear trajectory of VL  -->
+ <!-- Linear trajectory of VL  
 <node pkg="multi_amr_nectec" type="vl_trajectory_linear" name="vl_trajectory_linear" output="screen" />
- 
+ -->
 <!--trajectory of VL S curve
 <node pkg="multi_amr_nectec" type="vl_trajectory_s_curve" name="vl_trajectory_s_curve" output="screen" />
  -->

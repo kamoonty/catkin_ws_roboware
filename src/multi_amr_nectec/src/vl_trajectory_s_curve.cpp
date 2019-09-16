@@ -11,10 +11,11 @@ ros::NodeHandle nh;
 ros::Publisher vl_cmd_vel_pub = nh.advertise<geometry_msgs::Twist>("vl_robot/cmd_vel", 1000);
 ros::Rate loop_rate(100);
 geometry_msgs::Twist final_cmd_vel; 
-int i;
-float t;
+int i=0;
+float t=0;
 while (ros::ok())
   { t=i*0.01;
+  ROS_INFO("Time = %f ",t);
   if (t>=2&&t<33) //delay for 15 secs
     {final_cmd_vel.linear.x=0.2;
    final_cmd_vel.angular.z=-0.1;

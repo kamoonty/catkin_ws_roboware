@@ -319,3 +319,19 @@ add_dependencies(get_pose_optitrack ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin
 target_link_libraries(get_pose_optitrack
   ${catkin_LIBRARIES}
 )
+
+add_executable(vl_trajectory_sideway
+  src/vl_trajectory_sideway.cpp
+)
+add_dependencies(vl_trajectory_sideway ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(vl_trajectory_sideway
+  ${catkin_LIBRARIES}
+)
+
+add_executable(vl_trajectory_diagonal
+  src/vl_trajectory_diagonal.cpp
+)
+add_dependencies(vl_trajectory_diagonal ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(vl_trajectory_diagonal
+  ${catkin_LIBRARIES}
+)

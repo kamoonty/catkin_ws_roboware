@@ -11,8 +11,8 @@ ros::NodeHandle nh;
 ros::Publisher vl_cmd_vel_pub = nh.advertise<geometry_msgs::Twist>("vl_robot/cmd_vel", 1000);
 ros::Rate loop_rate(100);
 geometry_msgs::Twist final_cmd_vel; 
-int i;
-float t;
+int i=0;
+float t=0;
 while (ros::ok())
   { t=i*0.01;
   if (t>=2&&t<=10) //deleay for 1 secs
