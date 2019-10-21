@@ -136,6 +136,7 @@ double th = tf::getYaw(transform.getRotation());
 
 // the value of F_ji depend on the robot position or robot order in formation
 //below position based on 4 robots in rectangle formation only
+/*
 send_force[0].linear.x= F_ij[0].linear.x+F_ji[3].linear.x;
 send_force[0].linear.y= F_ij[0].linear.y+F_ji[3].linear.y;
 
@@ -147,6 +148,17 @@ send_force[2].linear.y= F_ij[2].linear.y+F_ji[1].linear.y;
 
 send_force[3].linear.x= F_ij[3].linear.x+F_ji[2].linear.x;
 send_force[3].linear.y= F_ij[3].linear.y+F_ji[2].linear.y;
+*/
+
+// 2 robot edit 2oct 2019
+send_force[0].linear.x= F_ij[0].linear.x;
+send_force[0].linear.y= F_ij[0].linear.y;
+
+send_force[1].linear.x= F_ij[1].linear.x;
+send_force[1].linear.y= F_ij[1].linear.y;
+
+
+
 
   for(int n=0;n<team_size;n++)
   {ROS_INFO("Inter force of amr %d=[%f,%f]",n,send_force[n].linear.x,send_force[n].linear.x); 

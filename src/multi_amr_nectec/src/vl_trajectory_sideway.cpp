@@ -16,27 +16,16 @@ float t=0;
 while (ros::ok())
   { t=i*0.01;
   ROS_INFO("Time = %f ",t);
-  if (t>=2&&t<12) //delay for 3secs
-    {final_cmd_vel.linear.x=0.2;
-    final_cmd_vel.linear.y=0;
-    ROS_INFO("Go straight");}   
-  else if (t>=12&&t<22) //Sideway
-   {final_cmd_vel.linear.y=0.2;
+  if (t>=2&&t<22) //Sideway
+    {final_cmd_vel.linear.y=-0.2;
    final_cmd_vel.linear.x=0;
-    ROS_INFO("Sideways +Y");}       
-  else if (t>=22&&t<42) //delay for 3secs
-    {final_cmd_vel.linear.x=0.2;
-    final_cmd_vel.linear.y=0;
-    ROS_INFO("Go straight");} 
-   else if (t>=42&&t<52) ////Sideway
-   {final_cmd_vel.linear.y=0.2;
-   final_cmd_vel.linear.x=0;
-    ROS_INFO("Sideways +Y");} 
-    else if (t>=52&&t<62) //delay for 3secs
-    {final_cmd_vel.linear.x=0.2;
-    final_cmd_vel.linear.y=0;
-    ROS_INFO("Go straight");} 
-  else if(t>=62)
+    ROS_INFO("Sideways -Y");}  
+  else if (t>=22&&t<42) //Diagonal
+   {final_cmd_vel.linear.y=-0.2;
+   final_cmd_vel.linear.x=0.2;
+    ROS_INFO("Diagonal");}       
+
+  else if(t>=42)
   {final_cmd_vel.linear.x=0;
   final_cmd_vel.linear.y=0;
         ROS_INFO("End");}     

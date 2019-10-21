@@ -3,7 +3,7 @@
   <param name="/use_sim_time" value="true"/>
   <arg name="open_rviz" default="false"/>
   <arg name="open_gazebo" default="true"/>
-  <arg name="record_data" default="true" />
+  <arg name="record_data" default="false" />
 
   <arg name="vl_force" default="true" />
   <arg name="rotational_force" default="true" />
@@ -88,7 +88,7 @@
 <arg name="init_pose_gazebo" value="-x 0 -y -2 -z 0 -Y 1.57079632679" /> 
 <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
 <arg name="robot_name" value="amr_2" />
-<arg name="robot_colour" value="red"/>
+<arg name="robot_colour" value="blue"/>
 </include> 
 <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
 <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
@@ -103,7 +103,7 @@
 <arg name="init_pose_gazebo" value="-x 2 -y 0 -z 0 -Y 1.57079632679" /> 
 <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
 <arg name="robot_name" value="amr_3" />
-<arg name="robot_colour" value="red"/>
+<arg name="robot_colour" value="blue"/>
 </include>
 <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
 <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
@@ -163,7 +163,7 @@
 
 <!--ROSBAG Record -->
  <node pkg="rosbag" type="record" name="rosbag_record_data" output="screen"
-       args="record -O /home/kanin/ROSbag/diamond_sideways3_$(arg team_size)_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
+       args="record -O /home/kanin/ROSbag/diamond_้half_circle_$(arg team_size)_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
        /amr0_E_springVL /amr_0/pose2d /amr_0/cmd_vel /amr_1/pose2d /amr_1/cmd_vel /amr_2/pose2d /amr_2/cmd_vel /amr_3/pose2d /amr_3/cmd_vel /F_vl_x /F_vl_y /vl_robot/pose2d /vl_robot/cmd_vel
        /amr_0/odom /amr_1/odom /amr_2/odom /amr_3/odom"
        if="$(arg record_data)" /> 
@@ -174,9 +174,12 @@
 <!--trajectory of VL S curve
 <node pkg="multi_amr_nectec" type="vl_trajectory_s_curve" name="vl_trajectory_s_curve" output="screen" />
 --> 
- <!--trajectory of VL circle 
+<!--trajectory of VL C shape 
+<node pkg="multi_amr_nectec" type="vl_trajectory_c_shape" name="vl_trajectory_c_shape" output="screen" />
+-->
+ <!--trajectory of VL circle  
 <node pkg="multi_amr_nectec" type="vl_trajectory_circle" name="vl_trajectory_circle" output="screen" />
- -->
+-->
  <!--trajectory of VL Sideways
 <node pkg="multi_amr_nectec" type="vl_trajectory_sideway" name="vl_trajectory_sideway" output="screen" />
  --> 

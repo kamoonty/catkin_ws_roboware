@@ -4224,6 +4224,32 @@ mocap_optitrack_mocap_node/fast:
 .PHONY : mocap_optitrack_mocap_node/fast
 
 #=============================================================================
+# Target rules for targets named tf_quat2euler_edit
+
+# Build rule for target.
+tf_quat2euler_edit: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tf_quat2euler_edit
+.PHONY : tf_quat2euler_edit
+
+# fast build rule for target.
+tf_quat2euler_edit/fast:
+	$(MAKE) -f multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir/build.make multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir/build
+.PHONY : tf_quat2euler_edit/fast
+
+#=============================================================================
+# Target rules for targets named vl_trajectory_c_shape
+
+# Build rule for target.
+vl_trajectory_c_shape: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 vl_trajectory_c_shape
+.PHONY : vl_trajectory_c_shape
+
+# fast build rule for target.
+vl_trajectory_c_shape/fast:
+	$(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_c_shape.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_c_shape.dir/build
+.PHONY : vl_trajectory_c_shape/fast
+
+#=============================================================================
 # Target rules for targets named vl_trajectory_sideway
 
 # Build rule for target.
@@ -7902,6 +7928,8 @@ help:
 	@echo "... clean_test_results_mocap_optitrack"
 	@echo "... run_tests_mocap_optitrack_roslaunch-check"
 	@echo "... mocap_optitrack_mocap_node"
+	@echo "... tf_quat2euler_edit"
+	@echo "... vl_trajectory_c_shape"
 	@echo "... vl_trajectory_sideway"
 	@echo "... inter_agent_force_rectangle"
 	@echo "... vl_trajectory_circle"

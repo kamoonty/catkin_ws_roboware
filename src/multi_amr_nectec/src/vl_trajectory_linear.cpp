@@ -15,11 +15,11 @@ int i=0;
 float t=0;
 while (ros::ok())
   { t=i*0.01;
-  if (t>=2&&t<=10) //deleay for 1 secs
-  {final_cmd_vel.linear.x=0.5;
+  if (t>=2&&t<=22) //deleay for 1 secs
+  {final_cmd_vel.linear.x=0.2;
     ROS_INFO("Running with i=%d t=%f",i,t);
   }
-  if (t>12) //specify time here
+  if (t>22) //specify time here
   {final_cmd_vel.linear.x=0;
         ROS_INFO("End of 10 secs");}     
      i=i+1;

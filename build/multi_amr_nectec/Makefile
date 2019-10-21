@@ -168,6 +168,36 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir/rule
+.PHONY : multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir/rule
+
+# Convenience name for target.
+tf_quat2euler_edit: multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir/rule
+
+.PHONY : tf_quat2euler_edit
+
+# fast build rule for target.
+tf_quat2euler_edit/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir/build.make multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir/build
+.PHONY : tf_quat2euler_edit/fast
+
+# Convenience name for target.
+multi_amr_nectec/CMakeFiles/vl_trajectory_c_shape.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/vl_trajectory_c_shape.dir/rule
+.PHONY : multi_amr_nectec/CMakeFiles/vl_trajectory_c_shape.dir/rule
+
+# Convenience name for target.
+vl_trajectory_c_shape: multi_amr_nectec/CMakeFiles/vl_trajectory_c_shape.dir/rule
+
+.PHONY : vl_trajectory_c_shape
+
+# fast build rule for target.
+vl_trajectory_c_shape/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_c_shape.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_c_shape.dir/build
+.PHONY : vl_trajectory_c_shape/fast
+
+# Convenience name for target.
 multi_amr_nectec/CMakeFiles/vl_trajectory_sideway.dir/rule:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/vl_trajectory_sideway.dir/rule
 .PHONY : multi_amr_nectec/CMakeFiles/vl_trajectory_sideway.dir/rule
@@ -941,6 +971,33 @@ src/tf_quat2euler.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/tf_quat2euler.dir/build.make multi_amr_nectec/CMakeFiles/tf_quat2euler.dir/src/tf_quat2euler.cpp.s
 .PHONY : src/tf_quat2euler.cpp.s
 
+src/tf_quat2euler_edit.o: src/tf_quat2euler_edit.cpp.o
+
+.PHONY : src/tf_quat2euler_edit.o
+
+# target to build an object file
+src/tf_quat2euler_edit.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir/build.make multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir/src/tf_quat2euler_edit.cpp.o
+.PHONY : src/tf_quat2euler_edit.cpp.o
+
+src/tf_quat2euler_edit.i: src/tf_quat2euler_edit.cpp.i
+
+.PHONY : src/tf_quat2euler_edit.i
+
+# target to preprocess a source file
+src/tf_quat2euler_edit.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir/build.make multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir/src/tf_quat2euler_edit.cpp.i
+.PHONY : src/tf_quat2euler_edit.cpp.i
+
+src/tf_quat2euler_edit.s: src/tf_quat2euler_edit.cpp.s
+
+.PHONY : src/tf_quat2euler_edit.s
+
+# target to generate assembly for a file
+src/tf_quat2euler_edit.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir/build.make multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir/src/tf_quat2euler_edit.cpp.s
+.PHONY : src/tf_quat2euler_edit.cpp.s
+
 src/vl_force.o: src/vl_force.cpp.o
 
 .PHONY : src/vl_force.o
@@ -967,6 +1024,33 @@ src/vl_force.s: src/vl_force.cpp.s
 src/vl_force.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_force.dir/build.make multi_amr_nectec/CMakeFiles/vl_force.dir/src/vl_force.cpp.s
 .PHONY : src/vl_force.cpp.s
+
+src/vl_trajectory_c_shape.o: src/vl_trajectory_c_shape.cpp.o
+
+.PHONY : src/vl_trajectory_c_shape.o
+
+# target to build an object file
+src/vl_trajectory_c_shape.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_c_shape.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_c_shape.dir/src/vl_trajectory_c_shape.cpp.o
+.PHONY : src/vl_trajectory_c_shape.cpp.o
+
+src/vl_trajectory_c_shape.i: src/vl_trajectory_c_shape.cpp.i
+
+.PHONY : src/vl_trajectory_c_shape.i
+
+# target to preprocess a source file
+src/vl_trajectory_c_shape.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_c_shape.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_c_shape.dir/src/vl_trajectory_c_shape.cpp.i
+.PHONY : src/vl_trajectory_c_shape.cpp.i
+
+src/vl_trajectory_c_shape.s: src/vl_trajectory_c_shape.cpp.s
+
+.PHONY : src/vl_trajectory_c_shape.s
+
+# target to generate assembly for a file
+src/vl_trajectory_c_shape.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_c_shape.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_c_shape.dir/src/vl_trajectory_c_shape.cpp.s
+.PHONY : src/vl_trajectory_c_shape.cpp.s
 
 src/vl_trajectory_circle.o: src/vl_trajectory_circle.cpp.o
 
@@ -1111,6 +1195,8 @@ help:
 	@echo "... depend"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... tf_quat2euler_edit"
+	@echo "... vl_trajectory_c_shape"
 	@echo "... install"
 	@echo "... vl_trajectory_sideway"
 	@echo "... inter_agent_force_rectangle"
@@ -1182,9 +1268,15 @@ help:
 	@echo "... src/tf_quat2euler.o"
 	@echo "... src/tf_quat2euler.i"
 	@echo "... src/tf_quat2euler.s"
+	@echo "... src/tf_quat2euler_edit.o"
+	@echo "... src/tf_quat2euler_edit.i"
+	@echo "... src/tf_quat2euler_edit.s"
 	@echo "... src/vl_force.o"
 	@echo "... src/vl_force.i"
 	@echo "... src/vl_force.s"
+	@echo "... src/vl_trajectory_c_shape.o"
+	@echo "... src/vl_trajectory_c_shape.i"
+	@echo "... src/vl_trajectory_c_shape.s"
 	@echo "... src/vl_trajectory_circle.o"
 	@echo "... src/vl_trajectory_circle.i"
 	@echo "... src/vl_trajectory_circle.s"

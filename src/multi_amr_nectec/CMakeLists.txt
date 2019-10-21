@@ -335,3 +335,19 @@ add_dependencies(vl_trajectory_diagonal ${${PROJECT_NAME}_EXPORTED_TARGETS} ${ca
 target_link_libraries(vl_trajectory_diagonal
   ${catkin_LIBRARIES}
 )
+
+add_executable(vl_trajectory_c_shape
+  src/vl_trajectory_c_shape.cpp
+)
+add_dependencies(vl_trajectory_c_shape ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(vl_trajectory_c_shape
+  ${catkin_LIBRARIES}
+)
+
+add_executable(tf_quat2euler_edit
+  src/tf_quat2euler_edit.cpp
+)
+add_dependencies(tf_quat2euler_edit ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(tf_quat2euler_edit
+  ${catkin_LIBRARIES}
+)

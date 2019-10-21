@@ -15,13 +15,13 @@ int i=0;
 float t=0;
 while (ros::ok())
   { t=i*0.01;
-  if (t>=2&&t<60) //delay for 2 secs
-    {final_cmd_vel.linear.x=0.5;
-   final_cmd_vel.angular.z=-0.25;
+  if (t>=2&&t<80) //delay for 2 secs
+    {final_cmd_vel.linear.x=0.2;
+   final_cmd_vel.angular.z=-0.05;
     ROS_INFO("Virtual leader run for 2 loops of a circle");
     }   
      
-  if(t>=60)
+  if(t>=80)
   {final_cmd_vel.linear.x=0;
   final_cmd_vel.angular.z=0;
         ROS_INFO("End");}     

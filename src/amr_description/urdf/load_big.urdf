@@ -4,8 +4,8 @@
   <link name="my_box">
     <inertial>
       <origin xyz="0 0 0" />
-      <mass value="500.0" />
-      <inertia  ixx="1.66" ixy="0.0"  ixz="0.0"  iyy="1.66"  iyz="0.0"  izz="1.66" />
+      <mass value="550.0" />
+      <inertia  ixx="100" ixy="0.0"  ixz="0.0"  iyy="100"  iyz="0.0"  izz="100" />
     </inertial>
 
     <visual>
@@ -24,8 +24,8 @@
   </link>
   <gazebo reference="my_box">
    <material>Gazebo/Yellow</material>
-    <mu1>1000</mu1>
-    <mu2>1000</mu2>
+    <mu1>9000</mu1>
+    <mu2>9000</mu2>
     <fdir1>1 0 0</fdir1>
   </gazebo>
 </robot>
