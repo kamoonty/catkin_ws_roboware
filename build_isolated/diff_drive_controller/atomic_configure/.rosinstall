@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/kanin/catkin_ws_roboware/devel_isolated/diff_drive_controller/setup.sh

@@ -19,21 +19,22 @@ double roll, pitch, yaw;
 m.getRPY(roll, pitch, yaw);
 pose2d.theta = yaw;
 pub_pose_.publish(pose2d);
-//ROS_INFO("Yaw= %f",yaw); 
 
+ROS_INFO("Yaw= %f",yaw); 
 }
 
 int main(int argc, char **argv)
 {
-ros::init(argc, argv, "tf_quat2euler");
+ros::init(argc, argv, "tf_quat2euler_edit");
 
 ros::NodeHandle nh_;
-nh_.getParam("tf_quat2euler/team_size", team_size);
-std::string follower_robot ("/amr_");
+nh_.getParam("tf_quat2euler_edit/team_size", team_size);
+
+std::string follower_robot ("/vrpn_client_node/mocap_amr_");
   for (int i = 0; i < team_size; i++)
       {  
  follower_robot =follower_robot+ boost::lexical_cast<std::string>(i);
- follower_robot =follower_robot+"/base_link";
+ follower_robot =follower_robot+"/pose";
       }
 ros::Subscriber sub_odom_ = nh_.subscribe(follower_robot, 1000, odometryCallback_);
 pub_pose_ = nh_.advertise<geometry_msgs::Pose2D>("pose2d", 1000);
@@ -42,7 +43,7 @@ pub_pose_ = nh_.advertise<geometry_msgs::Pose2D>("pose2d", 1000);
 
 ros::Rate loop_rate(100);
 while (ros::ok())
-  {
+  { ROS_INFO("teamsize =%d",team_size);
     
     ros::spinOnce();
 

@@ -620,6 +620,7 @@
 /home/kanin/catkin_ws_roboware/build/mocap_optitrack/src/CMakeFiles/rebuild_cache.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/list_install_components.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/rebuild_cache.dir
+/home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/orientation_control_exper.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/vl_trajectory_c_shape.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/install.dir

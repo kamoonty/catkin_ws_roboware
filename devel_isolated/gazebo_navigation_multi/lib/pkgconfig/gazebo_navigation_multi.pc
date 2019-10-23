@@ -1,0 +1,8 @@
+prefix=/home/kanin/catkin_ws_roboware/devel_isolated/gazebo_navigation_multi
+
+Name: gazebo_navigation_multi
+Description: Description of gazebo_navigation_multi
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/kanin/catkin_ws_roboware/devel_isolated/gazebo_navigation_multi/lib 
+Requires: 

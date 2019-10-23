@@ -1,0 +1,8 @@
+prefix=/home/kanin/catkin_ws_roboware/devel_isolated/four_wheel_steering_controller
+
+Name: four_wheel_steering_controller
+Description: Description of four_wheel_steering_controller
+Version: 0.15.0
+Cflags: -I/home/kanin/catkin_ws_roboware/src/ros_controllers/four_wheel_steering_controller/include
+Libs: -L/home/kanin/catkin_ws_roboware/devel_isolated/four_wheel_steering_controller/lib -lfour_wheel_steering_controller
+Requires: controller_interface nav_msgs four_wheel_steering_msgs realtime_tools tf urdf_geometry_parser

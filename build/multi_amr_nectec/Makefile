@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+multi_amr_nectec/CMakeFiles/orientation_control_exper.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/orientation_control_exper.dir/rule
+.PHONY : multi_amr_nectec/CMakeFiles/orientation_control_exper.dir/rule
+
+# Convenience name for target.
+orientation_control_exper: multi_amr_nectec/CMakeFiles/orientation_control_exper.dir/rule
+
+.PHONY : orientation_control_exper
+
+# fast build rule for target.
+orientation_control_exper/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/orientation_control_exper.dir/build.make multi_amr_nectec/CMakeFiles/orientation_control_exper.dir/build
+.PHONY : orientation_control_exper/fast
+
+# Convenience name for target.
 multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir/rule:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir/rule
 .PHONY : multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir/rule
@@ -863,6 +878,33 @@ src/orientation_control.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/orientation_control.dir/build.make multi_amr_nectec/CMakeFiles/orientation_control.dir/src/orientation_control.cpp.s
 .PHONY : src/orientation_control.cpp.s
 
+src/orientation_control_exper.o: src/orientation_control_exper.cpp.o
+
+.PHONY : src/orientation_control_exper.o
+
+# target to build an object file
+src/orientation_control_exper.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/orientation_control_exper.dir/build.make multi_amr_nectec/CMakeFiles/orientation_control_exper.dir/src/orientation_control_exper.cpp.o
+.PHONY : src/orientation_control_exper.cpp.o
+
+src/orientation_control_exper.i: src/orientation_control_exper.cpp.i
+
+.PHONY : src/orientation_control_exper.i
+
+# target to preprocess a source file
+src/orientation_control_exper.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/orientation_control_exper.dir/build.make multi_amr_nectec/CMakeFiles/orientation_control_exper.dir/src/orientation_control_exper.cpp.i
+.PHONY : src/orientation_control_exper.cpp.i
+
+src/orientation_control_exper.s: src/orientation_control_exper.cpp.s
+
+.PHONY : src/orientation_control_exper.s
+
+# target to generate assembly for a file
+src/orientation_control_exper.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/orientation_control_exper.dir/build.make multi_amr_nectec/CMakeFiles/orientation_control_exper.dir/src/orientation_control_exper.cpp.s
+.PHONY : src/orientation_control_exper.cpp.s
+
 src/position_robot.o: src/position_robot.cpp.o
 
 .PHONY : src/position_robot.o
@@ -1195,6 +1237,7 @@ help:
 	@echo "... depend"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... orientation_control_exper"
 	@echo "... tf_quat2euler_edit"
 	@echo "... vl_trajectory_c_shape"
 	@echo "... install"
@@ -1256,6 +1299,9 @@ help:
 	@echo "... src/orientation_control.o"
 	@echo "... src/orientation_control.i"
 	@echo "... src/orientation_control.s"
+	@echo "... src/orientation_control_exper.o"
+	@echo "... src/orientation_control_exper.i"
+	@echo "... src/orientation_control_exper.s"
 	@echo "... src/position_robot.o"
 	@echo "... src/position_robot.i"
 	@echo "... src/position_robot.s"

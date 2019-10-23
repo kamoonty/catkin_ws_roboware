@@ -1003,6 +1003,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "mocap_optitrack/CMakeFiles/clean_test_results_mocap_optitrack.dir/DependInfo.cmake"
   "mocap_optitrack/CMakeFiles/run_tests_mocap_optitrack_roslaunch-check.dir/DependInfo.cmake"
   "mocap_optitrack/src/CMakeFiles/mocap_optitrack_mocap_node.dir/DependInfo.cmake"
+  "multi_amr_nectec/CMakeFiles/orientation_control_exper.dir/DependInfo.cmake"
   "multi_amr_nectec/CMakeFiles/tf_quat2euler_edit.dir/DependInfo.cmake"
   "multi_amr_nectec/CMakeFiles/vl_trajectory_c_shape.dir/DependInfo.cmake"
   "multi_amr_nectec/CMakeFiles/vl_trajectory_sideway.dir/DependInfo.cmake"

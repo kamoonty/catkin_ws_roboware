@@ -351,3 +351,11 @@ add_dependencies(tf_quat2euler_edit ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin
 target_link_libraries(tf_quat2euler_edit
   ${catkin_LIBRARIES}
 )
+
+add_executable(orientation_control_exper
+  src/orientation_control_exper.cpp
+)
+add_dependencies(orientation_control_exper ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(orientation_control_exper
+  ${catkin_LIBRARIES}
+)

@@ -6,19 +6,19 @@
   <arg name="open_gazebo" default="false"/>
   <arg name="record_data" default="false" />
 
-  <arg name="vl_force" default="false" />
+  <arg name="vl_force" default="true" />
   <arg name="rotational_force" default="true" />
   <arg name="inter_agent_force" default="false" />
   <arg name="motion_generator" default="false" />
   <!-- Define Paramerters here for robot formation-->
-  <arg name="Kvl" default="5" />
-  <arg name="Cvl" default="0" />
+  <arg name="Kvl" default="50" />
+  <arg name="Cvl" default="1" />
   <arg name="Kij" default="200" />
   <arg name="Cij" default="5" />
 <!-- K angular should be low to let robot move in cartesion in time-->
-  <arg name="K_ang" default="5" />
+  <arg name="K_ang" default="150" />
   <arg name="D_ang" default="0" />
-  <arg name="team_size" value="1"/>
+  <arg name="team_size" value="2"/>
   <arg name="v_linear_threshold" value="0.20"/>
   <arg name="v_angular_threshold" value="0.2"/>
   <arg name="robot_mass" value="40"/>
@@ -50,21 +50,20 @@
 <!-- AMR 0 -->
 <group ns="amr_0">
 <node pkg="tf" type="static_transform_publisher" name="optitrack_remap_amr_0" args="0 0 0 0 0 0 /mocap_amr_0 amr_0/base_footprint 10"/>
- <!--Get angle from  robot  -->
-<node pkg="multi_amr_nectec" type="tf_quat2euler_edit" name="tf_quat2euler_edit" output="screen" />
+
 </group>
 
-<!-- AMR 1 
+<!-- AMR 1 -->
 <group ns="amr_1">
 <node pkg="tf" type="static_transform_publisher" name="optitrack_remap_amr_1" args="0 0 0 0 0 0 /mocap_amr_1 amr_1/base_footprint 10"/>
 </group>
--->
+
  <group ns="vl_robot">
  <!--VL localization -->
  <node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
-  <param name ="default_x" value = "0" />
-  <param name ="default_y" value = "0" />
-  <param name ="default_theta" value = "0" />
+  <param name ="default_x" value = "-1" />
+  <param name ="default_y" value = "-1" />
+  <param name ="default_theta" value = "3.14" />
 </node>
  <!--transform virtual leader odom to world-->
  <node pkg="tf" type="static_transform_publisher" name="vl_odom_world_broadcaster" args="0 0 0 0 0 0 /world /vl_robot/odom 10" />
@@ -88,7 +87,7 @@
   <param name ="delta_time" value = "$(arg delta_time)" />
 </node>
 <!--Rotational force   --> 
-<node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" if="$(arg rotational_force)" >
+<node pkg="multi_amr_nectec" type="orientation_control_exper" name="orientation_control_exper" output="screen" if="$(arg rotational_force)" >
   <param name ="team_size" value = "$(arg team_size)" />
   <param name ="K_ang" value = "$(arg K_ang)" />
     <param name ="D_ang" value = "$(arg D_ang)" />

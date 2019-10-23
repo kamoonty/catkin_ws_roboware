@@ -1,0 +1,8 @@
+prefix=/home/kanin/catkin_ws_roboware/install_isolated
+
+Name: amr_description
+Description: Description of amr_description
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/kanin/catkin_ws_roboware/install_isolated/lib 
+Requires: urdf xacro
