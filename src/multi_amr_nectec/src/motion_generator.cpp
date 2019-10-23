@@ -132,7 +132,7 @@ if(final_cmd_vel[n].linear.x>=v_linear_threshold)
 else if (final_cmd_vel[n].linear.x<=-v_linear_threshold)
               {final_cmd_vel[n].linear.x=-v_linear_threshold;
                 ROS_INFO("Threshold Vx min");}
-else if (fabs(final_cmd_vel[n].linear.x)<=0.01)
+else if (fabs(final_cmd_vel[n].linear.x)<=0.05)
               {final_cmd_vel[n].linear.x=0;
                 ROS_INFO("Set Vx =0");}                
 if(final_cmd_vel[n].linear.y>=v_linear_threshold)
@@ -141,7 +141,7 @@ if(final_cmd_vel[n].linear.y>=v_linear_threshold)
 else if (final_cmd_vel[n].linear.y<=-v_linear_threshold)
               {final_cmd_vel[n].linear.y=-v_linear_threshold;
                 ROS_INFO("Threshold Vy min");}
-else if (fabs(final_cmd_vel[n].linear.y)<=0.01)
+else if (fabs(final_cmd_vel[n].linear.y)<=0.05)
               {final_cmd_vel[n].linear.y=0;
                 ROS_INFO("Set Vy =0");}                 
 //Angular Velocity Threshold 
@@ -151,7 +151,7 @@ if(final_cmd_vel[n].angular.z>=v_angular_threshold)
 else if(final_cmd_vel[n].angular.z<=-v_angular_threshold)
    {final_cmd_vel[n].angular.z=-v_angular_threshold;
               ROS_INFO("Threshold Theta min");}
-else if(fabs(final_cmd_vel[n].angular.z)<=0.01)
+else if(fabs(final_cmd_vel[n].angular.z)<=0.05)
    {final_cmd_vel[n].angular.z=0;
               ROS_INFO("Set Theta = 0 ");}
 ROS_INFO("Final CMD vel of robot %d (x,y,theta)=(%f,%f,%f)",n,final_cmd_vel[n].linear.x,final_cmd_vel[n].linear.y,final_cmd_vel[n].angular.z );
