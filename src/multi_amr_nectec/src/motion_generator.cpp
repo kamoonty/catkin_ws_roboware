@@ -11,6 +11,8 @@
 int team_size; //use for get param from launch file
 float v_linear_threshold;
 float v_angular_threshold;
+float v_linear_cutoff;
+float v_angular_cutoff;
 float robot_mass;
 float robot_inertia;
 float robot_radious;
@@ -81,6 +83,8 @@ ros::Rate loopRate(100);
 nh.getParam("motion_generator/team_size", team_size);
 nh.getParam("motion_generator/v_linear_threshold",v_linear_threshold);
 nh.getParam("motion_generator/v_angular_threshold",v_angular_threshold);
+nh.getParam("motion_generator/v_linear_cutoff",v_linear_cutoff);
+nh.getParam("motion_generator/v_angular_cutoff",v_angular_cutoff);
 nh.getParam("motion_generator/robot_mass", robot_mass);
 nh.getParam("motion_generator/robot_inertia", robot_inertia);
 nh.getParam("motion_generator/robot_radious", robot_radious);
@@ -132,7 +136,7 @@ if(final_cmd_vel[n].linear.x>=v_linear_threshold)
 else if (final_cmd_vel[n].linear.x<=-v_linear_threshold)
               {final_cmd_vel[n].linear.x=-v_linear_threshold;
                 ROS_INFO("Threshold Vx min");}
-else if (fabs(final_cmd_vel[n].linear.x)<=0.05)
+else if (fabs(final_cmd_vel[n].linear.x)<=v_linear_cutoff)
               {final_cmd_vel[n].linear.x=0;
                 ROS_INFO("Set Vx =0");}                
 if(final_cmd_vel[n].linear.y>=v_linear_threshold)
@@ -141,7 +145,7 @@ if(final_cmd_vel[n].linear.y>=v_linear_threshold)
 else if (final_cmd_vel[n].linear.y<=-v_linear_threshold)
               {final_cmd_vel[n].linear.y=-v_linear_threshold;
                 ROS_INFO("Threshold Vy min");}
-else if (fabs(final_cmd_vel[n].linear.y)<=0.05)
+else if (fabs(final_cmd_vel[n].linear.y)<=v_linear_cutoff)
               {final_cmd_vel[n].linear.y=0;
                 ROS_INFO("Set Vy =0");}                 
 //Angular Velocity Threshold 
@@ -151,7 +155,7 @@ if(final_cmd_vel[n].angular.z>=v_angular_threshold)
 else if(final_cmd_vel[n].angular.z<=-v_angular_threshold)
    {final_cmd_vel[n].angular.z=-v_angular_threshold;
               ROS_INFO("Threshold Theta min");}
-else if(fabs(final_cmd_vel[n].angular.z)<=0.05)
+else if(fabs(final_cmd_vel[n].angular.z)<=v_angular_cutoff)
    {final_cmd_vel[n].angular.z=0;
               ROS_INFO("Set Theta = 0 ");}
 ROS_INFO("Final CMD vel of robot %d (x,y,theta)=(%f,%f,%f)",n,final_cmd_vel[n].linear.x,final_cmd_vel[n].linear.y,final_cmd_vel[n].angular.z );

@@ -4,7 +4,7 @@
   <arg name="experiment_name" default="pass_corridor"/>
   <arg name="open_rviz" default="false"/>
   <arg name="open_gazebo" default="false"/>
-  <arg name="record_data" default="true" />
+  <arg name="record_data" default="false" />
 
   <arg name="vl_force" default="true" />
   <arg name="rotational_force" default="true" />
@@ -19,8 +19,12 @@
   <arg name="K_ang" default="150" />
   <arg name="D_ang" default="0" />
   <arg name="team_size" value="2"/>
-  <arg name="v_linear_threshold" value="0.20"/>
+<!--
+  <arg name="v_linear_threshold" value="0.2"/>
   <arg name="v_angular_threshold" value="0.2"/>
+  <arg name="v_linear_cutoff" value="0.005"/>
+  <arg name="v_angular_cutoff" value="0.05"/>
+-->
   <arg name="robot_mass" value="40"/>
   <arg name="robot_radious" value="0.5"/>
   <arg name="robot_inertia" value="0.77"/>
@@ -69,8 +73,8 @@
  <group ns="vl_robot">
  <!--VL localization -->
  <node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
-  <param name ="default_x" value = "-1" />
-  <param name ="default_y" value = "-0.5" />
+  <param name ="default_x" value = "-0.75" />
+  <param name ="default_y" value = "-0.25" />
   <param name ="default_theta" value = "3.14" />
 </node>
  <!--transform virtual leader odom to world-->
@@ -84,7 +88,7 @@
 
 
 <!--Load parameter     -->
-<rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/2_amr_column.yaml" />
+<rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/2_amr_linear.yaml" />
 
 
 <!-- VL force     -->
@@ -115,6 +119,8 @@
  <param name ="team_size" value = "$(arg team_size)" />
 <param name ="v_linear_threshold" value = "$(arg v_linear_threshold)" />
 <param name ="v_angular_threshold" value = "$(arg v_angular_threshold)" />
+<param name ="v_linear_cutoff" value = "$(arg v_linear_cutoff)" />
+<param name ="v_angular_cutoff" value = "$(arg v_angular_cutoff)" />
 <param name ="robot_mass" value = "$(arg robot_mass)" />
 <param name ="robot_radious" value = "$(arg robot_radious)" />
 <param name ="robot_inertia" value = "$(arg robot_inertia)" />
