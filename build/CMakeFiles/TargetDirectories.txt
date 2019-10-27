@@ -634,6 +634,7 @@
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/multi_amr_nectec_generate_messages_eus.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/multi_amr_nectec_generate_messages_lisp.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/multi_amr_nectec_geneus.dir
+/home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/inter_agent_force.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/vl_trajectory_diagonal.dir
 /home/kanin/catkin_ws_roboware/build/multi_amr_nectec/CMakeFiles/multi_amr_nectec_generate_messages.dir

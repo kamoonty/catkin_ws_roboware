@@ -4380,6 +4380,19 @@ multi_amr_nectec_geneus/fast:
 .PHONY : multi_amr_nectec_geneus/fast
 
 #=============================================================================
+# Target rules for targets named vl_trajectory_exper1
+
+# Build rule for target.
+vl_trajectory_exper1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 vl_trajectory_exper1
+.PHONY : vl_trajectory_exper1
+
+# fast build rule for target.
+vl_trajectory_exper1/fast:
+	$(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/build
+.PHONY : vl_trajectory_exper1/fast
+
+#=============================================================================
 # Target rules for targets named inter_agent_force
 
 # Build rule for target.
@@ -7953,6 +7966,7 @@ help:
 	@echo "... multi_amr_nectec_generate_messages_eus"
 	@echo "... multi_amr_nectec_generate_messages_lisp"
 	@echo "... multi_amr_nectec_geneus"
+	@echo "... vl_trajectory_exper1"
 	@echo "... inter_agent_force"
 	@echo "... vl_trajectory_diagonal"
 	@echo "... multi_amr_nectec_generate_messages"

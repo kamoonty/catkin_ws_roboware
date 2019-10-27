@@ -90,6 +90,7 @@ double th = tf::getYaw(transform.getRotation());
                {spring_state_y=-1;}
                else if (Dist_ij.y>0)
                {spring_state_y=1;}
+               ROS_INFO("ROBOT ID %d",n);
                ROS_INFO("Spring state (%d, %d)",spring_state_x,spring_state_y);
                ROS_INFO("Dist_ij [%f,%f]",Dist_ij.x,Dist_ij.y);
                // calculate initial distance for each pair of robots
@@ -126,7 +127,7 @@ double th = tf::getYaw(transform.getRotation());
                 Fj_to_i.linear.y=-Fi_to_j.linear.y;
               ROS_INFO(" Calculated Fij of robot [%d,%d]= [%.3f,%.3f]",i,j,Fi_to_j.linear.x,Fi_to_j.linear.y);           
               ROS_INFO(" Calculated Fji of robot [%d,%d]= [%.3f,%.3f]",j,i,Fj_to_i.linear.x,Fj_to_i.linear.y);           
-              ROS_INFO("----------------------------"); 
+              ROS_INFO("******************************************************"); 
               F_ij[n].linear.x=Fi_to_j.linear.x;
               F_ij[n].linear.y=Fi_to_j.linear.y; 
 

@@ -348,6 +348,21 @@ multi_amr_nectec_geneus/fast:
 .PHONY : multi_amr_nectec_geneus/fast
 
 # Convenience name for target.
+multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/rule
+.PHONY : multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/rule
+
+# Convenience name for target.
+vl_trajectory_exper1: multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/rule
+
+.PHONY : vl_trajectory_exper1
+
+# fast build rule for target.
+vl_trajectory_exper1/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/build
+.PHONY : vl_trajectory_exper1/fast
+
+# Convenience name for target.
 multi_amr_nectec/CMakeFiles/inter_agent_force.dir/rule:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/inter_agent_force.dir/rule
 .PHONY : multi_amr_nectec/CMakeFiles/inter_agent_force.dir/rule
@@ -1148,6 +1163,33 @@ src/vl_trajectory_diagonal.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_diagonal.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_diagonal.dir/src/vl_trajectory_diagonal.cpp.s
 .PHONY : src/vl_trajectory_diagonal.cpp.s
 
+src/vl_trajectory_exper1.o: src/vl_trajectory_exper1.cpp.o
+
+.PHONY : src/vl_trajectory_exper1.o
+
+# target to build an object file
+src/vl_trajectory_exper1.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/src/vl_trajectory_exper1.cpp.o
+.PHONY : src/vl_trajectory_exper1.cpp.o
+
+src/vl_trajectory_exper1.i: src/vl_trajectory_exper1.cpp.i
+
+.PHONY : src/vl_trajectory_exper1.i
+
+# target to preprocess a source file
+src/vl_trajectory_exper1.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/src/vl_trajectory_exper1.cpp.i
+.PHONY : src/vl_trajectory_exper1.cpp.i
+
+src/vl_trajectory_exper1.s: src/vl_trajectory_exper1.cpp.s
+
+.PHONY : src/vl_trajectory_exper1.s
+
+# target to generate assembly for a file
+src/vl_trajectory_exper1.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/src/vl_trajectory_exper1.cpp.s
+.PHONY : src/vl_trajectory_exper1.cpp.s
+
 src/vl_trajectory_linear.o: src/vl_trajectory_linear.cpp.o
 
 .PHONY : src/vl_trajectory_linear.o
@@ -1251,6 +1293,7 @@ help:
 	@echo "... multi_amr_nectec_generate_messages_eus"
 	@echo "... multi_amr_nectec_generate_messages_lisp"
 	@echo "... multi_amr_nectec_geneus"
+	@echo "... vl_trajectory_exper1"
 	@echo "... inter_agent_force"
 	@echo "... vl_trajectory_diagonal"
 	@echo "... multi_amr_nectec_generate_messages"
@@ -1329,6 +1372,9 @@ help:
 	@echo "... src/vl_trajectory_diagonal.o"
 	@echo "... src/vl_trajectory_diagonal.i"
 	@echo "... src/vl_trajectory_diagonal.s"
+	@echo "... src/vl_trajectory_exper1.o"
+	@echo "... src/vl_trajectory_exper1.i"
+	@echo "... src/vl_trajectory_exper1.s"
 	@echo "... src/vl_trajectory_linear.o"
 	@echo "... src/vl_trajectory_linear.i"
 	@echo "... src/vl_trajectory_linear.s"

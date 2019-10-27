@@ -21,7 +21,7 @@ m.getRPY(roll, pitch, yaw);
 pose2d.theta = yaw;
 pub_pose_.publish(pose2d);
 
-//ROS_INFO("Yaw= %f",yaw); 
+ROS_INFO("Yaw= %f",yaw); 
 }
 
 int main(int argc, char **argv)
@@ -30,12 +30,12 @@ ros::init(argc, argv, "tf_quat2euler_edit");
 
 ros::NodeHandle nh_;
 nh_.getParam("tf_quat2euler_edit/robot_name", robot_name);
-
+  ROS_INFO(" robot name= %s",robot_name); 
 std::string follower_robot ("/vrpn_client_node/mocap_");
  follower_robot =follower_robot+"robot_name"+"/pose";
-    
-
-ros::Subscriber sub_odom_ = nh_.subscribe("/vrpn_client_node/mocap_amr_0/pose", 1000, odometryCallback_);
+  ROS_INFO("Follower robot= %s",follower_robot);  
+// still have a problem when pass string to cpp code
+ros::Subscriber sub_odom_ = nh_.subscribe(follower_robot, 1000, odometryCallback_);
 pub_pose_ = nh_.advertise<geometry_msgs::Pose2D>("pose2d", 1000);
 //ros::Publisher pos_pub = nh.advertise<geometry_msgs::Pose2D>("pos", 1000);
 

@@ -1,14 +1,14 @@
 <launch>
   <master auto="start"/>
   <param name="/use_sim_time" value="false"/>
-  <arg name="experiment_name" default="pass_corridor"/>
+  <arg name="experiment_name" default="inter_agent"/>
   <arg name="open_rviz" default="false"/>
   <arg name="open_gazebo" default="false"/>
   <arg name="record_data" default="false" />
 
-  <arg name="vl_force" default="true" />
-  <arg name="rotational_force" default="true" />
-  <arg name="inter_agent_force" default="false" />
+  <arg name="vl_force" default="false" />
+  <arg name="rotational_force" default="false" />
+  <arg name="inter_agent_force" default="true" />
   <arg name="motion_generator" default="false" />
   <!-- Define Paramerters here for robot formation-->
   <arg name="Kvl" default="50" />
@@ -54,27 +54,20 @@
 <!-- AMR 0 -->
 <group ns="amr_0">
 <node pkg="tf" type="static_transform_publisher" name="optitrack_remap_amr_0" args="0 0 0 0 0 0 /mocap_amr_0 amr_0/base_footprint 10"/>
-<!--Get pose2d for rosbag record  -->
-<node pkg="multi_amr_nectec" type="tf_quat2euler_edit" name="tf_quat2euler_edit" output="screen" >
-  <param name ="robot_name" value = "amr_0" />
-</node>
 
 </group>
 
 <!-- AMR 1 -->
 <group ns="amr_1">
 <node pkg="tf" type="static_transform_publisher" name="optitrack_remap_amr_1" args="0 0 0 0 0 0 /mocap_amr_1 amr_1/base_footprint 10"/>
-<!--Get pose2d for rosbag record  -->
-<node pkg="multi_amr_nectec" type="tf_quat2euler_edit" name="tf_quat2euler_edit" output="screen" >
-  <param name ="robot_name" value = "amr_1" />
-</node>
+
 </group>
 
  <group ns="vl_robot">
  <!--VL localization -->
  <node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
-  <param name ="default_x" value = "-0.75" />
-  <param name ="default_y" value = "-0.25" />
+  <param name ="default_x" value = "0.65" />
+  <param name ="default_y" value = "-1.15" />
   <param name ="default_theta" value = "3.14" />
 </node>
  <!--transform virtual leader odom to world-->
@@ -130,7 +123,7 @@
 <!--ROSBAG Record -->
  <node pkg="rosbag" type="record" name="rosbag_record_data" output="screen"
        args="record -O /home/kanin/ROSbag/Experiment_$(arg experiment_name)_Kvl=$(arg Kvl)_Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
-       /amr_0/pose2d /vrpn_client_node/mocap_amr_0/pose /amr_0/cmd_vel /amr_1/pose2d /vrpn_client_node/mocap_amr_1/pose /amr_1/cmd_vel /F_rot /F_vl_x /F_vl_y /vl_robot/pose2d"
+       /vrpn_client_node/mocap_amr_0/pose /amr_0/cmd_vel  /vrpn_client_node/mocap_amr_1/pose /amr_1/cmd_vel /F_rot /F_vl_x /F_vl_y /vl_robot/pose2d"
        if="$(arg record_data)" /> 
 
 <!-- Linear trajectory of VL  
