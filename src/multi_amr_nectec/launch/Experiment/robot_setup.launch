@@ -1,20 +1,20 @@
 <launch>
   <master auto="start"/>
   <param name="/use_sim_time" value="false"/>
-  <arg name="experiment_name" default="inter_agent"/>
+  <arg name="experiment_name" default="ROTATION_test3"/>
   <arg name="open_rviz" default="false"/>
   <arg name="open_gazebo" default="false"/>
-  <arg name="record_data" default="false" />
+  <arg name="record_data" default="true" />
 
-  <arg name="vl_force" default="false" />
-  <arg name="rotational_force" default="false" />
-  <arg name="inter_agent_force" default="true" />
+  <arg name="vl_force" default="true" />
+  <arg name="rotational_force" default="true" />
+  <arg name="inter_agent_force" default="false" />
   <arg name="motion_generator" default="false" />
   <!-- Define Paramerters here for robot formation-->
   <arg name="Kvl" default="50" />
   <arg name="Cvl" default="1" />
-  <arg name="Kij" default="20" />
-  <arg name="Cij" default="5" />
+  <arg name="Kij" default="30" />
+  <arg name="Cij" default="1" />
 <!-- K angular should be low to let robot move in cartesion in time-->
   <arg name="K_ang" default="150" />
   <arg name="D_ang" default="0" />
@@ -65,9 +65,10 @@
 
  <group ns="vl_robot">
  <!--VL localization -->
+  <!--room edge  x 0.65 y -1.15 -->
  <node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
-  <param name ="default_x" value = "0.65" />
-  <param name ="default_y" value = "-1.15" />
+  <param name ="default_x" value = "-0.35" />
+  <param name ="default_y" value = "-0.85" />
   <param name ="default_theta" value = "3.14" />
 </node>
  <!--transform virtual leader odom to world-->
@@ -123,7 +124,7 @@
 <!--ROSBAG Record -->
  <node pkg="rosbag" type="record" name="rosbag_record_data" output="screen"
        args="record -O /home/kanin/ROSbag/Experiment_$(arg experiment_name)_Kvl=$(arg Kvl)_Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
-       /vrpn_client_node/mocap_amr_0/pose /amr_0/cmd_vel  /vrpn_client_node/mocap_amr_1/pose /amr_1/cmd_vel /F_rot /F_vl_x /F_vl_y /vl_robot/pose2d"
+       /vrpn_client_node/mocap_amr_0/pose /amr_0/cmd_vel  /vrpn_client_node/mocap_amr_1/pose /amr_1/cmd_vel /F_rot /F_vl_x /F_vl_y /F_ij_x /F_ij_y /vl_robot/pose2d"
        if="$(arg record_data)" /> 
 
 <!-- Linear trajectory of VL  
