@@ -1,22 +1,22 @@
 <launch>
   <master auto="start"/>
   <param name="/use_sim_time" value="false"/>
-  <arg name="experiment_name" default="ROTATION_test3"/>
+  <arg name="experiment_name" default="sideways"/>
   <arg name="open_rviz" default="false"/>
   <arg name="open_gazebo" default="false"/>
   <arg name="record_data" default="true" />
 
   <arg name="vl_force" default="true" />
   <arg name="rotational_force" default="true" />
-  <arg name="inter_agent_force" default="false" />
+  <arg name="inter_agent_force" default="true" />
   <arg name="motion_generator" default="false" />
   <!-- Define Paramerters here for robot formation-->
-  <arg name="Kvl" default="50" />
-  <arg name="Cvl" default="1" />
+  <arg name="Kvl" default="75" />
+  <arg name="Cvl" default="10" />
   <arg name="Kij" default="30" />
-  <arg name="Cij" default="1" />
+  <arg name="Cij" default="3" />
 <!-- K angular should be low to let robot move in cartesion in time-->
-  <arg name="K_ang" default="150" />
+  <arg name="K_ang" default="170" />
   <arg name="D_ang" default="0" />
   <arg name="team_size" value="2"/>
 <!--
@@ -67,9 +67,9 @@
  <!--VL localization -->
   <!--room edge  x 0.65 y -1.15 -->
  <node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
-  <param name ="default_x" value = "-0.35" />
-  <param name ="default_y" value = "-0.85" />
-  <param name ="default_theta" value = "3.14" />
+  <param name ="default_x" value = "-0.80" />
+  <param name ="default_y" value = "-1.5" />
+  <param name ="default_theta" value = "1.57079" />
 </node>
  <!--transform virtual leader odom to world-->
  <node pkg="tf" type="static_transform_publisher" name="vl_odom_world_broadcaster" args="0 0 0 0 0 0 /world /vl_robot/odom 10" />
