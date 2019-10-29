@@ -82,8 +82,8 @@ diff_angle[i]=th;
 
 int rotate_direction=0; // use for clockwise and anti clockwise direction
  ROS_INFO("Robot %d",i );
-ROS_INFO("Raw Angle between VL and agent %d = %f degree",i,diff_angle[i] );
-ROS_INFO("Angle between VL and agent %d = %f degree",i,convert_to_degree(diff_angle[i]) );
+ROS_INFO("Radian angle between VL and agent %d = %f rad",i,diff_angle[i] );
+ROS_INFO("Degree angle between VL and agent %d = %f deg",i,convert_to_degree(diff_angle[i]) );
 
 
   // to avoid unnecessary rotation  
@@ -113,11 +113,11 @@ ROS_INFO("Angle between VL and agent %d = %f degree",i,convert_to_degree(diff_an
     // D_ang=0 first
       first_data[i]= fabs(diff_angle[i]);
       if(second_data[i]!=0)
-       { ROS_INFO("First Data = %f",first_data[i]);
-        ROS_INFO("Second Data = %f",second_data[i]);
+       { //ROS_INFO("First Data = %f",first_data[i]);
+        //ROS_INFO("Second Data = %f",second_data[i]);
          diff_value[i]= (fabs(first_data[i])-fabs(second_data[i]))/delta_time;
        second_data[i]=first_data[i];
-       ROS_INFO("Differentiate data angle of robot %d = %f",i,diff_value[i]);
+       //ROS_INFO("Differentiate data angle of robot %d = %f",i,diff_value[i]);
        }
        else
        {second_data[i]=first_data[i];
@@ -137,7 +137,7 @@ ROS_INFO("Angle between VL and agent %d = %f degree",i,convert_to_degree(diff_an
 */ 
       // Publish data        
       ROS_INFO("Rotational Force -> robot %d =%f",i,calculate_rotational_force[i].angular.z );  
-      ROS_INFO("-----------------------");
+      ROS_INFO("------------------------------------------");
       robot_rotational_force.data.push_back(calculate_rotational_force[i].angular.z);
       
       }            

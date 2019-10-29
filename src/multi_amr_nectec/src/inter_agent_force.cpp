@@ -105,8 +105,8 @@ double th = tf::getYaw(transform.getRotation());
          first_data[n].x= absolute_distance[n].x;
          first_data[n].y= absolute_distance[n].y;
       if(second_data[n].x!=0&&second_data[n].y!=0)
-       {  ROS_INFO("first_data robot %d= [%f,%f]",i,first_data[n].x,first_data[n].y);
-         ROS_INFO("second_data robot %d= [%f,%f]",i,second_data[n].x,second_data[n].y);
+       {  //ROS_INFO("first_data robot %d= [%f,%f]",i,first_data[n].x,first_data[n].y);
+         //ROS_INFO("second_data robot %d= [%f,%f]",i,second_data[n].x,second_data[n].y);
         diff_value[n].x= (fabs(first_data[n].x)-fabs(second_data[n].x))/delta_time;
         diff_value[n].y= (fabs(first_data[n].y)-fabs(second_data[n].y))/delta_time;
        second_data[n].x=first_data[n].x;
@@ -125,9 +125,9 @@ double th = tf::getYaw(transform.getRotation());
                 //For F j to i we just inverse previous value  
                 Fj_to_i.linear.x=-Fi_to_j.linear.x;
                 Fj_to_i.linear.y=-Fi_to_j.linear.y;
-              ROS_INFO(" Calculated Fij of robot [%d,%d]= [%.3f,%.3f]",i,j,Fi_to_j.linear.x,Fi_to_j.linear.y);           
-              ROS_INFO(" Calculated Fji of robot [%d,%d]= [%.3f,%.3f]",j,i,Fj_to_i.linear.x,Fj_to_i.linear.y);           
-              ROS_INFO("******************************************************"); 
+              //ROS_INFO(" Calculated Fij of robot [%d,%d]= [%.3f,%.3f]",i,j,Fi_to_j.linear.x,Fi_to_j.linear.y);           
+              //ROS_INFO(" Calculated Fji of robot [%d,%d]= [%.3f,%.3f]",j,i,Fj_to_i.linear.x,Fj_to_i.linear.y);           
+              
               F_ij[n].linear.x=Fi_to_j.linear.x;
               F_ij[n].linear.y=Fi_to_j.linear.y; 
 
@@ -162,7 +162,8 @@ send_force[1].linear.y= F_ij[1].linear.y;
 
 
   for(int n=0;n<team_size;n++)
-  {ROS_INFO("Inter force of amr %d=[%f,%f]",n,send_force[n].linear.x,send_force[n].linear.x); 
+  {ROS_INFO("******************************************************"); 
+    ROS_INFO("Inter agent force of amr %d=[%f,%f]",n,send_force[n].linear.x,send_force[n].linear.y); 
   robot_cmd_vel_linear_x.data.push_back(send_force[n].linear.x);
   robot_cmd_vel_linear_y.data.push_back(send_force[n].linear.y);
   }

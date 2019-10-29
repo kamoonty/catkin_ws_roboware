@@ -31,8 +31,12 @@ while (ros::ok())
     else if (t>=24&&t<34) 
     {final_cmd_vel.linear.y=0;
    final_cmd_vel.linear.x=0.1;
-    ROS_INFO("Go straightY");} 
-  else if(t>=34)
+    ROS_INFO("Go straightY");}
+  else if (t>=34&&t<40) 
+     {final_cmd_vel.linear.y=-0.1;
+   final_cmd_vel.linear.x=0;
+    ROS_INFO("SIDEWAYS -Y");}    
+  else if(t>=40)
   {final_cmd_vel.linear.x=0;
   final_cmd_vel.linear.y=0;
         ROS_INFO("End");}     
