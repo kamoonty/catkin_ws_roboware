@@ -144,7 +144,7 @@
   <param name ="delta_time" value = "$(arg delta_time)" />
 </node>
 <!-- Inter agent force     -->
-<node pkg="multi_amr_nectec" type="inter_agent_force" name="inter_agent_force" output="screen" if="$(arg inter_agent_force)">
+<node pkg="multi_amr_nectec" type="inter_agent_force_rectangle" name="inter_agent_force_rectangle" output="screen" if="$(arg inter_agent_force)">
   <param name ="team_size" value = "$(arg team_size)" />
   <param name ="Kij" value = "$(arg Kij)" />
   <param name ="Cij" value = "$(arg Cij)" />

@@ -2,8 +2,30 @@
   <master auto="start"/>
   <param name="/use_sim_time" value="true"/>
   <arg name="open_rviz" default="true"/>
-  <arg name="open_gazebo" default="true"/>
+  <arg name="open_gazebo" default="false"/>
+  <arg name="record_data" default="false" />
+
+  <arg name="vl_force" default="false" />
+  <arg name="rotational_force" default="false" />
+  <arg name="inter_agent_force" default="false" />
+  <arg name="motion_generator" default="false" />
+  <!-- Define Paramerters here for robot formation-->
+  <arg name="Kvl" default="300" />
+  <arg name="Cvl" default="10" />
+  <arg name="Kij" default="200" />
+  <arg name="Cij" default="5" />
+<!-- K angular should be low to let robot move in cartesion in time-->
+  <arg name="K_ang" default="20" />
+  <arg name="D_ang" default="0" />
   <arg name="team_size" value="2"/>
+  <arg name="v_linear_threshold" value="0.5"/>
+  <arg name="v_angular_threshold" value="0.4"/>
+  <param name="v_linear_cutoff" value="0.05"/>
+  <param name="v_angular_cutoff" value="0.05"/>
+  <arg name="robot_mass" value="40"/>
+  <arg name="robot_radious" value="0.5"/>
+  <arg name="robot_inertia" value="0.77"/>
+  <arg name="delta_time" value="1"/> 
 <!-- other robot map-->
 <arg name="watkin_map" default="$(find multi_amr_nectec)/maps/watkin_lab.yaml"/>
 <arg name="watkin_world" default="$(find multi_amr_nectec)/worlds/watkinslab.world"/>
@@ -11,14 +33,19 @@
  <arg name="emptyworld" default="$(find turtlebot3_gazebo)/worlds/empty.world"/>
 <arg name="neo_track1_world" default="$(find neo_simulation)/worlds/neo_track1.world"/>
 <arg name="neo_track1_map" default="$(find neo_simulation)/maps/neo_track1.yaml"/>
-  
+<arg name="asphalt_plane" default="$(find multi_amr_nectec)/worlds/asphalt_plane.world"/>
+<arg name="formation_test_world" default="$(find multi_amr_nectec)/worlds/formation_test.world"/>
+<arg name="formation_test_map" default="$(find multi_amr_nectec)/maps/formation_test.yaml"/>
+
+<rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/2_amr_linear.yaml" />
+
   <!-- Map server --> 
- <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_empty)" respawn="false" >
+ <node pkg="map_server" type="map_server" name="map_server" args="$(arg formation_test_map)" respawn="false" >
     <param name="frame_id" value="/map" />
   </node>
   <!-- start gazebo --> 
 <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(arg emptyworld)"/> 
+    <arg name="world_name" value="$(arg formation_test_world)"/> 
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="$(arg open_gazebo)"/>
@@ -57,24 +84,8 @@
     <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
   </group>
 
+ <?ignore ?>
 
-
-
- <group ns="vl_robot">
- <!--VL localization -->
- <node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
-  <param name ="default_x" value = "0" />
-  <param name ="default_y" value = "0" />
-  <param name ="default_theta" value = "3.1415" />
-</node>
- <!--transform virtual leader odom to map-->
- <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /vl_robot/odom 10" />
-   <!--Get odom from virtual leader robot  -->
-<node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
- <!--Get angle from virtual leader robot  -->
-<node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
-  
- <?ignore 
  <!-- Run navigation stack    --> 
  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
   <remap from="map" to="/map" />  
@@ -96,21 +107,57 @@
     <!-- Common  -->
     <rosparam file="$(find multi_amr_nectec)/config/move_base/move_base/move_base.yaml" command="load" />
   </node>
-?>
 
+ <group ns="vl_robot">
+ <!--VL localization -->
+ <node pkg="multi_amr_nectec" type="fake_odom_vl" name="fake_odom_vl" output="screen">
+  <param name ="default_x" value = "0" />
+  <param name ="default_y" value = "0" />
+  <param name ="default_theta" value = "3.1415" />
+</node>
+ <!--transform virtual leader odom to map-->
+ <node pkg="tf" type="static_transform_publisher" name="vl_odom_map_broadcaster" args="0 0 0 0 0 0 /map /vl_robot/odom 10" />
+  <!--Get odom from virtual leader robot  -->
+<node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
+ <!--Get angle from virtual leader robot  -->
+<node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
 </group>
 
-<!-- VL force    
-<node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" >
-  <param name ="team_size" value = "2" />
-  <param name ="Kvl" value = "3" />
+<!--Rotational force   --> 
+<node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" if="$(arg rotational_force)" >
+  <param name ="team_size" value = "$(arg team_size)" />
+  <param name ="K_ang" value = "$(arg K_ang)" />
+    <param name ="D_ang" value = "$(arg D_ang)" />
+  <param name ="delta_time" value = "$(arg delta_time)" />
 </node>
-<rosparam command="load" file="$(find multi_amr_nectec)/config/formation_shape/linear.yaml" />
---> 
-<!--Orientation force    
-<node pkg="multi_amr_nectec" type="orientation_control" name="orientation_control" output="screen" >
-  <param name ="team_size" value = "2" />
-  <param name ="K_ang" value = "6" />
+<!-- VL force     -->
+<node pkg="multi_amr_nectec" type="vl_force" name="vl_force" output="screen" if="$(arg vl_force)">
+  <param name ="team_size" value = "$(arg team_size)" />
+  <param name ="Kvl" value = "$(arg Kvl)" />
+  <param name ="Cvl" value = "$(arg Cvl)" />
+  <param name ="delta_time" value = "$(arg delta_time)" />
 </node>
---> 
+<!-- Inter agent force     -->
+<node pkg="multi_amr_nectec" type="inter_agent_force" name="inter_agent_force" output="screen" if="$(arg inter_agent_force)">
+  <param name ="team_size" value = "$(arg team_size)" />
+  <param name ="Kij" value = "$(arg Kij)" />
+  <param name ="Cij" value = "$(arg Cij)" />
+  <param name ="delta_time" value = "$(arg delta_time)" />
+</node>
+<!--motion generator -->
+<node pkg="multi_amr_nectec" type="motion_generator" name="motion_generator" output="screen" if="$(arg motion_generator)" >
+ <param name ="team_size" value = "$(arg team_size)" />
+<param name ="v_linear_threshold" value = "$(arg v_linear_threshold)" />
+<param name ="v_angular_threshold" value = "$(arg v_angular_threshold)" />
+<param name ="robot_mass" value = "$(arg robot_mass)" />
+<param name ="robot_radious" value = "$(arg robot_radious)" />
+<param name ="robot_inertia" value = "$(arg robot_inertia)" />
+<param name ="delta_time" value = "1" />
+</node>
+
+<!--ROSBAG Record -->
+ <node pkg="rosbag" type="record" name="rosbag_record_data" output="screen"
+       args="record -O /home/kanin/ROSbag/rectangular_sine_$(arg team_size)_Kvl=$(arg Kvl)-Cvl=$(arg Cvl)-Kij=$(arg Kij)-Cij=$(arg Cij)-K_ang=$(arg K_ang).bag 
+       /amr0_E_springVL /amr_0/pose2d /amr_0/cmd_vel /amr_1/pose2d /amr_1/cmd_vel /amr_2/pose2d /amr_2/cmd_vel /amr_3/pose2d /amr_3/cmd_vel /F_vl_x /F_vl_y /vl_robot/pose2d /vl_robot/cmd_vel"
+       if="$(arg record_data)" /> 
 </launch>
