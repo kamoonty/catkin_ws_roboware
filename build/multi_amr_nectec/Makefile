@@ -408,6 +408,21 @@ multi_amr_nectec_generate_messages/fast:
 .PHONY : multi_amr_nectec_generate_messages/fast
 
 # Convenience name for target.
+multi_amr_nectec/CMakeFiles/control_2_robot.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/control_2_robot.dir/rule
+.PHONY : multi_amr_nectec/CMakeFiles/control_2_robot.dir/rule
+
+# Convenience name for target.
+control_2_robot: multi_amr_nectec/CMakeFiles/control_2_robot.dir/rule
+
+.PHONY : control_2_robot
+
+# fast build rule for target.
+control_2_robot/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/control_2_robot.dir/build.make multi_amr_nectec/CMakeFiles/control_2_robot.dir/build
+.PHONY : control_2_robot/fast
+
+# Convenience name for target.
 multi_amr_nectec/CMakeFiles/multi_amr_nectec_gennodejs.dir/rule:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/multi_amr_nectec_gennodejs.dir/rule
 .PHONY : multi_amr_nectec/CMakeFiles/multi_amr_nectec_gennodejs.dir/rule
@@ -676,6 +691,33 @@ vl_trajectory_linear: multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/rule
 vl_trajectory_linear/fast:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_linear.dir/build
 .PHONY : vl_trajectory_linear/fast
+
+src/control_2_robot.o: src/control_2_robot.cpp.o
+
+.PHONY : src/control_2_robot.o
+
+# target to build an object file
+src/control_2_robot.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/control_2_robot.dir/build.make multi_amr_nectec/CMakeFiles/control_2_robot.dir/src/control_2_robot.cpp.o
+.PHONY : src/control_2_robot.cpp.o
+
+src/control_2_robot.i: src/control_2_robot.cpp.i
+
+.PHONY : src/control_2_robot.i
+
+# target to preprocess a source file
+src/control_2_robot.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/control_2_robot.dir/build.make multi_amr_nectec/CMakeFiles/control_2_robot.dir/src/control_2_robot.cpp.i
+.PHONY : src/control_2_robot.cpp.i
+
+src/control_2_robot.s: src/control_2_robot.cpp.s
+
+.PHONY : src/control_2_robot.s
+
+# target to generate assembly for a file
+src/control_2_robot.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/control_2_robot.dir/build.make multi_amr_nectec/CMakeFiles/control_2_robot.dir/src/control_2_robot.cpp.s
+.PHONY : src/control_2_robot.cpp.s
 
 src/exper_vl_force.o: src/exper_vl_force.cpp.o
 
@@ -1297,6 +1339,7 @@ help:
 	@echo "... inter_agent_force"
 	@echo "... vl_trajectory_diagonal"
 	@echo "... multi_amr_nectec_generate_messages"
+	@echo "... control_2_robot"
 	@echo "... multi_amr_nectec_gennodejs"
 	@echo "... multi_amr_nectec_genpy"
 	@echo "... get_pose_optitrack"
@@ -1318,6 +1361,9 @@ help:
 	@echo "... orientation_control"
 	@echo "... tf_quat2euler"
 	@echo "... vl_trajectory_linear"
+	@echo "... src/control_2_robot.o"
+	@echo "... src/control_2_robot.i"
+	@echo "... src/control_2_robot.s"
 	@echo "... src/exper_vl_force.o"
 	@echo "... src/exper_vl_force.i"
 	@echo "... src/exper_vl_force.s"

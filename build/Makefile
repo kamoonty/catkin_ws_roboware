@@ -4432,6 +4432,19 @@ multi_amr_nectec_generate_messages/fast:
 .PHONY : multi_amr_nectec_generate_messages/fast
 
 #=============================================================================
+# Target rules for targets named control_2_robot
+
+# Build rule for target.
+control_2_robot: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 control_2_robot
+.PHONY : control_2_robot
+
+# fast build rule for target.
+control_2_robot/fast:
+	$(MAKE) -f multi_amr_nectec/CMakeFiles/control_2_robot.dir/build.make multi_amr_nectec/CMakeFiles/control_2_robot.dir/build
+.PHONY : control_2_robot/fast
+
+#=============================================================================
 # Target rules for targets named multi_amr_nectec_gennodejs
 
 # Build rule for target.
@@ -7970,6 +7983,7 @@ help:
 	@echo "... inter_agent_force"
 	@echo "... vl_trajectory_diagonal"
 	@echo "... multi_amr_nectec_generate_messages"
+	@echo "... control_2_robot"
 	@echo "... multi_amr_nectec_gennodejs"
 	@echo "... multi_amr_nectec_genpy"
 	@echo "... get_pose_optitrack"

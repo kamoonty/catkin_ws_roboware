@@ -367,3 +367,11 @@ add_dependencies(vl_trajectory_exper1 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catk
 target_link_libraries(vl_trajectory_exper1
   ${catkin_LIBRARIES}
 )
+
+add_executable(control_2_robot
+  src/control_2_robot.cpp
+)
+add_dependencies(control_2_robot ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(control_2_robot
+  ${catkin_LIBRARIES}
+)

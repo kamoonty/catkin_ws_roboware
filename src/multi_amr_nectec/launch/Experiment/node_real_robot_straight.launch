@@ -1,0 +1,8 @@
+<launch>
+<node pkg="multi_amr_nectec" type="real_robot_straight" name="real_robot_straight" output="screen" >
+
+<param name ="v_linear_threshold" value = "-0.15" />
+<param name ="v_angular_threshold" value = "0.2" />
+
+</node>
+</launch>
