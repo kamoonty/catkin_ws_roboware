@@ -303,6 +303,21 @@ multi_amr_nectec_generate_messages_nodejs/fast:
 .PHONY : multi_amr_nectec_generate_messages_nodejs/fast
 
 # Convenience name for target.
+multi_amr_nectec/CMakeFiles/pose2d_real_robot.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/pose2d_real_robot.dir/rule
+.PHONY : multi_amr_nectec/CMakeFiles/pose2d_real_robot.dir/rule
+
+# Convenience name for target.
+pose2d_real_robot: multi_amr_nectec/CMakeFiles/pose2d_real_robot.dir/rule
+
+.PHONY : pose2d_real_robot
+
+# fast build rule for target.
+pose2d_real_robot/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/pose2d_real_robot.dir/build.make multi_amr_nectec/CMakeFiles/pose2d_real_robot.dir/build
+.PHONY : pose2d_real_robot/fast
+
+# Convenience name for target.
 multi_amr_nectec/CMakeFiles/multi_amr_nectec_generate_messages_eus.dir/rule:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/multi_amr_nectec_generate_messages_eus.dir/rule
 .PHONY : multi_amr_nectec/CMakeFiles/multi_amr_nectec_generate_messages_eus.dir/rule
@@ -962,6 +977,33 @@ src/orientation_control_exper.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/orientation_control_exper.dir/build.make multi_amr_nectec/CMakeFiles/orientation_control_exper.dir/src/orientation_control_exper.cpp.s
 .PHONY : src/orientation_control_exper.cpp.s
 
+src/pose2d_real_robot.o: src/pose2d_real_robot.cpp.o
+
+.PHONY : src/pose2d_real_robot.o
+
+# target to build an object file
+src/pose2d_real_robot.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/pose2d_real_robot.dir/build.make multi_amr_nectec/CMakeFiles/pose2d_real_robot.dir/src/pose2d_real_robot.cpp.o
+.PHONY : src/pose2d_real_robot.cpp.o
+
+src/pose2d_real_robot.i: src/pose2d_real_robot.cpp.i
+
+.PHONY : src/pose2d_real_robot.i
+
+# target to preprocess a source file
+src/pose2d_real_robot.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/pose2d_real_robot.dir/build.make multi_amr_nectec/CMakeFiles/pose2d_real_robot.dir/src/pose2d_real_robot.cpp.i
+.PHONY : src/pose2d_real_robot.cpp.i
+
+src/pose2d_real_robot.s: src/pose2d_real_robot.cpp.s
+
+.PHONY : src/pose2d_real_robot.s
+
+# target to generate assembly for a file
+src/pose2d_real_robot.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/pose2d_real_robot.dir/build.make multi_amr_nectec/CMakeFiles/pose2d_real_robot.dir/src/pose2d_real_robot.cpp.s
+.PHONY : src/pose2d_real_robot.cpp.s
+
 src/position_robot.o: src/position_robot.cpp.o
 
 .PHONY : src/position_robot.o
@@ -1332,6 +1374,7 @@ help:
 	@echo "... real_robot_straight"
 	@echo "... multi_amr_nectec_generate_messages_nodejs"
 	@echo "... edit_cache"
+	@echo "... pose2d_real_robot"
 	@echo "... multi_amr_nectec_generate_messages_eus"
 	@echo "... multi_amr_nectec_generate_messages_lisp"
 	@echo "... multi_amr_nectec_geneus"
@@ -1391,6 +1434,9 @@ help:
 	@echo "... src/orientation_control_exper.o"
 	@echo "... src/orientation_control_exper.i"
 	@echo "... src/orientation_control_exper.s"
+	@echo "... src/pose2d_real_robot.o"
+	@echo "... src/pose2d_real_robot.i"
+	@echo "... src/pose2d_real_robot.s"
 	@echo "... src/position_robot.o"
 	@echo "... src/position_robot.i"
 	@echo "... src/position_robot.s"

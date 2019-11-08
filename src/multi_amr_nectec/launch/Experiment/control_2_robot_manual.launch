@@ -1,6 +1,6 @@
 <launch>
 <node pkg="multi_amr_nectec" type="control_2_robot" name="control_2_robot" output="screen" >
-
-
 </node>
+
+
 </launch>

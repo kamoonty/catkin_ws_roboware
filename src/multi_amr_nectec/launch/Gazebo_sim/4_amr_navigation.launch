@@ -4,25 +4,26 @@
   <arg name="open_rviz" default="true"/>
   <arg name="open_gazebo" default="false"/>
   <arg name="record_data" default="false" />
-  <arg name="vl_force" default="false" />
+
+  <arg name="vl_force" default="true" />
   <arg name="rotational_force" default="true" />
   <arg name="inter_agent_force" default="true" />
   <arg name="motion_generator" default="true" />
   <!-- Define Paramerters here for robot formation-->
-  <arg name="Kvl" default="200" />
-  <arg name="Cvl" default="0" />
-  <arg name="Kij" default="100" />
-  <arg name="Cij" default="0" />
+  <arg name="Kvl" default="300" />
+  <arg name="Cvl" default="10" />
+  <arg name="Kij" default="200" />
+  <arg name="Cij" default="5" />
 <!-- K angular should be low to let robot move in cartesion in time-->
-  <arg name="K_ang" default="4" />
+  <arg name="K_ang" default="20" />
   <arg name="D_ang" default="0" />
   <arg name="team_size" value="4"/>
-  <arg name="v_linear_threshold" value="1000"/>
-  <arg name="v_angular_threshold" value="1000"/>
+  <arg name="v_linear_threshold" value="0.5"/>
+  <arg name="v_angular_threshold" value="0.4"/>
   <arg name="robot_mass" value="40"/>
   <arg name="robot_radious" value="0.5"/>
   <arg name="robot_inertia" value="0.77"/>
-  <arg name="delta_time" value="0.01"/>
+  <arg name="delta_time" value="1"/> 
 <!-- other robot map-->
 <arg name="watkin_map" default="$(find multi_amr_nectec)/maps/watkin_lab.yaml"/>
 <arg name="watkin_world" default="$(find multi_amr_nectec)/worlds/watkinslab.world"/>
@@ -52,70 +53,69 @@
   </group>
 
 
-<!-- AMR 0  -->
-  <group ns="amr_0">
-    <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 0 -y 3 -z 0 -Y 0 " />
-      <arg name="init_pose_rviz" value="0 0 0 0 0 0" />    
-      <arg name="robot_name" value="amr_0" />
-      <arg name="robot_colour" value="blue"/>
-    </include>
-     <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
-     <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
-  
-  </group>
+<!-- AMR 0 -->
+<group ns="amr_0">
+<include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
+<arg name="init_pose_gazebo" value="-x 0 -y 2 -z 0 -Y 1.57079632679 " />
+<arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
+<arg name="robot_name" value="amr_0" />
+<arg name="robot_colour" value="blue"/>
+</include>
+<node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />
+<node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
 
-<!-- AMR 1  -->
- <group ns="amr_1">
-    <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x -3 -y 0 -z 0 -Y 0 " />  
-      <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
-      <arg name="robot_name" value="amr_1" />
-      <arg name="robot_colour" value="blue"/>
-      <param name="robot_description" command="$(find xacro)/xacro --inorder $(find amr_description)/urdf/amr.urdf_red.xacro" />
-   
-    </include> 
-    <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
-    <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
-  </group>
+</group>
 
-<!-- AMR 2   --> 
- <group ns="amr_2">
-    <param name="tf_prefix" value="amr_2" />
-    <param name="amcl/initial_pose_x" value="0" />
-    <param name="amcl/initial_pose_y" value="0" />
-    <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 0 -y -3 -z 0 -Y 0" />  
-      <arg name="init_pose_rviz" value="0 0 0 0 0 0" />     
-      <arg name="robot_name" value="amr_2" />
-      <arg name="robot_colour" value="red"/>
-    </include> 
-    <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
-    <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
-  </group>
+<!-- AMR 1 -->
+<group ns="amr_1">
+<include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
+<arg name="init_pose_gazebo" value="-x -2 -y 0 -z 0 -Y 1.57079632679 " /> 
+<arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
+<arg name="robot_name" value="amr_1" />
+<arg name="robot_colour" value="blue"/>
 
-<!-- AMR 3    -->
- <group ns="amr_3">
-   <param name="tf_prefix" value="amr_3" />
-    <param name="amcl/initial_pose_x" value="0" />
-    <param name="amcl/initial_pose_y" value="0" />
-    <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 3 -y 0 -z 0 -Y 0" />  
-      <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
-      <arg name="robot_name" value="amr_3" />
-      <arg name="robot_colour" value="red"/>
-    </include>
-    <node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" />  
-    <node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
-  
-  </group>
+</include> 
+<node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
+<node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
+</group>
 
+<!-- AMR 2 --> 
+<group ns="amr_2">
+<param name="tf_prefix" value="amr_2" />
+<param name="amcl/initial_pose_x" value="0" />
+<param name="amcl/initial_pose_y" value="0" />
+<include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
+<arg name="init_pose_gazebo" value="-x 0 -y -2 -z 0 -Y 1.57079632679" /> 
+<arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
+<arg name="robot_name" value="amr_2" />
+<arg name="robot_colour" value="blue"/>
+</include> 
+<node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
+<node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
+</group>
+
+<!-- AMR 3 -->
+<group ns="amr_3">
+<param name="tf_prefix" value="amr_3" />
+<param name="amcl/initial_pose_x" value="0" />
+<param name="amcl/initial_pose_y" value="0" />
+<include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
+<arg name="init_pose_gazebo" value="-x 2 -y 0 -z 0 -Y 1.57079632679" /> 
+<arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
+<arg name="robot_name" value="amr_3" />
+<arg name="robot_colour" value="blue"/>
+</include>
+<node pkg="multi_amr_nectec" type="get_odom_robot" name="get_odom_robot" output="screen" /> 
+<node pkg="multi_amr_nectec" type="tf_quat2euler" name="tf_quat2euler" output="screen" />
+</group>
+
+ <!-- VL is real robot    -->
  <group ns="vl_robot">
    <param name="tf_prefix" value="vl_robot" />
     <param name="amcl/initial_pose_x" value="0" />
     <param name="amcl/initial_pose_y" value="0" />
-    <include file="$(find multi_amr_nectec)/launch/single_amr.launch" >
-      <arg name="init_pose_gazebo" value="-x 0 -y 0 -z 0 -Y 0" />  
+ <include file="$(find multi_amr_nectec)/launch/Gazebo_sim/single_amr.launch" >
+      <arg name="init_pose_gazebo" value="-x 0 -y 0 -z 0 -Y 1.57079632679" />  
       <arg name="init_pose_rviz" value="0 0 0 0 0 0" /> 
       <arg name="robot_name" value="vl_robot" />
       <arg name="robot_colour" value="green"/>

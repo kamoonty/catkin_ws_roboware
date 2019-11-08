@@ -8,9 +8,9 @@ Panels:
         - /Status1
         - /AMR_01/Shape1
         - /AMR_11/Shape1
+        - /AMR_21
         - /AMR_21/Shape1
         - /AMR_31/Shape1
-        - /VL_robot1
         - /VL_robot1/Shape1
         - /VL_LaserScan1
       Splitter Ratio: 0.501170933
@@ -30,7 +30,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: VL_LaserScan
 Toolbars:
   toolButtonStyle: 2
 Visualization Manager:
@@ -189,7 +189,31 @@ Visualization Manager:
           Value: true
         vl_robot/base_link:
           Value: true
+        vl_robot/base_scan:
+          Value: true
+        vl_robot/bumper_link:
+          Value: true
+        vl_robot/imu_link:
+          Value: true
+        vl_robot/laser_link:
+          Value: true
         vl_robot/odom:
+          Value: true
+        vl_robot/wheel_fl_axle_link:
+          Value: true
+        vl_robot/wheel_fl_link:
+          Value: true
+        vl_robot/wheel_fr_axle_link:
+          Value: true
+        vl_robot/wheel_fr_link:
+          Value: true
+        vl_robot/wheel_rl_axle_link:
+          Value: true
+        vl_robot/wheel_rl_link:
+          Value: true
+        vl_robot/wheel_rr_axle_link:
+          Value: true
+        vl_robot/wheel_rr_link:
           Value: true
       Marker Scale: 1
       Name: TF
@@ -272,7 +296,25 @@ Visualization Manager:
                   {}
           vl_robot/odom:
             vl_robot/base_link:
-              {}
+              vl_robot/bumper_link:
+                {}
+              vl_robot/imu_link:
+                {}
+              vl_robot/laser_link:
+                vl_robot/base_scan:
+                  {}
+              vl_robot/wheel_fl_axle_link:
+                vl_robot/wheel_fl_link:
+                  {}
+              vl_robot/wheel_fr_axle_link:
+                vl_robot/wheel_fr_link:
+                  {}
+              vl_robot/wheel_rl_axle_link:
+                vl_robot/wheel_rl_link:
+                  {}
+              vl_robot/wheel_rr_axle_link:
+                vl_robot/wheel_rr_link:
+                  {}
       Update Interval: 0
       Value: true
     - Angle Tolerance: 0.100000001
@@ -368,7 +410,7 @@ Visualization Manager:
         Alpha: 1
         Axes Length: 1
         Axes Radius: 0.100000001
-        Color: 80; 255; 106
+        Color: 255; 240; 23
         Head Length: 0.300000012
         Head Radius: 0.300000012
         Shaft Length: 0.699999988
@@ -436,7 +478,7 @@ Visualization Manager:
         Alpha: 1
         Axes Length: 1
         Axes Radius: 0.100000001
-        Color: 255; 136; 67
+        Color: 66; 255; 97
         Head Length: 0.300000012
         Head Radius: 0.300000012
         Shaft Length: 0.699999988
@@ -683,11 +725,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Scale: 46.7901497
+      Scale: 19.3488884
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz)
-      X: 4.84522343
-      Y: 1.11512995
+      X: -1.23777068
+      Y: 1.19505358
     Saved: ~
 Window Geometry:
   Displays:

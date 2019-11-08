@@ -4341,6 +4341,19 @@ multi_amr_nectec_generate_messages_nodejs/fast:
 .PHONY : multi_amr_nectec_generate_messages_nodejs/fast
 
 #=============================================================================
+# Target rules for targets named pose2d_real_robot
+
+# Build rule for target.
+pose2d_real_robot: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pose2d_real_robot
+.PHONY : pose2d_real_robot
+
+# fast build rule for target.
+pose2d_real_robot/fast:
+	$(MAKE) -f multi_amr_nectec/CMakeFiles/pose2d_real_robot.dir/build.make multi_amr_nectec/CMakeFiles/pose2d_real_robot.dir/build
+.PHONY : pose2d_real_robot/fast
+
+#=============================================================================
 # Target rules for targets named multi_amr_nectec_generate_messages_eus
 
 # Build rule for target.
@@ -7976,6 +7989,7 @@ help:
 	@echo "... multi_amr_nectec_genlisp"
 	@echo "... real_robot_straight"
 	@echo "... multi_amr_nectec_generate_messages_nodejs"
+	@echo "... pose2d_real_robot"
 	@echo "... multi_amr_nectec_generate_messages_eus"
 	@echo "... multi_amr_nectec_generate_messages_lisp"
 	@echo "... multi_amr_nectec_geneus"
