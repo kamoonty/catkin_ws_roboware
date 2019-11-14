@@ -4224,19 +4224,6 @@ mocap_optitrack_mocap_node/fast:
 .PHONY : mocap_optitrack_mocap_node/fast
 
 #=============================================================================
-# Target rules for targets named orientation_control_exper
-
-# Build rule for target.
-orientation_control_exper: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 orientation_control_exper
-.PHONY : orientation_control_exper
-
-# fast build rule for target.
-orientation_control_exper/fast:
-	$(MAKE) -f multi_amr_nectec/CMakeFiles/orientation_control_exper.dir/build.make multi_amr_nectec/CMakeFiles/orientation_control_exper.dir/build
-.PHONY : orientation_control_exper/fast
-
-#=============================================================================
 # Target rules for targets named tf_quat2euler_edit
 
 # Build rule for target.
@@ -7980,7 +7967,6 @@ help:
 	@echo "... clean_test_results_mocap_optitrack"
 	@echo "... run_tests_mocap_optitrack_roslaunch-check"
 	@echo "... mocap_optitrack_mocap_node"
-	@echo "... orientation_control_exper"
 	@echo "... tf_quat2euler_edit"
 	@echo "... vl_trajectory_c_shape"
 	@echo "... vl_trajectory_sideway"

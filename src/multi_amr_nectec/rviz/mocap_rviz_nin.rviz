@@ -6,10 +6,12 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /Grid1
         - /amr_0_blue1
         - /Virtual Leader1/Shape1
+        - /Object1
       Splitter Ratio: 0.5
-    Tree Height: 359
+    Tree Height: 656
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -37,7 +39,7 @@ Visualization Manager:
     - Alpha: 0.5
       Cell Size: 1
       Class: rviz/Grid
-      Color: 160; 160; 164
+      Color: 0; 0; 0
       Enabled: true
       Line Style:
         Line Width: 0.0299999993
@@ -130,9 +132,24 @@ Visualization Manager:
       Topic: /vrpn_client_node/mocap_amr_1/pose
       Unreliable: false
       Value: true
+    - Alpha: 1
+      Axes Length: 1
+      Axes Radius: 0.100000001
+      Class: rviz/Pose
+      Color: 38; 255; 255
+      Enabled: true
+      Head Length: 0.150000006
+      Head Radius: 0.100000001
+      Name: Object
+      Shaft Length: 0.300000012
+      Shaft Radius: 0.0500000007
+      Shape: Arrow
+      Topic: /vrpn_client_node/object_load/pose
+      Unreliable: false
+      Value: true
   Enabled: true
   Global Options:
-    Background Color: 48; 48; 48
+    Background Color: 255; 255; 255
     Default Light: true
     Fixed Frame: world
     Frame Rate: 30
@@ -164,11 +181,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Scale: 68.6604156
+      Scale: 124.347176
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz)
-      X: 0
-      Y: 0
+      X: 0.156473428
+      Y: 0.700988233
     Saved: ~
 Window Geometry:
   Displays:
