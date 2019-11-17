@@ -2,7 +2,7 @@
   <master auto="start"/>
   <param name="/use_sim_time" value="true"/>
   <arg name="open_rviz" default="true"/>
-  <arg name="open_gazebo" default="false"/>
+  <arg name="open_gazebo" default="true"/>
   <arg name="record_data" default="true" />
 
   <arg name="vl_force" default="true" />

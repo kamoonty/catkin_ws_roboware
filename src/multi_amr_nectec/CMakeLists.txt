@@ -375,3 +375,11 @@ add_dependencies(pose2d_real_robot ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_
 target_link_libraries(pose2d_real_robot
   ${catkin_LIBRARIES}
 )
+
+add_executable(vl_trajectory_exper_curve
+  src/vl_trajectory_exper_curve.cpp
+)
+add_dependencies(vl_trajectory_exper_curve ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(vl_trajectory_exper_curve
+  ${catkin_LIBRARIES}
+)

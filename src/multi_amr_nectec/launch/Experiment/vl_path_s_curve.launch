@@ -1,0 +1,3 @@
+<launch>
+<node pkg="multi_amr_nectec" type="vl_trajectory_exper_curve" name="vl_trajectory_exper_curve" output="screen" />
+</launch>

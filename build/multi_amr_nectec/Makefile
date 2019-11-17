@@ -348,6 +348,21 @@ multi_amr_nectec_geneus/fast:
 .PHONY : multi_amr_nectec_geneus/fast
 
 # Convenience name for target.
+multi_amr_nectec/CMakeFiles/vl_trajectory_exper_curve.dir/rule:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/vl_trajectory_exper_curve.dir/rule
+.PHONY : multi_amr_nectec/CMakeFiles/vl_trajectory_exper_curve.dir/rule
+
+# Convenience name for target.
+vl_trajectory_exper_curve: multi_amr_nectec/CMakeFiles/vl_trajectory_exper_curve.dir/rule
+
+.PHONY : vl_trajectory_exper_curve
+
+# fast build rule for target.
+vl_trajectory_exper_curve/fast:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_exper_curve.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_exper_curve.dir/build
+.PHONY : vl_trajectory_exper_curve/fast
+
+# Convenience name for target.
 multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/rule:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f CMakeFiles/Makefile2 multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/rule
 .PHONY : multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/rule
@@ -1232,6 +1247,33 @@ src/vl_trajectory_exper1.cpp.s:
 	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_exper1.dir/src/vl_trajectory_exper1.cpp.s
 .PHONY : src/vl_trajectory_exper1.cpp.s
 
+src/vl_trajectory_exper_curve.o: src/vl_trajectory_exper_curve.cpp.o
+
+.PHONY : src/vl_trajectory_exper_curve.o
+
+# target to build an object file
+src/vl_trajectory_exper_curve.cpp.o:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_exper_curve.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_exper_curve.dir/src/vl_trajectory_exper_curve.cpp.o
+.PHONY : src/vl_trajectory_exper_curve.cpp.o
+
+src/vl_trajectory_exper_curve.i: src/vl_trajectory_exper_curve.cpp.i
+
+.PHONY : src/vl_trajectory_exper_curve.i
+
+# target to preprocess a source file
+src/vl_trajectory_exper_curve.cpp.i:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_exper_curve.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_exper_curve.dir/src/vl_trajectory_exper_curve.cpp.i
+.PHONY : src/vl_trajectory_exper_curve.cpp.i
+
+src/vl_trajectory_exper_curve.s: src/vl_trajectory_exper_curve.cpp.s
+
+.PHONY : src/vl_trajectory_exper_curve.s
+
+# target to generate assembly for a file
+src/vl_trajectory_exper_curve.cpp.s:
+	cd /home/kanin/catkin_ws_roboware/build && $(MAKE) -f multi_amr_nectec/CMakeFiles/vl_trajectory_exper_curve.dir/build.make multi_amr_nectec/CMakeFiles/vl_trajectory_exper_curve.dir/src/vl_trajectory_exper_curve.cpp.s
+.PHONY : src/vl_trajectory_exper_curve.cpp.s
+
 src/vl_trajectory_linear.o: src/vl_trajectory_linear.cpp.o
 
 .PHONY : src/vl_trajectory_linear.o
@@ -1335,6 +1377,7 @@ help:
 	@echo "... multi_amr_nectec_generate_messages_eus"
 	@echo "... multi_amr_nectec_generate_messages_lisp"
 	@echo "... multi_amr_nectec_geneus"
+	@echo "... vl_trajectory_exper_curve"
 	@echo "... vl_trajectory_exper1"
 	@echo "... inter_agent_force"
 	@echo "... vl_trajectory_diagonal"
@@ -1421,6 +1464,9 @@ help:
 	@echo "... src/vl_trajectory_exper1.o"
 	@echo "... src/vl_trajectory_exper1.i"
 	@echo "... src/vl_trajectory_exper1.s"
+	@echo "... src/vl_trajectory_exper_curve.o"
+	@echo "... src/vl_trajectory_exper_curve.i"
+	@echo "... src/vl_trajectory_exper_curve.s"
 	@echo "... src/vl_trajectory_linear.o"
 	@echo "... src/vl_trajectory_linear.i"
 	@echo "... src/vl_trajectory_linear.s"
